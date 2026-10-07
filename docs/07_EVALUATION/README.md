@@ -5,7 +5,8 @@
 ## 1. Ground truth
 - **Chính:** relevant ⇔ **cùng nhạc cụ** với query.
 - **Phân cấp (nâng cao):** rel = 2 nếu cùng nhạc cụ và cùng technique_family; rel = 1 nếu chỉ cùng nhạc cụ; 0 nếu khác. Dùng để tính nDCG@5.
-- **Unseen (banjo/mandolin):** dùng **Excitation-P@5** = tỷ lệ kết quả có cơ chế **gảy** (guitar hoặc sequence pizz). Banjo và mandolin là nhạc cụ gảy, nên đây là tiêu chí kiểm chứng được.
+- **Unseen (banjo/mandolin):** dùng **Excitation-P@5** = tỷ lệ kết quả có cơ chế **gảy**. Vì CSDL v1 không có sequence pizz (D20), thực tế đây là tỷ lệ kết quả là guitar. Banjo và mandolin là nhạc cụ gảy, nên đây là tiêu chí kiểm chứng được.
+- **Khác điều kiện thu (tùy chọn):** file multi-note gốc của Iowa làm query ⇒ đo P@5 khi nguồn thu khác.
 
 Ví dụ: `q_cello_0007` có 100 relevant (`seq_cello_*`). Kết quả `[cello, cello, viola, cello, cello]` ⇒ P@5 = 0.8, Top-1 = 1, Hit@5 = 1, RR = 1.
 

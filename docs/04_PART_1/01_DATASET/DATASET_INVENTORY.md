@@ -26,7 +26,7 @@ cello_As2_05_forte_arco-normal.mp3
 | Family | Gồm | Dùng ở v1? |
 |---|---|---|
 | `arco` | arco-normal, molto-vibrato, non-vibrato | Có |
-| `pizz` | pizz-normal | Có |
+| `pizz` | pizz-normal | **Không ghép** (D20: cello 0, double-bass 12 nốt dùng được); giữ trong catalog |
 | `pluck` | normal (guitar) | Có |
 | `harmonic` | harmonics (guitar), natural-harmonic, artificial-harmonic, arco-harmonic | Chỉ guitar `harmonics` |
 | `special` | col-legno, sul-ponticello, sul-tasto, tremolo, trill, glissando, spiccato, staccato, con-sord, … | **Không** (giữ trong catalog, split = NONE) |
@@ -36,8 +36,13 @@ cello_As2_05_forte_arco-normal.mp3
 |---|---|---|
 | CORRUPT | ffprobe/decode lỗi | 1 |
 | DUPLICATE | MD5 trùng với file khác (đánh dấu **cả hai**) | 4 |
-| TOO_SHORT | < 0.2 s sau khi cắt lặng | đo ở Bước 1–2 |
+| TOO_SHORT | Phần có âm < 0.35 s (D22) | 55 nốt đơn |
 | OK | còn lại | |
 
-## 5. Vai trò từng nhóm
+Số nốt dùng được theo nhạc cụ và kỹ thuật: xem [DATASET_COLLECTION_AND_FILTERING](DATASET_COLLECTION_AND_FILTERING.md) §1.3.
+
+## 5. Nguồn thứ hai (đề xuất): University of Iowa MIS
+Xem [DATASET_COLLECTION_AND_FILTERING](DATASET_COLLECTION_AND_FILTERING.md) §3–4. Nốt cắt từ Iowa được lưu với tên `<instrument>_<note>_<dyn>_<technique>_<string>.wav` và có `source = iowa`.
+
+## 6. Vai trò từng nhóm
 Xem [DATASET_ROLES](DATASET_ROLES.md) và [SPLIT_AND_LEAKAGE](SPLIT_AND_LEAKAGE.md).

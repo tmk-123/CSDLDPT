@@ -1,8 +1,14 @@
 # TODO
 
-## Ngay bây giờ
-- [ ] **Bước 0:** tạo venv, cài thư viện, tạo khung thư mục code + `config.py` ([PART_1_PLAN](../02_PLANS/PART_1_PLAN.md#bước-0--chuẩn-bị-môi-trường))
-- [ ] **Bước 1:** catalog + split
+## Ngay bây giờ: DATASET
+- [x] **Duyệt D21**: dùng University of Iowa MIS làm nguồn bổ sung (đã tải guitar)
+- [x] **D1a** Tải Iowa guitar → `External/iowa_mis/guitar/` (45 file, 07/10)
+- [ ] **D1b** (khuyến nghị) Tải Iowa arco: violin, viola, cello, double bass
+- [ ] **D2** Cắt file Iowa thành nốt đơn + kiểm tra (số nốt theo tên file, cao độ bằng pYIN)
+- [ ] **D3–D5** Catalog hợp nhất + lọc + chia tập
+- [ ] **D6** Thống kê và mô tả dataset
+- [ ] Xác nhận nguồn và giấy phép của `Strings/`
+- [ ] (Song song) Bước 0: venv + thư viện
 
 ## Tiếp theo
 Bước 2 → 11 theo [MILESTONES](../02_PLANS/MILESTONES.md).

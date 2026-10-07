@@ -52,17 +52,32 @@ python -c "import librosa, sklearn, rtree, soundfile; print('OK', librosa.__vers
 
 ---
 
-## Bước 1 — Catalog dataset
-**Đọc trước:** [DATASET_INVENTORY](../04_PART_1/01_DATASET/DATASET_INVENTORY.md), [SPLIT_AND_LEAKAGE](../04_PART_1/01_DATASET/SPLIT_AND_LEAKAGE.md)
+## Bước 1 — Dataset: thu thập, lọc, catalog ⭐ ĐANG TẬP TRUNG
+**Đọc trước:** ⭐ [DATASET_COLLECTION_AND_FILTERING](../04_PART_1/01_DATASET/DATASET_COLLECTION_AND_FILTERING.md), [DATASET_INVENTORY](../04_PART_1/01_DATASET/DATASET_INVENTORY.md), [SPLIT_AND_LEAKAGE](../04_PART_1/01_DATASET/SPLIT_AND_LEAKAGE.md)
 
-**Mục tiêu:** một bảng **đáng tin** mô tả cả 4 477 file. Đây là nền móng của mọi bước sau: nếu split sai ở đây, mọi kết quả về sau đều vô nghĩa.
+**Mục tiêu:** bộ nốt đơn **đủ cho cả 5 nhạc cụ** (≥ 360 nốt dùng được mỗi nhạc cụ) và một catalog **đáng tin**. Đây là nền móng của mọi bước sau: nếu dữ liệu thiếu hoặc split sai, mọi kết quả về sau đều vô nghĩa.
 
-**Việc cần làm** (`src/strings_mmdb/catalog.py` + `scripts/p01_build_catalog.py`):
+**Thứ tự làm** (chi tiết ở DATASET_COLLECTION_AND_FILTERING §4):
+
+| Bước con | Việc | Xong khi |
+|---|---|---|
+| D1 | Tải Iowa MIS cho 5 nhạc cụ → `External/iowa_mis/` | Đủ file, đã ghi nguồn |
+| D2 | Cắt file Iowa thành nốt đơn, kiểm tra số nốt theo tên file và cao độ bằng pYIN | Có bảng cắt và kiểm tra |
+| D3 | Catalog hợp nhất (Philharmonia + Iowa, thêm cột `source`) | Xem checklist dưới |
+| D4 | Áp quy tắc lọc F1–F6 | Mọi file có status |
+| D5 | Chia tập theo (nhạc cụ, nguồn) | Bảng đếm nhạc cụ × nguồn × split |
+| D6 | Thống kê và mô tả dataset (đề mục 1) | Bảng + biểu đồ |
+
+> Bước D3–D5 làm được **ngay** trên `Strings/` (chưa cần Iowa). Khi có Iowa thì chạy lại, vì script được viết để chạy lại nhiều lần.
+
+**Việc cần làm cho D3–D5** (`src/strings_mmdb/catalog.py` + `scripts/p01_build_catalog.py`):
 - [ ] Duyệt `Strings/**/*.mp3`; tách tên file thành 5 trường (`split('_', 4)`).
 - [ ] `note → midi`: ví dụ `As2` → 46. Công thức: `midi = 12·(octave+1) + index(tên nốt)`, với C = 0, Cs = 1, D = 2, …, B = 11.
 - [ ] `technique → technique_family`: `arco-normal`, `molto-vibrato`, `non-vibrato` → `arco`; `pizz-normal` → `pizz`; `normal` (guitar) → `pluck`; `harmonics`/`*-harmonic` → `harmonic`; còn lại → `special`.
 - [ ] Gọi ffprobe lấy `duration_sec`, `sample_rate`, `channels`; tính MD5.
-- [ ] Gán `status` theo thứ tự: `CORRUPT` (ffprobe lỗi) → `DUPLICATE` (MD5 trùng; gán cho **cả hai** file) → `TOO_SHORT` (< 0.2 s) → `OK`.
+- [ ] Giải mã từng file, đo **phần có âm** (RMS > −40 dB), đỉnh biên độ, số mẫu clipping.
+- [ ] Gán `status` theo thứ tự: `CORRUPT` (giải mã lỗi) → `DUPLICATE` (MD5 trùng; gán cho **cả hai** file) → `TOO_SHORT` (phần có âm < 0.35 s) → (Iowa) `PITCH_MISMATCH` → `OK`. Thêm cờ `LOW_LEVEL`, `CLIPPED`.
+- [ ] Thêm cột `source` (`philharmonia`/`iowa`), `active_sec`, `peak`.
 - [ ] Gán `split` theo quy tắc ở SPLIT_AND_LEAKAGE §2.
 - [ ] Ghi `data/catalog.csv`.
 
@@ -70,7 +85,8 @@ python -c "import librosa, sklearn, rtree, soundfile; print('OK', librosa.__vers
 
 **Kiểm tra** (`tests/test_catalog.py`):
 - [ ] Đúng 4 477 dòng.
-- [ ] Đúng 1 `CORRUPT`, 4 `DUPLICATE`.
+- [ ] Đúng 1 `CORRUPT`, 4 `DUPLICATE`, 55 `TOO_SHORT` trong nốt đơn của 5 nhạc cụ (khớp số đã quét ngày 07/10).
+- [ ] Số nốt dùng được khớp DATASET_COLLECTION_AND_FILTERING §1.3 (violin 959, viola 759, cello 756, double-bass 763, guitar 106; chưa tính Iowa).
 - [ ] Không có cặp (instrument, midi) nào nằm ở hai split khác nhau.
 - [ ] In bảng đếm *nhạc cụ × split* và so với số dự kiến (REF ≈ 40%, DB_POOL ≈ 40%, QUERY_POOL ≈ 20% số nốt cơ bản).
 - [ ] Mọi file `phrase` có split = `PHRASE`; mọi file banjo/mandolin có split = `UNSEEN`.
@@ -146,7 +162,7 @@ python -c "import librosa, sklearn, rtree, soundfile; print('OK', librosa.__vers
 **Mục tiêu:** 500 sequence DB (100/nhạc cụ) + 100 sequence query (20/nhạc cụ), kèm ground truth.
 
 **Việc cần làm** (`src/strings_mmdb/synth.py` + `scripts/p05_synthesize.py`):
-- [ ] Chỉ dùng nốt `status=OK`, technique_family ∈ {arco, pizz, pluck, harmonic}.
+- [ ] Chỉ dùng nốt `status=OK`; bộ kéo vĩ: technique_family = arco; guitar: pluck, harmonic (D20).
 - [ ] DB lấy nốt từ `DB_POOL`; query lấy nốt từ `QUERY_POOL`. **Không bao giờ trộn.**
 - [ ] Làm đúng các quy tắc ghép (số nốt, độ dài, gain, khoảng lặng/crossfade, seed cố định).
 - [ ] Ghi `data/sequences/{db,query}/*.wav` và `data/ground_truth/{db,query}/*.json`.

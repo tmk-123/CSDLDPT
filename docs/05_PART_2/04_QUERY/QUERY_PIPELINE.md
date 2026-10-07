@@ -20,8 +20,8 @@
 
 **Bước 3–7 là đúng hàm `audio_to_vector()` đã dùng để xây CSDL. Bước 8–9 là đúng hàm `transform()` đã dùng cho DB.** Không có code riêng cho query.
 
-## 2. Truy vấn thuộc nhạc cụ chưa có (banjo, mandolin)
-Pipeline giống hệt. Hệ thống vẫn trả 5 file **gần nhất về âm sắc**. Kết quả trung gian h cho biết query "giống nhạc cụ nào bao nhiêu %". Kỳ vọng hợp lý: banjo và mandolin là nhạc cụ gảy, nên Top-5 nghiêng về guitar và các sequence pizz.
+## 2. Truy vấn nhạc cụ ngoài CSDL (banjo, mandolin)
+Pipeline giống hệt. Hệ thống vẫn trả 5 file **gần nhất về âm sắc**. Kết quả trung gian h cho biết query "giống nhạc cụ nào bao nhiêu %". Kỳ vọng hợp lý: banjo và mandolin là nhạc cụ gảy, nên Top-5 nghiêng về guitar (CSDL v1 không có sequence pizz, theo D20).
 
 ## 3. Lỗi và xử lý
 | Tình huống | Hành vi |

@@ -7,10 +7,10 @@
 4. **Tune siêu tham số** (δ, k, τ, λ, số chiều PCA) trên chính tập query.
 
 ## 2. Quy tắc chia: theo NHÓM CAO ĐỘ, xen kẽ
-Áp dụng cho nốt đơn `status=OK`, `technique_family ∈ {arco, pizz, pluck, harmonic}` của 5 nhạc cụ.
+Áp dụng cho nốt đơn `status=OK` của 5 nhạc cụ, với `technique_family ∈ {arco}` (bộ kéo vĩ) hoặc `{pluck, harmonic}` (guitar) (D20). Áp dụng **riêng cho từng cặp (nhạc cụ, nguồn)** (D21), để mỗi tập đều có cả nốt Philharmonia và nốt Iowa.
 
 ```
-Với mỗi nhạc cụ:
+Với mỗi (nhạc cụ, nguồn):
   pitches = danh sách midi khác nhau, sắp tăng dần
   với i, p trong enumerate(pitches):
       r = i mod 5
@@ -42,6 +42,8 @@ Các file khác:
 Không lấy dev từ QUERY. Dùng **leave-one-out có loại trừ trên DB**: lấy lần lượt từng sequence DB làm query, tìm trên phần còn lại **sau khi bỏ mọi sequence dùng chung bản ghi nốt với nó**. Mọi tham số chọn trên dev; tập QUERY chỉ chạy **một lần** để lấy số cuối ⇒ loại rò rỉ (4).
 
 ## 5. Vấn đề riêng của guitar
+> **Cập nhật:** hướng xử lý chính bây giờ là bổ sung dữ liệu Iowa MIS (D21, [DATASET_COLLECTION_AND_FILTERING](DATASET_COLLECTION_AND_FILTERING.md)). Phân tích dưới đây áp dụng cho trường hợp **chỉ** dùng `Strings/`.
+
 - 106 bản ghi / 42 cao độ ⇒ khoảng 42 REF / 42 DB_POOL / 22 QUERY_POOL.
 - 100 sequence × khoảng 6 nốt = 600 lượt từ 42 bản ghi ⇒ **mỗi bản ghi dùng lại khoảng 14 lần** ⇒ các sequence guitar giống nhau hơn thực tế ⇒ P@5 guitar dễ cao giả.
 - Giảm thiểu: (a) mỗi lần dùng cắt **đoạn khác** của nốt (guitar dài khoảng 5 s) và đổi gain; (b) ưu tiên bản ghi ít được dùng; (c) báo cáo P@5 **theo từng nhạc cụ** và nêu rõ hạn chế; (d) nếu có thể, bổ sung ≥ 150 nốt guitar từ nguồn mở (ghi rõ nguồn và giấy phép).

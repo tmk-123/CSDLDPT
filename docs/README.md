@@ -4,13 +4,15 @@
 
 **Trọng tâm hiện tại: PHẦN 1 và PHẦN 2.** Thư mục 06, 07 mới chỉ giữ chỗ.
 
+> 📖 **Gặp từ lạ** (arco, pizz, vibrato, pp/ff, `As4`, `sulG`, split, R-tree, …)? Tra [09_REFERENCE/GLOSSARY.md](09_REFERENCE/GLOSSARY.md). Từ điển viết cho người chưa học nhạc và chưa học xử lý âm thanh.
+
 | Thư mục | Trả lời câu hỏi | Bắt đầu từ |
 |---|---|---|
 | [00_PROJECT/](00_PROJECT/) | Đề bài là gì, phạm vi tới đâu, hiện đang ở đâu? | [PROJECT_OVERVIEW.md](00_PROJECT/PROJECT_OVERVIEW.md) |
 | [01_THEORY/](01_THEORY/) | **Nó là gì?** Kiến thức chung, không chứa tham số của project | [01_AUDIO_FUNDAMENTALS.md](01_THEORY/01_AUDIO_FUNDAMENTALS.md) |
 | [02_PLANS/](02_PLANS/) | **Phải làm gì, theo thứ tự nào?** | ⭐ [PART_1_PLAN.md](02_PLANS/PART_1_PLAN.md) |
 | [03_WORKFLOWS/](03_WORKFLOWS/) | Dữ liệu chảy qua các bước ra sao? | [MASTER_WORKFLOW.md](03_WORKFLOWS/MASTER_WORKFLOW.md) |
-| [04_PART_1/](04_PART_1/) | **Project dùng nó thế nào?** Từ dataset tới vector đặc trưng | [DATASET_INVENTORY.md](04_PART_1/01_DATASET/DATASET_INVENTORY.md) |
+| [04_PART_1/](04_PART_1/) | **Project dùng nó thế nào?** Từ dataset tới vector đặc trưng | ⭐ [DATASET_COLLECTION_AND_FILTERING.md](04_PART_1/01_DATASET/DATASET_COLLECTION_AND_FILTERING.md) (đang tập trung) |
 | [05_PART_2/](05_PART_2/) | **Project dùng nó thế nào?** CSDL, chỉ mục R-tree, tìm kiếm, truy vấn | [SCHEMA.md](05_PART_2/01_DATABASE/SCHEMA.md) |
 | [06_SYSTEM/](06_SYSTEM/) | (để sau) Kiến trúc tổng, demo, cài đặt | — |
 | [07_EVALUATION/](07_EVALUATION/) | (để sau) Đánh giá | — |

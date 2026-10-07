@@ -8,7 +8,7 @@
 | **DB sequences** | Ghép từ nốt **DB_POOL** | **500** (100/nhạc cụ) | **Là CSDL được tìm kiếm** | **Có** |
 | **QUERY sequences** | Ghép từ nốt **QUERY_POOL** | 100 (20/nhạc cụ) | Truy vấn kiểm thử chính thức | Không |
 | **PHRASE** | 446 file `phrase` thật (violin, viola, cello, double-bass) | 446 | Truy vấn "nhạc thật" | Không |
-| **UNSEEN** | Banjo 74 + mandolin 80 | 154 | Truy vấn "nhạc cụ chưa có trong CSDL" (đề mục 4) | Không |
+| **UNSEEN** | Banjo 74 + mandolin 80 | 154 | Truy vấn "nhạc cụ ngoài CSDL" (đề mục 4). Không dùng để học hay ghép CSDL, nên chỉ cần vài chục file | Không |
 
 ## 2. Tại sao cần single-note (REF)
 - Nhãn **chắc chắn** (nhạc cụ, cao độ, kỹ thuật), mỗi file **đúng một sự kiện âm thanh**, nên là mẫu "sạch" nhất để học "âm sắc của từng nhạc cụ trông thế nào trong không gian đặc trưng".

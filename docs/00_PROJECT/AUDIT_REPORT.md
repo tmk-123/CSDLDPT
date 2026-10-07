@@ -57,7 +57,7 @@
 |---|---|
 | README ghi "✅ Hoàn thành" | Chưa có code |
 | Toàn bộ là single-note | Có 446 phrase |
-| CSDL = 4 476 nốt đơn, 7 nhạc cụ | CSDL = 500 multi-note, 5 nhạc cụ; banjo/mandolin là query "chưa có" |
+| CSDL = 4 476 nốt đơn, 7 nhạc cụ | CSDL = 500 multi-note, 5 nhạc cụ; banjo/mandolin là truy vấn "nhạc cụ ngoài CSDL" |
 | Vector 35D mức file | 32D/segment → 52D/file |
 | Có MFCC c0, Silence Ratio | Bỏ |
 | 44.1 kHz | 22.05 kHz |

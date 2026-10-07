@@ -10,7 +10,7 @@
 7. Gộp có trọng số thời lượng: **histogram 20D ‖ trung bình 32D = vector 52D cố định** cho mọi file.
 8. Z-score, rồi **PCA 8D**; 500 điểm 8D được đánh chỉ mục bằng **R\*-tree**.
 9. Query đi qua **cùng hàm**; R-tree lọc ứng viên (khoảng cách 8D là cận dưới), refine Euclid 52D, cho **Top-5 chính xác tuyệt đối**.
-10. Đánh giá: P@5, Top-1, MRR (relevant = cùng nhạc cụ) trên query giữ riêng, phrase thật và banjo/mandolin (nhạc cụ chưa có).
+10. Đánh giá: P@5, Top-1, MRR (relevant = cùng nhạc cụ) trên query giữ riêng, phrase thật và banjo/mandolin (nhạc cụ ngoài CSDL).
 
 **Trạng thái:** xem [CURRENT_STATUS](../00_PROJECT/CURRENT_STATUS.md). **Việc tiếp theo:** xem [TODO](TODO.md).
 

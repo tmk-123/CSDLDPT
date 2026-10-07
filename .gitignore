@@ -1,0 +1,10 @@
+# Dữ liệu tải từ nguồn ngoài (nguồn ghi trong docs/09_REFERENCE/REFERENCES.md)
+External/
+
+# Dữ liệu sinh ra (tạo lại được bằng scripts)
+data/
+
+# Môi trường Python
+.venv/
+__pycache__/
+*.pyc

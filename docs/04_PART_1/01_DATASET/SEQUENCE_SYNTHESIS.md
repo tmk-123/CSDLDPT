@@ -5,7 +5,8 @@
 | Tham số | Giá trị |
 |---|---|
 | Nhạc cụ | **Một** nhạc cụ duy nhất (đề yêu cầu) |
-| Technique family | Một family/sequence. Bộ kéo vĩ: 80% `arco`, 20% `pizz`. Guitar: 70% `pluck`, 30% `harmonic` |
+| Technique family | Một family/sequence. Bộ kéo vĩ: **100% `arco`** (D20: không đủ nốt pizz). Guitar: khoảng 70% `pluck`, 30% `harmonic` (theo tỷ lệ nốt thực có) |
+| Nguồn | Được phép trộn nốt Philharmonia và Iowa trong cùng một sequence (D21) |
 | Số nốt n | Ngẫu nhiên đều trong {4, …, 8} |
 | Chọn nốt | Nốt tiếp theo cách nốt trước ±7 semitone (nếu có); ưu tiên bản ghi **ít được dùng** |
 | Đoạn cắt mỗi nốt | Cắt lặng đầu, rồi lấy L ~ U(0.35, 1.2) s từ đầu (giữ phần attack). Âm gảy: tới 1.5 s. Guitar dùng lại: offset ngẫu nhiên |

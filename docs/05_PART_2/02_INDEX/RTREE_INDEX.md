@@ -27,7 +27,7 @@ Root  [MBR bao 500 điểm]
  │     ├── Leaf A1 [MBR] → ids {242, 251, 260, …}  (≤ 10 entry)
  │     └── Leaf A2 [MBR] → …
  ├── Internal B [MBR_B]     ← vùng "kéo vĩ, cao"
- └── Internal C [MBR_C]     ← vùng "âm gảy" (guitar, pizz)
+ └── Internal C [MBR_C]     ← vùng "âm gảy" (guitar)
 ```
 (Các nhãn "vùng" chỉ minh họa; ranh giới thật do thuật toán chèn quyết định.)
 

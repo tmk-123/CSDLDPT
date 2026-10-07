@@ -12,7 +12,7 @@ Trạng thái: ⬜ chưa làm · 📝 đã thiết kế (chưa code) · ✅ xong
 | R2.2 | Giá trị thông tin của từng đặc trưng | P1 | Bảng "đo gì, phân biệt gì" + đo thực nghiệm (tương quan, khả năng tách lớp) | như trên | 📝 |
 | R3.1 | Triển khai trích rút đặc trưng | P1 | `features.py`, `segmentation.py`, `representation.py` | [EXTRACTION_PIPELINE](../04_PART_1/04_FEATURE_EXTRACTION/EXTRACTION_PIPELINE.md) | 📝 |
 | R3.2 | Hệ CSDL quản trị đặc trưng | P2 | SQLite, 8 bảng, vector dạng BLOB | [SCHEMA](../05_PART_2/01_DATABASE/SCHEMA.md) | 📝 |
-| R4.1 | Input: file mới (nhạc cụ đã có hoặc chưa có) | P2 | Query pipeline; banjo/mandolin làm "chưa có" | [QUERY_PIPELINE](../05_PART_2/04_QUERY/QUERY_PIPELINE.md) | 📝 |
+| R4.1 | Input: file mới (nhạc cụ đã có hoặc chưa có) | P2 | Query pipeline; banjo/mandolin làm "nhạc cụ ngoài CSDL" | [QUERY_PIPELINE](../05_PART_2/04_QUERY/QUERY_PIPELINE.md) | 📝 |
 | R4.2 | Output: Top-5 giảm dần độ tương đồng | P2 | R-tree + multi-step exact k-NN | [KNN_SEARCH](../05_PART_2/03_SEARCH/KNN_SEARCH.md) | 📝 |
 | R4a | Sơ đồ khối, vào/ra từng khối | P1+P2 | Workflow docs | [MASTER_WORKFLOW](../03_WORKFLOWS/MASTER_WORKFLOW.md) | 📝 |
 | R4b | Kết quả trung gian | P2 | Segment, W, h, u 8D, ứng viên, bảng khoảng cách | [INTERMEDIATE_RESULTS](../05_PART_2/04_QUERY/INTERMEDIATE_RESULTS.md) | 📝 |

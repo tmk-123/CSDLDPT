@@ -7,7 +7,7 @@
 |---|---|---|
 | Kéo vĩ (bowed) | Violin, Viola, Cello, Double Bass | Trong CSDL |
 | Gảy (plucked) | Guitar | Trong CSDL |
-| Gảy (plucked) | Banjo, Mandolin | **Query "chưa có trong CSDL"** |
+| Gảy (plucked) | Banjo, Mandolin | **Truy vấn "nhạc cụ ngoài CSDL"** |
 
 ## 2. Điểm giống nhau
 1. **Tính điều hòa mạnh:** dây hai đầu cố định nên phổ có các bồi âm tại f_k = k·f₀. Trên spectrogram thấy các vạch ngang rõ.
