@@ -8,3 +8,7 @@ data/
 .venv/
 __pycache__/
 *.pyc
+
+# Dữ liệu Philharmonia: giấy phép không cho công khai nguyên dạng file mẫu.
+# Tải lại tại https://philharmonia.co.uk/resources/sound-samples/ (xem docs/09_REFERENCE/REFERENCES.md)
+Strings/
