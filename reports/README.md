@@ -39,6 +39,7 @@ Tạo bởi: `scripts/theory_figures.py`. Danh sách 16 hình và nơi dùng: [d
 | `violin_technique_dynamics.csv` | Centroid, RMS-CV theo kỹ thuật và cường độ (violin) |
 | `vibrato.csv` | Độ dao động cao độ có và không có vibrato |
 | `unseen_feature_summary.csv` | Đặc trưng của banjo, mandolin |
+| `plucked_queries_nn.csv` | Âm gảy/gõ không phải guitar (violin pizz, col legno, banjo, mandolin) được xếp gần nhạc cụ nào trong CSDL (1-NN, Top-5) |
 
 ## 3. Cách tạo lại
 ```powershell

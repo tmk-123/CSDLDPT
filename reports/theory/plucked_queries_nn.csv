@@ -1,0 +1,9 @@
+group,n,top1_violin_pct,top1_viola_pct,top1_cello_pct,top1_double-bass_pct,top1_guitar_pct,top5_violin_pct,top5_viola_pct,top5_cello_pct,top5_double-bass_pct,top5_guitar_pct
+violin gảy (pizz / snap pizz / pizz glissando),67,58.2,7.5,4.5,6.0,23.9,61.2,7.2,4.8,14.0,12.8
+violin gõ gỗ vĩ (col legno battuto),44,52.3,13.6,2.3,9.1,22.7,48.2,22.7,0.9,15.5,12.7
+cello gõ gỗ vĩ (col legno battuto),18,0.0,0.0,33.3,44.4,22.2,0.0,1.1,42.2,43.3,13.3
+banjo (ngoài CSDL),74,21.6,8.1,4.1,18.9,47.3,24.3,10.8,4.6,22.7,37.6
+mandolin gảy (ngoài CSDL),39,12.8,17.9,0.0,23.1,46.2,13.8,16.4,3.1,23.6,43.1
+mandolin vê (ngoài CSDL),41,31.7,7.3,14.6,43.9,2.4,44.4,7.8,11.2,35.6,1.0
+(đối chứng) guitar trong CSDL,445,0.7,2.2,3.6,6.3,87.2,2.5,3.5,4.8,10.6,78.6
+(đối chứng) violin arco trong CSDL,1141,96.2,2.5,1.2,0.0,0.1,92.8,4.5,2.5,0.1,0.1

@@ -772,6 +772,46 @@ def source_transfer(Z, notes):
                + [f"acc_{k}" for k in INSTRUMENTS], body)
 
 
+def plucked_queries(feats):
+    """CSDL chỉ có MỘT nhạc cụ gảy (guitar). Âm gảy/gõ KHÔNG phải guitar (pizz, col legno của bộ kéo vĩ; banjo; mandolin)
+    sẽ "gần" nhạc cụ nào? Đo 1-NN và Top-5 trong vector 32D đã chuẩn hóa z (bỏ nốt cùng cao độ). Dùng ở docs/01_THEORY/10 §4."""
+    notes = [f for f in feats if f["path_kind"] == "notes"]
+    def vec(f):
+        out = []
+        for k in VEC32:
+            x = np.log2(hz(int(f["midi"]))) if k == "log2_f0" else float(f[k])
+            out.append(np.log10(max(x, 1e-6)) if k in ("centroid_hz", "bandwidth_hz", "rolloff_hz") else x)
+        return out
+    X = np.array([vec(f) for f in notes])
+    mu, sd = X.mean(0), X.std(0)
+    Z = (X - mu) / sd
+    inst = np.array([f["instrument"] for f in notes])
+    midi = np.array([int(f["midi"]) for f in notes])
+    groups = [
+        ("violin gảy (pizz / snap pizz / pizz glissando)", lambda f: f["instrument"] == "violin"
+         and f["technique"] in ("pizz-normal", "snap-pizz", "pizz-glissando")),
+        ("violin gõ gỗ vĩ (col legno battuto)", lambda f: f["instrument"] == "violin" and f["technique"] == "arco-col-legno-battuto"),
+        ("cello gõ gỗ vĩ (col legno battuto)", lambda f: f["instrument"] == "cello" and f["technique"] == "arco-col-legno-battuto"),
+        ("banjo (ngoài CSDL)", lambda f: f["instrument"] == "banjo"),
+        ("mandolin gảy (ngoài CSDL)", lambda f: f["instrument"] == "mandolin" and f["technique"] == "normal"),
+        ("mandolin vê (ngoài CSDL)", lambda f: f["instrument"] == "mandolin" and f["technique"] == "tremolo"),
+        ("(đối chứng) guitar trong CSDL", lambda f: f["path_kind"] == "notes" and f["instrument"] == "guitar"),
+        ("(đối chứng) violin arco trong CSDL", lambda f: f["path_kind"] == "notes" and f["instrument"] == "violin"),
+    ]
+    body = []
+    for label, pred in groups:
+        rows = [f for f in feats if pred(f)]
+        Q = (np.array([vec(f) for f in rows]) - mu) / sd
+        D = (Q ** 2).sum(1)[:, None] + (Z ** 2).sum(1)[None, :] - 2 * Q @ Z.T
+        D[np.array([int(f["midi"]) for f in rows])[:, None] == midi[None, :]] = np.inf
+        nn = np.argsort(D, axis=1)[:, :5]
+        body.append([label, len(rows)]
+                    + [round(100 * float((inst[nn[:, 0]] == k).mean()), 1) for k in INSTRUMENTS]
+                    + [round(100 * float((inst[nn] == k).mean()), 1) for k in INSTRUMENTS])
+    write_rows("plucked_queries_nn.csv", ["group", "n"] + [f"top1_{k}_pct" for k in INSTRUMENTS]
+               + [f"top5_{k}_pct" for k in INSTRUMENTS], body)
+
+
 def fig_sampling():
     fig, axes = plt.subplots(1, 2, figsize=(11, 3.4), facecolor=SURFACE)
     fig.subplots_adjust(left=0.06, right=0.98, bottom=0.17, top=0.78, wspace=0.2)
@@ -943,6 +983,7 @@ def main():
     feature_sensitivity(feats)
     fig_feature_information(feature_information(feats))
     source_transfer(*pca_demo(feats))
+    plucked_queries(feats)
     fig_sampling()
     fig_frames_spectrum(v)
     fig_mfcc_steps(v)

@@ -4,7 +4,7 @@
 > Kết quả chi tiết từng phần: [RESULTS_REPORT.md](RESULTS_REPORT.md).
 
 ## Đã xong
-- ✅ **Thiết kế Phần 1, 2** (bộ docs mới; quyết định D01–D28; 6 mục chờ P07–P12 từ số đo).
+- ✅ **Thiết kế Phần 1, 2** (bộ docs mới; quyết định D01–D28; 7 mục chờ P07–P13 từ số đo).
 - ✅ **Lý thuyết (`docs/01_THEORY/`)**: viết lại 22 file theo yêu cầu `CLAUDE.md` (từ âm thanh cơ bản → từng nhạc cụ → đặc trưng → R-tree), minh họa bằng 16 hình và số đo trên dataset thật (`scripts/theory_figures.py`, `reports/theory/`).
 - ⏳ **Bước 0 — Môi trường:** `.venv` (Python 3.13.9, librosa 1.0.0, scikit-learn 1.9.1, rtree 1.4.1) và `requirements.txt` ✅. **Chưa có** `src/strings_mmdb/config.py` và khung thư mục `src/` (sẽ tạo khi bắt đầu Bước 2).
 - ✅ **Bước 1 — Dataset (1.1–1.6):**
@@ -30,7 +30,7 @@
 | Commit `0fcc0cd` (ngừng theo dõi dữ liệu Philharmonia) chưa push | ⏳ Chờ người dùng |
 | Scripts, tests, reports, docs mới chưa commit | ⏳ Chờ người dùng |
 | Nốt Iowa chưa nghe kiểm tra bằng tai | ⬜ Đề xuất nghe ngẫu nhiên ~20 file |
-| Mục chờ P07–P12 (pYIN fmin, MFCC std, RMS-CV, tiếng ồn nền, đặc trưng không chuyển sang nguồn thu khác) | ⏳ Cần quyết định trước/trong Bước 3 ([DESIGN_DECISIONS](../08_AI_CONTEXT/DESIGN_DECISIONS.md)) |
+| Mục chờ P07–P13 (pYIN fmin, MFCC std, RMS-CV, tiếng ồn nền, đặc trưng không chuyển sang nguồn thu khác, CSDL chỉ có 1 nhạc cụ gảy) | ⏳ Cần quyết định trước/trong Bước 3 (P13: trước Bước 5) ([DESIGN_DECISIONS](../08_AI_CONTEXT/DESIGN_DECISIONS.md)) |
 
 ## Tiến độ
 

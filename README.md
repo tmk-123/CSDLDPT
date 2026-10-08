@@ -16,7 +16,7 @@ Thiết kế đầy đủ: [docs/README.md](docs/README.md). Kết quả đã đ
 
 | Phần việc | Trạng thái |
 |---|---|
-| Thiết kế (Phần 1, 2) | ✅ Xong, nằm trong `docs/` (quyết định D01–D28; 6 mục chờ P07–P12) |
+| Thiết kế (Phần 1, 2) | ✅ Xong, nằm trong `docs/` (quyết định D01–D28; 7 mục chờ P07–P13) |
 | Lý thuyết (`docs/01_THEORY/`) | ✅ 22 bài từ cơ bản tới nâng cao, minh họa bằng số đo trên dataset thật |
 | Môi trường (Bước 0) | ⏳ Thư viện ✅ (`requirements.txt`); khung `src/` + `config.py` chưa tạo |
 | Dataset: thu thập, cắt nốt, lọc, chia tập, sắp xếp, mô tả | ✅ Xong (Bước 1.1–1.6): 5 906 file, 4 653 nốt dùng được, 12/12 test đạt |
@@ -163,7 +163,7 @@ Bản đồ đầy đủ: [docs/README.md](docs/README.md). Gặp thuật ngữ 
 | `21_R_TREE.md` | MBR, chèn, MINDIST, best-first k-NN, lọc rồi tinh chỉnh, lời nguyền số chiều |
 | `22_MULTIMEDIA_DATABASE.md` | Tìm theo nội dung, lưu trữ hỗn hợp, metadata, mô hình dữ liệu, đường đi của truy vấn, đánh giá trung thực |
 | **02_PLANS/** | **Kế hoạch** |
-| `MASTER_PLAN.md` | Phương án chính đã chốt (bảng INPUT → THUẬT TOÁN → OUTPUT) và cấu trúc code |
+| `MASTER_PLAN.md` | Phương án đã chốt, giải thích từng bước từ dữ liệu gốc tới đánh giá: mục tiêu, input, làm gì theo thứ tự và vì sao, tham số, output, dùng ở đâu; bảng ký hiệu |
 | `PART_1_PLAN.md` | Các bước 0–7 (dataset → vector 52D), checklist và tiêu chí xong |
 | `PART_2_PLAN.md` | Các bước 8–11 (CSDL → R-tree → truy vấn) |
 | `MILESTONES.md` | Các mốc và checklist tổng |
@@ -172,6 +172,7 @@ Bản đồ đầy đủ: [docs/README.md](docs/README.md). Gặp thuật ngữ 
 | `PART_1_WORKFLOW.md` | Luồng xử lý Phần 1 và bên trong `audio_to_vector` |
 | `PART_2_WORKFLOW.md` | Luồng build và truy vấn Phần 2 |
 | `DATA_FLOW.md` | Script nào đọc gì, ghi gì |
+| `IMPLEMENTATION.md` | Hàm thư viện nào được gọi, ở file nào, tham số và kết quả (phần đã chạy ✅ và phần dự kiến ⬜) |
 | **04_PART_1/** | **Thiết kế Phần 1** |
 | `01_DATASET/DATASET_COLLECTION_AND_FILTERING.md` | Kết quả lọc thật, nguồn bổ sung, các bước 1.1–1.6 |
 | `01_DATASET/DATASET_INVENTORY.md` | Quy ước tên file, nhóm kỹ thuật, status |
@@ -197,7 +198,7 @@ Bản đồ đầy đủ: [docs/README.md](docs/README.md). Gặp thuật ngữ 
 | `07_EVALUATION/README.md` | Kế hoạch đánh giá (P@5, MRR…) |
 | **08_AI_CONTEXT/** | **Ngữ cảnh nhanh** |
 | `PROJECT_CONTEXT.md` | Tóm tắt 10 dòng để trình bày với giảng viên |
-| `DESIGN_DECISIONS.md` | **Nhật ký quyết định** D01–D28 và mục chờ P01–P12: chọn gì, vì sao, đã loại gì |
+| `DESIGN_DECISIONS.md` | **Nhật ký quyết định** D01–D28 và mục chờ P01–P13: chọn gì, vì sao, đã loại gì |
 | `TODO.md` | Việc cần làm ngay |
 | **09_REFERENCE/** | **Tra cứu** |
 | `GLOSSARY.md` | Từ điển thuật ngữ (âm nhạc, kỹ thuật chơi, file, dataset, xử lý tín hiệu, CSDL) |

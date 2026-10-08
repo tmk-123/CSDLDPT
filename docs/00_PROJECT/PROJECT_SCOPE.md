@@ -39,7 +39,7 @@
 | 3 | Nhiễu | Segment rác | Bỏ segment < −35 dB |
 | 4 | Khoảng lặng | Lệch thống kê | Energy gating, chỉ dùng frame active |
 | 5 | Vang (reverb) | Mờ onset | Giới hạn segment 2 s; ghi là giới hạn |
-| 6 | Điều kiện thu khác | Query ngoài kém hơn | Bỏ MFCC c0, peak-normalize, dùng log |
+| 6 | Điều kiện thu khác | Query ngoài kém hơn. Đo sơ bộ: láng giềng gần nhất đúng nhạc cụ 94–98% khi cùng nguồn, chỉ 29–53% khi khác nguồn ([01_THEORY/15](../01_THEORY/15_AUDIO_FEATURES.md) §16.1) | Bỏ MFCC c0, peak-normalize, dùng log; trộn 2 nguồn trong mọi tập (D21); thêm đánh giá khác nguồn và xem lại đặc trưng nhạy với nguồn (mục chờ P12) |
 | 7 | Độ to khác nhau | Vector đo "độ to" thay vì nhạc cụ | Peak-normalize, bỏ c0, RMS dùng CV |
 | 8 | Tempo khác nhau | Số segment khác | Trọng số thời lượng α |
 | 9 | Cao độ khác nhau | Âm sắc đổi theo âm vực | k = 4 prototype mỗi nhạc cụ; f0 là một chiều |
@@ -49,8 +49,9 @@
 | 13 | Metadata thiếu | Không đo được segmentation trên phrase | Chỉ đo trên sequence ghép |
 | 14 | Số chiều cao | R-tree vô dụng | 52D → PCA 8D |
 | 15 | Curse of dimensionality | Chồng lấn MBR, nhiều ứng viên | R\*-tree, M = 10; kết quả vẫn chính xác |
-| 16 | Guitar ít dữ liệu (106 bản ghi) | P@5 guitar cao giả | Cắt đoạn khác nhau mỗi lần dùng; báo cáo riêng theo nhạc cụ |
+| 16 | Guitar ít dữ liệu (Philharmonia chỉ có 106 bản ghi) | P@5 guitar cao giả | **Đã giảm:** bổ sung Iowa MIS (D21), nay có 445 nốt dùng được. Còn lại: DB_POOL guitar 181 nốt (< 200) nên nốt được dùng lại nhiều hơn một chút; báo cáo riêng theo nhạc cụ |
 | 17 | Thiếu thư viện | Không chạy được | Bước 0 |
 | 18 | pYIN chậm | Build lâu | Cache đặc trưng |
+| 19 | CSDL chỉ có **1 nhạc cụ gảy** (guitar) so với 4 kéo vĩ; 76% nốt guitar từ Iowa | "Gảy" trùng "guitar": truy vấn gảy lạ hay ra guitar (banjo 47%, mandolin 46% ở mức nốt); có thể nhận guitar nhờ nguồn thu | Chấm điểm theo nhạc cụ, CSDL cân bằng 100 sequence/nhạc cụ; đo thêm truy vấn gảy; cân nhắc thêm pizz của bộ kéo vĩ từ Iowa (mục chờ P13, [10](../01_THEORY/10_BANJO_MANDOLIN.md) §5) |
 
 **Phương án dự phòng:** nếu không kịp làm segmentation hoặc sequence, cho CSDL = nốt đơn (mỗi file 1 segment). Mọi module phía sau giữ nguyên.

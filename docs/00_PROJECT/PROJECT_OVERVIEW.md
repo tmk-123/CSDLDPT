@@ -14,6 +14,25 @@
 ## 2. Hệ thống đang xây dựng (một đoạn)
 Một hệ **CBAR** (Content-Based Audio Retrieval). CSDL chứa **500 file multi-note** của 5 nhạc cụ: violin, viola, cello, double bass, guitar. Mỗi file được biến thành **một vector 52 chiều**. Vector này gồm hai phần: (a) mức độ giống với 20 "prototype âm sắc" học từ thư viện nốt đơn; (b) âm sắc trung bình. Vector được giảm xuống **8D bằng PCA** và đánh chỉ mục bằng **R\*-tree**. File truy vấn đi qua **đúng pipeline đó**; R-tree lọc ứng viên, rồi khoảng cách Euclid 52D xếp hạng ra **Top-5 chính xác**.
 
+### 2.1. Nhạc cụ sử dụng
+Project dùng **7 nhạc cụ dây**: 5 nhạc cụ **trong CSDL** (được lưu và tìm kiếm) và 2 nhạc cụ **ngoài CSDL** (chỉ dùng làm file truy vấn, để thử khi nhạc cụ "chưa có trong dữ liệu" như đề bài mục 4 yêu cầu).
+
+| Nhạc cụ | Vai trò | Cách tạo âm | Cách chơi được dùng | Nốt dùng được (Philharmonia + Iowa) | Lý thuyết |
+|---|---|---|---|---|---|
+| Violin | Trong CSDL | Kéo vĩ | arco: thường, vibrato mạnh, không vibrato | 1 141 (897 + 244) | [05_VIOLIN](../01_THEORY/05_VIOLIN.md) |
+| Viola | Trong CSDL | Kéo vĩ | arco | 990 (728 + 262) | [06_VIOLA](../01_THEORY/06_VIOLA.md) |
+| Cello | Trong CSDL | Kéo vĩ | arco | 1 047 (759 + 288) | [07_CELLO](../01_THEORY/07_CELLO.md) |
+| Double bass | Trong CSDL | Kéo vĩ | arco | 1 030 (751 + 279) | [08_DOUBLE_BASS](../01_THEORY/08_DOUBLE_BASS.md) |
+| Guitar | Trong CSDL | Gảy | gảy thường, harmonic | 445 (106 + 339) | [09_GUITAR](../01_THEORY/09_GUITAR.md) |
+| Banjo | Truy vấn ngoài CSDL | Gảy | gảy thường | 74 file (chỉ Philharmonia) | [10_BANJO_MANDOLIN](../01_THEORY/10_BANJO_MANDOLIN.md) |
+| Mandolin | Truy vấn ngoài CSDL | Gảy | gảy thường, vê (tremolo) | 80 file (chỉ Philharmonia) | [10_BANJO_MANDOLIN](../01_THEORY/10_BANJO_MANDOLIN.md) |
+
+- **Vì sao chọn bộ này:** có cả hai cách tạo âm (kéo vĩ và gảy); có sẵn nhạc cụ ngoài CSDL để thử; đủ dữ liệu sau khi bổ sung guitar ([RESULTS_REPORT](RESULTS_REPORT.md) §3.1; quyết định D01).
+- **Hai nguồn thu:** Philharmonia (MP3) cho cả 7 nhạc cụ; University of Iowa MIS (AIFF) cho 5 nhạc cụ trong CSDL. Lý do: guitar Philharmonia chỉ có 106 nốt (cần ≥ 360), và mọi nhạc cụ cần ≥ 2 nguồn để hệ thống không "nhận phòng thu" thay vì nhận nhạc cụ (D21).
+- **Cách chơi khác** (pizzicato, col legno, ponticello, harmonic của bộ kéo vĩ…): 573 nốt **không bị xóa**, mà để riêng trong `data/excluded/technique/` (D20; lý do ở [11_PLAYING_TECHNIQUES](../01_THEORY/11_PLAYING_TECHNIQUES.md) §5).
+- **Giới hạn đã biết:** CSDL có 4 nhạc cụ kéo vĩ nhưng **chỉ 1 nhạc cụ gảy** (guitar), và 76% nốt guitar đến từ Iowa. Cách chấm điểm không bị lệch (CSDL cân bằng theo nhạc cụ), nhưng "gảy" và "guitar" trùng nhau, nên truy vấn gảy của nhạc cụ khác hay bị xếp gần guitar. Phân tích, số đo và phương án: [10_BANJO_MANDOLIN](../01_THEORY/10_BANJO_MANDOLIN.md) §5; mục chờ **P13**.
+- Tổng: **4 653 nốt dùng được** của 5 nhạc cụ trong CSDL; 445 đoạn phrase thật (violin, viola, cello, double bass) dùng làm truy vấn nhạc thật. Số liệu chi tiết: [RESULTS_REPORT](RESULTS_REPORT.md) §0, §7.
+
 ## 3. Chia phần làm việc
 
 | Phần | Nội dung | Ứng với đề | Trạng thái |

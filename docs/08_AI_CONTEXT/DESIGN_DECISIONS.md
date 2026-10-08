@@ -35,7 +35,7 @@
 | D28 | 2026-10-08 | Nhãn dây guitar trong cột `string`: **`lowE`** (Iowa `sulE`, dây 6, E2) và **`highE`** (Iowa `sul_E`, dây 1, E4); các dây khác giữ chữ cái (`A`, `D`, `G`, `B`) | Trước đó cả hai dây Mi cùng nhãn `E`, làm tầng String sai (một "dây" phủ E2 → B5). Test `test_iowa_string_labels_match_physics` kiểm tra nhãn có thật trên nhạc cụ và nốt không thấp hơn dây buông | Giữ `E` cho cả hai; số dây 1–6 (lệch quy ước của 4 nhạc cụ kia); chữ thường `e` (Windows không phân biệt hoa thường trong tên file) |
 
 ## Chờ quyết định sau khi có số liệu
-> Các mục P07–P12 đến từ số đo sơ bộ trong [`01_THEORY`](../01_THEORY/README.md) (script `scripts/theory_figures.py`, bảng ở `reports/theory/`), chưa phải pipeline chính thức của Bước 3.
+> Các mục P07–P13 đến từ số đo sơ bộ trong [`01_THEORY`](../01_THEORY/README.md) (script `scripts/theory_figures.py`, bảng ở `reports/theory/`), chưa phải pipeline chính thức của Bước 3.
 
 | ID | Câu hỏi | Quyết định ở |
 |---|---|---|
@@ -51,3 +51,4 @@
 | P10 | **RMS-CV phụ thuộc độ dài nốt khi thu** (violin Philharmonia nốt 0.25 s: 0.88; nốt 1.5 s: 0.48), làm mờ ranh giới gảy – kéo vĩ. Đo đường bao trên cửa sổ cố định tính từ đầu nốt, hoặc đo độ dốc tắt dần sau đỉnh? | Bước 3 |
 | P11 | **Tiếng ồn nền** trên phần đuôi nốt gảy nhỏ làm đặc trưng phổ sai (guitar Iowa *pp* "sáng" hơn *ff* trên 1.5 s, dù 0.3 s đầu thì ngược lại). Dùng ngưỡng frame chặt hơn (−30 dB) cho đặc trưng phổ, hoặc trung bình có trọng số năng lượng? | Bước 3 |
 | P12 | Đặc trưng gần như **không chuyển sang nguồn thu khác**: láng giềng gần nhất đúng nhạc cụ 94–98% khi cùng nguồn, 29–53% khi khác nguồn ([15](../01_THEORY/15_AUDIO_FEATURES.md) §16.1). Thêm phép đánh giá khác nguồn vào Phần 2? Bỏ đặc trưng nhạy với nguồn (MFCC std, c2, c6)? Thêm nguồn thứ ba? | Bước 3–5 và đánh giá Phần 2 |
+| P13 | CSDL chỉ có **1 nhạc cụ gảy** (guitar, 76% nốt từ Iowa) so với 4 kéo vĩ, nên "gảy" trùng "guitar". **A:** giữ nguyên, ghi giới hạn, đo thêm truy vấn gảy (banjo, mandolin, pizz trong `data/excluded/technique/`). **B:** thêm pizz của 4 nhạc cụ kéo vĩ từ Iowa MIS (trang Iowa có 140 file pizz, cùng định dạng) — phải đổi D20. Đề xuất: A ngay, B nếu còn thời gian ([10](../01_THEORY/10_BANJO_MANDOLIN.md) §5) | Trước Bước 5 (ghép sequence) |

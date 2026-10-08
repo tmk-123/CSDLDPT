@@ -100,7 +100,7 @@ Hệ thống tìm kiếm **chỉ được nhìn đặc trưng trích xuất** (v
 | `15_feature_information.png` | Mỗi đặc trưng mang bao nhiêu thông tin về nhạc cụ, bao nhiêu về phòng thu (η²) | 15 |
 | `16_pca_notes_2d.png` | PCA của 4 653 nốt: trục 1 là sáng – tối, trục 2 chủ yếu là nguồn thu | 20 |
 
-Bảng số liệu đi kèm (cùng thư mục): `note_features.csv` (đặc trưng của 5 190 nốt), `feature_information.csv`, `feature_sensitivity.csv`, `source_transfer_1nn.csv`, `pca_notes_*.csv`, `harmonics_A3.csv`, `centroid_by_pitch.csv`, `source_effect_centroid.csv`, `violin_technique_dynamics.csv`, `vibrato.csv`, `unseen_feature_summary.csv`.
+Bảng số liệu đi kèm (cùng thư mục): `note_features.csv` (đặc trưng của 5 190 nốt), `feature_information.csv`, `feature_sensitivity.csv`, `source_transfer_1nn.csv`, `plucked_queries_nn.csv`, `pca_notes_*.csv`, `harmonics_A3.csv`, `centroid_by_pitch.csv`, `source_effect_centroid.csv`, `violin_technique_dynamics.csv`, `vibrato.csv`, `unseen_feature_summary.csv`.
 
 ## 5. Những điều số đo trên dataset cho thấy (tóm tắt)
 
@@ -114,3 +114,4 @@ Bảng số liệu đi kèm (cùng thư mục): `note_features.csv` (đặc trư
 | RMS-CV phụ thuộc độ dài nốt khi thu; guitar Iowa gảy nhỏ trông "sáng" hơn vì tiếng ồn nền | [15](15_AUDIO_FEATURES.md) §4, [09](09_GUITAR.md) §8.1 |
 | MFCC c4, c5 là đặc trưng mang nhiều thông tin nhất (51%, 49%); 13 chiều MFCC std mang rất ít | [15](15_AUDIO_FEATURES.md) §9 |
 | **Đặc trưng nhận ra nhạc cụ trong cùng nguồn thu (94–98%) nhưng gần như không chuyển sang nguồn khác (29–53%)** | [15](15_AUDIO_FEATURES.md) §16.1, [20](20_PCA.md) §6 |
+| CSDL chỉ có 1 nhạc cụ gảy: âm gảy lạ (banjo, mandolin) bị xếp gần guitar khoảng một nửa số lần; violin gảy vẫn gần violin hơn (58%) | [10](10_BANJO_MANDOLIN.md) §4–5 |

@@ -269,14 +269,16 @@ F0 trội hẳn, harmonic yếu đi rất nhanh: phần lớn thời gian nốt 
 
 | Manh mối | Đặc trưng | Mạnh / yếu |
 |---|---|---|
-| **Tắt dần** (gảy) | **RMS-CV**, MFCC std | **Mạnh nhất**: tách guitar khỏi cả 4 nhạc cụ kéo vĩ |
-| Phổ thay đổi theo thời gian (harmonic cao tắt trước) | MFCC std | Mạnh |
+| **Tắt dần** (gảy) | **RMS-CV** | Manh mối dễ hiểu nhất, nhưng **một mình chỉ tách được 13%** (η² guitar so với nhóm kéo vĩ), vì nốt kéo vĩ ngắn 0.25 s cũng trông như "tắt dần" ([15](15_AUDIO_FEATURES.md) §4, mục chờ P10) |
+| Hình dạng phổ (ít harmonic, đường bao phổ riêng) | MFCC mean (c2 tốt nhất: 15%) | Mạnh nhất khi đứng một mình, nhưng c2 cũng rất nhạy với nguồn thu |
+| **Kết hợp cả vector 32 chiều** | Tất cả | Nốt guitar tìm thấy nốt guitar ở **87%** trường hợp: từng đặc trưng yếu, gộp lại thì mạnh |
+| Phổ thay đổi theo thời gian (harmonic cao tắt trước) | MFCC std | Yếu khi đứng một mình (≤ 13%) |
 | Tối nhất, ít harmonic | centroid, rolloff | Tốt với violin, viola; **yếu với double bass** (781 so với 790 Hz) |
 | Âm vực E2 → B5 | median log2 F0 | Yếu: không có vùng riêng (§7) |
 
 **Cặp dễ nhầm:**
 - **Guitar ↔ double bass** về **độ sáng** (gần như bằng nhau), tách nhau nhờ **đường bao** và ZCR.
-- **Guitar ↔ các nhạc cụ gảy khác:** double bass gảy, violin pizzicato (bị loại khỏi CSDL, D20), banjo, mandolin. Khi người dùng truy vấn bằng tiếng **gảy** của nhạc cụ khác, hệ thống nhiều khả năng trả về guitar, vì trong CSDL **chỉ guitar** là nhạc cụ gảy. Đây là hành vi đúng với thiết kế: hệ thống tìm "âm thanh giống nhất", và trong CSDL thì âm gảy giống nhất là guitar. Xem thử nghiệm với banjo, mandolin ở [10](10_BANJO_MANDOLIN.md).
+- **Guitar ↔ các nhạc cụ gảy khác:** double bass gảy, violin pizzicato (bị loại khỏi CSDL, D20), banjo, mandolin. Trong CSDL **chỉ guitar** là nhạc cụ gảy, nên truy vấn bằng tiếng gảy của nhạc cụ khác hay bị xếp gần guitar: banjo 47%, mandolin 46%, violin pizzicato 24% (số đo sơ bộ ở mức nốt). Hệ quả của việc CSDL chỉ có một nhạc cụ gảy, và các phương án bổ sung: [10](10_BANJO_MANDOLIN.md) §5.
 
 ---
 
@@ -291,3 +293,5 @@ F0 trội hẳn, harmonic yếu đi rất nhanh: phần lớn thời gian nốt 
 **Tổng: 445 nốt guitar dùng được**, ít nhất trong 5 nhạc cụ (các nhạc cụ khác khoảng 1 000). Project chọn 391: REF 150, DB_POOL **181** (thiếu so với mức 200 của các nhạc cụ khác), QUERY_POOL 60.
 
 **Vì sao phải thêm bộ Iowa cho guitar:** Philharmonia chỉ có 106 nốt guitar, dưới mức tối thiểu **360 nốt mỗi nhạc cụ** mà thiết kế yêu cầu (quyết định D21). Bộ Iowa còn mang lại **thông tin dây**: tầng String của guitar trong dataset hoàn toàn đến từ Iowa.
+
+**Mặt trái:** vì vậy **76% nốt guitar đến từ Iowa**, ngược với 4 nhạc cụ kéo vĩ (chỉ 21–28% từ Iowa). Guitar là nhạc cụ duy nhất mà phần lớn dữ liệu đến từ một nguồn khác với các nhạc cụ còn lại. Đặc trưng lại nhạy với nguồn thu, nên cần kiểm tra hệ thống có nhận guitar nhờ "nghe như thu ở Iowa" hay không ([10](10_BANJO_MANDOLIN.md) §5, mục chờ P12, P13).

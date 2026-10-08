@@ -107,14 +107,50 @@ Cùng nốt, cùng tần số với 4 dây violin ([05](05_VIOLIN.md) §4), nên
 
 ---
 
-## 4. Dự đoán: hệ thống sẽ trả lời gì?
+## 4. Hệ thống sẽ trả lời gì? Dự đoán và số đo sơ bộ
 
-Đây là **giả thuyết** để kiểm tra ở Phần 2 (đánh giá truy vấn), **chưa phải kết quả**:
+**Số đo sơ bộ ở mức nốt:** mỗi nốt banjo hoặc mandolin tìm **5 nốt gần nhất** trong 4 653 nốt của 5 nhạc cụ trong CSDL, bằng vector 32 chiều đã chuẩn hóa ([15](15_AUDIO_FEATURES.md) §14), bỏ qua nốt cùng cao độ (`reports/theory/plucked_queries_nn.csv`). Kết quả chính thức ở mức file (sequence) sẽ đo ở Phần 2.
 
-| Truy vấn | Dự đoán kết quả gần nhất | Lý do |
-|---|---|---|
-| Banjo gảy | **Guitar** | Cùng gảy, tắt dần (RMS-CV cao); nhưng banjo sáng hơn guitar nhiều, nên khoảng cách sẽ **xa hơn** truy vấn guitar thật |
-| Mandolin gảy | **Guitar** (hoặc violin ở nốt cao) | Gảy, tắt dần; độ sáng (1 299 Hz) nằm giữa cello và viola, sáng hơn guitar nhiều |
-| Mandolin vê | **Violin** (hoặc viola) | Đường bao giữ đều, độ sáng gần violin, cùng âm vực G3 → A6 |
+| Truy vấn | Dự đoán ban đầu (từ lý thuyết) | Số đo: nốt gần nhất thuộc nhạc cụ… | Dự đoán đúng không? |
+|---|---|---|---|
+| Banjo gảy (74 nốt) | **Guitar**: cùng gảy, tắt dần | guitar **47%** · violin 22% · double bass 19% · viola 8% · cello 4% | Đúng một nửa |
+| Mandolin gảy (39 nốt) | **Guitar** | guitar **46%** · double bass 23% · viola 18% · violin 13% | Đúng một nửa |
+| Mandolin vê (41 nốt) | **Violin** hoặc viola: vê giữ âm như kéo vĩ | **double bass 44%** · violin 32% · cello 15% · viola 7% · guitar **2%** | Đúng là **không** ra guitar; nhưng ra double bass nhiều hơn violin (chưa rõ vì sao) |
+
+**Đọc kết quả:**
+- "Âm gảy lạ → guitar" chỉ đúng khoảng **một nửa**: hệ thống không chỉ nhìn "gảy hay kéo vĩ", mà nhìn cả hình dạng phổ và âm vực.
+- Mandolin **vê** gần như không bao giờ ra guitar: đúng như §3.4, vê đã biến âm gảy thành âm giữ đều.
+- **Cẩn thận khi đọc:** banjo và mandolin đều thu ở Philharmonia, mà bộ kéo vĩ trong CSDL phần lớn cũng thu ở Philharmonia, còn guitar **76% thu ở Iowa**. Vì đặc trưng nhạy với nguồn thu ([15](15_AUDIO_FEATURES.md) §16.1), một phần các kết quả "ra violin, double bass" có thể do **cùng phòng thu** chứ không do giống âm sắc.
 
 **Cách dùng kết quả:** nếu khoảng cách tới kết quả gần nhất của các truy vấn UNSEEN **lớn hơn hẳn** khoảng cách thường gặp của truy vấn nhạc cụ có trong CSDL, hệ thống có thể dùng một **ngưỡng** để báo "không tìm thấy nhạc cụ tương tự" ([19](19_DISTANCE_SIMILARITY.md), [22](22_MULTIMEDIA_DATABASE.md)).
+
+---
+
+## 5. CSDL chỉ có MỘT nhạc cụ gảy (4 kéo vĩ, 1 gảy): ảnh hưởng gì?
+
+### 5.1. Những gì KHÔNG bị ảnh hưởng
+- **Yêu cầu đề bài:** đề chỉ yêu cầu "nhạc cụ bộ dây", không yêu cầu cân bằng giữa gảy và kéo vĩ.
+- **Cách chấm điểm:** CSDL cân bằng theo **nhạc cụ** (100 sequence mỗi nhạc cụ, guitar cũng 100), và "kết quả đúng" là **cùng nhạc cụ** ([19](19_DISTANCE_SIMILARITY.md) §8). Guitar chiếm đúng 1/5 CSDL như mọi nhạc cụ khác, không bị lép vế.
+
+### 5.2. Những gì CÓ bị ảnh hưởng
+
+| Ảnh hưởng | Vì sao | Số đo |
+|---|---|---|
+| **"Gảy" và "guitar" trùng nhau trong CSDL.** Không thể biết hệ thống nhận ra guitar nhờ **âm sắc của guitar** hay chỉ nhờ "**đây là âm gảy**" | Mọi mẫu gảy trong CSDL đều là guitar | Âm gảy của nhạc cụ khác bị xếp gần guitar khá nhiều: banjo 47%, mandolin 46%, violin pizzicato 24% (§4) |
+| **Không phân biệt được các âm gảy với nhau** | Không có mẫu gảy nào khác để so | Truy vấn banjo, mandolin, double bass gảy (jazz) đều chỉ có thể rơi về guitar hoặc về một nhạc cụ kéo vĩ |
+| Guitar là nhạc cụ "khác loại" duy nhất nên **dễ nhận**; cái khó thật nằm ở 4 nhạc cụ kéo vĩ | Violin – viola, cello – double bass giống nhau hơn nhiều so với guitar – bất kỳ | Nốt guitar tìm thấy guitar 87%, violin tìm thấy violin 96%; các cặp kéo vĩ là nơi nhầm nhiều ([15](15_AUDIO_FEATURES.md) §13) |
+| **Guitar ít dữ liệu nhất** | Philharmonia chỉ có 106 nốt guitar | 445 nốt (các nhạc cụ khác khoảng 1 000); DB_POOL 181 < 200 nên nốt guitar được dùng lại nhiều hơn một chút khi ghép |
+| **Guitar gần như đến từ MỘT nguồn thu** — ảnh hưởng đáng lo nhất | 76% nốt guitar từ Iowa, trong khi bộ kéo vĩ chỉ 21–28% từ Iowa. Mà đặc trưng lại nhạy với nguồn thu | Nốt guitar Iowa tìm trong Philharmonia chỉ ra guitar **29%** (`source_transfer_1nn.csv`). Hệ thống có thể đang nhận guitar một phần nhờ "nghe như thu ở Iowa" |
+
+**Một kết quả bất ngờ:** violin **gảy** (pizzicato, 67 nốt) vẫn được xếp gần **violin** nhiều nhất (58%), chỉ 24% gần guitar. Nghĩa là "dấu vân tay" của violin (thân đàn, âm vực) vẫn còn khi đổi từ kéo sang gảy. Tuy vậy, violin pizzicato và phần lớn nốt violin trong CSDL cùng thu ở Philharmonia, nên một phần con số 58% có thể đến từ **cùng phòng thu**.
+
+### 5.3. Có nên thêm nhạc cụ gảy?
+
+| Cách | Ưu | Nhược |
+|---|---|---|
+| **A. Giữ nguyên**, ghi rõ giới hạn, đo thêm truy vấn bằng âm gảy (banjo, mandolin, pizzicato của bộ kéo vĩ đang để ở `data/excluded/technique/`) | Không tốn thêm dữ liệu; đề bài vẫn đạt; bài toán chính (phân biệt 4 nhạc cụ kéo vĩ) không đổi | Vẫn còn trùng "gảy = guitar" |
+| **B. Thêm pizzicato của 4 nhạc cụ kéo vĩ từ Iowa MIS.** Trang Iowa có sẵn 140 file pizz (violin 36, viola 30, cello 38, double bass 36), cùng định dạng với file arco đã dùng; lúc tải ta chỉ lấy arco | "Gảy" không còn chỉ là guitar; hệ thống buộc phải nhận nhạc cụ qua nhiều cách chơi. Pizz Iowa cùng nguồn với guitar Iowa, nên cũng giảm trùng "guitar = Iowa" | Phải đổi D20; bài toán khó hơn (violin gảy phải được coi là "giống" violin kéo vĩ); phải tải, cắt, lọc thêm |
+| C. Đưa banjo, mandolin vào CSDL | Thêm 2 nhạc cụ gảy | Chỉ 74 và 80 nốt (cần ≥ 360); mất nhạc cụ "ngoài CSDL" mà đề bài cần để thử |
+| D. Tìm nguồn mới cho nhạc cụ gảy khác | — | Tốn thời gian, phải kiểm tra giấy phép, và thêm một nguồn thu nữa (càng làm nặng vấn đề nguồn thu) |
+
+**Đề xuất:** làm **A** ngay (không tốn gì); cân nhắc **B** như phần mở rộng nếu còn thời gian. Đây là mục chờ quyết định **P13** trong [DESIGN_DECISIONS](../08_AI_CONTEXT/DESIGN_DECISIONS.md), nên quyết trước khi ghép sequence (Bước 5).

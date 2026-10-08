@@ -331,7 +331,7 @@ Script: `scripts/p01_6_dataset_stats.py`. Bảng đầy đủ (tự sinh): [repo
 - Nốt Iowa chưa được nghe kiểm tra bằng tai.
 
 ### 9.4. Phát hiện từ phần lý thuyết cần quyết định trước Bước 3
-Khi viết lại [01_THEORY](../01_THEORY/README.md) với số đo trên dataset thật, xuất hiện 6 điểm cần xem lại (chi tiết ở [DESIGN_DECISIONS](../08_AI_CONTEXT/DESIGN_DECISIONS.md) P07–P12):
+Khi viết lại [01_THEORY](../01_THEORY/README.md) với số đo trên dataset thật, xuất hiện 7 điểm cần xem lại (chi tiết ở [DESIGN_DECISIONS](../08_AI_CONTEXT/DESIGN_DECISIONS.md) P07–P13; bảng dưới liệt kê các điểm chính):
 
 | Mã | Phát hiện |
 |---|---|
@@ -340,6 +340,7 @@ Khi viết lại [01_THEORY](../01_THEORY/README.md) với số đo trên datase
 | P10 | RMS-CV phụ thuộc độ dài nốt khi thu (violin 0.25 s: 0.88; 1.5 s: 0.48) |
 | P11 | Tiếng ồn nền trên đuôi nốt gảy nhỏ làm đặc trưng phổ sai |
 | **P12** | **Đặc trưng nhận ra nhạc cụ trong cùng nguồn thu (94–98%) nhưng gần như không chuyển sang nguồn khác (29–53%)** → cần thêm phép đánh giá khác nguồn |
+| P13 | CSDL chỉ có 1 nhạc cụ gảy (guitar, 76% nốt từ Iowa): "gảy" trùng "guitar"; banjo, mandolin gảy bị xếp gần guitar khoảng một nửa số lần |
 
 ### 9.3. Việc tiếp theo (theo [PART_1_PLAN](../02_PLANS/PART_1_PLAN.md))
 1. **Bước 2:** `load_audio()` dùng chung (mono, 22 050 Hz, peak-normalize, cắt lặng).

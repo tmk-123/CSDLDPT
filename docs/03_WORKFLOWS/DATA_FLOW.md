@@ -22,3 +22,5 @@
 - `raw/philharmonia/` **chỉ đọc**.
 - Mọi thứ trong `data/` tạo lại được bằng cách chạy lần lượt p01 → p10 (seed cố định).
 - `reports/` là nơi lấy hình và bảng cho báo cáo.
+
+Mức chi tiết hàm (hàm nào, tham số gì): [IMPLEMENTATION](IMPLEMENTATION.md).

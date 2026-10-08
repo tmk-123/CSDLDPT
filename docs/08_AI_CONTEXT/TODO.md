@@ -20,6 +20,7 @@
 
 ## Tiếp theo
 - [ ] **Quyết định P07–P12** (pYIN fmin, MFCC std, RMS-CV, tiếng ồn nền, đánh giá khác nguồn) trước hoặc trong Bước 3
+- [ ] **Quyết định P13** (CSDL chỉ có 1 nhạc cụ gảy: giữ nguyên hay thêm pizz của bộ kéo vĩ từ Iowa) trước Bước 5
 - [ ] **Bước 2:** `load_audio()`, gồm lọc thông cao 25 Hz trước chuẩn hóa đỉnh (D27)
 - [ ] **Bước 3:** đặc trưng 32D + tương quan + boxplot (điền INSTRUMENT_CHARACTERISTICS §5; số sơ bộ đã có ở `docs/01_THEORY/15`)
 - [ ] **Bước 4:** 20 prototype

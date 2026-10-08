@@ -2,7 +2,7 @@
 
 **Tóm tắt 10 dòng** (dùng để trình bày với giảng viên):
 1. Hệ CBAR: CSDL **500 file multi-note** của 5 nhạc cụ dây (violin, viola, cello, double bass, guitar); trả về Top-5 file có tiếng nhạc cụ gần nhất với file truy vấn.
-2. Dữ liệu gốc là thư viện **nốt đơn** thu âm thật (4 477 file). 500 file multi-note được **ghép** từ nốt đơn, kèm ranh giới nốt làm ground truth.
+2. Dữ liệu gốc là **nốt đơn** thu âm thật từ hai nguồn: Philharmonia (4 477 file) và Iowa MIS (1 429 nốt cắt từ 188 file); **4 653 nốt dùng được**. 500 file multi-note được **ghép** từ nốt đơn, kèm ranh giới nốt làm ground truth. Banjo, mandolin chỉ dùng làm truy vấn ngoài CSDL ([PROJECT_OVERVIEW](../00_PROJECT/PROJECT_OVERVIEW.md) §2.1).
 3. Nốt đơn được chia **theo cao độ** thành REF / DB_POOL / QUERY_POOL không giao nhau, nên không rò rỉ dữ liệu.
 4. Mỗi nốt REF thành vector âm sắc 32D; K-means lấy **4 prototype/nhạc cụ, tổng 20**.
 5. File multi-note được **segmentation** (energy + SuperFlux, chống vibrato) thành các đoạn xấp xỉ nốt.
@@ -18,4 +18,4 @@
 - Đọc docs của bước trước khi code (`CLAUDE.md`).
 - Chỉ đánh ✅ khi đã có code chạy được và đã kiểm tra.
 - Mọi thay đổi thiết kế phải ghi vào [DESIGN_DECISIONS](DESIGN_DECISIONS.md).
-- `raw/philharmonia/` chỉ đọc.
+- `raw/` (dữ liệu gốc của cả hai nguồn) chỉ đọc.

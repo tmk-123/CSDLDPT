@@ -28,6 +28,7 @@ Ví dụ: `q_cello_0007` có 100 relevant (`seq_cello_*`). Kết quả `[cello, 
 2. 445 PHRASE thật (khả năng tổng quát sang nhạc thật).
 3. 154 UNSEEN (Excitation-P@5 + phân bố nhạc cụ).
 4. (Tùy chọn) Nốt đơn QUERY_POOL (n = 1).
+5. (Đề xuất, mục chờ P13) **Âm gảy không phải guitar**: pizzicato của bộ kéo vĩ trong `data/excluded/technique/`, banjo, mandolin. Đo tỉ lệ bị trả về guitar, để biết hệ thống nhận guitar nhờ âm sắc hay chỉ nhờ "là âm gảy" ([01_THEORY/10](../01_THEORY/10_BANJO_MANDOLIN.md) §5). Số đo sơ bộ ở mức nốt: banjo 47%, mandolin gảy 46%, violin pizz 24% ra guitar.
 
 Tune tham số bằng **leave-one-out có loại trừ trên DB** ([SPLIT_AND_LEAKAGE](../04_PART_1/01_DATASET/SPLIT_AND_LEAKAGE.md) §4).
 
