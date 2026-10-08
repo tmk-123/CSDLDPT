@@ -1,6 +1,6 @@
 # DATABASE SCHEMA — SQLite
 
-> Lý thuyết: [08_MULTIMEDIA_DATABASE](../../01_THEORY/08_MULTIMEDIA_DATABASE.md). Quyết định: D18.
+> Lý thuyết: [22_MULTIMEDIA_DATABASE](../../01_THEORY/22_MULTIMEDIA_DATABASE.md). Quyết định: D18.
 
 ## 1. Chọn công nghệ
 | Lựa chọn | Ưu | Nhược | Kết luận |
@@ -11,7 +11,7 @@
 | PostgreSQL + pgvector | Tiện | Index là HNSW/IVFFlat, **không phải R-tree** ⇒ mất phần R-tree của môn | **Không** |
 | Vector dạng JSON | Dễ đọc | Chậm, tốn chỗ, mất độ chính xác | Chỉ dùng khi export |
 
-**Nguyên lý lưu trữ hỗn hợp:** file audio nằm trên đĩa (`Strings/`, `data/sequences/`); CSDL lưu **đường dẫn + metadata + vector**.
+**Nguyên lý lưu trữ hỗn hợp:** file audio nằm trên đĩa (`data/notes/`, `data/queries/`, `data/sequences/`; bản gốc ở `raw/`); CSDL lưu **đường dẫn + metadata + vector**.
 
 ## 2. DDL
 ```sql
@@ -24,10 +24,12 @@ CREATE TABLE instrument (
   in_database   INTEGER NOT NULL               -- 1: có trong CSDL tìm kiếm; 0: unseen
 );
 
-CREATE TABLE source_note (                     -- bản ghi GỐC trong Strings/ (= catalog.csv)
+CREATE TABLE source_note (                     -- một bản ghi gốc = một dòng data/catalog.csv (Philharmonia hoặc nốt cắt từ Iowa)
   recording_id     INTEGER PRIMARY KEY,
   rel_path         TEXT UNIQUE NOT NULL,
+  source           TEXT NOT NULL,              -- philharmonia | iowa (D21)
   instrument_id    INTEGER NOT NULL REFERENCES instrument,
+  string           TEXT,                       -- dây (chỉ Iowa ghi): G D A E C; guitar lowE A D G B highE (D28); NULL = không rõ
   note TEXT, midi INTEGER, duration_label TEXT, dynamics TEXT,
   technique TEXT, technique_family TEXT,
   duration_sec REAL, sample_rate INTEGER, channels INTEGER, md5 TEXT,
@@ -93,7 +95,7 @@ audio_file 1─n segment            audio_file 1─1 file_vector
 audio_file(db/query_sequence) 1─n sequence_note n─1 source_note
 ```
 - **Không có bảng frame.** Frame không phải record.
-- Pitch và technique là **thuộc tính** của `source_note`. Không tách bảng riêng vì chúng không có thuộc tính đi kèm cần chuẩn hóa.
+- Nguồn, dây, cao độ và kỹ thuật là **thuộc tính** của `source_note`. Không tách bảng riêng vì chúng không có thuộc tính đi kèm cần chuẩn hóa. Đây là các tầng metadata của mô hình dữ liệu ([16_DATASET_MODEL](../../01_THEORY/16_DATASET_MODEL.md) §8).
 - R-tree: file `data/index/rtree_v1.{dat,idx}`, khóa = `audio_id`. Chỉ những `audio_file` có `in_index = 1` (500 sequence DB).
 
 ## 4. Truy vấn mẫu (dùng để kiểm tra ở Bước 8)

@@ -4,10 +4,10 @@
 
 | Vai trò | Nguồn | Số lượng (dự kiến) | Dùng để | Vào R-tree? |
 |---|---|---|---|---|
-| **REF** (reference single-note) | Nốt đơn của 5 nhạc cụ thuộc nhóm cao độ REF | ~1 360 | Fit `scaler_seg`, học 20 prototype | Không |
-| **DB sequences** | Ghép từ nốt **DB_POOL** | **500** (100/nhạc cụ) | **Là CSDL được tìm kiếm** | **Có** |
-| **QUERY sequences** | Ghép từ nốt **QUERY_POOL** | 100 (20/nhạc cụ) | Truy vấn kiểm thử chính thức | Không |
-| **PHRASE** | 446 file `phrase` thật (violin, viola, cello, double-bass) | 446 | Truy vấn "nhạc thật" | Không |
+| **REF** (reference single-note) | Nốt đơn của 5 nhạc cụ thuộc nhóm cao độ REF | **750** được chọn (150 / nhạc cụ, D23) trong 1 892 nốt REF | Fit `scaler_seg`, học 20 prototype | Không |
+| **DB sequences** | Ghép từ nốt **DB_POOL** (200 nốt / nhạc cụ được chọn; guitar 181) | **500** (100/nhạc cụ) | **Là CSDL được tìm kiếm** | **Có** |
+| **QUERY sequences** | Ghép từ nốt **QUERY_POOL** (60 nốt / nhạc cụ được chọn) | 100 (20/nhạc cụ) | Truy vấn kiểm thử chính thức | Không |
+| **PHRASE** | 445 file `phrase` thật (violin 252, double-bass 74, cello 64, viola 55) | 445 | Truy vấn "nhạc thật" | Không |
 | **UNSEEN** | Banjo 74 + mandolin 80 | 154 | Truy vấn "nhạc cụ ngoài CSDL" (đề mục 4). Không dùng để học hay ghép CSDL, nên chỉ cần vài chục file | Không |
 
 ## 2. Tại sao cần single-note (REF)

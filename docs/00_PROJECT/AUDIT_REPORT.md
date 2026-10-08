@@ -1,6 +1,6 @@
 # AUDIT REPORT — Dữ liệu và project thực tế
 
-> Đo trực tiếp ngày 07/10/2026 bằng script trên `Strings/`. Bản audit cũ hơn nằm ở `_archive/00_PROJECT_AUDIT_REPORT.md`. Bản cũ **bỏ sót các file phrase**.
+> Đo trực tiếp ngày 07/10/2026 bằng script trên `raw/philharmonia/`. Bản audit cũ hơn nằm ở `_archive/00_PROJECT_AUDIT_REPORT.md`. Bản cũ **bỏ sót các file phrase**.
 
 ## 1. Dataset
 - **4 477 file `.mp3`**, 100% tên đúng mẫu `instrument_note_durationLabel_dynamics_technique.mp3`.
@@ -48,7 +48,7 @@
 | Người chơi, cây đàn, phòng thu | **Không** | — |
 
 ## 4. Project
-- Code: chỉ có `Strings/scan_dataset.py` (sai đường dẫn).
+- Code: chỉ có `scan_dataset.py` (sai đường dẫn; nay ở `scripts/legacy/`).
 - Thư viện có sẵn: numpy, scipy, matplotlib, fastapi, ffmpeg. **Chưa có:** librosa, soundfile, scikit-learn, rtree.
 - Chưa có CSDL, đặc trưng, index hay giao diện.
 

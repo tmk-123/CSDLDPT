@@ -6,7 +6,7 @@
 - **Chính:** relevant ⇔ **cùng nhạc cụ** với query.
 - **Phân cấp (nâng cao):** rel = 2 nếu cùng nhạc cụ và cùng technique_family; rel = 1 nếu chỉ cùng nhạc cụ; 0 nếu khác. Dùng để tính nDCG@5.
 - **Unseen (banjo/mandolin):** dùng **Excitation-P@5** = tỷ lệ kết quả có cơ chế **gảy**. Vì CSDL v1 không có sequence pizz (D20), thực tế đây là tỷ lệ kết quả là guitar. Banjo và mandolin là nhạc cụ gảy, nên đây là tiêu chí kiểm chứng được.
-- **Khác điều kiện thu (tùy chọn):** file multi-note gốc của Iowa làm query ⇒ đo P@5 khi nguồn thu khác.
+- **Khác điều kiện thu:** file multi-note gốc của Iowa làm query ⇒ đo P@5 khi nguồn thu khác. Số đo sơ bộ cho thấy đặc trưng gần như không chuyển sang nguồn thu khác (láng giềng gần nhất đúng nhạc cụ 94–98% khi cùng nguồn, 29–53% khi khác nguồn, [01_THEORY/15](../01_THEORY/15_AUDIO_FEATURES.md) §16.1). Đề xuất nâng mục này từ tùy chọn thành **bắt buộc**, và thêm cấu hình "CSDL một nguồn, truy vấn nguồn kia" (mục chờ **P12**).
 
 Ví dụ: `q_cello_0007` có 100 relevant (`seq_cello_*`). Kết quả `[cello, cello, viola, cello, cello]` ⇒ P@5 = 0.8, Top-1 = 1, Hit@5 = 1, RR = 1.
 
@@ -25,7 +25,7 @@ Ví dụ: `q_cello_0007` có 100 relevant (`seq_cello_*`). Kết quả `[cello, 
 
 ## 3. Bộ query
 1. 100 QUERY sequence (con số chính thức, chạy **một lần**).
-2. 446 PHRASE thật (khả năng tổng quát sang nhạc thật).
+2. 445 PHRASE thật (khả năng tổng quát sang nhạc thật).
 3. 154 UNSEEN (Excitation-P@5 + phân bố nhạc cụ).
 4. (Tùy chọn) Nốt đơn QUERY_POOL (n = 1).
 

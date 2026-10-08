@@ -26,7 +26,7 @@
 |---|---|
 | Máy Windows 10, Python 3.13.9; ffmpeg/ffprobe đã có | Nếu thư viện chưa có wheel cho 3.13, dùng venv 3.12 |
 | Chưa cài: librosa, soundfile, scikit-learn, rtree | Bước 0 phải cài |
-| `Strings/` là dữ liệu gốc | **Không sửa, không di chuyển**; mọi thứ sinh ra nằm trong `data/` |
+| `raw/philharmonia/` là dữ liệu gốc | **Không sửa, không di chuyển**; mọi thứ sinh ra nằm trong `data/` |
 | Không giả định metadata không có | Phrase không có nhãn từng nốt, nên không đo segmentation trên phrase |
 | Người làm là sinh viên, cần giải thích được với giảng viên | Ưu tiên thuật toán đơn giản, diễn giải được |
 

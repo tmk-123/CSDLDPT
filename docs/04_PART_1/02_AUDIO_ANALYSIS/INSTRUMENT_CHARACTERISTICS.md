@@ -1,6 +1,6 @@
 # INSTRUMENT CHARACTERISTICS — Điểm giống và khác giữa các nhạc cụ (đề mục 1)
 
-> Phần lý thuyết dưới đây lấy từ `_archive/03_AUDIO_CHARACTERISTICS.md` (đã rút gọn). **Phần §5 phải được điền bằng số liệu đo thật ở Bước 3.** Đây là điểm khiến phần trả lời đề mục 1 có giá trị, thay vì chỉ trích lý thuyết.
+> Phần lý thuyết dưới đây lấy từ `_archive/03_AUDIO_CHARACTERISTICS.md` (đã rút gọn). Giải thích đầy đủ từng nhạc cụ (dây, nốt, tần số, kỹ thuật, phổ, số đo): [01_THEORY/04–10](../../01_THEORY/04_HOW_STRING_INSTRUMENTS_WORK.md). **Phần §5 phải được điền bằng số liệu đo thật ở Bước 3**; hiện đã có số **sơ bộ** từ phần lý thuyết.
 
 ## 1. Phân nhóm
 | Nhóm | Nhạc cụ | Vai trò trong project |
@@ -23,15 +23,15 @@
 ### 3.2. Âm vực (f₀)
 | Nhạc cụ | Nốt thấp (dây buông) | Dải f₀ ước tính | Độ sáng (centroid) |
 |---|---|---|---|
-| Double Bass | E1 | ≈ 41 – 260 Hz (cao hơn khi chơi harmonic) | Rất tối |
-| Cello | C2 | ≈ 65 – 1 050 Hz | Tối – trung |
-| Viola | C3 | ≈ 131 – 1 320 Hz | Trung |
-| Violin | G3 | ≈ 196 – 3 500 Hz (dataset tới A♯7) | Sáng |
-| Guitar | E2 | ≈ 82 – 990 Hz | Trung, tắt nhanh |
-| Banjo | ~C3/G3 | ≈ 130 – 1 050 Hz | Đanh, sáng ở attack |
-| Mandolin | G3 | ≈ 196 – 2 350 Hz | Rất sáng, dây kép |
+| Double Bass | E1 (C1 nếu có phần nối dài) | Dataset: C1 – G4 (32.7 – 392 Hz) | Tối (centroid trung vị 790 Hz) |
+| Cello | C2 | Dataset: C2 – C6 (65 – 1 047 Hz) | Tối – trung (1 172 Hz) |
+| Viola | C3 | Dataset: C3 – D7 (131 – 2 349 Hz) | Trung (1 712 Hz) |
+| Violin | G3 | Dataset: G3 – B7 (196 – 3 951 Hz) | Sáng nhất (2 299 Hz) |
+| Guitar | E2 | Dataset: E2 – C6 (gảy), tới E6 (harmonic) | **Tối nhất** (781 Hz), tắt dần |
+| Banjo | C3 trong dataset | Dataset: C3 – E6 (131 – 1 319 Hz) | Đanh, tắt rất nhanh (1 142 Hz) |
+| Mandolin | G3 | Dataset: G3 – A6 (196 – 1 760 Hz) | Sáng, dây kép (1 590 Hz) |
 
-Các dải **chồng lấn** (ví dụ viola và violin trùng nhau ở G3–E6) ⇒ chỉ dùng f₀ thì không đủ, cần âm sắc (MFCC).
+Các dải **chồng lấn** (ví dụ viola và violin trùng nhau ở G3–A6) ⇒ chỉ dùng f₀ thì không đủ, cần âm sắc (MFCC).
 
 ### 3.3. Sắc thái âm sắc
 - **Violin và viola:** cùng kỹ thuật; viola thân lớn hơn nên âm dày và tối hơn. Đây là cặp **dễ nhầm nhất**.
@@ -58,3 +58,15 @@ Trên tập REF, theo nhạc cụ: median và IQR của centroid (Hz), median f�
 | guitar | | | | |
 | banjo (tham khảo) | | | | |
 | mandolin (tham khảo) | | | | |
+
+**Số sơ bộ (đã có, từ phần lý thuyết):** đo bằng `scripts/theory_figures.py` trên **mọi nốt dùng được** (không chỉ REF), 1.5 s đầu, frame có âm; F0 là cao độ danh nghĩa theo tên nốt. Chi tiết: [01_THEORY/15](../../01_THEORY/15_AUDIO_FEATURES.md), `reports/theory/feature_summary_by_instrument.csv`.
+
+| Nhạc cụ | Số nốt | Centroid median (IQR) | F0 danh nghĩa median | RMS-CV median | ZCR median |
+|---|---|---|---|---|---|
+| violin | 1 141 | 2 299 Hz (1 585 – 2 929) | 740 Hz | 0.65 | 0.115 |
+| viola | 990 | 1 712 Hz (1 277 – 2 171) | 466 Hz | 0.52 | 0.089 |
+| cello | 1 047 | 1 172 Hz (705 – 1 604) | 247 Hz | 0.55 | 0.050 |
+| double-bass | 1 030 | 790 Hz (547 – 1 076) | 123 Hz | 0.59 | 0.017 |
+| guitar | 445 | 781 Hz (595 – 1 076) | 277 Hz | 0.88 | 0.031 |
+| banjo (tham khảo) | 74 | 1 142 Hz (791 – 1 333) | 370 Hz | 1.60 | 0.054 |
+| mandolin (tham khảo) | 80 | 1 590 Hz (1 209 – 2 035) | 571 Hz | 0.93 | 0.077 |

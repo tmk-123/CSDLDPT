@@ -1,0 +1,9 @@
+feature,pc1_loading,pc2_loading
+centroid_hz,0.335,0.102
+log2_f0,0.327,0.029
+rolloff_hz,0.325,0.091
+mfcc1,-0.313,-0.058
+zcr,0.284,0.105
+bandwidth_hz,0.281,-0.04
+mfcc4,-0.251,-0.165
+mfcc_std10,0.194,-0.171

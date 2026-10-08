@@ -2,7 +2,10 @@
 
 ## 1. Luồng offline (chạy một lần, theo thứ tự)
 ```
-[p01_build_catalog]      Strings/*.mp3 ──────────────► data/catalog.csv
+[p01_1_download_iowa]    web Iowa MIS ──────────────────► raw/iowa_mis/<nhạc cụ>/*.aiff
+[p01_2_slice_iowa]       raw/iowa_mis/ ─────────────────► data/interim/iowa_notes/ (nốt đơn Iowa)
+[p01_3_build_catalog]    raw/philharmonia/ + interim ───► data/catalog.csv, data/notes/, data/queries/, data/excluded/
+[p01_6_dataset_stats]    catalog ───────────────────────► reports/dataset/ (bảng + biểu đồ mô tả dataset)
 [p02_check_audio]        catalog (OK) ─────────────────► log thời gian, danh sách lỗi
 [p03_extract_ref_features] catalog (REF) ──────────────► data/cache/ref_features.npz, hình tương quan, boxplot
 [p04_build_reference]    ref_features ──────────────────► data/models/v1/{scaler_seg, prototypes, ref_index}.npz

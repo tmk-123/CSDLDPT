@@ -8,11 +8,11 @@
 
 | Thư mục | Trả lời câu hỏi | Bắt đầu từ |
 |---|---|---|
-| [00_PROJECT/](00_PROJECT/) | Đề bài là gì, phạm vi tới đâu, hiện đang ở đâu? | [PROJECT_OVERVIEW.md](00_PROJECT/PROJECT_OVERVIEW.md) |
-| [01_THEORY/](01_THEORY/) | **Nó là gì?** Kiến thức chung, không chứa tham số của project | [01_AUDIO_FUNDAMENTALS.md](01_THEORY/01_AUDIO_FUNDAMENTALS.md) |
+| [00_PROJECT/](00_PROJECT/) | Đề bài là gì, phạm vi tới đâu, hiện đang ở đâu, **đã đạt kết quả gì**? | [PROJECT_OVERVIEW.md](00_PROJECT/PROJECT_OVERVIEW.md) · ⭐ [RESULTS_REPORT.md](00_PROJECT/RESULTS_REPORT.md) |
+| [01_THEORY/](01_THEORY/) | **Nó là gì, vì sao?** 22 bài giảng từ cơ bản tới nâng cao: âm thanh, nốt, harmonic, **từng nhạc cụ**, cách chơi, âm thanh số, đặc trưng, mô hình dữ liệu, tìm kiếm. Minh họa bằng số đo trên dataset thật | ⭐ [README.md](01_THEORY/README.md) (lộ trình đọc) |
 | [02_PLANS/](02_PLANS/) | **Phải làm gì, theo thứ tự nào?** | ⭐ [PART_1_PLAN.md](02_PLANS/PART_1_PLAN.md) |
 | [03_WORKFLOWS/](03_WORKFLOWS/) | Dữ liệu chảy qua các bước ra sao? | [MASTER_WORKFLOW.md](03_WORKFLOWS/MASTER_WORKFLOW.md) |
-| [04_PART_1/](04_PART_1/) | **Project dùng nó thế nào?** Từ dataset tới vector đặc trưng | ⭐ [DATASET_COLLECTION_AND_FILTERING.md](04_PART_1/01_DATASET/DATASET_COLLECTION_AND_FILTERING.md) (đang tập trung) |
+| [04_PART_1/](04_PART_1/) | **Project dùng nó thế nào?** Từ dataset tới vector đặc trưng | [DATASET_COLLECTION_AND_FILTERING.md](04_PART_1/01_DATASET/DATASET_COLLECTION_AND_FILTERING.md) (dataset ✅) |
 | [05_PART_2/](05_PART_2/) | **Project dùng nó thế nào?** CSDL, chỉ mục R-tree, tìm kiếm, truy vấn | [SCHEMA.md](05_PART_2/01_DATABASE/SCHEMA.md) |
 | [06_SYSTEM/](06_SYSTEM/) | (để sau) Kiến trúc tổng, demo, cài đặt | — |
 | [07_EVALUATION/](07_EVALUATION/) | (để sau) Đánh giá | — |
@@ -20,8 +20,10 @@
 | [09_REFERENCE/](09_REFERENCE/) | Thuật ngữ, công thức, nguồn tham khảo | [GLOSSARY.md](09_REFERENCE/GLOSSARY.md) |
 | [_archive/](_archive/) | Bộ docs cũ (00–17). **Chỉ để tham khảo**, nhiều chỗ đã lỗi thời | — |
 
+Số liệu và biểu đồ **sinh tự động** bằng script nằm ngoài `docs/`, trong [`reports/`](../reports/) (ví dụ [reports/dataset/dataset_stats.md](../reports/dataset/dataset_stats.md)). Docs chỉ trích và giải thích chúng.
+
 ## Quy tắc tránh trùng lặp
-1. `01_THEORY` giải thích **khái niệm**. Không ghi tham số cụ thể như "2048", "32D", "20 prototype".
+1. `01_THEORY` giải thích **khái niệm**, và theo yêu cầu của `CLAUDE.md` luôn **liên hệ với project**: áp dụng vào 5 nhạc cụ, minh họa bằng số đo trên dataset, nói rõ vì sao project chọn như vậy. Tham số của project (ví dụ "2048", "32D", "20 prototype") được nhắc lại để giải thích, nhưng **nơi quyết định** vẫn là file PART tương ứng: nếu khác nhau, file PART đúng.
 2. `04_PART_1` và `05_PART_2` ghi **quyết định và tham số của project**, rồi link ngược về THEORY.
 3. **Lý do** của mỗi lựa chọn chỉ ghi ở một nơi: [08_AI_CONTEXT/DESIGN_DECISIONS.md](08_AI_CONTEXT/DESIGN_DECISIONS.md). Các file khác chỉ link tới đó.
 4. Mỗi con số chỉ có **một nguồn**. Nếu thay đổi (ví dụ đổi PCA 8D → 6D), sửa ở file PART tương ứng và thêm một dòng vào DESIGN_DECISIONS.

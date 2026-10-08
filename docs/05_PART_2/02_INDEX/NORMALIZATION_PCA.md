@@ -1,6 +1,6 @@
 # NORMALIZATION + PCA — Từ v (52D) tới vector đánh chỉ mục u (8D)
 
-> Lý thuyết: [05_DISTANCE_SIMILARITY](../../01_THEORY/05_DISTANCE_SIMILARITY.md), [06_PCA](../../01_THEORY/06_PCA.md). Quyết định: D13, D14.
+> Lý thuyết: [19_DISTANCE_SIMILARITY](../../01_THEORY/19_DISTANCE_SIMILARITY.md), [20_PCA](../../01_THEORY/20_PCA.md). Quyết định: D13, D14.
 
 ## 1. Vì sao phải chuẩn hóa trước khi tính khoảng cách
 Ví dụ chưa chuẩn hóa: centroid 2 400 Hz vs 2 600 Hz; ZCR 0.05 vs 0.15. Ta có d² = 200² + 0.1² ≈ 40 000, nên ZCR **vô hình** dù chênh gấp 3 lần. Euclid chỉ công bằng khi mọi chiều cùng thang đo.

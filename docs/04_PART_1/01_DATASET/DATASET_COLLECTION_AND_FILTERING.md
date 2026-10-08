@@ -3,7 +3,7 @@
 > **Đây là việc trọng tâm hiện tại.** File này trả lời ba câu hỏi: (1) dữ liệu đang có lọc ra còn bao nhiêu; (2) còn thiếu gì so với thiết kế; (3) lấy thêm ở đâu và làm theo các bước nào.
 > Số liệu §1 được đo ngày 07/10/2026 bằng cách **giải mã toàn bộ 4 477 file** (ffmpeg → mono 22 050 Hz), đo phần có âm (RMS > −40 dB so với đỉnh), đỉnh biên độ, số mẫu clipping và MD5.
 
-## 1. Kết quả lọc dữ liệu hiện có (`Strings/`)
+## 1. Kết quả lọc dữ liệu hiện có (`raw/philharmonia/`)
 
 ### 1.1. Chất lượng kỹ thuật
 | Kiểm tra | Kết quả |
@@ -93,20 +93,20 @@ Nốt bộ kéo vĩ ngắn (khoảng 1 s). Guitar, banjo và mandolin dài hơn 
 | B (`sulB`) | B3, C4B4, C5Gb5 | 1 + 12 + 7 = 20 |
 | E cao (`sul_E`) | E4B4, C5B5 (ff: C5Bb5) | 8 + 12 = 20 (ff: 19) |
 
-⇒ **Khoảng 353 nốt** (118 + 118 + 117), âm vực E2–B5, **mỗi nốt có ghi rõ dây**. *(Ngày 07/10 đã tải đủ 45 file; khảo sát cho thấy các nốt đúng là đi lên từng nửa cung như tên file, xem Bước D2.)* Cộng 106 nốt của `Strings/` ⇒ khoảng **459 nốt guitar**, vượt mức cần 360. Con số này suy ra từ tên file; phải xác nhận ở Bước D2 (số đoạn cắt được trong mỗi file).
+⇒ **Khoảng 353 nốt** (118 + 118 + 117), âm vực E2–B5, **mỗi nốt có ghi rõ dây**. *(Ngày 07/10 đã tải đủ 45 file; khảo sát cho thấy các nốt đúng là đi lên từng nửa cung như tên file, xem Bước 1.2.)* Cộng 106 nốt của `raw/philharmonia/` ⇒ khoảng **459 nốt guitar**, vượt mức cần 360. Con số này suy ra từ tên file; phải xác nhận ở Bước 1.2 (số đoạn cắt được trong mỗi file).
 
 Nếu Iowa guitar không đủ khoảng 250 nốt: lựa chọn tiếp theo là tự thu âm guitar (ghi rõ trong báo cáo), hoặc chấp nhận ít sequence guitar hơn và báo cáo rõ.
 
 ## 4. Quy trình thu thập và lọc (các việc phải làm)
 
-### Bước D1 — Tải dữ liệu Iowa MIS
+### Bước 1.1 — Tải dữ liệu Iowa MIS
 - **Guitar (bắt buộc):** `Guitar.mono.1644.1.zip` (45 file mono 16-bit 44.1 kHz) trên trang MISguitar.html.
 - **Violin, viola, cello, double bass (khuyến nghị, để trộn đều hai nguồn):** chỉ file **arco**, bản 16-bit 44.1 kHz mono.
-- Lưu nguyên trạng vào `External/iowa_mis/<instrument>/` (chỉ đọc, giống `Strings/`).
+- Lưu nguyên trạng vào `raw/iowa_mis/<instrument>/` (chỉ đọc, giống `raw/philharmonia/`).
 - Ghi vào [REFERENCES](../../09_REFERENCE/REFERENCES.md): URL, ngày tải, số file, dung lượng.
 - **Xong khi:** đủ file cho 5 nhạc cụ, đã ghi nguồn.
 
-### Bước D2 — Cắt file Iowa thành nốt đơn
+### Bước 1.2 — Cắt file Iowa thành nốt đơn
 **Cấu trúc thật của file Iowa guitar** (khảo sát ngày 07/10 trên cả 45 file):
 - Các nốt **đi lên từng nửa cung** đúng như khoảng trong tên file. Ví dụ `A2B2`: 3 cú gảy ở giây 0.07, 12.5, 23.6 với cao độ A2 → A♯2 → B2.
 - Mỗi nốt **ngân khoảng 10–13 s**, và nốt sau được gảy khi nốt trước còn vang ⇒ **KHÔNG có khoảng lặng giữa các nốt**.
@@ -119,13 +119,13 @@ Nếu Iowa guitar không đủ khoảng 250 nốt: lựa chọn tiếp theo là 
 3. **Gộp** các ứng viên liên tiếp có cùng cao độ, chỉ giữ cái đầu tiên.
 4. **Kiểm tra bằng tên file:** chuỗi cao độ còn lại phải là dãy chromatic tăng dần đúng khoảng (`E2B2` ⇒ E2, F2, …, B2: 8 nốt). Nốt nào thiếu hoặc lệch quá 0.6 nửa cung thì đánh dấu `SLICE_MISMATCH`/`PITCH_MISMATCH` và loại.
 5. Mỗi nốt được cắt từ onset của nó tới onset nốt kế tiếp (hoặc tới khi tắt hẳn); có thể **giới hạn 4 s đầu** cho gọn, vì project chỉ dùng tối đa 1.5 s mỗi nốt.
-- Ghi ra `data/external_notes/iowa/<instrument>/<instrument>_<note>_<dyn>_<technique>_<string>.wav`, tên gần giống quy ước Philharmonia.
+- Ghi ra `data/interim/iowa_notes/<instrument>/<instrument>_<note>_<dynamics>_<technique>_<string>_<range>.wav` (vd `violin_C5_mezzo-forte_arco-normal_A_C5C6.wav`; `<range>` là khoảng nốt của file gốc, giúp tên không trùng khi hai file có khoảng chồng nhau). Script chạy tiếp được: mỗi file gốc cắt xong được lưu vào `_cache/`.
 - **Xong khi:** có bảng "file gốc → số nốt cắt được → số nốt qua kiểm tra pitch".
 
-### Bước D3 — Catalog hợp nhất
+### Bước 1.3 — Catalog hợp nhất
 Một catalog cho cả hai nguồn, **thêm cột `source`** (`philharmonia` | `iowa`) và `parent_file` (file Iowa gốc).
 
-### Bước D4 — Áp quy tắc lọc
+### Bước 1.4 — Áp quy tắc lọc
 
 | Mã | Điều kiện | Status |
 |---|---|---|
@@ -136,19 +136,23 @@ Một catalog cho cả hai nguồn, **thêm cột `source`** (`philharmonia` | `
 | F5 | Kỹ thuật không thuộc {arco, vibrato/non-vibrato, guitar normal/harmonics} | `OK` nhưng `split = NONE` |
 | F6 | Đỉnh < 0.01 hoặc có clipping | Giữ, bật cờ `LOW_LEVEL` / `CLIPPED` để nghe lại |
 
-### Bước D5 — Chia tập
-Theo [SPLIT_AND_LEAKAGE](SPLIT_AND_LEAKAGE.md) §2, nhưng áp dụng **riêng cho từng cặp (nhạc cụ, nguồn)** để mỗi tập đều có cả hai nguồn.
+### Bước 1.5 — Chia tập
+Theo [SPLIT_AND_LEAKAGE](SPLIT_AND_LEAKAGE.md) §2: `midi mod 5`, **cùng một quy tắc cho cả hai nguồn** (D24), rồi chọn trong giới hạn (D23). Đã kiểm tra: mọi tập được chọn đều có cả hai nguồn.
 
-### Bước D6 — Báo cáo dataset (đề mục 1)
+### Bước 1.6 — Báo cáo dataset (đề mục 1)
 - Bảng số lượng cuối cùng: nhạc cụ × nguồn × split.
 - Biểu đồ phân bố cao độ theo nhạc cụ.
 - Mô tả điểm giống và khác ([INSTRUMENT_CHARACTERISTICS](../02_AUDIO_ANALYSIS/INSTRUMENT_CHARACTERISTICS.md)).
 
-## 5. Bảng mục tiêu sau khi thu thập (điền sau D5)
+## 5. Kết quả sau khi thu thập và lọc (đo ngày 08/10/2026, sau khi lọc tiếng ù 25 Hz — D27)
+Nốt dùng được = `status = OK`, kỹ thuật đúng D20 (bộ kéo vĩ chỉ arco, nên Philharmonia giảm so với §1.3 vì đã bỏ pizz). Ô REF/DB_POOL/QUERY_POOL ghi **được chọn / có** (D23).
+
 | Nhạc cụ | Philharmonia | Iowa | Tổng dùng được | REF | DB_POOL | QUERY_POOL |
 |---|---|---|---|---|---|---|
-| violin | 959 | | | | | |
-| viola | 759 | | | | | |
-| cello | 756 | | | | | |
-| double-bass | 763 | | | | | |
-| guitar | 106 | | | | | |
+| violin | 897 | 244 | **1 141** | 150 / 493 | 200 / 457 | 60 / 191 |
+| viola | 728 | 262 | **990** | 150 / 400 | 200 / 384 | 60 / 206 |
+| cello | 759 | 288 | **1 047** | 150 / 410 | 200 / 423 | 60 / 214 |
+| double-bass | 751 | 279 | **1 030** | 150 / 412 | 200 / 412 | 60 / 206 |
+| guitar | 106 | 339 | **445** | 150 / 177 | 181 / 181 | 60 / 87 |
+
+Chi tiết và biểu đồ: [RESULTS_REPORT](../../00_PROJECT/RESULTS_REPORT.md) §6–7, [reports/dataset/dataset_stats.md](../../../reports/dataset/dataset_stats.md).

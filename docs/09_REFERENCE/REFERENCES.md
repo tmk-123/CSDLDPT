@@ -25,13 +25,13 @@
 librosa · scikit-learn · rtree (libspatialindex) · SQLite · FFmpeg.
 
 ## Dataset
-- `Strings/`: **Philharmonia Orchestra Sound Samples**, https://philharmonia.co.uk/resources/sound-samples/ (người dùng xác nhận ngày 07/10/2026). Điều khoản trên trang: "You are free to use these samples as you wish, including releasing them as part of a commercial work", với **một hạn chế**: samples "must not be sold or made available 'as is' (i.e. as samples or as a sampler instrument)". Không bắt buộc ghi nguồn, nhưng báo cáo vẫn nên ghi.
-  - ⚠️ Hệ quả: **không được công khai nguyên file mẫu**, ví dụ để `Strings/` trong repo GitHub public. Dùng trong project, ghép thành sequence, trích đặc trưng thì đều được.
+- `raw/philharmonia/`: **Philharmonia Orchestra Sound Samples**, https://philharmonia.co.uk/resources/sound-samples/ (người dùng xác nhận ngày 07/10/2026). Điều khoản trên trang: "You are free to use these samples as you wish, including releasing them as part of a commercial work", với **một hạn chế**: samples "must not be sold or made available 'as is' (i.e. as samples or as a sampler instrument)". Không bắt buộc ghi nguồn, nhưng báo cáo vẫn nên ghi.
+  - ⚠️ Hệ quả: **không được công khai nguyên file mẫu**, ví dụ để `raw/philharmonia/` trong repo GitHub public. Dùng trong project, ghép thành sequence, trích đặc trưng thì đều được.
 - **University of Iowa Musical Instrument Samples (MIS)**: https://theremin.music.uiowa.edu/MIS.html. Theo trang này, các bản thu "may be downloaded and used for any projects, without restrictions". Bản pre-2012: 16-bit, 44.1 kHz, mono; thu trong phòng tiêu âm. *(Ghi ngày tải, số file, dung lượng sau khi tải.)*
 
 | Nhạc cụ | Trang | Ngày tải | Số file | Ghi chú |
 |---|---|---|---|---|
-| guitar | MISguitar.html | **2026-10-07** | **45** file `.aif` (từ `Guitar.mono.1644.1.zip`, 119 980 148 byte, MD5 `7add3d0272bd3ad301fc8fb5dca5300d`) | Đàn Raimundo 118, nhạc công Brian Penkrot, thu 11/12/2011, phòng tiêu âm, micro Earthworks QTC40. Lưu tại `External/iowa_mis/guitar/` (zip gốc ở `_download/`) |
+| guitar | MISguitar.html | **2026-10-07** | **45** file `.aif` (từ `Guitar.mono.1644.1.zip`, 119 980 148 byte, MD5 `7add3d0272bd3ad301fc8fb5dca5300d`) | Đàn Raimundo 118, nhạc công Brian Penkrot, thu 11/12/2011, phòng tiêu âm, micro Earthworks QTC40. Lưu tại `raw/iowa_mis/guitar/` (zip gốc ở `_download/`) |
 | violin | MISviolin.html | | | 56 file (33 arco, 23 pizz) |
 | viola | | | | |
 | cello | | | | |

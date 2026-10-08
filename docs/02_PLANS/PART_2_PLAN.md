@@ -10,7 +10,7 @@ Vector 52D (Phần 1) ─► 8 SQLite ─► 9 Chuẩn hóa + PCA 8D ─► 10 R
 ---
 
 ## Bước 8 — CSDL SQLite
-**Đọc trước:** [01_THEORY/08_MULTIMEDIA_DATABASE](../01_THEORY/08_MULTIMEDIA_DATABASE.md), [SCHEMA](../05_PART_2/01_DATABASE/SCHEMA.md)
+**Đọc trước:** [01_THEORY/22_MULTIMEDIA_DATABASE](../01_THEORY/22_MULTIMEDIA_DATABASE.md), [SCHEMA](../05_PART_2/01_DATABASE/SCHEMA.md)
 
 **Mục tiêu:** một file `data/mmdb.sqlite` chứa catalog, sequence, ground truth, segment, prototype và vector.
 
@@ -30,7 +30,7 @@ Vector 52D (Phần 1) ─► 8 SQLite ─► 9 Chuẩn hóa + PCA 8D ─► 10 R
 ---
 
 ## Bước 9 — Chuẩn hóa + PCA
-**Đọc trước:** [01_THEORY/05_DISTANCE_SIMILARITY](../01_THEORY/05_DISTANCE_SIMILARITY.md), [01_THEORY/06_PCA](../01_THEORY/06_PCA.md), [NORMALIZATION_PCA](../05_PART_2/02_INDEX/NORMALIZATION_PCA.md)
+**Đọc trước:** [01_THEORY/19_DISTANCE_SIMILARITY](../01_THEORY/19_DISTANCE_SIMILARITY.md), [01_THEORY/20_PCA](../01_THEORY/20_PCA.md), [NORMALIZATION_PCA](../05_PART_2/02_INDEX/NORMALIZATION_PCA.md)
 
 **Mục tiêu:** v (52D) → v' (52D, đã chuẩn hóa) → u (8D) cho mọi file.
 
@@ -52,7 +52,7 @@ Vector 52D (Phần 1) ─► 8 SQLite ─► 9 Chuẩn hóa + PCA 8D ─► 10 R
 ---
 
 ## Bước 10 — R-tree + tìm k-NN chính xác
-**Đọc trước:** [01_THEORY/07_R_TREE](../01_THEORY/07_R_TREE.md), [RTREE_INDEX](../05_PART_2/02_INDEX/RTREE_INDEX.md), [KNN_SEARCH](../05_PART_2/03_SEARCH/KNN_SEARCH.md)
+**Đọc trước:** [01_THEORY/21_R_TREE](../01_THEORY/21_R_TREE.md), [RTREE_INDEX](../05_PART_2/02_INDEX/RTREE_INDEX.md), [KNN_SEARCH](../05_PART_2/03_SEARCH/KNN_SEARCH.md)
 
 **Mục tiêu:** R\*-tree 8D trên 500 điểm DB + hàm `search(v'_q, u_q, k=5)` cho kết quả chính xác.
 

@@ -4,7 +4,7 @@
 ```mermaid
 flowchart TB
     subgraph P1["PHẦN 1 - Dataset tới vector 52D"]
-        A["Strings/ 4477 mp3"] --> B["Catalog: parse tên, ffprobe, MD5, status"]
+        A["raw/philharmonia/ 4477 mp3"] --> B["Catalog: parse tên, ffprobe, MD5, status"]
         B --> C{"Split theo cao độ mod 5"}
         C -->|REF| D["Nốt đơn REF"]
         C -->|DB_POOL| E["Ghép 500 sequence DB"]
@@ -40,7 +40,7 @@ flowchart TB
 
 | Khối | Chức năng | Vào | Ra | Phần |
 |---|---|---|---|---|
-| Catalog | Kiểm kê, lọc lỗi, chia tập | `Strings/*.mp3` | `catalog.csv` | 1 |
+| Catalog | Kiểm kê, lọc lỗi, chia tập | `raw/philharmonia/*.mp3` | `catalog.csv` | 1 |
 | Synthesizer | Ghép multi-note | Nốt DB_POOL/QUERY_POOL | WAV + ground truth JSON | 1 |
 | Preprocessor | Chuẩn hóa tín hiệu | File audio | y | 1 |
 | Feature extractor | Đặc trưng segment | y, (start, end) | s 32D | 1 |

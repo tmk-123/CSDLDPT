@@ -1,0 +1,9 @@
+vector,query_source,db_source,n_query,accuracy,acc_violin,acc_viola,acc_cello,acc_double-bass,acc_guitar
+32D,iowa,iowa,1412,0.975,0.96,0.99,0.96,0.99,0.97
+32D,iowa,philharmonia,1412,0.533,0.8,0.45,0.52,0.69,0.29
+32D,philharmonia,philharmonia,3241,0.938,0.96,0.92,0.9,0.98,0.84
+32D,philharmonia,iowa,3241,0.292,0.39,0.02,0.27,0.4,0.75
+19D (bỏ MFCC std),iowa,iowa,1412,0.965,0.97,0.95,0.92,0.99,0.99
+19D (bỏ MFCC std),iowa,philharmonia,1412,0.589,0.72,0.56,0.52,0.86,0.35
+19D (bỏ MFCC std),philharmonia,philharmonia,3241,0.927,0.93,0.89,0.92,0.98,0.82
+19D (bỏ MFCC std),philharmonia,iowa,3241,0.342,0.51,0.09,0.23,0.42,0.92

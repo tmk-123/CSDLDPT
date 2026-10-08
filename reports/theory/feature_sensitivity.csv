@@ -1,0 +1,7 @@
+feature,rho_pitch_violin,rho_pitch_viola,rho_pitch_cello,rho_pitch_double-bass,rho_pitch_guitar,spread_instruments,source_shift_pct_median_abs
+centroid_hz,0.84,0.87,0.81,0.82,0.7,2.94,10.5
+bandwidth_hz,0.78,0.61,0.81,0.66,0.61,1.54,7.8
+rolloff_hz,0.81,0.83,0.79,0.8,0.61,3.98,22.2
+zcr,0.8,0.68,0.7,0.8,0.68,6.61,50.8
+rms_cv,0.09,0.19,0.14,0.06,0.37,1.68,41.6
+flatness,0.63,0.4,0.46,0.52,0.51,6.5,60.0

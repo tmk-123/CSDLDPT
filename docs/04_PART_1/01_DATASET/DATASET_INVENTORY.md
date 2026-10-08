@@ -36,13 +36,13 @@ cello_As2_05_forte_arco-normal.mp3
 |---|---|---|
 | CORRUPT | ffprobe/decode lỗi | 1 |
 | DUPLICATE | MD5 trùng với file khác (đánh dấu **cả hai**) | 4 |
-| TOO_SHORT | Phần có âm < 0.35 s (D22) | 55 nốt đơn |
+| TOO_SHORT | Phần có âm < 0.35 s (D22), đo sau khi lọc tiếng ù 25 Hz (D27) | 59 nốt Philharmonia + 17 nốt Iowa (đo ngày 08/10) |
 | OK | còn lại | |
 
 Số nốt dùng được theo nhạc cụ và kỹ thuật: xem [DATASET_COLLECTION_AND_FILTERING](DATASET_COLLECTION_AND_FILTERING.md) §1.3.
 
 ## 5. Nguồn thứ hai (đề xuất): University of Iowa MIS
-Xem [DATASET_COLLECTION_AND_FILTERING](DATASET_COLLECTION_AND_FILTERING.md) §3–4. Nốt cắt từ Iowa được lưu với tên `<instrument>_<note>_<dyn>_<technique>_<string>.wav` và có `source = iowa`.
+Xem [DATASET_COLLECTION_AND_FILTERING](DATASET_COLLECTION_AND_FILTERING.md) §3–4. Nốt cắt từ Iowa được lưu với tên `<instrument>_<note>_<dynamics>_<technique>_<string>_<range>.wav` (vd `guitar_E2_mezzo-forte_normal_lowE_E2B2.wav`; guitar có hai dây Mi nên dùng nhãn `lowE`/`highE`, D28) và có `source = iowa`.
 
 ## 6. Vai trò từng nhóm
 Xem [DATASET_ROLES](DATASET_ROLES.md) và [SPLIT_AND_LEAKAGE](SPLIT_AND_LEAKAGE.md).

@@ -1,13 +1,13 @@
 # k-NN SEARCH — Similarity và Top-5 chính xác
 
-> Lý thuyết: [05_DISTANCE_SIMILARITY](../../01_THEORY/05_DISTANCE_SIMILARITY.md), [07_R_TREE](../../01_THEORY/07_R_TREE.md) §4. Quyết định: D15, D17.
+> Lý thuyết: [19_DISTANCE_SIMILARITY](../../01_THEORY/19_DISTANCE_SIMILARITY.md), [21_R_TREE](../../01_THEORY/21_R_TREE.md) §5. Quyết định: D15, D17.
 
 ## 1. Độ đo: Euclid L2 trên v' (52D)
 ```
 d(q, x) = ‖v'_q − v'_x‖₂ = √Σ (v'_q,i − v'_x,i)²
 similarity hiển thị = 1 / (1 + d)          (chỉ để hiển thị; xếp hạng luôn theo d tăng dần)
 ```
-**Vì sao Euclid, không phải cosine:** (1) R-tree cắt tỉa bằng MINDIST Euclid; (2) cận dưới qua PCA đúng với L2; (3) trong không gian z-score, "độ lớn" có nghĩa. Ví dụ V3 = 2Q: cosine cho = 1 ("giống hệt"), nhưng thực chất là âm thanh khác thường gấp đôi Q. Ví dụ tính đầy đủ ở [05_DISTANCE_SIMILARITY](../../01_THEORY/05_DISTANCE_SIMILARITY.md) §3.
+**Vì sao Euclid, không phải cosine:** (1) R-tree cắt tỉa bằng MINDIST Euclid; (2) cận dưới qua PCA đúng với L2; (3) trong không gian z-score, "độ lớn" có nghĩa. Ví dụ V3 = 2Q: cosine cho = 1 ("giống hệt"), nhưng thực chất là âm thanh khác thường gấp đôi Q. Ví dụ tính đầy đủ ở [19_DISTANCE_SIMILARITY](../../01_THEORY/19_DISTANCE_SIMILARITY.md) §5.
 
 ## 2. Thuật toán Top-5 chính xác (multi-step k-NN / filter-and-refine)
 ```

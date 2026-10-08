@@ -1,0 +1,21 @@
+group,value,n,centroid_median_hz,centroid_q25,centroid_q75,rms_cv_median
+Kỹ thuật chơi (violin),pizz-normal,48,1066.3,921.8,1238.1,1.423
+Kỹ thuật chơi (violin),snap-pizz,12,1507.0,1399.0,1596.8,1.528
+Kỹ thuật chơi (violin),non-vibrato,24,1551.7,1219.2,2426.4,0.38
+Kỹ thuật chơi (violin),arco-col-legno-battuto,44,1598.8,1402.1,1775.6,1.22
+Kỹ thuật chơi (violin),arco-col-legno-tratto,29,1758.1,1470.3,2258.6,0.823
+Kỹ thuật chơi (violin),arco-au-talon,14,1793.0,1540.7,2079.2,1.074
+Kỹ thuật chơi (violin),arco-sul-tasto,23,1847.7,1347.5,2369.5,0.638
+Kỹ thuật chơi (violin),con-sord,44,1955.4,1430.0,2792.2,0.467
+Kỹ thuật chơi (violin),molto-vibrato,45,1982.5,1569.7,2869.8,0.41
+Kỹ thuật chơi (violin),arco-tremolo,11,2030.3,1811.9,2614.6,0.337
+Kỹ thuật chơi (violin),arco-normal,828,2181.1,1464.9,2902.7,0.716
+Kỹ thuật chơi (violin),arco-sul-ponticello,39,2447.7,2078.4,2921.6,0.472
+Kỹ thuật chơi (violin),natural-harmonic,34,2658.0,2181.8,3193.3,0.659
+Kỹ thuật chơi (violin),artificial-harmonic,20,2866.7,2517.1,3470.2,0.767
+"Cường độ (violin, kéo vĩ thường)",pianissimo,135,2015.0,1478.9,2624.9,0.762
+"Cường độ (violin, kéo vĩ thường)",piano,119,2219.4,1363.8,2836.3,0.734
+"Cường độ (violin, kéo vĩ thường)",mezzo-piano,83,1878.5,1372.4,2509.0,0.705
+"Cường độ (violin, kéo vĩ thường)",mezzo-forte,138,2064.8,1356.7,2901.6,0.802
+"Cường độ (violin, kéo vĩ thường)",forte,172,2373.9,1499.4,3202.6,0.709
+"Cường độ (violin, kéo vĩ thường)",fortissimo,174,2373.1,1711.8,3377.6,0.637

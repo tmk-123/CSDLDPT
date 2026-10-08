@@ -1,6 +1,6 @@
 # FILE-LEVEL VECTOR — Một file → MỘT vector 52D
 
-> Quyết định: D11, D12. Lý thuyết bag-of-prototypes: [04_CLUSTERING_PROTOTYPES](../../01_THEORY/04_CLUSTERING_PROTOTYPES.md).
+> Quyết định: D11, D12. Lý thuyết bag-of-prototypes: [18_FEATURE_VECTOR](../../01_THEORY/18_FEATURE_VECTOR.md).
 
 ## 1. Các phương án gộp S₁…Sₙ thành vector cố định
 

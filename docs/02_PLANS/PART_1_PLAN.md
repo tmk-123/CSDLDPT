@@ -30,7 +30,7 @@ python -c "import librosa, sklearn, rtree, soundfile; print('OK', librosa.__vers
 
 | Hằng số | Giá trị |
 |---|---|
-| `STRINGS_DIR` | `<BTL>/Strings` |
+| `RAW_DIR` | `<BTL>/raw` (philharmonia/, iowa_mis/) |
 | `DATA_DIR` | `<BTL>/data` |
 | `SR` | 22050 |
 | `N_FFT` | 2048 |
@@ -44,7 +44,7 @@ python -c "import librosa, sklearn, rtree, soundfile; print('OK', librosa.__vers
 | `TOP_K` | 5 |
 | `SEED` | 42 |
 
-- [ ] Chuyển `Strings/scan_dataset.py` → `scripts/legacy/scan_dataset.py` (dùng `git mv`).
+- [ ] Chuyển `scan_dataset.py` → `scripts/legacy/scan_dataset.py`. ✅ Đã làm.
 
 **Kiểm tra:** lệnh `python -c "import librosa, sklearn, rtree"` không lỗi; `from rtree import index; p = index.Property(); p.dimension = 8` không lỗi.
 
@@ -52,7 +52,7 @@ python -c "import librosa, sklearn, rtree, soundfile; print('OK', librosa.__vers
 
 ---
 
-## Bước 1 — Dataset: thu thập, lọc, catalog ⭐ ĐANG TẬP TRUNG
+## Bước 1 — Dataset: thu thập, lọc, catalog ✅ XONG (08/10/2026 — kết quả: [RESULTS_REPORT](../00_PROJECT/RESULTS_REPORT.md))
 **Đọc trước:** ⭐ [DATASET_COLLECTION_AND_FILTERING](../04_PART_1/01_DATASET/DATASET_COLLECTION_AND_FILTERING.md), [DATASET_INVENTORY](../04_PART_1/01_DATASET/DATASET_INVENTORY.md), [SPLIT_AND_LEAKAGE](../04_PART_1/01_DATASET/SPLIT_AND_LEAKAGE.md)
 
 **Mục tiêu:** bộ nốt đơn **đủ cho cả 5 nhạc cụ** (≥ 360 nốt dùng được mỗi nhạc cụ) và một catalog **đáng tin**. Đây là nền móng của mọi bước sau: nếu dữ liệu thiếu hoặc split sai, mọi kết quả về sau đều vô nghĩa.
@@ -61,17 +61,17 @@ python -c "import librosa, sklearn, rtree, soundfile; print('OK', librosa.__vers
 
 | Bước con | Việc | Xong khi |
 |---|---|---|
-| D1 | Tải Iowa MIS cho 5 nhạc cụ → `External/iowa_mis/` | Đủ file, đã ghi nguồn |
-| D2 | Cắt file Iowa thành nốt đơn, kiểm tra số nốt theo tên file và cao độ bằng pYIN | Có bảng cắt và kiểm tra |
-| D3 | Catalog hợp nhất (Philharmonia + Iowa, thêm cột `source`) | Xem checklist dưới |
-| D4 | Áp quy tắc lọc F1–F6 | Mọi file có status |
-| D5 | Chia tập theo (nhạc cụ, nguồn) | Bảng đếm nhạc cụ × nguồn × split |
-| D6 | Thống kê và mô tả dataset (đề mục 1) | Bảng + biểu đồ |
+| 1.1 | Tải Iowa MIS cho 5 nhạc cụ → `raw/iowa_mis/` | Đủ file, đã ghi nguồn |
+| 1.2 | Cắt file Iowa thành nốt đơn, kiểm tra số nốt theo tên file và cao độ bằng pYIN | Có bảng cắt và kiểm tra |
+| 1.3 | Catalog hợp nhất (Philharmonia + Iowa, thêm cột `source`) | Xem checklist dưới |
+| 1.4 | Áp quy tắc lọc F1–F6 | Mọi file có status |
+| 1.5 | Chia tập theo (nhạc cụ, nguồn) | Bảng đếm nhạc cụ × nguồn × split |
+| 1.6 | Thống kê và mô tả dataset (đề mục 1) | Bảng + biểu đồ |
 
-> Bước D3–D5 làm được **ngay** trên `Strings/` (chưa cần Iowa). Khi có Iowa thì chạy lại, vì script được viết để chạy lại nhiều lần.
+> Bước 1.3–1.5 làm được **ngay** trên `raw/philharmonia/` (chưa cần Iowa). Khi có Iowa thì chạy lại, vì script được viết để chạy lại nhiều lần.
 
-**Việc cần làm cho D3–D5** (`src/strings_mmdb/catalog.py` + `scripts/p01_build_catalog.py`):
-- [ ] Duyệt `Strings/**/*.mp3`; tách tên file thành 5 trường (`split('_', 4)`).
+**Việc cần làm cho 1.3–1.5** (`src/strings_mmdb/catalog.py` + `scripts/p01_3_build_catalog.py`):
+- [ ] Duyệt `raw/philharmonia/**/*.mp3`; tách tên file thành 5 trường (`split('_', 4)`).
 - [ ] `note → midi`: ví dụ `As2` → 46. Công thức: `midi = 12·(octave+1) + index(tên nốt)`, với C = 0, Cs = 1, D = 2, …, B = 11.
 - [ ] `technique → technique_family`: `arco-normal`, `molto-vibrato`, `non-vibrato` → `arco`; `pizz-normal` → `pizz`; `normal` (guitar) → `pluck`; `harmonics`/`*-harmonic` → `harmonic`; còn lại → `special`.
 - [ ] Gọi ffprobe lấy `duration_sec`, `sample_rate`, `channels`; tính MD5.
@@ -85,7 +85,7 @@ python -c "import librosa, sklearn, rtree, soundfile; print('OK', librosa.__vers
 
 **Kiểm tra** (`tests/test_catalog.py`):
 - [ ] Đúng 4 477 dòng.
-- [ ] Đúng 1 `CORRUPT`, 4 `DUPLICATE`, 55 `TOO_SHORT` trong nốt đơn của 5 nhạc cụ (khớp số đã quét ngày 07/10).
+- [ ] Đúng 1 `CORRUPT`, 4 `DUPLICATE`, 54 `TOO_SHORT` trong nốt đơn Philharmonia của 5 nhạc cụ (lần quét 07/10 đếm được 55 nốt dưới 0.35 s, trong đó 1 là file hỏng). ✅ `tests/test_catalog.py`
 - [ ] Số nốt dùng được khớp DATASET_COLLECTION_AND_FILTERING §1.3 (violin 959, viola 759, cello 756, double-bass 763, guitar 106; chưa tính Iowa).
 - [ ] Không có cặp (instrument, midi) nào nằm ở hai split khác nhau.
 - [ ] In bảng đếm *nhạc cụ × split* và so với số dự kiến (REF ≈ 40%, DB_POOL ≈ 40%, QUERY_POOL ≈ 20% số nốt cơ bản).
@@ -112,7 +112,7 @@ python -c "import librosa, sklearn, rtree, soundfile; print('OK', librosa.__vers
 ---
 
 ## Bước 3 — Đặc trưng 32D cho một segment
-**Đọc trước:** [01_THEORY/02_AUDIO_FEATURES](../01_THEORY/02_AUDIO_FEATURES.md), [FEATURE_SET](../04_PART_1/03_FEATURE_DESIGN/FEATURE_SET.md), [EXTRACTION_PIPELINE](../04_PART_1/04_FEATURE_EXTRACTION/EXTRACTION_PIPELINE.md)
+**Đọc trước:** [01_THEORY/15_AUDIO_FEATURES](../01_THEORY/15_AUDIO_FEATURES.md), [FEATURE_SET](../04_PART_1/03_FEATURE_DESIGN/FEATURE_SET.md), [EXTRACTION_PIPELINE](../04_PART_1/04_FEATURE_EXTRACTION/EXTRACTION_PIPELINE.md)
 
 **Mục tiêu:** `segment_features(y, start, end) → s ∈ ℝ³²`.
 
@@ -135,7 +135,7 @@ python -c "import librosa, sklearn, rtree, soundfile; print('OK', librosa.__vers
 ---
 
 ## Bước 4 — Prototype tham chiếu
-**Đọc trước:** [01_THEORY/04_CLUSTERING_PROTOTYPES](../01_THEORY/04_CLUSTERING_PROTOTYPES.md), [REFERENCE_PROTOTYPES](../04_PART_1/03_FEATURE_DESIGN/REFERENCE_PROTOTYPES.md)
+**Đọc trước:** [01_THEORY/18_FEATURE_VECTOR](../01_THEORY/18_FEATURE_VECTOR.md), [REFERENCE_PROTOTYPES](../04_PART_1/03_FEATURE_DESIGN/REFERENCE_PROTOTYPES.md)
 
 **Mục tiêu:** 20 prototype (4 cho mỗi nhạc cụ) và nhiệt độ τ.
 
@@ -180,7 +180,7 @@ python -c "import librosa, sklearn, rtree, soundfile; print('OK', librosa.__vers
 ---
 
 ## Bước 6 — Segmentation
-**Đọc trước:** [01_THEORY/03_ONSET_SEGMENTATION](../01_THEORY/03_ONSET_SEGMENTATION.md), [SEGMENTATION](../04_PART_1/04_FEATURE_EXTRACTION/SEGMENTATION.md)
+**Đọc trước:** [01_THEORY/17_ONSET_SEGMENTATION](../01_THEORY/17_ONSET_SEGMENTATION.md), [SEGMENTATION](../04_PART_1/04_FEATURE_EXTRACTION/SEGMENTATION.md)
 
 **Mục tiêu:** `segment(y) → [(start, end), …]` đạt **onset F-measure ≥ 0.80** (dung sai ±50 ms).
 

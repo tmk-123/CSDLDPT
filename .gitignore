@@ -1,14 +1,15 @@
-# Dữ liệu tải từ nguồn ngoài (nguồn ghi trong docs/09_REFERENCE/REFERENCES.md)
-External/
+# Dữ liệu gốc tải về (nguồn và giấy phép: raw/README.md, docs/09_REFERENCE/REFERENCES.md)
+#  - raw/philharmonia/: giấy phép Philharmonia KHÔNG cho công khai nguyên dạng file mẫu
+#  - raw/iowa_mis/: tải lại bằng scripts/p01_1_download_iowa.py
+# Chỉ giữ README để người khác biết cách lấy lại dữ liệu.
+raw/*
+!raw/README.md
 
-# Dữ liệu sinh ra (tạo lại được bằng scripts)
-data/
+# Dữ liệu sinh ra (tạo lại được bằng scripts/); chỉ giữ README mô tả cấu trúc
+data/*
+!data/README.md
 
 # Môi trường Python
 .venv/
 __pycache__/
 *.pyc
-
-# Dữ liệu Philharmonia: giấy phép không cho công khai nguyên dạng file mẫu.
-# Tải lại tại https://philharmonia.co.uk/resources/sound-samples/ (xem docs/09_REFERENCE/REFERENCES.md)
-Strings/

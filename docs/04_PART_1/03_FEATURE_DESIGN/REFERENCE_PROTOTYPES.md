@@ -1,6 +1,6 @@
 # REFERENCE PROTOTYPES — Thư viện tham chiếu từ nốt đơn
 
-> Lý thuyết: [04_CLUSTERING_PROTOTYPES](../../01_THEORY/04_CLUSTERING_PROTOTYPES.md). Quyết định: D10, D11.
+> Lý thuyết: [18_FEATURE_VECTOR](../../01_THEORY/18_FEATURE_VECTOR.md). Quyết định: D10, D11.
 
 ## 1. Vì sao KHÔNG dùng prototype theo từng cao độ
 Ý tưởng ban đầu: R1 = "G4 violin arco", R2 = "A4 violin arco", … mỗi segment được gán vào reference gần nhất, rồi đếm histogram.

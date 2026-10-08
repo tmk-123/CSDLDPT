@@ -1,6 +1,6 @@
 # FEATURE SET — Bộ đặc trưng 32D cho mỗi segment (đề mục 2)
 
-> Lý thuyết từng đặc trưng: [02_AUDIO_FEATURES](../../01_THEORY/02_AUDIO_FEATURES.md). Lý do chọn/loại: [DESIGN_DECISIONS](../../08_AI_CONTEXT/DESIGN_DECISIONS.md) D07, D08.
+> Lý thuyết từng đặc trưng: [15_AUDIO_FEATURES](../../01_THEORY/15_AUDIO_FEATURES.md). Lý do chọn/loại: [DESIGN_DECISIONS](../../08_AI_CONTEXT/DESIGN_DECISIONS.md) D07, D08.
 
 ## 1. Phân tích và giá trị thông tin
 
@@ -38,6 +38,8 @@ Chroma trả lời câu hỏi "nốt nào đang vang". Hai file violin chơi gia
 | 31 | Median log2(f₀) trên frame voiced. Nếu < 20% frame voiced: gán mean REF và bật cờ `f0_missing` | 1 |
 
 Tham số: SR 22 050; n_fft 2048; hop 512; Hann; 128 Mel band; 14 MFCC (bỏ c0); rolloff 0.85; pYIN fmin = 40 Hz, fmax = 4 200 Hz. Chỉ tính trên **frame active** (RMS > −40 dB so với đỉnh file).
+
+> ⚠️ **Đang chờ xem lại** (số đo sơ bộ ở [15_AUDIO_FEATURES](../../01_THEORY/15_AUDIO_FEATURES.md) §16): **P08** fmin = 40 Hz bỏ sót 18 nốt double bass C1 → D♯1 (đề xuất 30 Hz); **P09** giá trị của 13 chiều MFCC std; **P10** RMS-CV phụ thuộc độ dài nốt; **P11** tiếng ồn nền trên đuôi nốt gảy; **P12** đặc trưng không chuyển sang nguồn thu khác. Chưa đổi tham số nào ở đây cho tới khi có quyết định trong [DESIGN_DECISIONS](../../08_AI_CONTEXT/DESIGN_DECISIONS.md).
 
 ## 4. Kiểm chứng giá trị thông tin (làm ở Bước 3–4)
 1. **Tương quan 32×32 trên REF:** cặp nào có |r| > 0.95 thì bỏ một chiều và ghi vào DESIGN_DECISIONS. Ứng viên bị bỏ nhiều khả năng nhất: rolloff.

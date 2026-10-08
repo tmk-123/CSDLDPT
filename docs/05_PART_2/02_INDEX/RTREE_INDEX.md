@@ -1,6 +1,6 @@
 # R-TREE INDEX
 
-> Lý thuyết: [07_R_TREE](../../01_THEORY/07_R_TREE.md). Quyết định: D16, D17.
+> Lý thuyết: [21_R_TREE](../../01_THEORY/21_R_TREE.md). Quyết định: D16, D17.
 
 ## 1. R-tree index CÁI GÌ
 - **KHÔNG** index file audio, frame hay segment.

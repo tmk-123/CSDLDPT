@@ -18,4 +18,4 @@
 - Đọc docs của bước trước khi code (`CLAUDE.md`).
 - Chỉ đánh ✅ khi đã có code chạy được và đã kiểm tra.
 - Mọi thay đổi thiết kế phải ghi vào [DESIGN_DECISIONS](DESIGN_DECISIONS.md).
-- `Strings/` chỉ đọc.
+- `raw/philharmonia/` chỉ đọc.

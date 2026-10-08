@@ -1,6 +1,6 @@
 # SEGMENTATION — Tách multi-note thành các đoạn xấp xỉ một nốt
 
-> Lý thuyết: [03_ONSET_SEGMENTATION](../../01_THEORY/03_ONSET_SEGMENTATION.md). Quyết định: D09.
+> Lý thuyết: [17_ONSET_SEGMENTATION](../../01_THEORY/17_ONSET_SEGMENTATION.md). Quyết định: D09.
 
 ## 1. Mục tiêu
 Không phải phiên âm chính xác. Mục tiêu là chia file thành các đơn vị **gần với một nốt** để so được với thư viện nốt đơn. Vector file ([FILE_LEVEL_VECTOR](../03_FEATURE_DESIGN/FILE_LEVEL_VECTOR.md) §5) được thiết kế để chịu lỗi chia thừa hoặc gộp sót.

@@ -1,6 +1,7 @@
 # GLOSSARY — Từ điển thuật ngữ
 
 > Viết cho người **chưa học nhạc** và **chưa học xử lý âm thanh**. Gặp từ lạ trong docs thì tra ở đây. Thiếu từ nào thì bổ sung vào đúng mục.
+> Từ điển chỉ giải thích **ngắn**. Muốn hiểu **bản chất** (công thức, ví dụ, áp dụng vào 5 nhạc cụ, số đo trên dataset) thì đọc [01_THEORY](../01_THEORY/README.md), theo lộ trình ở đó.
 
 **Mục lục:**
 1. [Âm nhạc cơ bản](#1-âm-nhạc-cơ-bản)
@@ -103,7 +104,7 @@ Chơi to không chỉ tăng âm lượng mà còn làm âm **sáng hơn**, vì b
 
 ## 4. Đọc tên file trong dataset
 
-**`Strings/` (Philharmonia):** `<nhạc cụ>_<nốt>_<độ dài>_<cường độ>_<kỹ thuật>.mp3`
+**`raw/philharmonia/` (Philharmonia):** `<nhạc cụ>_<nốt>_<độ dài>_<cường độ>_<kỹ thuật>.mp3`
 ```
 cello_As2_05_forte_arco-normal.mp3
   cello        → nhạc cụ: cello
@@ -145,8 +146,8 @@ Guitar.ff.sulE.E2B2.mono.aif   → guitar, rất to, dây Mi trầm, các nốt 
 | Thuật ngữ | Giải thích |
 |---|---|
 | **Dataset** | Bộ dữ liệu âm thanh dùng cho project |
-| **Nguồn (source)** | Nơi dữ liệu xuất phát: `philharmonia` (thư mục `Strings/`) hoặc `iowa` (Iowa MIS) |
-| **Philharmonia** | Thư viện mẫu âm thanh của dàn nhạc Philharmonia (London). Quy ước tên file trong `Strings/` giống thư viện này |
+| **Nguồn (source)** | Nơi dữ liệu xuất phát: `philharmonia` (thư mục `raw/philharmonia/`) hoặc `iowa` (Iowa MIS) |
+| **Philharmonia** | Thư viện mẫu âm thanh của dàn nhạc Philharmonia (London). Quy ước tên file trong `raw/philharmonia/` giống thư viện này |
 | **Iowa MIS** | University of Iowa Musical Instrument Samples: thư viện mẫu nhạc cụ miễn phí của Đại học Iowa (Mỹ), thu trong phòng tiêu âm |
 | **Single-note / nốt đơn** | File chỉ chứa **một** nốt |
 | **Multi-note / sequence** | File chứa **nhiều** nốt nối tiếp. Trong project, phần lớn được **ghép** từ nốt đơn |
@@ -158,7 +159,7 @@ Guitar.ff.sulE.E2B2.mono.aif   → guitar, rất to, dây Mi trầm, các nốt 
 | **DB_POOL** | Nốt đơn dùng để **ghép 500 file CSDL** |
 | **QUERY_POOL** | Nốt đơn dùng để **ghép file truy vấn** kiểm thử |
 | **SPARE** | Nốt **dư**, để dự trữ (truy vấn nốt đơn, thay thế nốt lỗi) |
-| **PHRASE** | 446 đoạn nhạc thật nhiều nốt có sẵn trong `Strings/`, dùng làm truy vấn |
+| **PHRASE** | 446 đoạn nhạc thật nhiều nốt có sẵn trong `raw/philharmonia/`, dùng làm truy vấn |
 | **UNSEEN / nhạc cụ ngoài CSDL** | Banjo, mandolin: **cố ý không đưa vào CSDL**, chỉ dùng làm truy vấn, để kiểm tra yêu cầu "nhạc cụ không có trong dữ liệu" của đề bài |
 | **NONE** | Không dùng (file lỗi hoặc kỹ thuật đặc biệt) |
 | **Ground truth** | "Đáp án đúng" đã biết trước, dùng để chấm. Ví dụ: file này là cello; nốt thứ 2 bắt đầu ở giây 0.88 |
@@ -244,4 +245,4 @@ Guitar.ff.sulE.E2B2.mono.aif   → guitar, rất to, dây Mi trầm, các nốt 
 | r8 | Khoảng cách 8D tới ứng viên xa nhất trong tập ứng viên |
 | model_version | Nhãn đồng bộ model, vector và index (v1, v2, …) |
 | D01…D22 | Mã quyết định thiết kế ([DESIGN_DECISIONS](../08_AI_CONTEXT/DESIGN_DECISIONS.md)) |
-| B0…B11, D1…D6 | Mã bước trong kế hoạch ([PART_1_PLAN](../02_PLANS/PART_1_PLAN.md)) |
+| B0…B11, 1.1…1.6 | Mã bước trong kế hoạch ([PART_1_PLAN](../02_PLANS/PART_1_PLAN.md)) |
