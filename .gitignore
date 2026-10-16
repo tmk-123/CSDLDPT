@@ -1,0 +1,12 @@
+# Dữ liệu âm thanh: quá nặng (data/raw ~2,1 GB, data/wav ~78 MB), tạo lại được bằng src/tao_bo_du_lieu.py
+data/*
+# giữ lại bảng metadata (nhỏ) để biết mỗi file cắt từ đâu
+!data/metadata.csv
+
+# Môi trường Python (cài lại bằng: pip install -r requirements-python.txt)
+.venv/
+__pycache__/
+*.pyc
+
+# File tạm của Office khi đang mở báo cáo
+~$*

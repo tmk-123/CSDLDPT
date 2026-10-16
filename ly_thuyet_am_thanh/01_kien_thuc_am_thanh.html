@@ -1,0 +1,696 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Âm thanh từ dây đàn đến dãy số</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Literata:opsz,wght@7..72,500;7..72,650&family=Roboto+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky mục lục bên trái + một cột đọc ~70 ký tự; mỗi khái niệm đi kèm một hình vẽ */
+:root{
+  --bg:#f3f5f4; --surface:#fbfcfb; --ink:#18252c; --muted:#56656c; --line:#d6dddd; --axis:#8a979c;
+  --accent:#0d6b70; --accent2:#b9770e; --accent-ink:#0b5a5e;
+  --f-display:'Literata', Georgia, 'Times New Roman', serif;
+  --f-body:'Be Vietnam Pro', system-ui, 'Segoe UI', Arial, sans-serif;
+  --f-mono:'Roboto Mono', ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1518; --surface:#161e22; --ink:#e2e9ea; --muted:#9aa9ae; --line:#26343a; --axis:#5d6e74;
+  --accent:#4cb7bb; --accent2:#e3a640; --accent-ink:#7fd0d3; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1518; --surface:#161e22; --ink:#e2e9ea; --muted:#9aa9ae; --line:#26343a; --axis:#5d6e74;
+  --accent:#4cb7bb; --accent2:#e3a640; --accent-ink:#7fd0d3; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.68;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 72px}
+.wrap{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:210px minmax(0,1fr);gap:56px}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 28px);align-self:start;padding-top:28px;font-size:13.5px}
+nav.toc p{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:6px;counter-reset:t}
+nav.toc li{counter-increment:t;display:grid;grid-template-columns:22px 1fr}
+nav.toc li::before{content:counter(t);font-family:var(--f-mono);font-size:11.5px;color:var(--muted);padding-top:2px}
+nav.toc a{color:var(--ink);text-decoration:none}
+nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-ink);text-decoration:underline}
+main{min-width:0;max-width:780px}
+@media (max-width:920px){.wrap{grid-template-columns:minmax(0,1fr)} nav.toc{display:none}}
+
+header{padding-block:40px 8px}
+.crumb{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);margin:0 0 12px}
+h1{font-family:var(--f-display);font-weight:650;font-size:clamp(30px,5vw,44px);line-height:1.12;margin:0 0 16px;text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:650;font-size:26px;line-height:1.25;margin:0 0 14px;text-wrap:balance;display:flex;gap:14px;align-items:baseline}
+h2 .n{font-family:var(--f-mono);font-size:14px;font-weight:500;color:var(--accent-ink);flex:none}
+h3{font-size:17px;font-weight:600;margin:26px 0 8px}
+p{margin:0 0 14px}
+.lead{font-size:18px;color:var(--muted);max-width:62ch}
+section{padding-top:44px;margin-top:44px;border-top:1px solid var(--line)}
+ul.outcomes{margin:0;padding-left:20px;display:grid;gap:4px}
+strong{font-weight:600}
+a{color:var(--accent-ink)}
+code,.mono{font-family:var(--f-mono);font-size:.88em}
+.eq{display:inline-block;font-family:var(--f-mono);font-size:15px;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:6px 12px;margin:2px 0 14px}
+
+.fig{margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 16px 14px}
+.fig .scroll{overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto}
+figcaption{font-size:13.5px;color:var(--muted);margin-top:10px;line-height:1.55}
+figcaption b{color:var(--ink);font-weight:600}
+
+.key{margin:22px 0 4px;display:grid;gap:4px}
+.key span{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent2)}
+.key p{font-family:var(--f-display);font-size:19px;line-height:1.45;margin:0}
+
+.tbl{overflow-x:auto;margin:16px 0 20px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:520px}
+th{text-align:left;font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);padding:8px 10px;border-bottom:1px solid var(--axis)}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+details{border-bottom:1px solid var(--line)}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{cursor:pointer;padding:12px 0;font-weight:600;list-style:none;display:grid;grid-template-columns:28px 1fr}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+";font-family:var(--f-mono);color:var(--accent-ink)}
+details[open] summary::before{content:"−"}
+summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+details .ans{padding:0 0 14px 28px;color:var(--ink)}
+details .ans p:last-child{margin-bottom:0}
+
+/* phòng thí nghiệm */
+.lab{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 16px;margin:20px 0}
+.controls{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:end;margin-bottom:16px}
+.controls label{display:grid;gap:4px;font-size:12px;font-family:var(--f-mono);color:var(--muted);letter-spacing:.04em}
+select{font:inherit;font-family:var(--f-body);font-size:14.5px;color:var(--ink);background:var(--bg);border:1px solid var(--axis);border-radius:4px;padding:6px 8px;min-width:0;max-width:100%}
+button.play{font:inherit;font-weight:600;font-size:14.5px;color:var(--bg);background:var(--accent);border:0;border-radius:4px;padding:8px 16px;cursor:pointer}
+button.play:hover{filter:brightness(1.08)}
+button.play:focus-visible,select:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+.status{font-size:13px;color:var(--muted);min-height:1.4em}
+.panes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.pane{min-width:0}
+.pane h4{margin:0 0 4px;font-size:12px;font-family:var(--f-mono);font-weight:500;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+@media (max-width:700px){.panes{grid-template-columns:minmax(0,1fr)}}
+
+/* svg */
+svg text{fill:var(--muted);font-family:var(--f-mono);font-size:12px}
+svg .t-ink{fill:var(--ink)}
+svg .t-strong{fill:var(--ink);font-family:var(--f-body);font-weight:600;font-size:13px}
+svg .t-sub{font-family:var(--f-body);font-size:11px}
+svg .t-xs{font-size:10.5px}
+svg .t-acc{fill:var(--accent-ink)}
+svg .t-acc2{fill:var(--accent2)}
+svg .ax{stroke:var(--axis);stroke-width:1;fill:none}
+svg .grid{stroke:var(--line);stroke-width:1;fill:none}
+svg .c1{stroke:var(--accent);stroke-width:2.2;fill:none;stroke-linejoin:round}
+svg .c1t{stroke:var(--accent);stroke-width:1;fill:none;opacity:.55}
+svg .c2{stroke:var(--accent2);stroke-width:2;fill:none;stroke-linejoin:round}
+svg .cm{stroke:var(--muted);stroke-width:1.2;fill:none;opacity:.6}
+svg .dash{stroke-dasharray:5 4}
+svg .b1{fill:var(--accent)}
+svg .b2{fill:var(--accent2)}
+svg .dot{fill:var(--accent2)}
+svg .dot1{fill:var(--accent)}
+svg .hollow{fill:var(--surface);stroke:var(--accent);stroke-width:1.5}
+svg .box{fill:var(--bg);stroke:var(--axis);stroke-width:1}
+svg .box2{fill:var(--bg);stroke:var(--accent);stroke-width:1.5}
+svg .band{fill:var(--accent2);opacity:.15}
+svg .bar{fill:var(--accent);opacity:.85}
+svg .tick{stroke:var(--surface);stroke-width:2}
+svg .arrow{stroke:var(--axis);stroke-width:1.4;fill:none}
+svg .ahead{fill:var(--axis)}
+</style>
+
+<div class="wrap">
+<nav class="toc" aria-label="Mục lục">
+  <p>Mục lục</p>
+  <ol>
+    <li><a href="#am-thanh">Âm thanh là gì</a></li>
+    <li><a href="#dang-song">Dạng sóng</a></li>
+    <li><a href="#cam-nhan">Cao độ, độ to, âm sắc</a></li>
+    <li><a href="#hai-am">Hài âm</a></li>
+    <li><a href="#pho">Phổ và âm sắc</a></li>
+    <li><a href="#duong-bao">Đường bao ADSR</a></li>
+    <li><a href="#so-hoa">Số hóa âm thanh</a></li>
+    <li><a href="#fourier">Biến đổi Fourier</a></li>
+    <li><a href="#spectrogram">Khung và spectrogram</a></li>
+    <li><a href="#tai-nguoi">Tai người: dB và Mel</a></li>
+    <li><a href="#nhac-cu-day">Nhạc cụ dây</a></li>
+    <li><a href="#thi-nghiem">Tự nghe thử</a></li>
+    <li><a href="#gan-voi-btl">Gắn với bài tập lớn</a></li>
+    <li><a href="#cau-hoi">Thầy có thể hỏi</a></li>
+  </ol>
+</nav>
+
+<main>
+<header>
+  <p class="crumb">Bước 1 · Kiến thức nền</p>
+  <h1>Âm thanh: từ dây đàn đến dãy số</h1>
+  <p class="lead">Trước khi thu thập dữ liệu hay chọn đặc trưng, cần hiểu âm thanh là gì, máy tính lưu nó ra sao và vì sao hai nhạc cụ chơi cùng một nốt vẫn nghe khác nhau.</p>
+  <p>Đọc xong trang này, bạn sẽ tự giải thích được:</p>
+  <ul class="outcomes">
+    <li>tần số, biên độ, chu kỳ và hài âm là gì;</li>
+    <li>vì sao violin và guitar cùng chơi nốt La vẫn nghe ra hai nhạc cụ khác nhau (âm sắc);</li>
+    <li>tần số mẫu, độ sâu bit, định lý Nyquist, và nên lưu file dạng WAV hay MP3;</li>
+    <li>phổ và spectrogram là gì, đọc chúng như thế nào;</li>
+    <li>những khái niệm này sẽ được dùng ở đâu trong Phần 1 và Phần 2 của đề.</li>
+  </ul>
+</header>
+
+<!-- 1 -->
+<section id="am-thanh">
+  <h2><span class="n">01</span>Âm thanh là gì</h2>
+  <p>Âm thanh là <strong>dao động</strong> truyền qua không khí. Khi dây đàn rung, nó đẩy các phân tử không khí lúc nén lại, lúc giãn ra. Các vùng nén–giãn này lan đến tai, làm màng nhĩ rung theo, và ta nghe thấy tiếng.</p>
+  <p>Micro làm việc giống tai: biến dao động của không khí thành điện áp lên xuống. Sau đó máy tính đo điện áp này rất nhiều lần mỗi giây và lưu thành <strong>một dãy số</strong>. File âm thanh trên máy chính là dãy số đó.</p>
+  <figure class="fig">
+    <div class="scroll"><svg viewBox="0 0 820 140" style="min-width:640px" role="img" aria-label="Chuỗi: dây đàn rung, thân đàn cộng hưởng, không khí, micro, bộ chuyển đổi, file số">
+      <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="ahead"/></marker></defs>
+      <g id="chain"></g>
+    </svg></div>
+    <figcaption><b>Hình 1.</b> Đường đi của âm thanh. Bốn khối đầu là tín hiệu <b>liên tục (analog)</b>: biến đổi trơn theo thời gian. Hai khối cuối là tín hiệu <b>số (digital)</b>: chỉ còn các con số rời rạc. Cả bài tập lớn làm việc với khối cuối cùng.</figcaption>
+  </figure>
+  <div class="key"><span>Ghi nhớ</span><p>Âm thanh là dao động của không khí. File âm thanh là dãy số ghi lại dao động đó theo thời gian.</p></div>
+</section>
+
+<!-- 2 -->
+<section id="dang-song">
+  <h2><span class="n">02</span>Dạng sóng: chu kỳ, tần số, biên độ</h2>
+  <p>Vẽ dãy số đó lên đồ thị, với trục ngang là thời gian và trục đứng là giá trị, ta được <strong>dạng sóng (waveform)</strong>. Dao động đơn giản nhất là sóng sin:</p>
+  <figure class="fig">
+    <div class="scroll"><svg id="figWave" viewBox="0 0 640 230" style="min-width:480px" role="img" aria-label="Sóng sin, đánh dấu chu kỳ T và biên độ A"></svg></div>
+    <figcaption><b>Hình 2.</b> <b>T (chu kỳ)</b>: thời gian để hoàn thành một dao động, tính bằng giây. <b>A (biên độ)</b>: độ lệch lớn nhất so với vị trí cân bằng.</figcaption>
+  </figure>
+  <p><strong>Tần số</strong> là số dao động trong một giây, đơn vị là <strong>Hz</strong> (hertz):</p>
+  <div class="eq">f = 1 / T</div>
+  <p>Ví dụ, nốt La chuẩn (A4) có f = 440 Hz: dây rung 440 lần mỗi giây, mỗi chu kỳ dài 1/440 ≈ 2,27 ms. Tai người nghe được khoảng <strong>20 Hz đến 20 000 Hz</strong>.</p>
+  <div class="key"><span>Ghi nhớ</span><p>Tần số = số dao động mỗi giây (Hz). Biên độ = dao động mạnh hay yếu.</p></div>
+</section>
+
+<!-- 3 -->
+<section id="cam-nhan">
+  <h2><span class="n">03</span>Ba thứ tai cảm nhận: cao độ, độ to, âm sắc</h2>
+  <p>Mỗi cảm nhận của tai đều ứng với một đại lượng vật lý đo được. Đây là ý quan trọng nhất của cả môn: <strong>đặc trưng là con số đo được thay cho cảm nhận của tai</strong>.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Tai cảm nhận</th><th>Đại lượng vật lý</th><th>Ví dụ</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Cao độ</strong> (trầm hay bổng)</td><td>Tần số cơ bản f₀</td><td>Cello trầm (dây thấp nhất 65 Hz), violin bổng (dây thấp nhất 196 Hz)</td></tr>
+      <tr><td><strong>Độ to</strong></td><td>Biên độ, năng lượng</td><td>Kéo vĩ mạnh thì biên độ lớn</td></tr>
+      <tr><td><strong>Âm sắc</strong> (màu tiếng)</td><td>Cấu tạo phổ (các hài âm) và đường bao theo thời gian</td><td>Violin và guitar cùng chơi A4 nhưng vẫn phân biệt được</td></tr>
+    </tbody>
+  </table></div>
+  <figure class="fig">
+    <div class="scroll"><svg id="figCompare" viewBox="0 0 640 210" style="min-width:520px" role="img" aria-label="So sánh tần số thấp và cao, biên độ lớn và nhỏ"></svg></div>
+    <figcaption><b>Hình 3.</b> Trái: cùng biên độ, khác tần số, nên khác cao độ. Phải: cùng tần số, khác biên độ, nên khác độ to. Hai yếu tố này chưa đủ để phân biệt nhạc cụ. <b>Âm sắc</b> mới là thứ cần đo, và các mục 4–6 giải thích nó.</figcaption>
+  </figure>
+  <h3>Hai con số liên quan đến cao độ</h3>
+  <p><strong>Quãng tám (octave)</strong>: tăng gấp đôi tần số thì lên một quãng tám. A3 = 220 Hz, A4 = 440 Hz, A5 = 880 Hz. <strong>Nửa cung</strong>: mỗi nốt kế tiếp có tần số gấp 2<sup>1/12</sup> ≈ 1,0595 lần nốt trước. Tai nghe cao độ theo <strong>tỉ lệ</strong> chứ không theo hiệu số (mục 10 nói kỹ hơn).</p>
+  <div class="key"><span>Ghi nhớ</span><p>Cao độ ↔ tần số, độ to ↔ biên độ, âm sắc ↔ hình dạng phổ và đường bao. Muốn nhận diện nhạc cụ thì phải đo âm sắc.</p></div>
+</section>
+
+<!-- 4 -->
+<section id="hai-am">
+  <h2><span class="n">04</span>Hài âm: một nốt nhạc chứa nhiều tần số</h2>
+  <p>Dây đàn bị giữ chặt ở hai đầu (ngựa đàn và đầu dây, hoặc phím bấm). Nó không chỉ rung nguyên cả dây, mà <strong>đồng thời</strong> rung theo hai nửa, ba phần, bốn phần… Mỗi kiểu rung tạo ra một tần số, gọi là <strong>hài âm (harmonic)</strong>:</p>
+  <figure class="fig">
+    <div class="scroll"><svg id="figModes" viewBox="0 0 640 262" style="min-width:520px" role="img" aria-label="Ba kiểu rung đầu tiên của dây đàn"></svg></div>
+    <figcaption><b>Hình 4.</b> Ba kiểu rung đầu tiên của dây Sol (G3) trên violin. Kiểu rung thứ n chia dây thành n đoạn, nên có tần số <b>n × f₀</b>. Các điểm đứng yên gọi là <b>nút</b>, điểm rung mạnh nhất gọi là <b>bụng</b>. Thực tế cả ba kiểu (và nhiều kiểu khác) xảy ra cùng lúc, cộng lại thành một dạng sóng phức tạp.<br><b>Cách đọc hình:</b> đây không phải hình dạng lúc gảy. Đường liền và đường đứt là <b>hai vị trí xa nhất</b> của dây; dây đung đưa qua lại giữa hai đường này f lần mỗi giây.</figcaption>
+  </figure>
+  <div class="eq">f_n = n · f₀ &nbsp;&nbsp;(n = 1, 2, 3, …)</div>
+  <p><strong>Khi gảy thì sao?</strong> Kéo dây lệch ra, dây có hình <strong>tam giác</strong>. Hình tam giác này bằng tổng của nhiều kiểu rung ở trên, nên khi thả tay, tất cả các kiểu cùng rung một lúc. Kéo đúng chính giữa dây thì <strong>mất hết hài âm chẵn</strong> (2f₀, 4f₀…), vì các kiểu rung chẵn đều có một nút nằm đúng giữa dây, nên không bị kích lên được. Vì vậy <strong>vị trí gảy làm đổi màu tiếng</strong>: gảy gần ngựa đàn thì tiếng sắc, gảy gần giữa dây thì tiếng tròn.</p>
+  <p>Hài âm thứ nhất (n = 1) là <strong>tần số cơ bản f₀</strong>, quyết định cao độ ta nghe. Các hài âm cao hơn không làm nốt nhạc nghe cao lên, nhưng chúng quyết định <strong>màu tiếng</strong>.</p>
+  <p>Chưa rõ phần này? Đọc <a href="03_hai_am.html">bài 03: Hài âm, từng bước một</a>. Bài đó có hình động và phần tự trộn hài âm để nghe thử.</p>
+  <div class="key"><span>Ghi nhớ</span><p>Một nốt nhạc gồm f₀ và các hài âm 2f₀, 3f₀, … Tỉ lệ độ lớn giữa các hài âm là "dấu vân tay" của nhạc cụ.</p></div>
+</section>
+
+<!-- 5 -->
+<section id="pho">
+  <h2><span class="n">05</span>Phổ: cùng nốt, khác nhạc cụ</h2>
+  <p>Nếu liệt kê độ lớn của từng hài âm, ta được <strong>phổ (spectrum)</strong>. Cùng một nốt, nhưng cách làm dây rung khác nhau sẽ cho phổ khác nhau:</p>
+  <figure class="fig">
+    <div class="scroll"><svg id="figTimbre" viewBox="0 0 680 300" style="min-width:560px" role="img" aria-label="Dạng sóng và phổ của tiếng kéo vĩ và tiếng gảy"></svg></div>
+    <figcaption><b>Hình 5.</b> Mô hình lý tưởng hóa của một dây đàn. <b>Kéo vĩ</b>: vĩ liên tục kéo dây đi rồi để dây trượt về (chuyển động "dính–trượt"), tạo dạng sóng gần răng cưa; hài âm giảm chậm, khoảng 1/n, nên tiếng sáng và nhiều "gai". <b>Gảy</b>: dây bị kéo lệch thành hình tam giác rồi thả ra; hài âm giảm nhanh, khoảng 1/n², nên tiếng tròn và mềm hơn. Ở đây giả sử gảy ở 1/5 chiều dài dây, nên hài âm 5 và 10 gần như biến mất (vị trí gảy cũng làm đổi màu tiếng).</figcaption>
+  </figure>
+  <h3>Ngoài dây, thân đàn cũng tạo màu tiếng</h3>
+  <p>Dây đàn rất mảnh nên tự nó phát ra rất ít âm thanh. Thân đàn bằng gỗ nhận rung động qua ngựa đàn và <strong>cộng hưởng</strong>: nó khuếch đại mạnh một số dải tần và làm yếu dải khác. Mỗi nhạc cụ có thân với kích thước và hình dạng riêng nên "tô màu" phổ theo cách riêng. Các vùng tần số được thân đàn khuếch đại gọi là <strong>formant</strong>.</p>
+  <p>Ví dụ viola: theo đúng tỉ lệ với quãng âm của nó, thân viola phải dài khoảng 50 cm, nhưng thực tế chỉ khoảng 38–43 cm để người chơi còn kẹp được lên vai. Vì thân "quá nhỏ", vùng trầm được khuếch đại yếu, nên tiếng viola tối và hơi "ngạt" hơn violin, dù hai cây chơi chung nhiều nốt.</p>
+  <div class="key"><span>Ghi nhớ</span><p>Âm sắc = cách tạo rung (kéo vĩ hay gảy) + thân đàn cộng hưởng. Cả hai đều in dấu lên phổ, nên đặc trưng về phổ là chìa khóa để nhận diện nhạc cụ.</p></div>
+</section>
+
+<!-- 6 -->
+<section id="duong-bao">
+  <h2><span class="n">06</span>Đường bao: âm thanh thay đổi theo thời gian</h2>
+  <p>Âm sắc còn nằm ở <strong>cách âm lượng thay đổi theo thời gian</strong>, gọi là <strong>đường bao (envelope)</strong>. Người ta thường chia đường bao thành 4 pha <strong>ADSR</strong>:</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Pha</th><th>Tên</th><th>Chuyện gì xảy ra</th></tr></thead>
+    <tbody>
+      <tr><td><strong>A</strong></td><td>Attack: tấn công</td><td>Âm lượng tăng từ 0 lên đỉnh lúc nốt bắt đầu</td></tr>
+      <tr><td><strong>D</strong></td><td>Decay: suy giảm</td><td>Hạ từ đỉnh xuống mức ổn định</td></tr>
+      <tr><td><strong>S</strong></td><td>Sustain: duy trì</td><td>Giữ mức ổn định khi còn cấp năng lượng (vĩ còn kéo)</td></tr>
+      <tr><td><strong>R</strong></td><td>Release: kết thúc</td><td>Tắt dần sau khi ngừng cấp năng lượng</td></tr>
+    </tbody>
+  </table></div>
+  <figure class="fig">
+    <div class="scroll"><svg id="figEnv" viewBox="0 0 680 232" style="min-width:560px" role="img" aria-label="Đường bao của tiếng kéo vĩ và tiếng gảy"></svg></div>
+    <figcaption><b>Hình 6.</b> Kéo vĩ: attack chậm (khoảng 0,1 s, vì vĩ cần thời gian để "bắt" dây), sau đó có đoạn sustain dài. Gảy: attack cực nhanh (vài mili-giây), sau đó tắt dần theo hàm mũ, không có sustain vì không ai cấp thêm năng lượng. Trên thực tế, các hài âm cao tắt nhanh hơn hài âm thấp nên tiếng gảy "tối" dần.</figcaption>
+  </figure>
+  <p>Thí nghiệm kinh điển: cắt bỏ phần attack của một nốt đàn thì người nghe rất khó đoán ra nhạc cụ. Phần đầu nốt mang nhiều thông tin nhận dạng. Vì vậy file trong bộ dữ liệu phải <strong>giữ trọn phần đầu nốt</strong> và đủ dài để có phần ngân.</p>
+  <div class="key"><span>Ghi nhớ</span><p>Kéo vĩ: lên chậm và giữ đều. Gảy: lên tức thì rồi tắt dần. Đây là cách nhanh nhất để tách hai nhóm nhạc cụ dây.</p></div>
+</section>
+
+<!-- 7 -->
+<section id="so-hoa">
+  <h2><span class="n">07</span>Số hóa: biến sóng liên tục thành dãy số</h2>
+  <p>Máy tính chỉ lưu được số hữu hạn, nên phải làm hai việc:</p>
+  <p><strong>Lấy mẫu (sampling):</strong> cứ mỗi T<sub>s</sub> giây lại đo giá trị sóng một lần. Số lần đo mỗi giây là <strong>tần số lấy mẫu f<sub>s</sub></strong> (sample rate), ví dụ 44 100 Hz là 44 100 lần đo mỗi giây.</p>
+  <p><strong>Lượng tử hóa (quantization):</strong> mỗi lần đo được làm tròn về một trong số hữu hạn mức. Với <strong>độ sâu bit</strong> (bit depth) b bit thì có 2<sup>b</sup> mức. Âm thanh CD dùng 16 bit, tức 65 536 mức.</p>
+  <figure class="fig">
+    <div class="scroll"><svg id="figSample" viewBox="0 0 640 245" style="min-width:520px" role="img" aria-label="Lấy mẫu và lượng tử hóa"></svg></div>
+    <figcaption><b>Hình 7.</b> Đường mảnh là sóng thật. Các chấm là giá trị máy tính lưu: lấy tại các thời điểm cách đều T<sub>s</sub> = 1/f<sub>s</sub>, rồi làm tròn về mức gần nhất. Hình minh họa chỉ dùng 3 bit (8 mức) cho dễ nhìn; âm thanh thật dùng 16 bit nên sai số làm tròn nhỏ đến mức tai không nghe ra.</figcaption>
+  </figure>
+  <h3>Định lý Nyquist: lấy mẫu bao nhiêu là đủ?</h3>
+  <p>Muốn ghi lại đúng một thành phần có tần số f thì phải lấy mẫu với tần số <strong>lớn hơn 2f</strong>. Nói cách khác, với tần số mẫu f<sub>s</sub>, tần số cao nhất ghi được là <strong>f<sub>s</sub>/2</strong>, gọi là tần số Nyquist.</p>
+  <div class="eq">f_s &gt; 2 · f_max</div>
+  <p>Nếu lấy mẫu quá thưa, tần số cao sẽ "giả dạng" thành tần số thấp. Hiện tượng này gọi là <strong>aliasing (chồng phổ)</strong>:</p>
+  <figure class="fig">
+    <div class="scroll"><svg id="figAlias" viewBox="0 0 640 225" style="min-width:520px" role="img" aria-label="Minh họa aliasing"></svg></div>
+    <figcaption><b>Hình 8.</b> Sóng thật dao động 9 lần, nhưng chỉ được lấy 10 mẫu (cần ít nhất 19). Các chấm nối lại thành một sóng chỉ dao động 1 lần: máy "nghe" sai hoàn toàn. Vì vậy trước khi lấy mẫu, thiết bị luôn lọc bỏ các tần số trên f<sub>s</sub>/2.</figcaption>
+  </figure>
+  <div class="tbl"><table>
+    <thead><tr><th>Tần số mẫu</th><th>Ghi được đến</th><th>Thường dùng cho</th></tr></thead>
+    <tbody>
+      <tr><td class="num">44 100 Hz</td><td class="num">22 050 Hz</td><td>CD, đủ trọn dải tai nghe được (20 kHz)</td></tr>
+      <tr><td class="num">22 050 Hz</td><td class="num">11 025 Hz</td><td>Mặc định của thư viện librosa; đủ cho hầu hết đặc trưng âm sắc, file nhẹ hơn một nửa</td></tr>
+      <tr><td class="num">16 000 Hz</td><td class="num">8 000 Hz</td><td>Nhận dạng tiếng nói</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Dung lượng file</h3>
+  <div class="eq">byte = f_s × (bit / 8) × số kênh × số giây</div>
+  <p>Ví dụ: một file 3 giây, 44 100 Hz, 16 bit, mono = 44 100 × 2 × 1 × 3 = <strong>264 600 byte ≈ 258 KB</strong>. 500 file như vậy chỉ khoảng 130 MB.</p>
+  <h3>Mono hay stereo, WAV hay MP3?</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Định dạng</th><th>Kiểu nén</th><th>Ảnh hưởng tới bài tập</th></tr></thead>
+    <tbody>
+      <tr><td><strong>WAV</strong></td><td>Không nén: lưu nguyên dãy số</td><td>Chính xác nhất, đọc nhanh; dung lượng lớn nhưng với 500 file ngắn thì không đáng kể</td></tr>
+      <tr><td><strong>FLAC</strong></td><td>Nén không mất dữ liệu</td><td>Giải nén ra giống hệt WAV, file nhỏ hơn khoảng 40–60%</td></tr>
+      <tr><td><strong>MP3</strong></td><td>Nén có mất dữ liệu</td><td>Bỏ bớt chi tiết mà tai khó nghe, thường là vùng tần số cao, nên làm sai lệch các đặc trưng về phổ</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Mono</strong> (1 kênh) là đủ, vì âm sắc nhạc cụ không phụ thuộc vào vị trí trái–phải. File stereo sẽ được trộn hai kênh thành một.</p>
+  <div class="key"><span>Ghi nhớ</span><p>Tần số mẫu quyết định ghi được tần số cao tới đâu (tối đa f<sub>s</sub>/2). Độ sâu bit quyết định độ mịn của giá trị. Chọn WAV mono để không làm méo đặc trưng.</p></div>
+</section>
+
+<!-- 8 -->
+<section id="fourier">
+  <h2><span class="n">08</span>Biến đổi Fourier: từ thời gian sang tần số</h2>
+  <p>Dạng sóng cho biết giá trị theo <em>thời gian</em>, nhưng nhìn vào nó rất khó thấy có những hài âm nào. <strong>Biến đổi Fourier</strong> dựa trên một ý: mọi tín hiệu đều có thể viết thành <strong>tổng của các sóng sin</strong>. Biến đổi Fourier tìm xem mỗi sóng sin trong tổng đó có tần số nào và lớn bao nhiêu.</p>
+  <figure class="fig">
+    <div class="scroll"><svg id="figFourier" viewBox="0 0 700 305" style="min-width:580px" role="img" aria-label="Ba sóng sin cộng lại thành một sóng phức, FFT tách ngược ra phổ"></svg></div>
+    <figcaption><b>Hình 9.</b> Trái: ba sóng sin (220, 440, 660 Hz) cộng lại thành một sóng phức tạp, chính là dạng sóng ta ghi được. Phải: FFT làm ngược lại, tách sóng phức thành các thành phần và vẽ ra <b>phổ</b>, trong đó mỗi cột là một tần số, chiều cao là độ lớn.</figcaption>
+  </figure>
+  <p><strong>FFT</strong> (Fast Fourier Transform) là thuật toán tính biến đổi Fourier nhanh trên máy tính. Khi tính FFT trên N mẫu, ta được độ phân giải tần số:</p>
+  <div class="eq">Δf = f_s / N</div>
+  <p>Ví dụ f<sub>s</sub> = 22 050 Hz và N = 2048 mẫu thì Δf ≈ 10,8 Hz. Các hài âm của nốt thấp nhất của double bass (E1 = 41,2 Hz) cách nhau 41 Hz, vẫn tách được.</p>
+  <div class="key"><span>Ghi nhớ</span><p>Miền thời gian cho biết "khi nào, to bao nhiêu". Miền tần số cho biết "gồm những tần số nào, mạnh bao nhiêu". FFT chuyển từ miền thứ nhất sang miền thứ hai.</p></div>
+</section>
+
+<!-- 9 -->
+<section id="spectrogram">
+  <h2><span class="n">09</span>Chia khung và spectrogram</h2>
+  <p>Một nốt đàn thay đổi theo thời gian (mục 6), nên tính một phổ cho cả file sẽ làm mất thông tin. Cách làm chuẩn là:</p>
+  <p><strong>1. Chia tín hiệu thành các khung (frame)</strong> ngắn khoảng 20–100 ms. Trong khoảng ngắn như vậy, âm thanh coi như không đổi. Các khung chồng lên nhau, mỗi khung dịch đi một <strong>bước nhảy (hop)</strong>.<br>
+  <strong>2. Nhân mỗi khung với một cửa sổ</strong> (thường là cửa sổ Hann, hình chuông) để hai mép khung giảm dần về 0, tránh tạo tần số giả do cắt đột ngột.<br>
+  <strong>3. Tính FFT cho từng khung</strong>. Cả quy trình này gọi là <strong>STFT</strong> (Short-Time Fourier Transform).</p>
+  <figure class="fig">
+    <div class="scroll"><svg id="figFrames" viewBox="0 0 680 205" style="min-width:560px" role="img" aria-label="Chia tín hiệu thành các khung chồng nhau"></svg></div>
+    <figcaption><b>Hình 10.</b> Các khung chồng lên nhau, trượt dọc theo tín hiệu. Thông số ghi trong hình là mặc định của librosa.</figcaption>
+  </figure>
+  <p>Xếp các phổ của từng khung cạnh nhau theo thời gian, ta được <strong>spectrogram (phổ đồ)</strong>, một bức ảnh 2 chiều của âm thanh:</p>
+  <figure class="fig">
+    <div class="scroll"><svg id="figSpecs" viewBox="0 0 680 300" style="min-width:560px" role="img" aria-label="Spectrogram của tiếng kéo vĩ và tiếng gảy"></svg></div>
+    <figcaption><b>Hình 11.</b> Spectrogram mô phỏng của nốt A3 (220 Hz). <b>Trục ngang</b>: thời gian. <b>Trục đứng</b>: tần số. <b>Độ đậm</b>: năng lượng, tính theo dB. Mỗi vạch ngang là một hài âm. Kéo vĩ: các vạch hiện lên từ từ rồi giữ đều, có lớp nhiễu mờ do tiếng vĩ cọ dây. Gảy: có một vệt đứng ở đầu (tiếng "tách" của móng tay hoặc phím gảy chứa mọi tần số), sau đó các vạch tắt dần, vạch cao tắt trước.</figcaption>
+  </figure>
+  <div class="key"><span>Ghi nhớ</span><p>Spectrogram = FFT của từng khung xếp theo thời gian. Nó cho thấy cùng lúc cả phổ (âm sắc) lẫn đường bao, nên là nền của hầu hết các đặc trưng âm thanh.</p></div>
+</section>
+
+<!-- 10 -->
+<section id="tai-nguoi">
+  <h2><span class="n">10</span>Tai người nghe theo thang logarit: dB và Mel</h2>
+  <p>Tai người không cảm nhận tuyến tính. Vì vậy các đặc trưng âm thanh thường được tính trên thang gần với cách tai nghe.</p>
+  <h3>Độ to: decibel (dB)</h3>
+  <div class="eq">L = 20 · log₁₀(A / A_ref) &nbsp;dB</div>
+  <p>Biên độ gấp đôi thì mức tăng khoảng 6 dB; biên độ gấp 10 lần thì tăng 20 dB. Thang log nén khoảng chênh rất lớn giữa tiếng nhỏ và tiếng to thành những con số dễ so sánh. Spectrogram ở Hình 11 cũng vẽ theo dB.</p>
+  <h3>Cao độ: thang Mel</h3>
+  <p>Ở vùng trầm, tai phân biệt được những chênh lệch tần số rất nhỏ. Ở vùng cao thì kém hơn hẳn. Thang <strong>Mel</strong> mô phỏng điều này:</p>
+  <div class="eq">m = 2595 · log₁₀(1 + f / 700)</div>
+  <figure class="fig">
+    <div class="scroll"><svg id="figMel" viewBox="0 0 640 265" style="min-width:500px" role="img" aria-label="Đường cong thang Mel theo Hz"></svg></div>
+    <figcaption><b>Hình 12.</b> Cùng chênh lệch 100 Hz, ở vùng trầm tạo ra khoảng cách Mel lớn gấp nhiều lần ở vùng cao. Đặc trưng <b>MFCC</b> (sẽ học ở Phần 2) dựa trên thang này, nên nó "nghe" giống tai người hơn phổ thô.</figcaption>
+  </figure>
+  <div class="key"><span>Ghi nhớ</span><p>Tai nghe theo tỉ lệ (log), không theo hiệu số. dB dùng cho độ to, Mel dùng cho tần số. Đây là lý do MFCC hiệu quả.</p></div>
+</section>
+
+<!-- 11 -->
+<section id="nhac-cu-day">
+  <h2><span class="n">11</span>Nhạc cụ dây: giống và khác nhau ở đâu</h2>
+  <h3>Dây buông là gì?</h3>
+  <p><strong>Dây buông</strong> (open string) là chơi một dây mà không bấm ngón tay lên nó, nên cả sợi dây được rung. Mỗi dây có đúng một nốt dây buông. Violin có 4 dây nên có 4 nốt dây buông; guitar có 6 dây nên có 6 nốt. Khi bấm, ngón tay làm phần dây rung ngắn lại, nên nốt cao lên:</p>
+  <div class="eq">f = (1 / 2L) · √(T / μ)</div>
+  <p>Trong đó L là chiều dài phần dây rung, T là lực căng, μ là khối lượng trên mỗi mét dây. Bấm ở giữa dây thì L giảm một nửa, f tăng gấp đôi, tức lên một quãng tám. Dây buông trầm nhất cũng là <strong>nốt thấp nhất nhạc cụ chơi được</strong>. Ví dụ violin không xuống dưới G3 = 196 Hz, nên một file có f₀ = 150 Hz chắc chắn không phải violin.</p>
+  <p>Đề bài yêu cầu mô tả điểm giống và khác giữa tiếng các nhạc cụ trong bộ dữ liệu. Từ các mục trên, có thể so sánh theo 4 trục: <strong>cách tạo tiếng</strong>, <strong>quãng âm</strong>, <strong>thân đàn</strong> và <strong>đường bao</strong>.</p>
+  <figure class="fig">
+    <div class="scroll"><svg id="figRange" viewBox="0 0 680 268" style="min-width:580px" role="img" aria-label="Quãng âm của violin, viola, cello, double bass và guitar trên trục tần số logarit"></svg></div>
+    <figcaption><b>Hình 13.</b> Quãng tần số cơ bản thường dùng, vẽ trên trục log. Vạch trắng là các dây buông (dây không bấm). Dải tô màu (196–392 Hz) là vùng <b>cả 5 nhạc cụ đều chơi được</b>: trong vùng này cao độ không giúp phân biệt nhạc cụ, chỉ âm sắc mới phân biệt được.</figcaption>
+  </figure>
+  <div class="tbl"><table>
+    <thead><tr><th>Nhạc cụ</th><th>Cách chơi chính</th><th>Dây buông</th><th>Đặc điểm tiếng</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Violin</strong></td><td>Kéo vĩ</td><td class="num">G3 D4 A4 E5</td><td>Nhỏ nhất, cao nhất; tiếng sáng, nhiều hài âm cao</td></tr>
+      <tr><td><strong>Viola</strong></td><td>Kéo vĩ</td><td class="num">C3 G3 D4 A4</td><td>Thấp hơn violin một quãng năm; thân "quá nhỏ" so với quãng âm nên tiếng tối, ấm, hơi ngạt</td></tr>
+      <tr><td><strong>Cello</strong></td><td>Kéo vĩ</td><td class="num">C2 G2 D3 A3</td><td>Thấp hơn viola một quãng tám; tiếng dày, ấm, vùng trầm mạnh</td></tr>
+      <tr><td><strong>Double bass</strong></td><td>Kéo vĩ (hay gảy trong jazz)</td><td class="num">E1 A1 D2 G2</td><td>Trầm nhất; năng lượng dồn ở tần số thấp, attack chậm nhất</td></tr>
+      <tr><td><strong>Guitar</strong></td><td>Gảy</td><td class="num">E2 A2 D3 G3 B3 E4</td><td>Attack tức thì, tắt dần, không có sustain</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Tóm lại</h3>
+  <p><strong>Giống nhau:</strong> đều phát tiếng từ dây rung giữ hai đầu, nên đều có chuỗi hài âm n·f₀ rõ ràng (âm có cao độ xác định). Đều có thân gỗ rỗng cộng hưởng. Quãng âm chồng lấn nhau nhiều.<br>
+  <strong>Khác nhau:</strong> (1) kéo vĩ hay gảy, thể hiện ở đường bao và độ dốc của phổ; (2) quãng âm, tức vùng f₀; (3) kích thước thân đàn, thể hiện ở vùng formant; (4) tạp âm đi kèm: tiếng vĩ cọ dây hay tiếng "tách" lúc gảy.</p>
+  <p>Lưu ý: violin cũng có thể gảy (pizzicato) và double bass có thể kéo vĩ. Cách chơi làm đổi tiếng rất nhiều, nên khi gom dữ liệu cần ghi rõ cách chơi của từng file.</p>
+  <div class="key"><span>Ghi nhớ</span><p>Giữa các nhạc cụ cùng kéo vĩ (violin, viola, cello), cao độ thường không đủ để phân biệt. Chính thân đàn (formant) và cấu tạo phổ mới tạo khác biệt. Đây là thử thách chính cho Phần 2.</p></div>
+</section>
+
+<!-- 12 -->
+<section id="thi-nghiem">
+  <h2><span class="n">12</span>Tự nghe thử</h2>
+  <p>Chọn cách tạo dây rung, đường bao và nốt nhạc, rồi bấm phát để nghe. Ba đồ thị bên dưới cập nhật theo lựa chọn. Hãy thử: giữ nguyên nốt, chỉ đổi <em>đường bao</em> từ kéo vĩ sang gảy, và nghe màu tiếng thay đổi thế nào dù phổ giữ nguyên.</p>
+  <div class="lab">
+    <div class="controls">
+      <label for="lab-wave">Cách tạo dây rung (phổ)
+        <select id="lab-wave">
+          <option value="bowed" selected>Kéo vĩ: hài âm ~1/n</option>
+          <option value="plucked">Gảy: hài âm ~1/n²</option>
+          <option value="pure">Âm thuần: chỉ f₀</option>
+        </select>
+      </label>
+      <label for="lab-env">Đường bao
+        <select id="lab-env">
+          <option value="bowed" selected>Kéo vĩ: lên chậm, giữ</option>
+          <option value="plucked">Gảy: lên nhanh, tắt dần</option>
+        </select>
+      </label>
+      <label for="lab-note">Nốt
+        <select id="lab-note">
+          <optgroup label="Violin: dây buông">
+            <option value="196" selected>G3 · 196 Hz</option>
+            <option value="293.66">D4 · 293,7 Hz</option>
+            <option value="440">A4 · 440 Hz (La chuẩn)</option>
+            <option value="659.26">E5 · 659,3 Hz</option>
+          </optgroup>
+          <optgroup label="Viola: dây buông">
+            <option value="130.81">C3 · 130,8 Hz</option>
+            <option value="196">G3 · 196 Hz</option>
+            <option value="293.66">D4 · 293,7 Hz</option>
+            <option value="440">A4 · 440 Hz</option>
+          </optgroup>
+          <optgroup label="Cello: dây buông">
+            <option value="65.41">C2 · 65,4 Hz</option>
+            <option value="98">G2 · 98 Hz</option>
+            <option value="146.83">D3 · 146,8 Hz</option>
+            <option value="220">A3 · 220 Hz</option>
+          </optgroup>
+          <optgroup label="Double bass: dây buông">
+            <option value="41.2">E1 · 41,2 Hz</option>
+            <option value="55">A1 · 55 Hz</option>
+            <option value="73.42">D2 · 73,4 Hz</option>
+            <option value="98">G2 · 98 Hz</option>
+          </optgroup>
+          <optgroup label="Guitar: dây buông">
+            <option value="82.41">E2 · 82,4 Hz (dây 6)</option>
+            <option value="110">A2 · 110 Hz (dây 5)</option>
+            <option value="146.83">D3 · 146,8 Hz (dây 4)</option>
+            <option value="196">G3 · 196 Hz (dây 3)</option>
+            <option value="246.94">B3 · 246,9 Hz (dây 2)</option>
+            <option value="329.63">E4 · 329,6 Hz (dây 1)</option>
+          </optgroup>
+        </select>
+      </label>
+      <button class="play" id="lab-play" type="button">▶ Phát (1,6 giây)</button>
+    </div>
+    <div class="status" id="lab-status" aria-live="polite">Âm thanh chỉ phát khi bạn bấm nút.</div>
+    <div class="panes">
+      <div class="pane"><h4>Dạng sóng</h4><svg id="labWave" viewBox="0 0 320 170" role="img" aria-label="Dạng sóng"></svg></div>
+      <div class="pane"><h4>Phổ hài âm</h4><svg id="labSpec" viewBox="0 0 320 170" role="img" aria-label="Phổ"></svg></div>
+      <div class="pane"><h4>Đường bao</h4><svg id="labEnv" viewBox="0 0 320 170" role="img" aria-label="Đường bao"></svg></div>
+    </div>
+  </div>
+  <p>Lưu ý: loa laptop thường không phát được tần số dưới khoảng 100 Hz. Với các nốt rất trầm (E1, A1 của double bass), có thể bạn chỉ nghe thấy các hài âm cao, còn f₀ thì không. Dùng tai nghe sẽ nghe rõ hơn. Điều thú vị là não vẫn "nghe ra" đúng cao độ nhờ khoảng cách đều giữa các hài âm (hiện tượng <em>missing fundamental</em>).</p>
+  <p>Âm thanh ở đây là mô hình tổng hợp rất đơn giản, nên nghe vẫn "giống máy". Tiếng đàn thật còn có cộng hưởng thân đàn, vibrato và tạp âm. Đó chính là những gì bộ dữ liệu thật sẽ có thêm.</p>
+</section>
+
+<!-- 13 -->
+<section id="gan-voi-btl">
+  <h2><span class="n">13</span>Kiến thức này dùng ở đâu trong bài tập lớn</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Khái niệm</th><th>Dùng vào việc gì</th><th>Thuộc phần</th></tr></thead>
+    <tbody>
+      <tr><td>Tần số mẫu, Nyquist, độ sâu bit</td><td>Đưa mọi file về cùng tần số mẫu và cùng định dạng, để các đặc trưng so sánh được với nhau</td><td>Phần 1</td></tr>
+      <tr><td>WAV, mono</td><td>Chọn và giải thích định dạng lưu trữ</td><td>Phần 1</td></tr>
+      <tr><td>Đường bao ADSR</td><td>Chọn độ dài file: phải chứa trọn attack và phần ngân</td><td>Phần 1</td></tr>
+      <tr><td>Quãng âm, kéo vĩ/gảy, formant</td><td>Mô tả điểm giống và khác giữa các nhạc cụ</td><td>Phần 1</td></tr>
+      <tr><td>Phổ, hài âm, spectrogram</td><td>Nền của các đặc trưng phổ: spectral centroid, bandwidth, rolloff…</td><td>Phần 2</td></tr>
+      <tr><td>Thang Mel, dB</td><td>Đặc trưng MFCC</td><td>Phần 2</td></tr>
+      <tr><td>Đường bao theo thời gian</td><td>Đặc trưng RMS, thời gian attack, ZCR</td><td>Phần 2</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 14 -->
+<section id="cau-hoi">
+  <h2><span class="n">14</span>Thầy có thể hỏi</h2>
+  <p>Hãy thử tự trả lời thành tiếng trước, rồi mới mở đáp án.</p>
+
+  <details><summary>Âm thanh là gì? File âm thanh lưu cái gì?</summary><div class="ans">
+    <p>Âm thanh là dao động cơ học lan truyền trong môi trường (không khí) dưới dạng các vùng nén–giãn. File âm thanh số lưu một dãy giá trị biên độ, lấy mẫu đều đặn theo thời gian, kèm thông tin tần số mẫu, độ sâu bit và số kênh.</p></div></details>
+
+  <details><summary>Tần số mẫu là gì? Vì sao CD dùng 44 100 Hz?</summary><div class="ans">
+    <p>Tần số mẫu là số lần đo tín hiệu trong một giây. Theo định lý Nyquist, muốn ghi được tần số f thì phải lấy mẫu trên 2f. Tai người nghe tới khoảng 20 kHz, nên cần trên 40 kHz. Mức 44,1 kHz cho tần số Nyquist 22,05 kHz, vừa đủ dải nghe và còn chừa khoảng cho bộ lọc chống chồng phổ.</p></div></details>
+
+  <details><summary>Lấy mẫu thấp hơn 2f thì chuyện gì xảy ra?</summary><div class="ans">
+    <p>Xảy ra aliasing (chồng phổ): thành phần tần số cao bị ghi nhận thành một tần số thấp giả, và không khôi phục lại được. Vì thế trước khi lấy mẫu (hoặc trước khi hạ tần số mẫu) phải lọc bỏ các tần số trên f<sub>s</sub>/2. Thư viện librosa tự làm việc này khi resample.</p></div></details>
+
+  <details><summary>Cùng nốt A4 = 440 Hz, vì sao violin và guitar nghe khác nhau?</summary><div class="ans">
+    <p>Vì khác <strong>âm sắc</strong>. Cùng f₀ nhưng (1) độ lớn tương đối của các hài âm khác nhau: kéo vĩ cho hài âm giảm chậm (~1/n), gảy cho hài âm giảm nhanh (~1/n²); (2) đường bao khác nhau: violin lên chậm và có sustain, guitar lên tức thì rồi tắt dần; (3) thân đàn cộng hưởng ở các vùng tần số (formant) khác nhau.</p></div></details>
+
+  <details><summary>Violin và viola chơi chung nhiều nốt. Dựa vào đâu để phân biệt?</summary><div class="ans">
+    <p>Cả hai đều kéo vĩ, nên đường bao giống nhau. Khác biệt chính nằm ở thân đàn: thân viola lớn hơn nhưng vẫn nhỏ so với quãng âm của nó, nên cộng hưởng vùng trầm yếu hơn, phân bố năng lượng phổ khác (tiếng tối hơn). Ngoài ra quãng âm khác nhau: viola xuống được C3, violin chỉ tới G3. Đặc trưng phù hợp là các đặc trưng mô tả hình dạng phổ như MFCC và spectral centroid. Đây là cặp khó phân biệt nhất.</p></div></details>
+
+  <details><summary>Hài âm là gì? Tần số cơ bản là gì?</summary><div class="ans">
+    <p>Dây giữ hai đầu rung đồng thời theo nhiều kiểu: cả dây, hai nửa, ba phần… Kiểu thứ n có tần số n·f₀, gọi là hài âm thứ n. Hài âm thứ nhất f₀ là tần số cơ bản, quyết định cao độ. Các hài âm còn lại quyết định màu tiếng.</p></div></details>
+
+  <details><summary>Phổ là gì? Biến đổi Fourier để làm gì?</summary><div class="ans">
+    <p>Phổ cho biết tín hiệu gồm những tần số nào và mỗi tần số mạnh bao nhiêu. Biến đổi Fourier (tính bằng thuật toán FFT) phân tích tín hiệu thành tổng các sóng sin, tức là chuyển từ miền thời gian sang miền tần số. Nhìn vào phổ thì thấy rõ hài âm và formant, những thứ nhìn dạng sóng không thấy được.</p></div></details>
+
+  <details><summary>Vì sao phải chia khung? Spectrogram đọc thế nào?</summary><div class="ans">
+    <p>Âm thanh thay đổi theo thời gian (attack, sustain, tắt dần). Trong một khung ngắn 20–100 ms có thể coi tín hiệu ổn định, nên tính FFT trên từng khung (STFT). Spectrogram xếp phổ các khung cạnh nhau: trục ngang là thời gian, trục đứng là tần số, độ đậm là năng lượng (dB). Khung dài cho độ phân giải tần số tốt nhưng độ phân giải thời gian kém, và ngược lại. Đây là đánh đổi cơ bản.</p></div></details>
+
+  <details><summary>Vì sao dùng thang dB và thang Mel?</summary><div class="ans">
+    <p>Tai người cảm nhận theo tỉ lệ (logarit) chứ không theo hiệu số. dB nén khoảng biên độ rất rộng thành thang dễ so sánh, gần với cảm nhận độ to. Thang Mel dày ở vùng trầm và thưa ở vùng cao, giống khả năng phân biệt cao độ của tai. Đặc trưng tính trên các thang này (như MFCC) phản ánh đúng hơn những gì người nghe phân biệt được.</p></div></details>
+
+  <details><summary>Vì sao chọn WAV mà không chọn MP3? Vì sao chuyển sang mono?</summary><div class="ans">
+    <p>MP3 nén có mất dữ liệu: nó bỏ bớt các thành phần mà tai khó nghe, chủ yếu ở tần số cao, nên làm méo các đặc trưng về phổ. Các file lại bị nén ở mức khác nhau, khiến việc so sánh thiếu công bằng. WAV lưu nguyên dữ liệu. Mono là đủ vì âm sắc không phụ thuộc vào vị trí trái–phải; dùng mono còn giảm một nửa dữ liệu và đảm bảo mọi file cùng một dạng.</p></div></details>
+
+  <details><summary>Một file WAV 3 giây, 44,1 kHz, 16 bit, mono nặng bao nhiêu?</summary><div class="ans">
+    <p>44 100 mẫu/giây × 2 byte/mẫu × 1 kênh × 3 giây = 264 600 byte, khoảng 258 KB (chưa tính 44 byte phần đầu file).</p></div></details>
+
+  <details><summary>File âm thanh trong bộ dữ liệu nên dài bao nhiêu? Vì sao?</summary><div class="ans">
+    <p>Phải chứa trọn phần attack (phần mang nhiều thông tin nhận dạng nhất) và đủ phần ngân để đo được phổ ổn định cùng kiểu tắt dần. Với một nốt đơn, khoảng 1–4 giây là hợp lý: quá ngắn thì mất phần ngân, quá dài thì chủ yếu là khoảng lặng và tạp âm. Con số cụ thể sẽ chốt khi xem dữ liệu thật ở bước thu thập.</p></div></details>
+</section>
+
+<section>
+  <h2><span class="n">→</span>Bước tiếp theo</h2>
+  <p>Khi đã nắm được trang này, bước tiếp theo là <strong>cài môi trường Python và mở một file âm thanh thật</strong>: vẽ dạng sóng, phổ và spectrogram của một nốt violin và một nốt guitar, rồi so sánh với các hình ở trên.</p>
+</section>
+</main>
+</div>
+
+<script>
+const NS='http://www.w3.org/2000/svg', TAU=Math.PI*2;
+const $=id=>document.getElementById(id);
+function S(p,tag,a,text){const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);if(text!=null)e.textContent=text;p.appendChild(e);return e;}
+function P(fn,n){let d='';for(let i=0;i<=n;i++){const [x,y]=fn(i/n);d+=(i?'L':'M')+x.toFixed(1)+','+y.toFixed(1);}return d;}
+function T(p,x,y,s,cls,anchor){return S(p,'text',{x,y,class:cls||'','text-anchor':anchor||'start'},s);}
+function coeffs(kind,N){return Array.from({length:N},(_,i)=>{const n=i+1;return kind==='bowed'?1/n:kind==='plucked'?Math.sin(n*Math.PI*0.2)/(n*n):(n===1?1:0);});}
+function series(a,th){let s=0;for(let i=0;i<a.length;i++)s+=a[i]*Math.sin((i+1)*th);return s;}
+function wavePath(a,x0,x1,cy,amp,periods){const N=600,v=[];for(let i=0;i<=N;i++)v.push(series(a,TAU*periods*i/N));const m=Math.max(...v.map(Math.abs))||1;
+  return P(t=>[x0+(x1-x0)*t,cy-amp*v[Math.round(t*N)]/m],N);}
+function envBowed(t){if(t<0.15)return t/0.15;if(t<0.25)return 1-0.2*(t-0.15)/0.1;if(t<1.1)return 0.8;if(t<1.45)return 0.8*(1-(t-1.1)/0.35);return 0;}
+function envPlucked(t){if(t<0.008)return t/0.008;return Math.exp(-(t-0.008)/0.35);}
+function fmt(n){return n.toLocaleString('vi-VN',{maximumFractionDigits:1});}
+
+/* Hình 1: chuỗi */
+(function(){const g=$('chain');
+  const items=[['Dây đàn rung','kéo vĩ hoặc gảy'],['Thân đàn','cộng hưởng, khuếch đại'],['Không khí','vùng nén–giãn lan đi'],['Micro','áp suất → điện áp'],['Bộ chuyển đổi','lấy mẫu + lượng tử'],['File số','0.01, −0.20, 0.35…']];
+  items.forEach((it,i)=>{const x=10+i*135;S(g,'rect',{x,y:18,width:115,height:62,rx:4,class:i===5?'box2':'box'});
+    T(g,x+57.5,44,it[0],'t-strong','middle');T(g,x+57.5,63,it[1],'t-sub','middle');
+    if(i<5)S(g,'line',{x1:x+117,y1:49,x2:x+133,y2:49,class:'arrow','marker-end':'url(#ah)'});});
+  S(g,'path',{d:'M10,96 L10,104 L525,104 L525,96',class:'ax'});T(g,267,124,'tín hiệu liên tục (analog)','','middle');
+  S(g,'path',{d:'M550,96 L550,104 L800,104 L800,96',class:'ax'});T(g,675,124,'tín hiệu số (digital)','t-acc','middle');})();
+
+/* Hình 2: sóng sin */
+(function(){const s=$('figWave');
+  S(s,'line',{x1:50,y1:120,x2:615,y2:120,class:'ax'});S(s,'line',{x1:50,y1:34,x2:50,y2:206,class:'ax'});
+  T(s,612,140,'thời gian →','','end');T(s,56,40,'giá trị');
+  S(s,'path',{d:P(t=>[50+560*t,120-70*Math.sin(TAU*560*t/200)],400),class:'c1'});
+  S(s,'line',{x1:100,y1:50,x2:100,y2:22,class:'cm dash'});S(s,'line',{x1:300,y1:50,x2:300,y2:22,class:'cm dash'});
+  S(s,'path',{d:'M100,16 L100,28 M100,22 L300,22 M300,16 L300,28',class:'c2'});T(s,200,15,'T','t-acc2','middle');
+  S(s,'line',{x1:100,y1:120,x2:100,y2:52,class:'c2'});S(s,'path',{d:'M96,58 L100,50 L104,58',class:'c2'});T(s,108,92,'A','t-acc2');
+  T(s,350,222,'f = 1/T  (số chu kỳ trong 1 giây)','','middle');})();
+
+/* Hình 3: so sánh */
+(function(){const s=$('figCompare');
+  [[20,'Cao độ ↔ tần số'],[340,'Độ to ↔ biên độ']].forEach(([x,t])=>{T(s,x,22,t,'t-strong');S(s,'line',{x1:x,y1:105,x2:x+280,y2:105,class:'ax'});});
+  S(s,'path',{d:P(t=>[20+280*t,105-55*Math.sin(TAU*2*t)],300),class:'c1'});
+  S(s,'path',{d:P(t=>[20+280*t,105-55*Math.sin(TAU*5*t)],400),class:'c2'});
+  S(s,'path',{d:P(t=>[340+280*t,105-55*Math.sin(TAU*3*t)],300),class:'c1'});
+  S(s,'path',{d:P(t=>[340+280*t,105-20*Math.sin(TAU*3*t)],300),class:'c2'});
+  const leg=(x,y,cls,txt)=>{S(s,'line',{x1:x,y1:y-4,x2:x+18,y2:y-4,class:cls});T(s,x+24,y,txt);};
+  leg(20,185,'c1','2 dao động: trầm');leg(20,203,'c2','5 dao động: cao');
+  leg(340,185,'c1','biên độ lớn: to');leg(340,203,'c2','biên độ nhỏ: nhỏ');})();
+
+/* Hình 4: kiểu rung dây */
+(function(){const s=$('figModes');const rows=[[1,'Hài âm 1 · tần số cơ bản f₀','196 Hz'],[2,'Hài âm 2 · 2f₀','392 Hz'],[3,'Hài âm 3 · 3f₀','588 Hz']];
+  rows.forEach(([n,a,b],i)=>{const c=48+i*82,x0=70,x1=370;
+    T(s,30,c+4,'n='+n,'t-acc','middle');
+    S(s,'path',{d:`M${x0-6},${c+10} L${x0},${c} L${x0+6},${c+10} Z`,class:'b2'});S(s,'path',{d:`M${x1-6},${c+10} L${x1},${c} L${x1+6},${c+10} Z`,class:'b2'});
+    S(s,'path',{d:P(t=>[x0+(x1-x0)*t,c-26*Math.sin(n*Math.PI*t)],200),class:'c1'});
+    S(s,'path',{d:P(t=>[x0+(x1-x0)*t,c+26*Math.sin(n*Math.PI*t)],200),class:'cm dash'});
+    for(let k=1;k<n;k++)S(s,'circle',{cx:x0+(x1-x0)*k/n,cy:c,r:4,class:'dot'});
+    T(s,400,c-2,a,'t-strong');T(s,400,c+16,b);});
+  T(s,400,256,'● nút: điểm đứng yên','t-acc2');})();
+
+/* Hình 5: âm sắc */
+(function(){const s=$('figTimbre');
+  [['bowed','Kéo vĩ',80],['plucked','Gảy',220]].forEach(([k,name,c])=>{const a=coeffs(k,30);
+    T(s,30,c-58,name+': dạng sóng (2 chu kỳ)','t-strong');T(s,400,c-58,name+': phổ, 12 hài âm đầu','t-strong');
+    S(s,'line',{x1:30,y1:c,x2:330,y2:c,class:'grid'});
+    S(s,'path',{d:wavePath(a,30,330,c,44,2),class:'c1'});
+    const base=c+55,a12=a.slice(0,12).map(Math.abs),m=Math.max(...a12);
+    S(s,'line',{x1:396,y1:base,x2:662,y2:base,class:'ax'});
+    a12.forEach((v,i)=>{const h=v/m*100;S(s,'rect',{x:400+i*21.6,y:base-h,width:14,height:Math.max(h,0.5),class:'b1'});T(s,407+i*21.6,base+14,i+1,'t-xs','middle');});});})();
+
+/* Hình 6: đường bao */
+(function(){const s=$('figEnv');
+  [[30,envBowed,'Kéo vĩ (violin, viola, cello, bass)'],[370,envPlucked,'Gảy (guitar, harp, pizzicato)']].forEach(([x0,env,name])=>{const w=290,c=122,A=78,X=t=>x0+w*t/1.5;
+    T(s,x0,16,name,'t-strong');S(s,'line',{x1:x0,y1:c,x2:x0+w,y2:c,class:'grid'});
+    S(s,'path',{d:P(u=>{const t=1.5*u;return [X(t),c-A*env(t)*Math.sin(TAU*40*t)];},1400),class:'c1t'});
+    S(s,'path',{d:P(u=>[X(1.5*u),c-A*env(1.5*u)],300),class:'c2'});S(s,'path',{d:P(u=>[X(1.5*u),c+A*env(1.5*u)],300),class:'c2'});
+    [0,0.5,1,1.5].forEach(t=>T(s,X(t),222,fmt(t)+(t===1.5?' s':''),'t-xs',t===0?'start':t===1.5?'end':'middle'));
+    if(env===envBowed){[0.15,0.25,1.1].forEach(t=>S(s,'line',{x1:X(t),y1:40,x2:X(t),y2:206,class:'cm dash'}));
+      [['A',0.075],['D',0.2],['S',0.675],['R',1.3]].forEach(([l,t])=>T(s,X(t),36,l,'t-acc2','middle'));}
+    else{T(s,X(0.03),40,'attack vài ms','t-acc2');T(s,X(0.55),84,'tắt dần theo hàm mũ','t-acc2');}});})();
+
+/* Hình 7: lấy mẫu & lượng tử */
+(function(){const s=$('figSample');const x0=60,x1=610,c=118,A=84,X=t=>x0+(x1-x0)*t/1.25,Y=v=>c-A*v;
+  const lv=[];for(let k=0;k<8;k++)lv.push(-0.875+0.25*k);
+  lv.forEach((v,k)=>{S(s,'line',{x1:x0,y1:Y(v),x2:x1,y2:Y(v),class:'grid'});T(s,x0-8,Y(v)+4,k,'t-xs','end');});
+  T(s,x0-8,18,'mức','t-xs','end');
+  const f=t=>Math.sin(TAU*t)*0.92;
+  S(s,'path',{d:P(u=>[X(1.25*u),Y(f(1.25*u))],300),class:'cm'});
+  for(let k=0;k<=20;k++){const t=k/16,v=f(t);let q=lv[0];lv.forEach(l=>{if(Math.abs(l-v)<Math.abs(q-v))q=l;});
+    S(s,'line',{x1:X(t),y1:c,x2:X(t),y2:Y(q),class:'c1t'});S(s,'circle',{cx:X(t),cy:Y(q),r:4,class:'dot1'});}
+  const a=X(17/16),b=X(18/16);S(s,'path',{d:`M${a},222 L${a},230 M${a},226 L${b},226 M${b},222 L${b},230`,class:'c2'});T(s,(a+b)/2,243,'Tₛ = 1/fₛ','t-acc2','middle');
+  T(s,x0,243,'3 bit → 2³ = 8 mức','t-xs');})();
+
+/* Hình 8: aliasing */
+(function(){const s=$('figAlias');const x0=40,x1=620,c=120,A=70,X=t=>x0+(x1-x0)*t;
+  S(s,'line',{x1:x0,y1:c,x2:x1,y2:c,class:'grid'});
+  S(s,'path',{d:P(t=>[X(t),c-A*Math.sin(TAU*9*t)],900),class:'cm'});
+  S(s,'path',{d:P(t=>[X(t),c+A*Math.sin(TAU*t)],300),class:'c2 dash'});
+  for(let k=0;k<=10;k++){const t=k/10;S(s,'circle',{cx:X(t),cy:c-A*Math.sin(TAU*9*t),r:5,class:'dot'});}
+  S(s,'line',{x1:40,y1:24,x2:60,y2:24,class:'cm'});T(s,66,28,'sóng thật: 9 dao động');
+  S(s,'line',{x1:280,y1:24,x2:300,y2:24,class:'c2 dash'});T(s,306,28,'thứ máy "thấy" từ 10 mẫu: 1 dao động','t-acc2');})();
+
+/* Hình 9: Fourier */
+(function(){const s=$('figFourier');const x0=90,x1=300;
+  T(s,x0,16,'Miền thời gian','t-strong');T(s,430,16,'Miền tần số (phổ)','t-strong');
+  const comp=[[1,1,'220 Hz'],[2,0.5,'440 Hz'],[3,0.33,'660 Hz']];
+  comp.forEach(([n,a,l],i)=>{const c=48+i*58;T(s,x0-10,c+4,l,'t-xs','end');S(s,'path',{d:P(t=>[x0+(x1-x0)*t,c-22*a*Math.sin(TAU*3*n*t)],300),class:'c1'});
+    if(i<2)T(s,195,c+33,'+','t-ink','middle');});
+  S(s,'line',{x1:x0,y1:200,x2:x1,y2:200,class:'ax'});T(s,x0-10,250,'tổng','t-xs','end');T(s,72,214,'=','t-ink','middle');
+  S(s,'path',{d:wavePath([1,0.5,0.33],x0,x1,246,40,3),class:'c2'});
+  S(s,'line',{x1:322,y1:160,x2:398,y2:160,class:'arrow','marker-end':'url(#ah2)'});
+  const d=S(s,'defs',{});const mk=S(d,'marker',{id:'ah2',viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:7,markerHeight:7,orient:'auto'});S(mk,'path',{d:'M0,0 L10,5 L0,10 z',class:'ahead'});
+  T(s,360,150,'FFT','t-acc','middle');
+  const bx=f=>430+f/800*250,base=255;
+  S(s,'line',{x1:430,y1:base,x2:684,y2:base,class:'ax'});S(s,'line',{x1:430,y1:base,x2:430,y2:50,class:'ax'});
+  comp.forEach(([n,a,l])=>{const f=220*n,h=a*175;S(s,'rect',{x:bx(f)-7,y:base-h,width:14,height:h,class:'b1'});T(s,bx(f),base+16,f,'t-xs','middle');});
+  T(s,684,base+34,'tần số (Hz)','t-xs','end');T(s,438,58,'độ lớn','t-xs');})();
+
+/* Hình 10: khung */
+(function(){const s=$('figFrames');const x0=30,x1=650,c=66,A=44,ms=0.775;
+  S(s,'line',{x1:x0,y1:c,x2:x1,y2:c,class:'grid'});
+  S(s,'path',{d:P(u=>{const t=u*0.48;return [x0+(x1-x0)*u,c-A*envPlucked(t+0.004)*Math.sin(TAU*55*t)];},1600),class:'c1t'});
+  for(let i=0;i<4;i++){const xa=x0+i*30,y=124+i*16;S(s,'rect',{x:xa,y:y-6,width:120,height:9,rx:2,class:i===0?'b2':'bar'});T(s,xa+128,y+3,'khung '+(i+1),'t-xs');}
+  T(s,300,178,'…','t-ink');
+  S(s,'path',{d:P(u=>[x0+120*u,c-A*Math.sin(Math.PI*u)**2],80),class:'c2 dash'});T(s,x0+60,14,'cửa sổ Hann','t-acc2','middle');
+  T(s,400,132,'độ dài khung n_fft = 2048 mẫu ≈ 93 ms','t-ink');T(s,400,152,'bước nhảy hop = 512 mẫu ≈ 23 ms','t-ink');T(s,400,172,'(ở tần số mẫu 22 050 Hz)','t-xs');})();
+
+/* Hình 11: spectrogram */
+(function(){const s=$('figSpecs');const cols=56,rows=44,cw=5,rh=5,top=34,fmax=4000,f0=220,dur=1.5;
+  function cell(kind,t,f){let E=kind==='bowed'?0.0015:0;
+    for(let n=1;n*f0<fmax+200;n++){const fn=n*f0;let a;
+      if(kind==='bowed')a=(1/n)*envBowed(t)*(1+0.08*Math.sin(TAU*5.5*t));
+      else a=Math.abs(Math.sin(n*Math.PI*0.2))/(n*n)*Math.exp(-t*(1+0.45*n)/0.5)*(t<0.008?t/0.008:1);
+      E+=a*Math.exp(-0.5*((f-fn)/40)**2);}
+    if(kind==='plucked'&&t<0.06)E+=0.05*Math.exp(-t/0.02);
+    if(kind==='bowed'&&t<1.45)E+=0.004*Math.exp(-f/2500);
+    const db=20*Math.log10(E+1e-6);return Math.max(0,Math.min(1,(db+60)/60));}
+  [['bowed',50,'Kéo vĩ'],['plucked',380,'Gảy']].forEach(([k,x0,name])=>{T(s,x0,20,name+' · A3 (220 Hz)','t-strong');
+    for(let i=0;i<cols;i++)for(let j=0;j<rows;j++){const t=(i+0.5)/cols*dur,f=(rows-j-0.5)/rows*fmax,v=cell(k,t,f);
+      if(v>0.02)S(s,'rect',{x:x0+i*cw,y:top+j*rh,width:cw,height:rh,class:'b1','fill-opacity':v.toFixed(2)});}
+    S(s,'rect',{x:x0,y:top,width:cols*cw,height:rows*rh,fill:'none',class:'ax'});
+    [0,1000,2000,3000,4000].forEach(f=>T(s,x0-5,top+rows*rh-f/fmax*rows*rh+4,f/1000+'k','t-xs','end'));
+    [0,0.5,1,1.5].forEach(t=>T(s,x0+t/dur*cols*cw,top+rows*rh+15,fmt(t)+(t===1.5?' s':''),'t-xs',t===0?'start':t===1.5?'end':'middle'));});
+  T(s,10,top+rows*rh+15,'Hz','t-xs');})();
+
+/* Hình 12: Mel */
+(function(){const s=$('figMel');const x0=70,x1=610,y0=222,y1=30,mel=f=>2595*Math.log10(1+f/700),X=f=>x0+(x1-x0)*f/8000,Y=m=>y0-(y0-y1)*m/3000;
+  [0,1000,2000,3000].forEach(m=>{S(s,'line',{x1:x0,y1:Y(m),x2:x1,y2:Y(m),class:'grid'});T(s,x0-8,Y(m)+4,m,'t-xs','end');});
+  [0,2000,4000,6000,8000].forEach(f=>T(s,X(f),y0+16,f,'t-xs','middle'));
+  T(s,x1,y0+34,'tần số (Hz)','t-xs','end');T(s,x0-8,y1-12,'mel','t-xs','end');
+  S(s,'path',{d:P(u=>[X(8000*u),Y(mel(8000*u))],300),class:'c1'});
+  const seg=(fa,fb,lx,ly,anchor)=>{const d=mel(fb)-mel(fa);
+    S(s,'line',{x1:X(fa),y1:Y(mel(fa)),x2:X(fa),y2:y0,class:'cm dash'});S(s,'line',{x1:x0,y1:Y(mel(fb)),x2:X(fb),y2:Y(mel(fb)),class:'c2 dash'});S(s,'line',{x1:x0,y1:Y(mel(fa)),x2:X(fa),y2:Y(mel(fa)),class:'c2 dash'});
+    S(s,'circle',{cx:X(fa),cy:Y(mel(fa)),r:3.5,class:'dot'});S(s,'circle',{cx:X(fb),cy:Y(mel(fb)),r:3.5,class:'dot'});
+    T(s,lx,ly,`${fa}→${fb} Hz: +${Math.round(d)} mel`,'t-acc2',anchor);};
+  seg(100,200,150,Y(330),'start');seg(5000,5100,X(5000)+8,Y(mel(5100))+26,'start');})();
+
+/* Hình 13: quãng âm */
+(function(){const s=$('figRange');const x0=130,x1=660,fa=30,fb=4000,X=f=>x0+(x1-x0)*Math.log(f/fa)/Math.log(fb/fa),hz=m=>440*Math.pow(2,(m-69)/12);
+  S(s,'rect',{x:X(196),y:24,width:X(392)-X(196),height:206,class:'band'});T(s,(X(196)+X(392))/2,16,'196–392 Hz: cả 5 cây','t-acc2','middle');
+  [50,100,200,500,1000,2000,4000].forEach(f=>{S(s,'line',{x1:X(f),y1:24,x2:X(f),y2:232,class:'grid'});T(s,X(f),250,f>=1000?f/1000+'k':f,'t-xs','middle');});
+  T(s,x1,264,'tần số cơ bản (Hz), trục log','t-xs','end');
+  const inst=[['Violin','G3–A7',55,105,[55,62,69,76]],['Viola','C3–E6',48,88,[48,55,62,69]],['Cello','C2–A5',36,81,[36,43,50,57]],['Double bass','E1–G4',28,67,[28,33,38,43]],['Guitar','E2–B5',40,83,[40,45,50,55,59,64]]];
+  inst.forEach(([n,r,lo,hi,open],i)=>{const y=44+i*42;T(s,x0-10,y-1,n,'t-strong','end');T(s,x0-10,y+14,r,'t-xs','end');
+    S(s,'rect',{x:X(hz(lo)),y:y-7,width:X(hz(hi))-X(hz(lo)),height:14,rx:2,class:i===4?'b2':'b1'});
+    open.forEach(m=>S(s,'line',{x1:X(hz(m)),y1:y-7,x2:X(hz(m)),y2:y+7,class:'tick'}));});})();
+
+/* Phòng thí nghiệm */
+(function(){const ws=$('lab-wave'),es=$('lab-env'),ns=$('lab-note'),btn=$('lab-play'),st=$('lab-status');
+  function draw(){const kind=ws.value,ek=es.value,f=+ns.value,a=coeffs(kind,30),env=ek==='bowed'?envBowed:envPlucked;
+    const w=$('labWave');w.innerHTML='';S(w,'line',{x1:10,y1:78,x2:310,y2:78,class:'grid'});S(w,'path',{d:wavePath(a,10,310,78,62,3),class:'c1'});
+    T(w,160,162,'3 chu kỳ = '+fmt(3000/f)+' ms','t-xs','middle');
+    const p=$('labSpec');p.innerHTML='';const base=136,a12=a.slice(0,12).map(Math.abs),m=Math.max(...a12);
+    S(p,'line',{x1:14,y1:base,x2:312,y2:base,class:'ax'});
+    a12.forEach((v,i)=>{const h=v/m*118;S(p,'rect',{x:20+i*24.5,y:base-h,width:15,height:Math.max(h,0.5),class:'b1'});});
+    [0,3,7,11].forEach(i=>T(p,27.5+i*24.5,base+15,Math.round(f*(i+1)),'t-xs','middle'));T(p,312,base+31,'Hz','t-xs','end');
+    const e=$('labEnv');e.innerHTML='';const c=78,A=62,X=t=>10+300*t/1.6;S(e,'line',{x1:10,y1:c,x2:310,y2:c,class:'grid'});
+    S(e,'path',{d:P(u=>{const t=1.6*u;return [X(t),c-A*env(t)*Math.sin(TAU*36*t)];},1200),class:'c1t'});
+    S(e,'path',{d:P(u=>[X(1.6*u),c-A*env(1.6*u)],240),class:'c2'});S(e,'path',{d:P(u=>[X(1.6*u),c+A*env(1.6*u)],240),class:'c2'});
+    [0,0.8,1.6].forEach(t=>T(e,X(t),162,fmt(t)+' s','t-xs',t===0?'start':t===1.6?'end':'middle'));}
+  let ctx=null;
+  function play(){try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();if(ctx.state==='suspended')ctx.resume();
+      const a=coeffs(ws.value,40),real=new Float32Array(41),imag=new Float32Array(41);a.forEach((v,i)=>{imag[i+1]=v;});
+      const osc=ctx.createOscillator();osc.setPeriodicWave(ctx.createPeriodicWave(real,imag));osc.frequency.value=+ns.value;
+      const g=ctx.createGain(),env=es.value==='bowed'?envBowed:envPlucked,dur=1.6,curve=new Float32Array(256);
+      for(let i=0;i<256;i++)curve[i]=0.28*env(dur*i/255);g.gain.value=0;
+      osc.connect(g).connect(ctx.destination);const t0=ctx.currentTime+0.03;g.gain.setValueCurveAtTime(curve,t0,dur);osc.start(t0);osc.stop(t0+dur+0.02);
+      st.textContent='Đang phát: '+ws.options[ws.selectedIndex].text+' · '+es.options[es.selectedIndex].text+' · '+ns.options[ns.selectedIndex].text;
+      osc.onended=()=>{st.textContent='Đã phát xong. Đổi lựa chọn rồi bấm lại để so sánh.';};
+    }catch(err){st.textContent='Trình duyệt này không phát được âm thanh. Các đồ thị vẫn đúng.';}}
+  [ws,es,ns].forEach(el=>el.addEventListener('change',draw));btn.addEventListener('click',play);draw();})();
+</script>

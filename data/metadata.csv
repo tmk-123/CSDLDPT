@@ -1,0 +1,601 @@
+﻿file_id,file_name,file_path,instrument,family,source,source_file,start_s,duration_s,sample_rate
+1,violin_001.wav,data/wav/violin/violin_001.wav,violin,kéo vĩ,URMP,AuSep_1_vn_01_Jupiter.wav,20.92,3.16,22050
+2,violin_002.wav,data/wav/violin/violin_002.wav,violin,kéo vĩ,URMP,AuSep_1_vn_01_Jupiter.wav,27.26,3.04,22050
+3,violin_003.wav,data/wav/violin/violin_003.wav,violin,kéo vĩ,URMP,AuSep_1_vn_01_Jupiter.wav,36.27,3.0,22050
+4,violin_004.wav,data/wav/violin/violin_004.wav,violin,kéo vĩ,URMP,AuSep_1_vn_01_Jupiter.wav,45.28,2.9,22050
+5,violin_005.wav,data/wav/violin/violin_005.wav,violin,kéo vĩ,URMP,AuSep_1_vn_01_Jupiter.wav,51.25,3.0,22050
+6,violin_006.wav,data/wav/violin/violin_006.wav,violin,kéo vĩ,URMP,AuSep_1_vn_02_Sonata.wav,10.43,3.18,22050
+7,violin_007.wav,data/wav/violin/violin_007.wav,violin,kéo vĩ,URMP,AuSep_1_vn_02_Sonata.wav,19.6,2.83,22050
+8,violin_008.wav,data/wav/violin/violin_008.wav,violin,kéo vĩ,URMP,AuSep_1_vn_02_Sonata.wav,25.45,2.81,22050
+9,violin_009.wav,data/wav/violin/violin_009.wav,violin,kéo vĩ,URMP,AuSep_1_vn_02_Sonata.wav,35.16,2.86,22050
+10,violin_010.wav,data/wav/violin/violin_010.wav,violin,kéo vĩ,URMP,AuSep_1_vn_02_Sonata.wav,40.96,2.88,22050
+11,violin_011.wav,data/wav/violin/violin_011.wav,violin,kéo vĩ,URMP,AuSep_1_vn_12_Spring.wav,15.84,3.04,22050
+12,violin_012.wav,data/wav/violin/violin_012.wav,violin,kéo vĩ,URMP,AuSep_1_vn_12_Spring.wav,52.18,2.51,22050
+13,violin_013.wav,data/wav/violin/violin_013.wav,violin,kéo vĩ,URMP,AuSep_1_vn_12_Spring.wav,89.68,3.07,22050
+14,violin_014.wav,data/wav/violin/violin_014.wav,violin,kéo vĩ,URMP,AuSep_1_vn_12_Spring.wav,95.78,3.04,22050
+15,violin_015.wav,data/wav/violin/violin_015.wav,violin,kéo vĩ,URMP,AuSep_1_vn_12_Spring.wav,109.51,2.97,22050
+16,violin_016.wav,data/wav/violin/violin_016.wav,violin,kéo vĩ,URMP,AuSep_1_vn_13_Hark.wav,8.87,3.04,22050
+17,violin_017.wav,data/wav/violin/violin_017.wav,violin,kéo vĩ,URMP,AuSep_1_vn_13_Hark.wav,15.12,3.07,22050
+18,violin_018.wav,data/wav/violin/violin_018.wav,violin,kéo vĩ,URMP,AuSep_1_vn_13_Hark.wav,21.25,3.09,22050
+19,violin_019.wav,data/wav/violin/violin_019.wav,violin,kéo vĩ,URMP,AuSep_1_vn_13_Hark.wav,27.28,3.07,22050
+20,violin_020.wav,data/wav/violin/violin_020.wav,violin,kéo vĩ,URMP,AuSep_1_vn_13_Hark.wav,39.54,2.95,22050
+21,violin_021.wav,data/wav/violin/violin_021.wav,violin,kéo vĩ,URMP,AuSep_1_vn_17_Nocturne.wav,2.37,3.18,22050
+22,violin_022.wav,data/wav/violin/violin_022.wav,violin,kéo vĩ,URMP,AuSep_1_vn_17_Nocturne.wav,14.81,2.97,22050
+23,violin_023.wav,data/wav/violin/violin_023.wav,violin,kéo vĩ,URMP,AuSep_1_vn_17_Nocturne.wav,43.93,2.93,22050
+24,violin_024.wav,data/wav/violin/violin_024.wav,violin,kéo vĩ,URMP,AuSep_1_vn_17_Nocturne.wav,65.41,3.13,22050
+25,violin_025.wav,data/wav/violin/violin_025.wav,violin,kéo vĩ,URMP,AuSep_1_vn_17_Nocturne.wav,77.44,3.02,22050
+26,violin_026.wav,data/wav/violin/violin_026.wav,violin,kéo vĩ,URMP,AuSep_1_vn_24_Pirates.wav,1.76,3.0,22050
+27,violin_027.wav,data/wav/violin/violin_027.wav,violin,kéo vĩ,URMP,AuSep_1_vn_24_Pirates.wav,22.15,2.9,22050
+28,violin_028.wav,data/wav/violin/violin_028.wav,violin,kéo vĩ,URMP,AuSep_1_vn_24_Pirates.wav,29.56,3.04,22050
+29,violin_029.wav,data/wav/violin/violin_029.wav,violin,kéo vĩ,URMP,AuSep_1_vn_24_Pirates.wav,35.48,2.74,22050
+30,violin_030.wav,data/wav/violin/violin_030.wav,violin,kéo vĩ,URMP,AuSep_1_vn_26_King.wav,46.7,3.07,22050
+31,violin_031.wav,data/wav/violin/violin_031.wav,violin,kéo vĩ,URMP,AuSep_1_vn_26_King.wav,55.24,2.83,22050
+32,violin_032.wav,data/wav/violin/violin_032.wav,violin,kéo vĩ,URMP,AuSep_1_vn_26_King.wav,63.76,2.83,22050
+33,violin_033.wav,data/wav/violin/violin_033.wav,violin,kéo vĩ,URMP,AuSep_1_vn_32_Fugue.wav,24.61,2.69,22050
+34,violin_034.wav,data/wav/violin/violin_034.wav,violin,kéo vĩ,URMP,AuSep_1_vn_32_Fugue.wav,33.65,3.09,22050
+35,violin_035.wav,data/wav/violin/violin_035.wav,violin,kéo vĩ,URMP,AuSep_1_vn_32_Fugue.wav,115.64,3.09,22050
+36,violin_036.wav,data/wav/violin/violin_036.wav,violin,kéo vĩ,URMP,AuSep_1_vn_32_Fugue.wav,129.59,2.88,22050
+37,violin_037.wav,data/wav/violin/violin_037.wav,violin,kéo vĩ,URMP,AuSep_1_vn_32_Fugue.wav,148.79,2.81,22050
+38,violin_038.wav,data/wav/violin/violin_038.wav,violin,kéo vĩ,URMP,AuSep_1_vn_35_Rondeau.wav,7.41,3.0,22050
+39,violin_039.wav,data/wav/violin/violin_039.wav,violin,kéo vĩ,URMP,AuSep_1_vn_35_Rondeau.wav,50.83,3.09,22050
+40,violin_040.wav,data/wav/violin/violin_040.wav,violin,kéo vĩ,URMP,AuSep_1_vn_35_Rondeau.wav,65.99,2.86,22050
+41,violin_041.wav,data/wav/violin/violin_041.wav,violin,kéo vĩ,URMP,AuSep_1_vn_35_Rondeau.wav,104.19,3.16,22050
+42,violin_042.wav,data/wav/violin/violin_042.wav,violin,kéo vĩ,URMP,AuSep_1_vn_35_Rondeau.wav,118.03,3.39,22050
+43,violin_043.wav,data/wav/violin/violin_043.wav,violin,kéo vĩ,URMP,AuSep_1_vn_38_Jerusalem.wav,5.41,3.09,22050
+44,violin_044.wav,data/wav/violin/violin_044.wav,violin,kéo vĩ,URMP,AuSep_1_vn_38_Jerusalem.wav,33.3,2.97,22050
+45,violin_045.wav,data/wav/violin/violin_045.wav,violin,kéo vĩ,URMP,AuSep_1_vn_38_Jerusalem.wav,47.37,3.02,22050
+46,violin_046.wav,data/wav/violin/violin_046.wav,violin,kéo vĩ,URMP,AuSep_1_vn_38_Jerusalem.wav,63.62,2.9,22050
+47,violin_047.wav,data/wav/violin/violin_047.wav,violin,kéo vĩ,URMP,AuSep_1_vn_38_Jerusalem.wav,80.11,2.81,22050
+48,violin_048.wav,data/wav/violin/violin_048.wav,violin,kéo vĩ,URMP,AuSep_1_vn_44_K515.wav,35.11,3.44,22050
+49,violin_049.wav,data/wav/violin/violin_049.wav,violin,kéo vĩ,URMP,AuSep_1_vn_44_K515.wav,54.2,2.81,22050
+50,violin_050.wav,data/wav/violin/violin_050.wav,violin,kéo vĩ,URMP,AuSep_1_vn_44_K515.wav,73.58,2.88,22050
+51,violin_051.wav,data/wav/violin/violin_051.wav,violin,kéo vĩ,URMP,AuSep_1_vn_44_K515.wav,150.12,3.04,22050
+52,violin_052.wav,data/wav/violin/violin_052.wav,violin,kéo vĩ,URMP,AuSep_1_vn_44_K515.wav,168.69,2.97,22050
+53,violin_053.wav,data/wav/violin/violin_053.wav,violin,kéo vĩ,URMP,AuSep_2_vn_02_Sonata.wav,6.41,3.23,22050
+54,violin_054.wav,data/wav/violin/violin_054.wav,violin,kéo vĩ,URMP,AuSep_2_vn_02_Sonata.wav,16.16,2.88,22050
+55,violin_055.wav,data/wav/violin/violin_055.wav,violin,kéo vĩ,URMP,AuSep_2_vn_02_Sonata.wav,25.03,3.16,22050
+56,violin_056.wav,data/wav/violin/violin_056.wav,violin,kéo vĩ,URMP,AuSep_2_vn_02_Sonata.wav,33.74,3.16,22050
+57,violin_057.wav,data/wav/violin/violin_057.wav,violin,kéo vĩ,URMP,AuSep_2_vn_08_Spring.wav,4.6,3.09,22050
+58,violin_058.wav,data/wav/violin/violin_058.wav,violin,kéo vĩ,URMP,AuSep_2_vn_08_Spring.wav,10.68,2.88,22050
+59,violin_059.wav,data/wav/violin/violin_059.wav,violin,kéo vĩ,URMP,AuSep_2_vn_08_Spring.wav,16.56,3.09,22050
+60,violin_060.wav,data/wav/violin/violin_060.wav,violin,kéo vĩ,URMP,AuSep_2_vn_08_Spring.wav,25.91,3.04,22050
+61,violin_061.wav,data/wav/violin/violin_061.wav,violin,kéo vĩ,URMP,AuSep_2_vn_08_Spring.wav,31.86,2.51,22050
+62,violin_062.wav,data/wav/violin/violin_062.wav,violin,kéo vĩ,URMP,AuSep_2_vn_09_Jesus.wav,17.39,3.02,22050
+63,violin_063.wav,data/wav/violin/violin_063.wav,violin,kéo vĩ,URMP,AuSep_2_vn_09_Jesus.wav,103.61,2.95,22050
+64,violin_064.wav,data/wav/violin/violin_064.wav,violin,kéo vĩ,URMP,AuSep_2_vn_09_Jesus.wav,114.5,3.2,22050
+65,violin_065.wav,data/wav/violin/violin_065.wav,violin,kéo vĩ,URMP,AuSep_2_vn_09_Jesus.wav,150.42,3.07,22050
+66,violin_066.wav,data/wav/violin/violin_066.wav,violin,kéo vĩ,URMP,AuSep_2_vn_09_Jesus.wav,175.94,3.0,22050
+67,violin_067.wav,data/wav/violin/violin_067.wav,violin,kéo vĩ,URMP,AuSep_2_vn_12_Spring.wav,42.77,2.97,22050
+68,violin_068.wav,data/wav/violin/violin_068.wav,violin,kéo vĩ,URMP,AuSep_2_vn_12_Spring.wav,49.13,2.88,22050
+69,violin_069.wav,data/wav/violin/violin_069.wav,violin,kéo vĩ,URMP,AuSep_2_vn_12_Spring.wav,66.25,2.62,22050
+70,violin_070.wav,data/wav/violin/violin_070.wav,violin,kéo vĩ,URMP,AuSep_2_vn_12_Spring.wav,112.48,2.97,22050
+71,violin_071.wav,data/wav/violin/violin_071.wav,violin,kéo vĩ,URMP,AuSep_2_vn_13_Hark.wav,3.85,2.81,22050
+72,violin_072.wav,data/wav/violin/violin_072.wav,violin,kéo vĩ,URMP,AuSep_2_vn_13_Hark.wav,15.56,3.09,22050
+73,violin_073.wav,data/wav/violin/violin_073.wav,violin,kéo vĩ,URMP,AuSep_2_vn_13_Hark.wav,27.33,2.86,22050
+74,violin_074.wav,data/wav/violin/violin_074.wav,violin,kéo vĩ,URMP,AuSep_2_vn_13_Hark.wav,39.54,3.04,22050
+75,violin_075.wav,data/wav/violin/violin_075.wav,violin,kéo vĩ,URMP,AuSep_2_vn_19_Pavane.wav,42.47,3.07,22050
+76,violin_076.wav,data/wav/violin/violin_076.wav,violin,kéo vĩ,URMP,AuSep_2_vn_19_Pavane.wav,91.81,2.95,22050
+77,violin_077.wav,data/wav/violin/violin_077.wav,violin,kéo vĩ,URMP,AuSep_2_vn_19_Pavane.wav,107.11,3.07,22050
+78,violin_078.wav,data/wav/violin/violin_078.wav,violin,kéo vĩ,URMP,AuSep_2_vn_19_Pavane.wav,118.26,2.86,22050
+79,violin_079.wav,data/wav/violin/violin_079.wav,violin,kéo vĩ,URMP,AuSep_2_vn_24_Pirates.wav,10.36,2.62,22050
+80,violin_080.wav,data/wav/violin/violin_080.wav,violin,kéo vĩ,URMP,AuSep_2_vn_24_Pirates.wav,44.49,2.97,22050
+81,violin_081.wav,data/wav/violin/violin_081.wav,violin,kéo vĩ,URMP,AuSep_2_vn_26_King.wav,9.26,3.0,22050
+82,violin_082.wav,data/wav/violin/violin_082.wav,violin,kéo vĩ,URMP,AuSep_2_vn_26_King.wav,15.21,3.07,22050
+83,violin_083.wav,data/wav/violin/violin_083.wav,violin,kéo vĩ,URMP,AuSep_2_vn_26_King.wav,24.38,2.93,22050
+84,violin_084.wav,data/wav/violin/violin_084.wav,violin,kéo vĩ,URMP,AuSep_2_vn_26_King.wav,41.59,3.02,22050
+85,violin_085.wav,data/wav/violin/violin_085.wav,violin,kéo vĩ,URMP,AuSep_2_vn_32_Fugue.wav,13.56,2.97,22050
+86,violin_086.wav,data/wav/violin/violin_086.wav,violin,kéo vĩ,URMP,AuSep_2_vn_32_Fugue.wav,63.48,2.93,22050
+87,violin_087.wav,data/wav/violin/violin_087.wav,violin,kéo vĩ,URMP,AuSep_2_vn_32_Fugue.wav,146.4,3.04,22050
+88,violin_088.wav,data/wav/violin/violin_088.wav,violin,kéo vĩ,URMP,AuSep_2_vn_32_Fugue.wav,162.91,2.74,22050
+89,violin_089.wav,data/wav/violin/violin_089.wav,violin,kéo vĩ,URMP,AuSep_2_vn_35_Rondeau.wav,52.59,3.0,22050
+90,violin_090.wav,data/wav/violin/violin_090.wav,violin,kéo vĩ,URMP,AuSep_2_vn_35_Rondeau.wav,83.03,3.11,22050
+91,violin_091.wav,data/wav/violin/violin_091.wav,violin,kéo vĩ,URMP,AuSep_2_vn_35_Rondeau.wav,106.74,3.0,22050
+92,violin_092.wav,data/wav/violin/violin_092.wav,violin,kéo vĩ,URMP,AuSep_2_vn_35_Rondeau.wav,112.73,2.9,22050
+93,violin_093.wav,data/wav/violin/violin_093.wav,violin,kéo vĩ,URMP,AuSep_2_vn_38_Jerusalem.wav,9.5,3.27,22050
+94,violin_094.wav,data/wav/violin/violin_094.wav,violin,kéo vĩ,URMP,AuSep_2_vn_38_Jerusalem.wav,18.74,3.04,22050
+95,violin_095.wav,data/wav/violin/violin_095.wav,violin,kéo vĩ,URMP,AuSep_2_vn_38_Jerusalem.wav,89.84,3.04,22050
+96,violin_096.wav,data/wav/violin/violin_096.wav,violin,kéo vĩ,URMP,AuSep_2_vn_38_Jerusalem.wav,98.06,3.02,22050
+97,violin_097.wav,data/wav/violin/violin_097.wav,violin,kéo vĩ,URMP,AuSep_2_vn_44_K515.wav,47.18,3.02,22050
+98,violin_098.wav,data/wav/violin/violin_098.wav,violin,kéo vĩ,URMP,AuSep_2_vn_44_K515.wav,162.14,3.18,22050
+99,violin_099.wav,data/wav/violin/violin_099.wav,violin,kéo vĩ,URMP,AuSep_2_vn_44_K515.wav,174.61,2.97,22050
+100,violin_100.wav,data/wav/violin/violin_100.wav,violin,kéo vĩ,URMP,AuSep_2_vn_44_K515.wav,208.19,2.9,22050
+101,viola_001.wav,data/wav/viola/viola_001.wav,viola,kéo vĩ,URMP,AuSep_3_va_13_Hark.wav,5.32,2.97,22050
+102,viola_002.wav,data/wav/viola/viola_002.wav,viola,kéo vĩ,URMP,AuSep_3_va_13_Hark.wav,11.4,2.95,22050
+103,viola_003.wav,data/wav/viola/viola_003.wav,viola,kéo vĩ,URMP,AuSep_3_va_13_Hark.wav,17.44,2.95,22050
+104,viola_004.wav,data/wav/viola/viola_004.wav,viola,kéo vĩ,URMP,AuSep_3_va_13_Hark.wav,23.43,3.11,22050
+105,viola_005.wav,data/wav/viola/viola_005.wav,viola,kéo vĩ,URMP,AuSep_3_va_13_Hark.wav,29.58,3.13,22050
+106,viola_006.wav,data/wav/viola/viola_006.wav,viola,kéo vĩ,URMP,AuSep_3_va_13_Hark.wav,38.57,2.76,22050
+107,viola_007.wav,data/wav/viola/viola_007.wav,viola,kéo vĩ,URMP,AuSep_3_va_24_Pirates.wav,17.18,3.13,22050
+108,viola_008.wav,data/wav/viola/viola_008.wav,viola,kéo vĩ,URMP,AuSep_3_va_24_Pirates.wav,25.7,3.02,22050
+109,viola_009.wav,data/wav/viola/viola_009.wav,viola,kéo vĩ,URMP,AuSep_3_va_24_Pirates.wav,43.65,2.95,22050
+110,viola_010.wav,data/wav/viola/viola_010.wav,viola,kéo vĩ,URMP,AuSep_3_va_26_King.wav,26.52,2.62,22050
+111,viola_011.wav,data/wav/viola/viola_011.wav,viola,kéo vĩ,URMP,AuSep_3_va_26_King.wav,43.17,2.95,22050
+112,viola_012.wav,data/wav/viola/viola_012.wav,viola,kéo vĩ,URMP,AuSep_3_va_26_King.wav,49.76,3.0,22050
+113,viola_013.wav,data/wav/viola/viola_013.wav,viola,kéo vĩ,URMP,AuSep_3_va_26_King.wav,56.03,3.23,22050
+114,viola_014.wav,data/wav/viola/viola_014.wav,viola,kéo vĩ,URMP,AuSep_3_va_26_King.wav,63.65,2.97,22050
+115,viola_015.wav,data/wav/viola/viola_015.wav,viola,kéo vĩ,URMP,AuSep_3_va_26_King.wav,70.84,3.07,22050
+116,viola_016.wav,data/wav/viola/viola_016.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,30.98,3.09,22050
+117,viola_017.wav,data/wav/viola/viola_017.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,39.38,2.83,22050
+118,viola_018.wav,data/wav/viola/viola_018.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,45.07,3.32,22050
+119,viola_019.wav,data/wav/viola/viola_019.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,54.8,2.9,22050
+120,viola_020.wav,data/wav/viola/viola_020.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,63.74,2.95,22050
+121,viola_021.wav,data/wav/viola/viola_021.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,69.61,2.65,22050
+122,viola_022.wav,data/wav/viola/viola_022.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,87.52,3.18,22050
+123,viola_023.wav,data/wav/viola/viola_023.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,93.79,2.76,22050
+124,viola_024.wav,data/wav/viola/viola_024.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,99.73,2.95,22050
+125,viola_025.wav,data/wav/viola/viola_025.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,105.67,3.16,22050
+126,viola_026.wav,data/wav/viola/viola_026.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,111.99,3.11,22050
+127,viola_027.wav,data/wav/viola/viola_027.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,118.26,3.11,22050
+128,viola_028.wav,data/wav/viola/viola_028.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,124.55,2.65,22050
+129,viola_029.wav,data/wav/viola/viola_029.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,128.22,3.25,22050
+130,viola_030.wav,data/wav/viola/viola_030.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,132.93,2.69,22050
+131,viola_031.wav,data/wav/viola/viola_031.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,138.18,3.23,22050
+132,viola_032.wav,data/wav/viola/viola_032.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,141.8,3.23,22050
+133,viola_033.wav,data/wav/viola/viola_033.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,151.12,2.86,22050
+134,viola_034.wav,data/wav/viola/viola_034.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,155.55,3.16,22050
+135,viola_035.wav,data/wav/viola/viola_035.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,161.84,3.18,22050
+136,viola_036.wav,data/wav/viola/viola_036.wav,viola,kéo vĩ,URMP,AuSep_3_va_32_Fugue.wav,167.74,2.79,22050
+137,viola_037.wav,data/wav/viola/viola_037.wav,viola,kéo vĩ,URMP,AuSep_3_va_35_Rondeau.wav,4.48,2.81,22050
+138,viola_038.wav,data/wav/viola/viola_038.wav,viola,kéo vĩ,URMP,AuSep_3_va_35_Rondeau.wav,13.26,2.97,22050
+139,viola_039.wav,data/wav/viola/viola_039.wav,viola,kéo vĩ,URMP,AuSep_3_va_35_Rondeau.wav,22.36,3.04,22050
+140,viola_040.wav,data/wav/viola/viola_040.wav,viola,kéo vĩ,URMP,AuSep_3_va_35_Rondeau.wav,27.21,2.86,22050
+141,viola_041.wav,data/wav/viola/viola_041.wav,viola,kéo vĩ,URMP,AuSep_3_va_35_Rondeau.wav,33.04,2.9,22050
+142,viola_042.wav,data/wav/viola/viola_042.wav,viola,kéo vĩ,URMP,AuSep_3_va_35_Rondeau.wav,40.98,3.18,22050
+143,viola_043.wav,data/wav/viola/viola_043.wav,viola,kéo vĩ,URMP,AuSep_3_va_35_Rondeau.wav,47.25,2.95,22050
+144,viola_044.wav,data/wav/viola/viola_044.wav,viola,kéo vĩ,URMP,AuSep_3_va_35_Rondeau.wav,53.06,2.93,22050
+145,viola_045.wav,data/wav/viola/viola_045.wav,viola,kéo vĩ,URMP,AuSep_3_va_35_Rondeau.wav,58.75,2.95,22050
+146,viola_046.wav,data/wav/viola/viola_046.wav,viola,kéo vĩ,URMP,AuSep_3_va_35_Rondeau.wav,63.81,3.04,22050
+147,viola_047.wav,data/wav/viola/viola_047.wav,viola,kéo vĩ,URMP,AuSep_3_va_35_Rondeau.wav,69.78,3.04,22050
+148,viola_048.wav,data/wav/viola/viola_048.wav,viola,kéo vĩ,URMP,AuSep_3_va_35_Rondeau.wav,75.72,2.81,22050
+149,viola_049.wav,data/wav/viola/viola_049.wav,viola,kéo vĩ,URMP,AuSep_3_va_35_Rondeau.wav,84.31,2.6,22050
+150,viola_050.wav,data/wav/viola/viola_050.wav,viola,kéo vĩ,URMP,AuSep_3_va_35_Rondeau.wav,89.72,2.93,22050
+151,viola_051.wav,data/wav/viola/viola_051.wav,viola,kéo vĩ,URMP,AuSep_3_va_35_Rondeau.wav,97.71,2.53,22050
+152,viola_052.wav,data/wav/viola/viola_052.wav,viola,kéo vĩ,URMP,AuSep_3_va_35_Rondeau.wav,103.47,2.53,22050
+153,viola_053.wav,data/wav/viola/viola_053.wav,viola,kéo vĩ,URMP,AuSep_3_va_35_Rondeau.wav,109.34,2.95,22050
+154,viola_054.wav,data/wav/viola/viola_054.wav,viola,kéo vĩ,URMP,AuSep_3_va_35_Rondeau.wav,117.84,2.97,22050
+155,viola_055.wav,data/wav/viola/viola_055.wav,viola,kéo vĩ,URMP,AuSep_3_va_38_Jerusalem.wav,4.53,3.0,22050
+156,viola_056.wav,data/wav/viola/viola_056.wav,viola,kéo vĩ,URMP,AuSep_3_va_38_Jerusalem.wav,11.56,2.97,22050
+157,viola_057.wav,data/wav/viola/viola_057.wav,viola,kéo vĩ,URMP,AuSep_3_va_38_Jerusalem.wav,20.85,3.11,22050
+158,viola_058.wav,data/wav/viola/viola_058.wav,viola,kéo vĩ,URMP,AuSep_3_va_38_Jerusalem.wav,29.98,2.93,22050
+159,viola_059.wav,data/wav/viola/viola_059.wav,viola,kéo vĩ,URMP,AuSep_3_va_38_Jerusalem.wav,35.94,3.25,22050
+160,viola_060.wav,data/wav/viola/viola_060.wav,viola,kéo vĩ,URMP,AuSep_3_va_38_Jerusalem.wav,42.28,3.32,22050
+161,viola_061.wav,data/wav/viola/viola_061.wav,viola,kéo vĩ,URMP,AuSep_3_va_38_Jerusalem.wav,48.62,2.88,22050
+162,viola_062.wav,data/wav/viola/viola_062.wav,viola,kéo vĩ,URMP,AuSep_3_va_38_Jerusalem.wav,57.49,3.0,22050
+163,viola_063.wav,data/wav/viola/viola_063.wav,viola,kéo vĩ,URMP,AuSep_3_va_38_Jerusalem.wav,63.62,3.0,22050
+164,viola_064.wav,data/wav/viola/viola_064.wav,viola,kéo vĩ,URMP,AuSep_3_va_38_Jerusalem.wav,69.61,3.18,22050
+165,viola_065.wav,data/wav/viola/viola_065.wav,viola,kéo vĩ,URMP,AuSep_3_va_38_Jerusalem.wav,75.74,3.07,22050
+166,viola_066.wav,data/wav/viola/viola_066.wav,viola,kéo vĩ,URMP,AuSep_3_va_38_Jerusalem.wav,81.76,2.95,22050
+167,viola_067.wav,data/wav/viola/viola_067.wav,viola,kéo vĩ,URMP,AuSep_3_va_38_Jerusalem.wav,87.54,2.76,22050
+168,viola_068.wav,data/wav/viola/viola_068.wav,viola,kéo vĩ,URMP,AuSep_3_va_38_Jerusalem.wav,95.94,2.93,22050
+169,viola_069.wav,data/wav/viola/viola_069.wav,viola,kéo vĩ,URMP,AuSep_3_va_38_Jerusalem.wav,101.91,2.86,22050
+170,viola_070.wav,data/wav/viola/viola_070.wav,viola,kéo vĩ,URMP,AuSep_3_va_38_Jerusalem.wav,107.69,2.93,22050
+171,viola_071.wav,data/wav/viola/viola_071.wav,viola,kéo vĩ,URMP,AuSep_3_va_38_Jerusalem.wav,113.64,2.97,22050
+172,viola_072.wav,data/wav/viola/viola_072.wav,viola,kéo vĩ,URMP,AuSep_3_va_44_K515.wav,70.43,2.97,22050
+173,viola_073.wav,data/wav/viola/viola_073.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,7.45,3.25,22050
+174,viola_074.wav,data/wav/viola/viola_074.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,13.65,2.9,22050
+175,viola_075.wav,data/wav/viola/viola_075.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,20.15,3.09,22050
+176,viola_076.wav,data/wav/viola/viola_076.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,29.63,3.11,22050
+177,viola_077.wav,data/wav/viola/viola_077.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,35.83,3.04,22050
+178,viola_078.wav,data/wav/viola/viola_078.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,44.81,3.11,22050
+179,viola_079.wav,data/wav/viola/viola_079.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,55.26,2.79,22050
+180,viola_080.wav,data/wav/viola/viola_080.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,66.36,2.79,22050
+181,viola_081.wav,data/wav/viola/viola_081.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,78.34,3.13,22050
+182,viola_082.wav,data/wav/viola/viola_082.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,84.2,3.0,22050
+183,viola_083.wav,data/wav/viola/viola_083.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,87.47,3.23,22050
+184,viola_084.wav,data/wav/viola/viola_084.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,93.39,3.07,22050
+185,viola_085.wav,data/wav/viola/viola_085.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,103.4,2.95,22050
+186,viola_086.wav,data/wav/viola/viola_086.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,109.34,2.95,22050
+187,viola_087.wav,data/wav/viola/viola_087.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,115.61,3.41,22050
+188,viola_088.wav,data/wav/viola/viola_088.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,121.84,3.41,22050
+189,viola_089.wav,data/wav/viola/viola_089.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,131.4,2.93,22050
+190,viola_090.wav,data/wav/viola/viola_090.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,137.37,3.07,22050
+191,viola_091.wav,data/wav/viola/viola_091.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,143.48,2.86,22050
+192,viola_092.wav,data/wav/viola/viola_092.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,149.19,3.2,22050
+193,viola_093.wav,data/wav/viola/viola_093.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,157.76,2.53,22050
+194,viola_094.wav,data/wav/viola/viola_094.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,163.33,2.69,22050
+195,viola_095.wav,data/wav/viola/viola_095.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,169.39,2.55,22050
+196,viola_096.wav,data/wav/viola/viola_096.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,175.01,3.02,22050
+197,viola_097.wav,data/wav/viola/viola_097.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,190.1,3.2,22050
+198,viola_098.wav,data/wav/viola/viola_098.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,201.43,2.9,22050
+199,viola_099.wav,data/wav/viola/viola_099.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,207.26,3.04,22050
+200,viola_100.wav,data/wav/viola/viola_100.wav,viola,kéo vĩ,URMP,AuSep_4_va_44_K515.wav,213.41,3.0,22050
+201,cello_001.wav,data/wav/cello/cello_001.wav,cello,kéo vĩ,URMP,AuSep_2_vc_01_Jupiter.wav,6.22,2.95,22050
+202,cello_002.wav,data/wav/cello/cello_002.wav,cello,kéo vĩ,URMP,AuSep_2_vc_01_Jupiter.wav,12.47,2.93,22050
+203,cello_003.wav,data/wav/cello/cello_003.wav,cello,kéo vĩ,URMP,AuSep_2_vc_01_Jupiter.wav,23.34,3.16,22050
+204,cello_004.wav,data/wav/cello/cello_004.wav,cello,kéo vĩ,URMP,AuSep_2_vc_01_Jupiter.wav,32.58,2.95,22050
+205,cello_005.wav,data/wav/cello/cello_005.wav,cello,kéo vĩ,URMP,AuSep_2_vc_01_Jupiter.wav,38.57,3.0,22050
+206,cello_006.wav,data/wav/cello/cello_006.wav,cello,kéo vĩ,URMP,AuSep_2_vc_01_Jupiter.wav,47.48,3.02,22050
+207,cello_007.wav,data/wav/cello/cello_007.wav,cello,kéo vĩ,URMP,AuSep_2_vc_01_Jupiter.wav,56.4,3.04,22050
+208,cello_008.wav,data/wav/cello/cello_008.wav,cello,kéo vĩ,URMP,AuSep_2_vc_11_Maria.wav,7.89,2.97,22050
+209,cello_009.wav,data/wav/cello/cello_009.wav,cello,kéo vĩ,URMP,AuSep_2_vc_11_Maria.wav,13.82,3.13,22050
+210,cello_010.wav,data/wav/cello/cello_010.wav,cello,kéo vĩ,URMP,AuSep_2_vc_11_Maria.wav,22.89,3.0,22050
+211,cello_011.wav,data/wav/cello/cello_011.wav,cello,kéo vĩ,URMP,AuSep_2_vc_11_Maria.wav,28.86,3.2,22050
+212,cello_012.wav,data/wav/cello/cello_012.wav,cello,kéo vĩ,URMP,AuSep_2_vc_11_Maria.wav,37.99,2.97,22050
+213,cello_013.wav,data/wav/cello/cello_013.wav,cello,kéo vĩ,URMP,AuSep_2_vc_11_Maria.wav,44.19,3.09,22050
+214,cello_014.wav,data/wav/cello/cello_014.wav,cello,kéo vĩ,URMP,AuSep_2_vc_11_Maria.wav,50.41,3.09,22050
+215,cello_015.wav,data/wav/cello/cello_015.wav,cello,kéo vĩ,URMP,AuSep_2_vc_11_Maria.wav,56.59,3.09,22050
+216,cello_016.wav,data/wav/cello/cello_016.wav,cello,kéo vĩ,URMP,AuSep_2_vc_11_Maria.wav,65.71,3.02,22050
+217,cello_017.wav,data/wav/cello/cello_017.wav,cello,kéo vĩ,URMP,AuSep_2_vc_11_Maria.wav,74.81,3.02,22050
+218,cello_018.wav,data/wav/cello/cello_018.wav,cello,kéo vĩ,URMP,AuSep_2_vc_11_Maria.wav,86.15,2.97,22050
+219,cello_019.wav,data/wav/cello/cello_019.wav,cello,kéo vĩ,URMP,AuSep_2_vc_11_Maria.wav,95.02,2.93,22050
+220,cello_020.wav,data/wav/cello/cello_020.wav,cello,kéo vĩ,URMP,AuSep_3_vc_12_Spring.wav,18.53,3.11,22050
+221,cello_021.wav,data/wav/cello/cello_021.wav,cello,kéo vĩ,URMP,AuSep_3_vc_12_Spring.wav,30.93,3.07,22050
+222,cello_022.wav,data/wav/cello/cello_022.wav,cello,kéo vĩ,URMP,AuSep_3_vc_12_Spring.wav,44.84,3.13,22050
+223,cello_023.wav,data/wav/cello/cello_023.wav,cello,kéo vĩ,URMP,AuSep_3_vc_12_Spring.wav,54.52,2.72,22050
+224,cello_024.wav,data/wav/cello/cello_024.wav,cello,kéo vĩ,URMP,AuSep_3_vc_12_Spring.wav,60.51,3.09,22050
+225,cello_025.wav,data/wav/cello/cello_025.wav,cello,kéo vĩ,URMP,AuSep_3_vc_12_Spring.wav,66.27,2.72,22050
+226,cello_026.wav,data/wav/cello/cello_026.wav,cello,kéo vĩ,URMP,AuSep_3_vc_12_Spring.wav,83.96,2.9,22050
+227,cello_027.wav,data/wav/cello/cello_027.wav,cello,kéo vĩ,URMP,AuSep_3_vc_12_Spring.wav,89.95,2.97,22050
+228,cello_028.wav,data/wav/cello/cello_028.wav,cello,kéo vĩ,URMP,AuSep_3_vc_12_Spring.wav,102.42,3.13,22050
+229,cello_029.wav,data/wav/cello/cello_029.wav,cello,kéo vĩ,URMP,AuSep_3_vc_12_Spring.wav,108.11,3.16,22050
+230,cello_030.wav,data/wav/cello/cello_030.wav,cello,kéo vĩ,URMP,AuSep_3_vc_12_Spring.wav,114.43,2.53,22050
+231,cello_031.wav,data/wav/cello/cello_031.wav,cello,kéo vĩ,URMP,AuSep_3_vc_12_Spring.wav,119.65,3.04,22050
+232,cello_032.wav,data/wav/cello/cello_032.wav,cello,kéo vĩ,URMP,AuSep_3_vc_19_Pavane.wav,40.82,2.93,22050
+233,cello_033.wav,data/wav/cello/cello_033.wav,cello,kéo vĩ,URMP,AuSep_3_vc_19_Pavane.wav,46.49,3.11,22050
+234,cello_034.wav,data/wav/cello/cello_034.wav,cello,kéo vĩ,URMP,AuSep_3_vc_19_Pavane.wav,73.47,2.88,22050
+235,cello_035.wav,data/wav/cello/cello_035.wav,cello,kéo vĩ,URMP,AuSep_3_vc_19_Pavane.wav,80.67,2.81,22050
+236,cello_036.wav,data/wav/cello/cello_036.wav,cello,kéo vĩ,URMP,AuSep_3_vc_19_Pavane.wav,86.29,2.9,22050
+237,cello_037.wav,data/wav/cello/cello_037.wav,cello,kéo vĩ,URMP,AuSep_3_vc_19_Pavane.wav,93.74,3.02,22050
+238,cello_038.wav,data/wav/cello/cello_038.wav,cello,kéo vĩ,URMP,AuSep_3_vc_19_Pavane.wav,103.1,3.09,22050
+239,cello_039.wav,data/wav/cello/cello_039.wav,cello,kéo vĩ,URMP,AuSep_3_vc_19_Pavane.wav,112.15,3.11,22050
+240,cello_040.wav,data/wav/cello/cello_040.wav,cello,kéo vĩ,URMP,AuSep_3_vc_19_Pavane.wav,118.31,2.69,22050
+241,cello_041.wav,data/wav/cello/cello_041.wav,cello,kéo vĩ,URMP,AuSep_4_vc_24_Pirates.wav,5.76,2.97,22050
+242,cello_042.wav,data/wav/cello/cello_042.wav,cello,kéo vĩ,URMP,AuSep_4_vc_24_Pirates.wav,16.42,3.0,22050
+243,cello_043.wav,data/wav/cello/cello_043.wav,cello,kéo vĩ,URMP,AuSep_4_vc_24_Pirates.wav,22.41,3.02,22050
+244,cello_044.wav,data/wav/cello/cello_044.wav,cello,kéo vĩ,URMP,AuSep_4_vc_24_Pirates.wav,31.49,3.11,22050
+245,cello_045.wav,data/wav/cello/cello_045.wav,cello,kéo vĩ,URMP,AuSep_4_vc_24_Pirates.wav,39.03,3.04,22050
+246,cello_046.wav,data/wav/cello/cello_046.wav,cello,kéo vĩ,URMP,AuSep_4_vc_24_Pirates.wav,45.0,2.93,22050
+247,cello_047.wav,data/wav/cello/cello_047.wav,cello,kéo vĩ,URMP,AuSep_4_vc_26_King.wav,16.53,3.02,22050
+248,cello_048.wav,data/wav/cello/cello_048.wav,cello,kéo vĩ,URMP,AuSep_4_vc_26_King.wav,22.55,2.93,22050
+249,cello_049.wav,data/wav/cello/cello_049.wav,cello,kéo vĩ,URMP,AuSep_4_vc_26_King.wav,29.14,3.02,22050
+250,cello_050.wav,data/wav/cello/cello_050.wav,cello,kéo vĩ,URMP,AuSep_4_vc_26_King.wav,35.78,3.04,22050
+251,cello_051.wav,data/wav/cello/cello_051.wav,cello,kéo vĩ,URMP,AuSep_4_vc_26_King.wav,41.29,3.04,22050
+252,cello_052.wav,data/wav/cello/cello_052.wav,cello,kéo vĩ,URMP,AuSep_4_vc_26_King.wav,47.32,3.0,22050
+253,cello_053.wav,data/wav/cello/cello_053.wav,cello,kéo vĩ,URMP,AuSep_4_vc_26_King.wav,55.15,2.95,22050
+254,cello_054.wav,data/wav/cello/cello_054.wav,cello,kéo vĩ,URMP,AuSep_4_vc_26_King.wav,63.65,3.04,22050
+255,cello_055.wav,data/wav/cello/cello_055.wav,cello,kéo vĩ,URMP,AuSep_4_vc_26_King.wav,69.68,3.48,22050
+256,cello_056.wav,data/wav/cello/cello_056.wav,cello,kéo vĩ,URMP,AuSep_4_vc_26_King.wav,80.41,2.53,22050
+257,cello_057.wav,data/wav/cello/cello_057.wav,cello,kéo vĩ,URMP,AuSep_4_vc_32_Fugue.wav,33.69,3.04,22050
+258,cello_058.wav,data/wav/cello/cello_058.wav,cello,kéo vĩ,URMP,AuSep_4_vc_32_Fugue.wav,45.49,3.37,22050
+259,cello_059.wav,data/wav/cello/cello_059.wav,cello,kéo vĩ,URMP,AuSep_4_vc_32_Fugue.wav,68.03,3.0,22050
+260,cello_060.wav,data/wav/cello/cello_060.wav,cello,kéo vĩ,URMP,AuSep_4_vc_32_Fugue.wav,77.97,3.02,22050
+261,cello_061.wav,data/wav/cello/cello_061.wav,cello,kéo vĩ,URMP,AuSep_4_vc_32_Fugue.wav,85.33,2.97,22050
+262,cello_062.wav,data/wav/cello/cello_062.wav,cello,kéo vĩ,URMP,AuSep_4_vc_32_Fugue.wav,102.89,2.97,22050
+263,cello_063.wav,data/wav/cello/cello_063.wav,cello,kéo vĩ,URMP,AuSep_4_vc_32_Fugue.wav,125.76,3.04,22050
+264,cello_064.wav,data/wav/cello/cello_064.wav,cello,kéo vĩ,URMP,AuSep_4_vc_32_Fugue.wav,140.06,2.81,22050
+265,cello_065.wav,data/wav/cello/cello_065.wav,cello,kéo vĩ,URMP,AuSep_4_vc_32_Fugue.wav,146.45,2.97,22050
+266,cello_066.wav,data/wav/cello/cello_066.wav,cello,kéo vĩ,URMP,AuSep_4_vc_32_Fugue.wav,155.62,2.95,22050
+267,cello_067.wav,data/wav/cello/cello_067.wav,cello,kéo vĩ,URMP,AuSep_4_vc_32_Fugue.wav,161.98,2.93,22050
+268,cello_068.wav,data/wav/cello/cello_068.wav,cello,kéo vĩ,URMP,AuSep_4_vc_36_Rondeau.wav,7.31,2.95,22050
+269,cello_069.wav,data/wav/cello/cello_069.wav,cello,kéo vĩ,URMP,AuSep_4_vc_36_Rondeau.wav,19.2,3.02,22050
+270,cello_070.wav,data/wav/cello/cello_070.wav,cello,kéo vĩ,URMP,AuSep_4_vc_36_Rondeau.wav,28.07,2.86,22050
+271,cello_071.wav,data/wav/cello/cello_071.wav,cello,kéo vĩ,URMP,AuSep_4_vc_36_Rondeau.wav,34.02,3.23,22050
+272,cello_072.wav,data/wav/cello/cello_072.wav,cello,kéo vĩ,URMP,AuSep_4_vc_36_Rondeau.wav,40.31,2.79,22050
+273,cello_073.wav,data/wav/cello/cello_073.wav,cello,kéo vĩ,URMP,AuSep_4_vc_36_Rondeau.wav,48.95,2.95,22050
+274,cello_074.wav,data/wav/cello/cello_074.wav,cello,kéo vĩ,URMP,AuSep_4_vc_36_Rondeau.wav,63.95,3.23,22050
+275,cello_075.wav,data/wav/cello/cello_075.wav,cello,kéo vĩ,URMP,AuSep_4_vc_36_Rondeau.wav,76.28,2.97,22050
+276,cello_076.wav,data/wav/cello/cello_076.wav,cello,kéo vĩ,URMP,AuSep_4_vc_36_Rondeau.wav,87.86,3.0,22050
+277,cello_077.wav,data/wav/cello/cello_077.wav,cello,kéo vĩ,URMP,AuSep_4_vc_36_Rondeau.wav,98.82,3.13,22050
+278,cello_078.wav,data/wav/cello/cello_078.wav,cello,kéo vĩ,URMP,AuSep_4_vc_36_Rondeau.wav,111.97,2.97,22050
+279,cello_079.wav,data/wav/cello/cello_079.wav,cello,kéo vĩ,URMP,AuSep_4_vc_38_Jerusalem.wav,21.11,3.09,22050
+280,cello_080.wav,data/wav/cello/cello_080.wav,cello,kéo vĩ,URMP,AuSep_4_vc_38_Jerusalem.wav,33.53,2.93,22050
+281,cello_081.wav,data/wav/cello/cello_081.wav,cello,kéo vĩ,URMP,AuSep_4_vc_38_Jerusalem.wav,40.8,3.04,22050
+282,cello_082.wav,data/wav/cello/cello_082.wav,cello,kéo vĩ,URMP,AuSep_4_vc_38_Jerusalem.wav,46.83,3.07,22050
+283,cello_083.wav,data/wav/cello/cello_083.wav,cello,kéo vĩ,URMP,AuSep_4_vc_38_Jerusalem.wav,52.92,3.0,22050
+284,cello_084.wav,data/wav/cello/cello_084.wav,cello,kéo vĩ,URMP,AuSep_4_vc_38_Jerusalem.wav,69.38,2.69,22050
+285,cello_085.wav,data/wav/cello/cello_085.wav,cello,kéo vĩ,URMP,AuSep_4_vc_38_Jerusalem.wav,77.3,3.04,22050
+286,cello_086.wav,data/wav/cello/cello_086.wav,cello,kéo vĩ,URMP,AuSep_4_vc_38_Jerusalem.wav,83.34,3.02,22050
+287,cello_087.wav,data/wav/cello/cello_087.wav,cello,kéo vĩ,URMP,AuSep_4_vc_38_Jerusalem.wav,94.48,3.02,22050
+288,cello_088.wav,data/wav/cello/cello_088.wav,cello,kéo vĩ,URMP,AuSep_4_vc_38_Jerusalem.wav,103.54,3.04,22050
+289,cello_089.wav,data/wav/cello/cello_089.wav,cello,kéo vĩ,URMP,AuSep_4_vc_38_Jerusalem.wav,109.53,3.02,22050
+290,cello_090.wav,data/wav/cello/cello_090.wav,cello,kéo vĩ,URMP,AuSep_5_vc_44_K515.wav,23.15,2.81,22050
+291,cello_091.wav,data/wav/cello/cello_091.wav,cello,kéo vĩ,URMP,AuSep_5_vc_44_K515.wav,34.62,3.11,22050
+292,cello_092.wav,data/wav/cello/cello_092.wav,cello,kéo vĩ,URMP,AuSep_5_vc_44_K515.wav,41.12,3.3,22050
+293,cello_093.wav,data/wav/cello/cello_093.wav,cello,kéo vĩ,URMP,AuSep_5_vc_44_K515.wav,48.11,2.65,22050
+294,cello_094.wav,data/wav/cello/cello_094.wav,cello,kéo vĩ,URMP,AuSep_5_vc_44_K515.wav,57.45,3.09,22050
+295,cello_095.wav,data/wav/cello/cello_095.wav,cello,kéo vĩ,URMP,AuSep_5_vc_44_K515.wav,69.13,2.83,22050
+296,cello_096.wav,data/wav/cello/cello_096.wav,cello,kéo vĩ,URMP,AuSep_5_vc_44_K515.wav,75.23,2.83,22050
+297,cello_097.wav,data/wav/cello/cello_097.wav,cello,kéo vĩ,URMP,AuSep_5_vc_44_K515.wav,83.31,2.88,22050
+298,cello_098.wav,data/wav/cello/cello_098.wav,cello,kéo vĩ,URMP,AuSep_5_vc_44_K515.wav,107.6,2.97,22050
+299,cello_099.wav,data/wav/cello/cello_099.wav,cello,kéo vĩ,URMP,AuSep_5_vc_44_K515.wav,130.73,2.93,22050
+300,cello_100.wav,data/wav/cello/cello_100.wav,cello,kéo vĩ,URMP,AuSep_5_vc_44_K515.wav,171.36,2.83,22050
+301,double_bass_001.wav,data/wav/double_bass/double_bass_001.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,4.46,2.97,22050
+302,double_bass_002.wav,data/wav/double_bass/double_bass_002.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,14.88,3.18,22050
+303,double_bass_003.wav,data/wav/double_bass/double_bass_003.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,18.07,2.97,22050
+304,double_bass_004.wav,data/wav/double_bass/double_bass_004.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,23.96,3.25,22050
+305,double_bass_005.wav,data/wav/double_bass/double_bass_005.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,27.21,2.93,22050
+306,double_bass_006.wav,data/wav/double_bass/double_bass_006.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,30.14,2.79,22050
+307,double_bass_007.wav,data/wav/double_bass/double_bass_007.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,32.93,3.0,22050
+308,double_bass_008.wav,data/wav/double_bass/double_bass_008.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,35.92,3.0,22050
+309,double_bass_009.wav,data/wav/double_bass/double_bass_009.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,38.92,3.09,22050
+310,double_bass_010.wav,data/wav/double_bass/double_bass_010.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,42.0,3.23,22050
+311,double_bass_011.wav,data/wav/double_bass/double_bass_011.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,45.23,3.0,22050
+312,double_bass_012.wav,data/wav/double_bass/double_bass_012.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,48.23,2.88,22050
+313,double_bass_013.wav,data/wav/double_bass/double_bass_013.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,51.11,3.11,22050
+314,double_bass_014.wav,data/wav/double_bass/double_bass_014.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,56.91,3.0,22050
+315,double_bass_015.wav,data/wav/double_bass/double_bass_015.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,59.91,2.72,22050
+316,double_bass_016.wav,data/wav/double_bass/double_bass_016.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,62.62,3.0,22050
+317,double_bass_017.wav,data/wav/double_bass/double_bass_017.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,68.96,2.67,22050
+318,double_bass_018.wav,data/wav/double_bass/double_bass_018.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,71.63,3.11,22050
+319,double_bass_019.wav,data/wav/double_bass/double_bass_019.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,74.75,2.79,22050
+320,double_bass_020.wav,data/wav/double_bass/double_bass_020.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,77.53,2.97,22050
+321,double_bass_021.wav,data/wav/double_bass/double_bass_021.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,80.5,2.58,22050
+322,double_bass_022.wav,data/wav/double_bass/double_bass_022.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,88.79,3.09,22050
+323,double_bass_023.wav,data/wav/double_bass/double_bass_023.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,91.88,2.79,22050
+324,double_bass_024.wav,data/wav/double_bass/double_bass_024.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,94.67,3.02,22050
+325,double_bass_025.wav,data/wav/double_bass/double_bass_025.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,98.22,3.07,22050
+326,double_bass_026.wav,data/wav/double_bass/double_bass_026.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,101.29,3.09,22050
+327,double_bass_027.wav,data/wav/double_bass/double_bass_027.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,104.37,2.93,22050
+328,double_bass_028.wav,data/wav/double_bass/double_bass_028.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,107.3,3.25,22050
+329,double_bass_029.wav,data/wav/double_bass/double_bass_029.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,110.55,2.95,22050
+330,double_bass_030.wav,data/wav/double_bass/double_bass_030.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,116.89,3.41,22050
+331,double_bass_031.wav,data/wav/double_bass/double_bass_031.wav,double_bass,kéo vĩ,URMP,AuSep_4_db_35_Rondeau.wav,124.58,2.69,22050
+332,double_bass_032.wav,data/wav/double_bass/double_bass_032.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,5.94,2.93,22050
+333,double_bass_033.wav,data/wav/double_bass/double_bass_033.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,8.87,2.9,22050
+334,double_bass_034.wav,data/wav/double_bass/double_bass_034.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,11.77,3.0,22050
+335,double_bass_035.wav,data/wav/double_bass/double_bass_035.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,14.77,3.18,22050
+336,double_bass_036.wav,data/wav/double_bass/double_bass_036.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,17.95,3.3,22050
+337,double_bass_037.wav,data/wav/double_bass/double_bass_037.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,21.25,3.16,22050
+338,double_bass_038.wav,data/wav/double_bass/double_bass_038.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,24.54,2.86,22050
+339,double_bass_039.wav,data/wav/double_bass/double_bass_039.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,27.4,3.27,22050
+340,double_bass_040.wav,data/wav/double_bass/double_bass_040.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,30.67,2.67,22050
+341,double_bass_041.wav,data/wav/double_bass/double_bass_041.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,36.29,2.93,22050
+342,double_bass_042.wav,data/wav/double_bass/double_bass_042.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,39.22,3.32,22050
+343,double_bass_043.wav,data/wav/double_bass/double_bass_043.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,43.7,2.72,22050
+344,double_bass_044.wav,data/wav/double_bass/double_bass_044.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,46.42,3.07,22050
+345,double_bass_045.wav,data/wav/double_bass/double_bass_045.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,49.48,3.18,22050
+346,double_bass_046.wav,data/wav/double_bass/double_bass_046.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,52.66,2.79,22050
+347,double_bass_047.wav,data/wav/double_bass/double_bass_047.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,58.42,3.09,22050
+348,double_bass_048.wav,data/wav/double_bass/double_bass_048.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,61.51,3.13,22050
+349,double_bass_049.wav,data/wav/double_bass/double_bass_049.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,64.64,2.74,22050
+350,double_bass_050.wav,data/wav/double_bass/double_bass_050.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,70.98,2.69,22050
+351,double_bass_051.wav,data/wav/double_bass/double_bass_051.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,73.68,2.86,22050
+352,double_bass_052.wav,data/wav/double_bass/double_bass_052.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,76.53,3.0,22050
+353,double_bass_053.wav,data/wav/double_bass/double_bass_053.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,79.53,2.65,22050
+354,double_bass_054.wav,data/wav/double_bass/double_bass_054.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,82.18,2.69,22050
+355,double_bass_055.wav,data/wav/double_bass/double_bass_055.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,84.87,2.65,22050
+356,double_bass_056.wav,data/wav/double_bass/double_bass_056.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,87.52,2.74,22050
+357,double_bass_057.wav,data/wav/double_bass/double_bass_057.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,91.93,2.65,22050
+358,double_bass_058.wav,data/wav/double_bass/double_bass_058.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,94.57,3.07,22050
+359,double_bass_059.wav,data/wav/double_bass/double_bass_059.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,97.64,3.02,22050
+360,double_bass_060.wav,data/wav/double_bass/double_bass_060.wav,double_bass,kéo vĩ,URMP,AuSep_5_db_38_Jerusalem.wav,103.77,3.23,22050
+361,double_bass_061.wav,data/wav/double_bass/double_bass_061.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_beethoven_doublebass.wav,54.15,3.07,22050
+362,double_bass_062.wav,data/wav/double_bass/double_bass_062.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_beethoven_doublebass.wav,57.21,3.04,22050
+363,double_bass_063.wav,data/wav/double_bass/double_bass_063.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_beethoven_doublebass.wav,63.76,2.95,22050
+364,double_bass_064.wav,data/wav/double_bass/double_bass_064.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_beethoven_doublebass.wav,70.73,3.02,22050
+365,double_bass_065.wav,data/wav/double_bass/double_bass_065.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_beethoven_doublebass.wav,77.76,3.0,22050
+366,double_bass_066.wav,data/wav/double_bass/double_bass_066.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_beethoven_doublebass.wav,80.76,3.06,22050
+367,double_bass_067.wav,data/wav/double_bass/double_bass_067.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_beethoven_doublebass.wav,137.11,2.95,22050
+368,double_bass_068.wav,data/wav/double_bass/double_bass_068.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_bruckner_doublebass.wav,19.09,3.09,22050
+369,double_bass_069.wav,data/wav/double_bass/double_bass_069.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_bruckner_doublebass.wav,22.18,2.79,22050
+370,double_bass_070.wav,data/wav/double_bass/double_bass_070.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_bruckner_doublebass.wav,24.96,3.0,22050
+371,double_bass_071.wav,data/wav/double_bass/double_bass_071.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_bruckner_doublebass.wav,27.96,2.88,22050
+372,double_bass_072.wav,data/wav/double_bass/double_bass_072.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_bruckner_doublebass.wav,30.84,3.0,22050
+373,double_bass_073.wav,data/wav/double_bass/double_bass_073.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_bruckner_doublebass.wav,33.83,3.04,22050
+374,double_bass_074.wav,data/wav/double_bass/double_bass_074.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_bruckner_doublebass.wav,48.88,3.07,22050
+375,double_bass_075.wav,data/wav/double_bass/double_bass_075.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_bruckner_doublebass.wav,51.94,3.02,22050
+376,double_bass_076.wav,data/wav/double_bass/double_bass_076.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_bruckner_doublebass.wav,58.26,3.0,22050
+377,double_bass_077.wav,data/wav/double_bass/double_bass_077.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_bruckner_doublebass.wav,61.25,2.95,22050
+378,double_bass_078.wav,data/wav/double_bass/double_bass_078.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_bruckner_doublebass.wav,64.2,2.95,22050
+379,double_bass_079.wav,data/wav/double_bass/double_bass_079.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_bruckner_doublebass.wav,67.15,3.0,22050
+380,double_bass_080.wav,data/wav/double_bass/double_bass_080.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_bruckner_doublebass.wav,70.15,3.04,22050
+381,double_bass_081.wav,data/wav/double_bass/double_bass_081.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_bruckner_doublebass.wav,73.19,3.16,22050
+382,double_bass_082.wav,data/wav/double_bass/double_bass_082.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_bruckner_doublebass.wav,76.35,3.02,22050
+383,double_bass_083.wav,data/wav/double_bass/double_bass_083.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_bruckner_doublebass.wav,79.37,3.07,22050
+384,double_bass_084.wav,data/wav/double_bass/double_bass_084.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_bruckner_doublebass.wav,82.43,3.11,22050
+385,double_bass_085.wav,data/wav/double_bass/double_bass_085.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_mahler_doublebass.wav,37.59,2.83,22050
+386,double_bass_086.wav,data/wav/double_bass/double_bass_086.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_mahler_doublebass.wav,114.89,2.95,22050
+387,double_bass_087.wav,data/wav/double_bass/double_bass_087.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_mozart_doublebass.wav,15.49,2.9,22050
+388,double_bass_088.wav,data/wav/double_bass/double_bass_088.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_mozart_doublebass.wav,20.09,3.25,22050
+389,double_bass_089.wav,data/wav/double_bass/double_bass_089.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_mozart_doublebass.wav,81.64,3.09,22050
+390,double_bass_090.wav,data/wav/double_bass/double_bass_090.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_mozart_doublebass.wav,86.01,3.02,22050
+391,double_bass_091.wav,data/wav/double_bass/double_bass_091.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_mozart_doublebass.wav,98.92,2.79,22050
+392,double_bass_092.wav,data/wav/double_bass/double_bass_092.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_mozart_doublebass.wav,126.92,3.46,22050
+393,double_bass_093.wav,data/wav/double_bass/double_bass_093.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_mozart_doublebass.wav,161.47,3.04,22050
+394,double_bass_094.wav,data/wav/double_bass/double_bass_094.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_mozart_doublebass.wav,169.18,3.48,22050
+395,double_bass_095.wav,data/wav/double_bass/double_bass_095.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_mozart_doublebass.wav,174.29,3.34,22050
+396,double_bass_096.wav,data/wav/double_bass/double_bass_096.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_mozart_doublebass.wav,180.91,3.46,22050
+397,double_bass_097.wav,data/wav/double_bass/double_bass_097.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_mozart_doublebass.wav,194.51,2.88,22050
+398,double_bass_098.wav,data/wav/double_bass/double_bass_098.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_mozart_doublebass.wav,213.83,3.02,22050
+399,double_bass_099.wav,data/wav/double_bass/double_bass_099.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_mozart_doublebass.wav,216.85,2.9,22050
+400,double_bass_100.wav,data/wav/double_bass/double_bass_100.wav,double_bass,kéo vĩ,PHENICX-Anechoic,PHENICX_mozart_doublebass.wav,219.75,2.81,22050
+401,guitar_acoustic_001.wav,data/wav/guitar_acoustic/guitar_acoustic_001.wav,guitar_acoustic,gảy,GuitarSet,00_BN1-129-Eb_comp_mic.wav,3.07,2.97,22050
+402,guitar_acoustic_002.wav,data/wav/guitar_acoustic/guitar_acoustic_002.wav,guitar_acoustic,gảy,GuitarSet,00_BN1-129-Eb_solo_mic.wav,13.47,2.95,22050
+403,guitar_acoustic_003.wav,data/wav/guitar_acoustic/guitar_acoustic_003.wav,guitar_acoustic,gảy,GuitarSet,00_BN1-147-Gb_comp_mic.wav,12.03,2.95,22050
+404,guitar_acoustic_004.wav,data/wav/guitar_acoustic/guitar_acoustic_004.wav,guitar_acoustic,gảy,GuitarSet,00_BN1-147-Gb_solo_mic.wav,11.96,2.95,22050
+405,guitar_acoustic_005.wav,data/wav/guitar_acoustic/guitar_acoustic_005.wav,guitar_acoustic,gảy,GuitarSet,00_BN2-131-B_comp_mic.wav,7.36,2.86,22050
+406,guitar_acoustic_006.wav,data/wav/guitar_acoustic/guitar_acoustic_006.wav,guitar_acoustic,gảy,GuitarSet,00_BN2-131-B_solo_mic.wav,23.1,3.02,22050
+407,guitar_acoustic_007.wav,data/wav/guitar_acoustic/guitar_acoustic_007.wav,guitar_acoustic,gảy,GuitarSet,00_BN2-166-Ab_comp_mic.wav,4.13,2.95,22050
+408,guitar_acoustic_008.wav,data/wav/guitar_acoustic/guitar_acoustic_008.wav,guitar_acoustic,gảy,GuitarSet,00_BN2-166-Ab_solo_mic.wav,16.58,3.07,22050
+409,guitar_acoustic_009.wav,data/wav/guitar_acoustic/guitar_acoustic_009.wav,guitar_acoustic,gảy,GuitarSet,00_BN3-119-G_comp_mic.wav,20.85,3.11,22050
+410,guitar_acoustic_010.wav,data/wav/guitar_acoustic/guitar_acoustic_010.wav,guitar_acoustic,gảy,GuitarSet,00_BN3-119-G_solo_mic.wav,12.86,3.27,22050
+411,guitar_acoustic_011.wav,data/wav/guitar_acoustic/guitar_acoustic_011.wav,guitar_acoustic,gảy,GuitarSet,00_BN3-154-E_comp_mic.wav,13.77,2.97,22050
+412,guitar_acoustic_012.wav,data/wav/guitar_acoustic/guitar_acoustic_012.wav,guitar_acoustic,gảy,GuitarSet,00_BN3-154-E_solo_mic.wav,18.13,3.02,22050
+413,guitar_acoustic_013.wav,data/wav/guitar_acoustic/guitar_acoustic_013.wav,guitar_acoustic,gảy,GuitarSet,00_Funk1-114-Ab_comp_mic.wav,5.27,2.88,22050
+414,guitar_acoustic_014.wav,data/wav/guitar_acoustic/guitar_acoustic_014.wav,guitar_acoustic,gảy,GuitarSet,00_Funk1-114-Ab_solo_mic.wav,5.76,3.32,22050
+415,guitar_acoustic_015.wav,data/wav/guitar_acoustic/guitar_acoustic_015.wav,guitar_acoustic,gảy,GuitarSet,00_Funk1-97-C_comp_mic.wav,22.55,2.95,22050
+416,guitar_acoustic_016.wav,data/wav/guitar_acoustic/guitar_acoustic_016.wav,guitar_acoustic,gảy,GuitarSet,00_Funk1-97-C_solo_mic.wav,25.31,3.16,22050
+417,guitar_acoustic_017.wav,data/wav/guitar_acoustic/guitar_acoustic_017.wav,guitar_acoustic,gảy,GuitarSet,00_Funk2-108-Eb_comp_mic.wav,24.15,3.16,22050
+418,guitar_acoustic_018.wav,data/wav/guitar_acoustic/guitar_acoustic_018.wav,guitar_acoustic,gảy,GuitarSet,00_Funk2-108-Eb_solo_mic.wav,3.09,3.09,22050
+419,guitar_acoustic_019.wav,data/wav/guitar_acoustic/guitar_acoustic_019.wav,guitar_acoustic,gảy,GuitarSet,00_Funk2-119-G_comp_mic.wav,26.82,2.95,22050
+420,guitar_acoustic_020.wav,data/wav/guitar_acoustic/guitar_acoustic_020.wav,guitar_acoustic,gảy,GuitarSet,00_Funk2-119-G_solo_mic.wav,2.97,3.07,22050
+421,guitar_acoustic_021.wav,data/wav/guitar_acoustic/guitar_acoustic_021.wav,guitar_acoustic,gảy,GuitarSet,00_Funk3-112-C#_comp_mic.wav,0.28,3.2,22050
+422,guitar_acoustic_022.wav,data/wav/guitar_acoustic/guitar_acoustic_022.wav,guitar_acoustic,gảy,GuitarSet,00_Funk3-112-C#_solo_mic.wav,22.71,3.02,22050
+423,guitar_acoustic_023.wav,data/wav/guitar_acoustic/guitar_acoustic_023.wav,guitar_acoustic,gảy,GuitarSet,00_Funk3-98-A_comp_mic.wav,3.32,2.79,22050
+424,guitar_acoustic_024.wav,data/wav/guitar_acoustic/guitar_acoustic_024.wav,guitar_acoustic,gảy,GuitarSet,00_Funk3-98-A_solo_mic.wav,6.29,2.6,22050
+425,guitar_acoustic_025.wav,data/wav/guitar_acoustic/guitar_acoustic_025.wav,guitar_acoustic,gảy,GuitarSet,00_Jazz1-130-D_comp_mic.wav,14.07,3.0,22050
+426,guitar_acoustic_026.wav,data/wav/guitar_acoustic/guitar_acoustic_026.wav,guitar_acoustic,gảy,GuitarSet,00_Jazz1-130-D_solo_mic.wav,2.93,3.09,22050
+427,guitar_acoustic_027.wav,data/wav/guitar_acoustic/guitar_acoustic_027.wav,guitar_acoustic,gảy,GuitarSet,00_Jazz1-200-B_comp_mic.wav,8.96,2.86,22050
+428,guitar_acoustic_028.wav,data/wav/guitar_acoustic/guitar_acoustic_028.wav,guitar_acoustic,gảy,GuitarSet,00_Jazz1-200-B_solo_mic.wav,3.0,2.95,22050
+429,guitar_acoustic_029.wav,data/wav/guitar_acoustic/guitar_acoustic_029.wav,guitar_acoustic,gảy,GuitarSet,00_Jazz2-110-Bb_comp_mic.wav,3.2,2.9,22050
+430,guitar_acoustic_030.wav,data/wav/guitar_acoustic/guitar_acoustic_030.wav,guitar_acoustic,gảy,GuitarSet,00_Jazz2-110-Bb_solo_mic.wav,14.58,3.09,22050
+431,guitar_acoustic_031.wav,data/wav/guitar_acoustic/guitar_acoustic_031.wav,guitar_acoustic,gảy,GuitarSet,00_Jazz2-187-F#_comp_mic.wav,14.86,3.09,22050
+432,guitar_acoustic_032.wav,data/wav/guitar_acoustic/guitar_acoustic_032.wav,guitar_acoustic,gảy,GuitarSet,00_Jazz2-187-F#_solo_mic.wav,10.89,3.16,22050
+433,guitar_acoustic_033.wav,data/wav/guitar_acoustic/guitar_acoustic_033.wav,guitar_acoustic,gảy,GuitarSet,00_Jazz3-137-Eb_comp_mic.wav,15.3,3.07,22050
+434,guitar_acoustic_034.wav,data/wav/guitar_acoustic/guitar_acoustic_034.wav,guitar_acoustic,gảy,GuitarSet,00_Jazz3-137-Eb_solo_mic.wav,8.75,3.0,22050
+435,guitar_acoustic_035.wav,data/wav/guitar_acoustic/guitar_acoustic_035.wav,guitar_acoustic,gảy,GuitarSet,00_Jazz3-150-C_comp_mic.wav,16.37,3.06,22050
+436,guitar_acoustic_036.wav,data/wav/guitar_acoustic/guitar_acoustic_036.wav,guitar_acoustic,gảy,GuitarSet,00_Jazz3-150-C_solo_mic.wav,20.76,2.83,22050
+437,guitar_acoustic_037.wav,data/wav/guitar_acoustic/guitar_acoustic_037.wav,guitar_acoustic,gảy,GuitarSet,00_Rock1-130-A_comp_mic.wav,11.89,3.04,22050
+438,guitar_acoustic_038.wav,data/wav/guitar_acoustic/guitar_acoustic_038.wav,guitar_acoustic,gảy,GuitarSet,00_Rock1-130-A_solo_mic.wav,8.96,3.04,22050
+439,guitar_acoustic_039.wav,data/wav/guitar_acoustic/guitar_acoustic_039.wav,guitar_acoustic,gảy,GuitarSet,00_Rock1-90-C#_comp_mic.wav,18.0,2.95,22050
+440,guitar_acoustic_040.wav,data/wav/guitar_acoustic/guitar_acoustic_040.wav,guitar_acoustic,gảy,GuitarSet,00_Rock1-90-C#_solo_mic.wav,14.95,3.0,22050
+441,guitar_acoustic_041.wav,data/wav/guitar_acoustic/guitar_acoustic_041.wav,guitar_acoustic,gảy,GuitarSet,00_Rock2-142-D_comp_mic.wav,18.48,3.09,22050
+442,guitar_acoustic_042.wav,data/wav/guitar_acoustic/guitar_acoustic_042.wav,guitar_acoustic,gảy,GuitarSet,00_Rock2-142-D_solo_mic.wav,3.13,2.95,22050
+443,guitar_acoustic_043.wav,data/wav/guitar_acoustic/guitar_acoustic_043.wav,guitar_acoustic,gảy,GuitarSet,00_Rock2-85-F_comp_mic.wav,0.65,2.81,22050
+444,guitar_acoustic_044.wav,data/wav/guitar_acoustic/guitar_acoustic_044.wav,guitar_acoustic,gảy,GuitarSet,00_Rock2-85-F_solo_mic.wav,0.7,3.13,22050
+445,guitar_acoustic_045.wav,data/wav/guitar_acoustic/guitar_acoustic_045.wav,guitar_acoustic,gảy,GuitarSet,00_Rock3-117-Bb_comp_mic.wav,0.05,2.9,22050
+446,guitar_acoustic_046.wav,data/wav/guitar_acoustic/guitar_acoustic_046.wav,guitar_acoustic,gảy,GuitarSet,00_Rock3-117-Bb_solo_mic.wav,23.8,3.16,22050
+447,guitar_acoustic_047.wav,data/wav/guitar_acoustic/guitar_acoustic_047.wav,guitar_acoustic,gảy,GuitarSet,00_Rock3-148-C_comp_mic.wav,9.06,3.09,22050
+448,guitar_acoustic_048.wav,data/wav/guitar_acoustic/guitar_acoustic_048.wav,guitar_acoustic,gảy,GuitarSet,00_Rock3-148-C_solo_mic.wav,15.19,2.83,22050
+449,guitar_acoustic_049.wav,data/wav/guitar_acoustic/guitar_acoustic_049.wav,guitar_acoustic,gảy,GuitarSet,00_SS1-100-C#_comp_mic.wav,6.46,3.16,22050
+450,guitar_acoustic_050.wav,data/wav/guitar_acoustic/guitar_acoustic_050.wav,guitar_acoustic,gảy,GuitarSet,00_SS1-100-C#_solo_mic.wav,16.76,2.97,22050
+451,guitar_acoustic_051.wav,data/wav/guitar_acoustic/guitar_acoustic_051.wav,guitar_acoustic,gảy,GuitarSet,00_SS1-68-E_comp_mic.wav,27.63,2.95,22050
+452,guitar_acoustic_052.wav,data/wav/guitar_acoustic/guitar_acoustic_052.wav,guitar_acoustic,gảy,GuitarSet,00_SS1-68-E_solo_mic.wav,0.05,3.11,22050
+453,guitar_acoustic_053.wav,data/wav/guitar_acoustic/guitar_acoustic_053.wav,guitar_acoustic,gảy,GuitarSet,00_SS2-107-Ab_comp_mic.wav,24.1,2.97,22050
+454,guitar_acoustic_054.wav,data/wav/guitar_acoustic/guitar_acoustic_054.wav,guitar_acoustic,gảy,GuitarSet,00_SS2-107-Ab_solo_mic.wav,30.26,3.11,22050
+455,guitar_acoustic_055.wav,data/wav/guitar_acoustic/guitar_acoustic_055.wav,guitar_acoustic,gảy,GuitarSet,00_SS2-88-F_comp_mic.wav,23.61,3.0,22050
+456,guitar_acoustic_056.wav,data/wav/guitar_acoustic/guitar_acoustic_056.wav,guitar_acoustic,gảy,GuitarSet,00_SS2-88-F_solo_mic.wav,28.26,2.9,22050
+457,guitar_acoustic_057.wav,data/wav/guitar_acoustic/guitar_acoustic_057.wav,guitar_acoustic,gảy,GuitarSet,00_SS3-84-Bb_comp_mic.wav,21.87,2.93,22050
+458,guitar_acoustic_058.wav,data/wav/guitar_acoustic/guitar_acoustic_058.wav,guitar_acoustic,gảy,GuitarSet,00_SS3-84-Bb_solo_mic.wav,37.36,3.04,22050
+459,guitar_acoustic_059.wav,data/wav/guitar_acoustic/guitar_acoustic_059.wav,guitar_acoustic,gảy,GuitarSet,00_SS3-98-C_comp_mic.wav,33.0,3.13,22050
+460,guitar_acoustic_060.wav,data/wav/guitar_acoustic/guitar_acoustic_060.wav,guitar_acoustic,gảy,GuitarSet,00_SS3-98-C_solo_mic.wav,29.84,2.9,22050
+461,guitar_acoustic_061.wav,data/wav/guitar_acoustic/guitar_acoustic_061.wav,guitar_acoustic,gảy,GuitarSet,01_BN1-129-Eb_comp_mic.wav,12.75,3.0,22050
+462,guitar_acoustic_062.wav,data/wav/guitar_acoustic/guitar_acoustic_062.wav,guitar_acoustic,gảy,GuitarSet,01_BN1-129-Eb_solo_mic.wav,4.64,3.0,22050
+463,guitar_acoustic_063.wav,data/wav/guitar_acoustic/guitar_acoustic_063.wav,guitar_acoustic,gảy,GuitarSet,01_BN1-147-Gb_comp_mic.wav,11.96,3.11,22050
+464,guitar_acoustic_064.wav,data/wav/guitar_acoustic/guitar_acoustic_064.wav,guitar_acoustic,gảy,GuitarSet,01_BN1-147-Gb_solo_mic.wav,0.95,3.07,22050
+465,guitar_acoustic_065.wav,data/wav/guitar_acoustic/guitar_acoustic_065.wav,guitar_acoustic,gảy,GuitarSet,01_BN2-131-B_comp_mic.wav,18.76,3.02,22050
+466,guitar_acoustic_066.wav,data/wav/guitar_acoustic/guitar_acoustic_066.wav,guitar_acoustic,gảy,GuitarSet,01_BN2-131-B_solo_mic.wav,12.38,3.07,22050
+467,guitar_acoustic_067.wav,data/wav/guitar_acoustic/guitar_acoustic_067.wav,guitar_acoustic,gảy,GuitarSet,01_BN2-166-Ab_comp_mic.wav,14.95,3.09,22050
+468,guitar_acoustic_068.wav,data/wav/guitar_acoustic/guitar_acoustic_068.wav,guitar_acoustic,gảy,GuitarSet,01_BN2-166-Ab_solo_mic.wav,6.41,2.95,22050
+469,guitar_acoustic_069.wav,data/wav/guitar_acoustic/guitar_acoustic_069.wav,guitar_acoustic,gảy,GuitarSet,01_BN3-119-G_comp_mic.wav,9.29,3.0,22050
+470,guitar_acoustic_070.wav,data/wav/guitar_acoustic/guitar_acoustic_070.wav,guitar_acoustic,gảy,GuitarSet,01_BN3-119-G_solo_mic.wav,4.25,3.27,22050
+471,guitar_acoustic_071.wav,data/wav/guitar_acoustic/guitar_acoustic_071.wav,guitar_acoustic,gảy,GuitarSet,01_BN3-154-E_comp_mic.wav,20.62,3.13,22050
+472,guitar_acoustic_072.wav,data/wav/guitar_acoustic/guitar_acoustic_072.wav,guitar_acoustic,gảy,GuitarSet,01_BN3-154-E_solo_mic.wav,17.93,3.02,22050
+473,guitar_acoustic_073.wav,data/wav/guitar_acoustic/guitar_acoustic_073.wav,guitar_acoustic,gảy,GuitarSet,01_Funk1-114-Ab_comp_mic.wav,15.0,2.88,22050
+474,guitar_acoustic_074.wav,data/wav/guitar_acoustic/guitar_acoustic_074.wav,guitar_acoustic,gảy,GuitarSet,01_Funk1-114-Ab_solo_mic.wav,17.35,3.02,22050
+475,guitar_acoustic_075.wav,data/wav/guitar_acoustic/guitar_acoustic_075.wav,guitar_acoustic,gảy,GuitarSet,01_Funk1-97-C_comp_mic.wav,15.02,3.02,22050
+476,guitar_acoustic_076.wav,data/wav/guitar_acoustic/guitar_acoustic_076.wav,guitar_acoustic,gảy,GuitarSet,01_Funk1-97-C_solo_mic.wav,22.55,3.04,22050
+477,guitar_acoustic_077.wav,data/wav/guitar_acoustic/guitar_acoustic_077.wav,guitar_acoustic,gảy,GuitarSet,01_Funk2-108-Eb_comp_mic.wav,32.6,2.79,22050
+478,guitar_acoustic_078.wav,data/wav/guitar_acoustic/guitar_acoustic_078.wav,guitar_acoustic,gảy,GuitarSet,01_Funk2-108-Eb_solo_mic.wav,29.91,3.0,22050
+479,guitar_acoustic_079.wav,data/wav/guitar_acoustic/guitar_acoustic_079.wav,guitar_acoustic,gảy,GuitarSet,01_Funk2-119-G_comp_mic.wav,18.39,3.04,22050
+480,guitar_acoustic_080.wav,data/wav/guitar_acoustic/guitar_acoustic_080.wav,guitar_acoustic,gảy,GuitarSet,01_Funk2-119-G_solo_mic.wav,26.38,3.0,22050
+481,guitar_acoustic_081.wav,data/wav/guitar_acoustic/guitar_acoustic_081.wav,guitar_acoustic,gảy,GuitarSet,01_Funk3-112-C#_comp_mic.wav,6.97,3.07,22050
+482,guitar_acoustic_082.wav,data/wav/guitar_acoustic/guitar_acoustic_082.wav,guitar_acoustic,gảy,GuitarSet,01_Funk3-112-C#_solo_mic.wav,13.07,2.95,22050
+483,guitar_acoustic_083.wav,data/wav/guitar_acoustic/guitar_acoustic_083.wav,guitar_acoustic,gảy,GuitarSet,01_Funk3-98-A_comp_mic.wav,26.91,2.88,22050
+484,guitar_acoustic_084.wav,data/wav/guitar_acoustic/guitar_acoustic_084.wav,guitar_acoustic,gảy,GuitarSet,01_Funk3-98-A_solo_mic.wav,14.95,3.07,22050
+485,guitar_acoustic_085.wav,data/wav/guitar_acoustic/guitar_acoustic_085.wav,guitar_acoustic,gảy,GuitarSet,01_Jazz1-130-D_comp_mic.wav,0.05,2.97,22050
+486,guitar_acoustic_086.wav,data/wav/guitar_acoustic/guitar_acoustic_086.wav,guitar_acoustic,gảy,GuitarSet,01_Jazz1-130-D_solo_mic.wav,13.19,3.07,22050
+487,guitar_acoustic_087.wav,data/wav/guitar_acoustic/guitar_acoustic_087.wav,guitar_acoustic,gảy,GuitarSet,01_Jazz1-200-B_comp_mic.wav,8.41,2.97,22050
+488,guitar_acoustic_088.wav,data/wav/guitar_acoustic/guitar_acoustic_088.wav,guitar_acoustic,gảy,GuitarSet,01_Jazz1-200-B_solo_mic.wav,9.85,3.02,22050
+489,guitar_acoustic_089.wav,data/wav/guitar_acoustic/guitar_acoustic_089.wav,guitar_acoustic,gảy,GuitarSet,01_Jazz2-110-Bb_comp_mic.wav,13.96,2.93,22050
+490,guitar_acoustic_090.wav,data/wav/guitar_acoustic/guitar_acoustic_090.wav,guitar_acoustic,gảy,GuitarSet,01_Jazz2-110-Bb_solo_mic.wav,7.92,3.0,22050
+491,guitar_acoustic_091.wav,data/wav/guitar_acoustic/guitar_acoustic_091.wav,guitar_acoustic,gảy,GuitarSet,01_Jazz2-187-F#_comp_mic.wav,8.96,2.88,22050
+492,guitar_acoustic_092.wav,data/wav/guitar_acoustic/guitar_acoustic_092.wav,guitar_acoustic,gảy,GuitarSet,01_Jazz2-187-F#_solo_mic.wav,6.52,3.04,22050
+493,guitar_acoustic_093.wav,data/wav/guitar_acoustic/guitar_acoustic_093.wav,guitar_acoustic,gảy,GuitarSet,01_Jazz3-137-Eb_comp_mic.wav,13.37,3.02,22050
+494,guitar_acoustic_094.wav,data/wav/guitar_acoustic/guitar_acoustic_094.wav,guitar_acoustic,gảy,GuitarSet,01_Jazz3-137-Eb_solo_mic.wav,7.22,2.83,22050
+495,guitar_acoustic_095.wav,data/wav/guitar_acoustic/guitar_acoustic_095.wav,guitar_acoustic,gảy,GuitarSet,01_Jazz3-150-C_comp_mic.wav,0.77,3.23,22050
+496,guitar_acoustic_096.wav,data/wav/guitar_acoustic/guitar_acoustic_096.wav,guitar_acoustic,gảy,GuitarSet,01_Jazz3-150-C_solo_mic.wav,14.12,2.97,22050
+497,guitar_acoustic_097.wav,data/wav/guitar_acoustic/guitar_acoustic_097.wav,guitar_acoustic,gảy,GuitarSet,01_Rock1-130-A_comp_mic.wav,14.68,2.97,22050
+498,guitar_acoustic_098.wav,data/wav/guitar_acoustic/guitar_acoustic_098.wav,guitar_acoustic,gảy,GuitarSet,01_Rock1-130-A_solo_mic.wav,15.91,3.0,22050
+499,guitar_acoustic_099.wav,data/wav/guitar_acoustic/guitar_acoustic_099.wav,guitar_acoustic,gảy,GuitarSet,01_Rock1-90-C#_comp_mic.wav,21.99,2.95,22050
+500,guitar_acoustic_100.wav,data/wav/guitar_acoustic/guitar_acoustic_100.wav,guitar_acoustic,gảy,GuitarSet,01_Rock1-90-C#_solo_mic.wav,25.59,3.07,22050
+501,guitar_electric_001.wav,data/wav/guitar_electric/guitar_electric_001.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_0086cb3f-d951-591a-faf8-8c37d97796a2.wav,0.0,2.97,22050
+502,guitar_electric_002.wav,data/wav/guitar_electric/guitar_electric_002.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_01af0584-55fc-5483-fd3e-6cabb09cc9d8.wav,0.0,2.97,22050
+503,guitar_electric_003.wav,data/wav/guitar_electric/guitar_electric_003.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_0201d011-b32c-5e79-f44d-b1d6a7e1c74d.wav,0.0,2.97,22050
+504,guitar_electric_004.wav,data/wav/guitar_electric/guitar_electric_004.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_02d09174-8f0c-5596-fcc1-45311413c794.wav,0.0,2.97,22050
+505,guitar_electric_005.wav,data/wav/guitar_electric/guitar_electric_005.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_02d48c7f-e547-590e-f649-a8ebb28cc17d.wav,0.0,2.97,22050
+506,guitar_electric_006.wav,data/wav/guitar_electric/guitar_electric_006.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_02f7aac1-d5bb-542d-fb0e-d1030cd9ac88.wav,0.0,2.97,22050
+507,guitar_electric_007.wav,data/wav/guitar_electric/guitar_electric_007.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_04291a95-70a1-57a6-f442-9d8c0b6bf342.wav,0.0,2.97,22050
+508,guitar_electric_008.wav,data/wav/guitar_electric/guitar_electric_008.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_04be2e68-9a7e-5ec4-f58e-ea81edd237f2.wav,0.0,2.97,22050
+509,guitar_electric_009.wav,data/wav/guitar_electric/guitar_electric_009.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_05287aa0-e0b1-51b3-fca9-01e4381377a1.wav,0.0,2.97,22050
+510,guitar_electric_010.wav,data/wav/guitar_electric/guitar_electric_010.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_05812d72-a3f8-548f-fda1-1e48d8a2fbea.wav,0.0,2.97,22050
+511,guitar_electric_011.wav,data/wav/guitar_electric/guitar_electric_011.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_0793a49a-e8f4-54f3-ff00-576c8f17ab29.wav,0.0,2.97,22050
+512,guitar_electric_012.wav,data/wav/guitar_electric/guitar_electric_012.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_07de7871-17c5-5dc3-f804-7c5e7f4eef91.wav,0.0,2.97,22050
+513,guitar_electric_013.wav,data/wav/guitar_electric/guitar_electric_013.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_083576c0-14eb-562c-fadc-1fefd3b2d0dc.wav,0.0,2.97,22050
+514,guitar_electric_014.wav,data/wav/guitar_electric/guitar_electric_014.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_085f6a72-8407-593b-f568-9eedba9cd765.wav,0.0,2.97,22050
+515,guitar_electric_015.wav,data/wav/guitar_electric/guitar_electric_015.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_0889f5c1-fb0b-577a-f24b-8e5879507e15.wav,0.0,2.97,22050
+516,guitar_electric_016.wav,data/wav/guitar_electric/guitar_electric_016.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_08b6f2c2-1efa-5b8f-ffe3-c0470c6fbfee.wav,0.0,2.97,22050
+517,guitar_electric_017.wav,data/wav/guitar_electric/guitar_electric_017.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_0908fab5-38c9-5f3f-f99a-c0af9ce7a8c7.wav,0.0,2.97,22050
+518,guitar_electric_018.wav,data/wav/guitar_electric/guitar_electric_018.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_092a6ac7-0c06-5662-fef7-ff333853e3c7.wav,0.0,2.97,22050
+519,guitar_electric_019.wav,data/wav/guitar_electric/guitar_electric_019.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_092b050a-8f63-5b9e-f97b-c19725646cc1.wav,0.0,2.97,22050
+520,guitar_electric_020.wav,data/wav/guitar_electric/guitar_electric_020.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_095fd868-cd7e-5661-f661-f560eb8277de.wav,0.0,2.97,22050
+521,guitar_electric_021.wav,data/wav/guitar_electric/guitar_electric_021.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_09ad8c83-522d-5412-fddc-3e3f3ce3b684.wav,0.0,2.97,22050
+522,guitar_electric_022.wav,data/wav/guitar_electric/guitar_electric_022.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_09f53c23-b0bd-5a82-fc3e-c9ef3a20767c.wav,0.0,2.97,22050
+523,guitar_electric_023.wav,data/wav/guitar_electric/guitar_electric_023.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_0b675ade-f1a7-5bf2-f089-af154ba9bf36.wav,0.0,2.97,22050
+524,guitar_electric_024.wav,data/wav/guitar_electric/guitar_electric_024.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_0d0508d4-ddfd-5dc8-f92d-7fc83fd27a20.wav,0.0,2.97,22050
+525,guitar_electric_025.wav,data/wav/guitar_electric/guitar_electric_025.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_0d25ea2a-83ff-5242-fb48-b6874fa72865.wav,0.0,2.97,22050
+526,guitar_electric_026.wav,data/wav/guitar_electric/guitar_electric_026.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_0e00b0ec-e606-5887-fdf3-2390bea01ac3.wav,0.0,2.97,22050
+527,guitar_electric_027.wav,data/wav/guitar_electric/guitar_electric_027.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_0e1e10a9-ed82-5b10-f489-3f8782556068.wav,0.0,2.97,22050
+528,guitar_electric_028.wav,data/wav/guitar_electric/guitar_electric_028.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_0e3a6b3f-d583-5730-ffe0-ffaf374593c0.wav,0.0,2.97,22050
+529,guitar_electric_029.wav,data/wav/guitar_electric/guitar_electric_029.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_0f772bb7-c59c-5b37-f974-486ad883ce0c.wav,0.0,2.97,22050
+530,guitar_electric_030.wav,data/wav/guitar_electric/guitar_electric_030.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_0f8d3f5f-bba9-5a85-fbf3-f51c16a2a95c.wav,0.0,2.97,22050
+531,guitar_electric_031.wav,data/wav/guitar_electric/guitar_electric_031.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_0fa948a8-26a5-5b36-f6df-8ce0cbfae604.wav,0.0,2.97,22050
+532,guitar_electric_032.wav,data/wav/guitar_electric/guitar_electric_032.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_10d64546-36b5-50fb-fcb6-2ac6a67dd08c.wav,0.0,2.97,22050
+533,guitar_electric_033.wav,data/wav/guitar_electric/guitar_electric_033.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_1184a686-8b4d-5596-f0d5-0b8129680a8d.wav,0.0,2.97,22050
+534,guitar_electric_034.wav,data/wav/guitar_electric/guitar_electric_034.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_11921707-1e84-546a-fc48-d42be0fcf694.wav,0.0,2.97,22050
+535,guitar_electric_035.wav,data/wav/guitar_electric/guitar_electric_035.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_125e3b6b-52ce-5041-f227-8c29338979bc.wav,0.0,2.97,22050
+536,guitar_electric_036.wav,data/wav/guitar_electric/guitar_electric_036.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_1295cdcf-d3bb-590e-f604-88d7e1c62570.wav,0.0,2.97,22050
+537,guitar_electric_037.wav,data/wav/guitar_electric/guitar_electric_037.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_12f34aa6-9d1c-5672-f8bb-f50cdaf6e434.wav,0.0,2.97,22050
+538,guitar_electric_038.wav,data/wav/guitar_electric/guitar_electric_038.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_12f6a6b7-d604-54af-f1b7-d071d37c80bc.wav,0.0,2.97,22050
+539,guitar_electric_039.wav,data/wav/guitar_electric/guitar_electric_039.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_13686b36-f6a9-559b-f31f-ef1e374a05bb.wav,0.0,2.97,22050
+540,guitar_electric_040.wav,data/wav/guitar_electric/guitar_electric_040.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_144a21e4-fae5-5e87-f570-25ae321e9c30.wav,0.0,2.97,22050
+541,guitar_electric_041.wav,data/wav/guitar_electric/guitar_electric_041.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_1549b4ae-a7df-5a92-f497-58ea3c4f7dcd.wav,0.0,2.97,22050
+542,guitar_electric_042.wav,data/wav/guitar_electric/guitar_electric_042.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_1573111c-fd2a-51ad-f25f-b4cbdc362d79.wav,0.0,2.97,22050
+543,guitar_electric_043.wav,data/wav/guitar_electric/guitar_electric_043.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_15a84796-968c-5820-f8e2-3e7c16ba69ff.wav,0.0,2.97,22050
+544,guitar_electric_044.wav,data/wav/guitar_electric/guitar_electric_044.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_15af532e-fc5a-5040-f718-ccac52b75712.wav,0.0,2.97,22050
+545,guitar_electric_045.wav,data/wav/guitar_electric/guitar_electric_045.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_15d71e4e-72eb-5085-fcbd-5ac9bdde4d21.wav,0.0,2.97,22050
+546,guitar_electric_046.wav,data/wav/guitar_electric/guitar_electric_046.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_164f88d3-2995-5d13-f708-ae3fc4611437.wav,0.0,2.97,22050
+547,guitar_electric_047.wav,data/wav/guitar_electric/guitar_electric_047.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_16b4aa0c-1b43-5519-ff0f-00b04fb26db2.wav,0.0,2.97,22050
+548,guitar_electric_048.wav,data/wav/guitar_electric/guitar_electric_048.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_18204e6b-fce6-5609-f8bc-8f19d075cf32.wav,0.0,2.97,22050
+549,guitar_electric_049.wav,data/wav/guitar_electric/guitar_electric_049.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_183a885e-4146-5b12-f104-2ab40ccb1d63.wav,0.0,2.97,22050
+550,guitar_electric_050.wav,data/wav/guitar_electric/guitar_electric_050.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_1922c42f-c2ca-5c66-f580-6485c8408b46.wav,0.0,2.97,22050
+551,guitar_electric_051.wav,data/wav/guitar_electric/guitar_electric_051.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_19aea8d5-b574-543b-f24d-b6eb6c5a8f60.wav,0.0,2.97,22050
+552,guitar_electric_052.wav,data/wav/guitar_electric/guitar_electric_052.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_19cfb7b6-9e94-5498-f965-46de2c15abc5.wav,0.0,2.97,22050
+553,guitar_electric_053.wav,data/wav/guitar_electric/guitar_electric_053.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_1b0677f1-9e12-58e4-f0ee-439051982dc0.wav,0.0,2.97,22050
+554,guitar_electric_054.wav,data/wav/guitar_electric/guitar_electric_054.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_1b0d4870-9ee7-5b89-f99a-037fcdd98384.wav,0.0,2.97,22050
+555,guitar_electric_055.wav,data/wav/guitar_electric/guitar_electric_055.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_1bb387c7-a5df-5282-f931-dfb1bc4435b3.wav,0.0,2.97,22050
+556,guitar_electric_056.wav,data/wav/guitar_electric/guitar_electric_056.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_1d61463a-6d31-543d-f639-3f6a9397f2f1.wav,0.0,2.97,22050
+557,guitar_electric_057.wav,data/wav/guitar_electric/guitar_electric_057.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_1e7f51f1-9414-51c6-f9f2-6196fe3606d8.wav,0.0,2.97,22050
+558,guitar_electric_058.wav,data/wav/guitar_electric/guitar_electric_058.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_1efe45c4-bb28-50c8-fde2-70b9c963e3f0.wav,0.0,2.97,22050
+559,guitar_electric_059.wav,data/wav/guitar_electric/guitar_electric_059.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_207b85be-f0d2-5ba5-f843-11f621e9d58e.wav,0.0,2.97,22050
+560,guitar_electric_060.wav,data/wav/guitar_electric/guitar_electric_060.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_21933bdc-3cbc-5990-f941-06d1a6163b5c.wav,0.0,2.97,22050
+561,guitar_electric_061.wav,data/wav/guitar_electric/guitar_electric_061.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_21ab097c-dfa3-5bff-fa1e-6dd8cb2babf1.wav,0.0,2.97,22050
+562,guitar_electric_062.wav,data/wav/guitar_electric/guitar_electric_062.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_22173924-644f-5c3c-fdbf-7f0b0080d5f4.wav,0.0,2.97,22050
+563,guitar_electric_063.wav,data/wav/guitar_electric/guitar_electric_063.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_23103ddf-b08f-5b22-f166-512ec12c0f1a.wav,0.0,2.97,22050
+564,guitar_electric_064.wav,data/wav/guitar_electric/guitar_electric_064.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_2334bcab-3aa0-50ad-f2c2-77b202e63758.wav,0.0,2.97,22050
+565,guitar_electric_065.wav,data/wav/guitar_electric/guitar_electric_065.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_23a76e04-a770-5948-f50f-015ebf47a4cc.wav,0.0,2.97,22050
+566,guitar_electric_066.wav,data/wav/guitar_electric/guitar_electric_066.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_23ea8ff1-cb5e-57cc-f058-f9fec4697380.wav,0.0,2.97,22050
+567,guitar_electric_067.wav,data/wav/guitar_electric/guitar_electric_067.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_2493d375-ea82-5e36-fb80-08d70b3b554f.wav,0.0,2.97,22050
+568,guitar_electric_068.wav,data/wav/guitar_electric/guitar_electric_068.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_24bce91e-8ae7-5c3a-f7af-2aa05b5fb9fc.wav,0.0,2.97,22050
+569,guitar_electric_069.wav,data/wav/guitar_electric/guitar_electric_069.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_24dbdc06-0367-58b4-f356-b1612e03a08b.wav,0.0,2.97,22050
+570,guitar_electric_070.wav,data/wav/guitar_electric/guitar_electric_070.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_25541b74-8969-581e-f6b3-f9b550d34bc0.wav,0.0,2.97,22050
+571,guitar_electric_071.wav,data/wav/guitar_electric/guitar_electric_071.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_257f1a7d-2318-5a3d-ffaa-b6ed6fcb092c.wav,0.0,2.97,22050
+572,guitar_electric_072.wav,data/wav/guitar_electric/guitar_electric_072.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_26255ebb-2345-52c6-f469-fdab9545f91a.wav,0.0,2.97,22050
+573,guitar_electric_073.wav,data/wav/guitar_electric/guitar_electric_073.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_26616022-ccda-581c-f6bc-9d8cace17c5c.wav,0.0,2.97,22050
+574,guitar_electric_074.wav,data/wav/guitar_electric/guitar_electric_074.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_2723c3fb-2d90-53bb-fcbf-e75ce9b7c187.wav,0.0,2.97,22050
+575,guitar_electric_075.wav,data/wav/guitar_electric/guitar_electric_075.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_279e023c-7efe-5ab9-fd4d-c7ee2b86514b.wav,0.0,2.97,22050
+576,guitar_electric_076.wav,data/wav/guitar_electric/guitar_electric_076.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_280d9c6d-2570-594c-fd43-bd4d3163044d.wav,0.0,2.97,22050
+577,guitar_electric_077.wav,data/wav/guitar_electric/guitar_electric_077.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_282158d8-d93a-502f-f054-359f13b3e5b1.wav,0.0,2.97,22050
+578,guitar_electric_078.wav,data/wav/guitar_electric/guitar_electric_078.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_284dd171-408a-5627-f561-ac769769d73e.wav,0.0,2.97,22050
+579,guitar_electric_079.wav,data/wav/guitar_electric/guitar_electric_079.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_2851e423-0e59-5caa-fc27-ebc0ce519c72.wav,0.0,2.97,22050
+580,guitar_electric_080.wav,data/wav/guitar_electric/guitar_electric_080.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_28e02450-8558-5592-fa64-c8745bd3a026.wav,0.0,2.97,22050
+581,guitar_electric_081.wav,data/wav/guitar_electric/guitar_electric_081.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_2957373b-9b50-5b80-ff81-f5b1e49f8a08.wav,0.0,2.97,22050
+582,guitar_electric_082.wav,data/wav/guitar_electric/guitar_electric_082.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_297e45cc-9f16-56a8-fd5d-6a0803a2f3a2.wav,0.0,2.97,22050
+583,guitar_electric_083.wav,data/wav/guitar_electric/guitar_electric_083.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_29b7eb3c-5535-5727-f78e-10e8fd2183ae.wav,0.0,2.97,22050
+584,guitar_electric_084.wav,data/wav/guitar_electric/guitar_electric_084.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_2a8eda07-8bc7-56c0-f81f-400489c7492c.wav,0.0,2.97,22050
+585,guitar_electric_085.wav,data/wav/guitar_electric/guitar_electric_085.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_2b804742-f33c-592d-f608-6b8268cb6d1d.wav,0.0,2.97,22050
+586,guitar_electric_086.wav,data/wav/guitar_electric/guitar_electric_086.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_2ce25f50-2abb-5919-feab-e80d237cdcd5.wav,0.0,2.97,22050
+587,guitar_electric_087.wav,data/wav/guitar_electric/guitar_electric_087.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_2dd063f5-2bb4-5362-ff85-dc9c675fbdea.wav,0.0,2.97,22050
+588,guitar_electric_088.wav,data/wav/guitar_electric/guitar_electric_088.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_2e303d70-59fe-567e-f4e7-eba6a7da613b.wav,0.0,2.97,22050
+589,guitar_electric_089.wav,data/wav/guitar_electric/guitar_electric_089.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_2e731054-d01b-5baf-fc78-0aeb5f294a40.wav,0.0,2.97,22050
+590,guitar_electric_090.wav,data/wav/guitar_electric/guitar_electric_090.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_2e8b9edd-d02d-5f7b-f2e2-0d777d556a91.wav,0.0,2.97,22050
+591,guitar_electric_091.wav,data/wav/guitar_electric/guitar_electric_091.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_2f010eb3-ef9e-507f-f699-5a3bd0e0e80c.wav,0.0,2.97,22050
+592,guitar_electric_092.wav,data/wav/guitar_electric/guitar_electric_092.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_2f19ac1a-4875-5e39-f1fa-45979e24a76c.wav,0.0,2.97,22050
+593,guitar_electric_093.wav,data/wav/guitar_electric/guitar_electric_093.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_3006fbe3-0ac7-55c2-f592-cdc87f211724.wav,0.0,2.97,22050
+594,guitar_electric_094.wav,data/wav/guitar_electric/guitar_electric_094.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_3061e9e7-2777-571b-f852-fea114ce586d.wav,0.0,2.97,22050
+595,guitar_electric_095.wav,data/wav/guitar_electric/guitar_electric_095.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_30cb2fd7-bd88-558a-fd98-63b9a291bc6d.wav,0.0,2.97,22050
+596,guitar_electric_096.wav,data/wav/guitar_electric/guitar_electric_096.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_31cb8e03-f7d6-527a-f8d8-c86b88b35eff.wav,0.0,2.97,22050
+597,guitar_electric_097.wav,data/wav/guitar_electric/guitar_electric_097.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_32297b45-fc24-5fc3-f584-3e386782562c.wav,0.0,2.97,22050
+598,guitar_electric_098.wav,data/wav/guitar_electric/guitar_electric_098.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_32eaa8e3-8ac0-594c-f040-8b2ac13612d0.wav,0.0,2.97,22050
+599,guitar_electric_099.wav,data/wav/guitar_electric/guitar_electric_099.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_339eda15-176c-5266-f32b-739f26b0856c.wav,0.0,2.97,22050
+600,guitar_electric_100.wav,data/wav/guitar_electric/guitar_electric_100.wav,guitar_electric,gảy,Medley-solos-DB,Medley-solos-DB_test-1_342a06f9-c137-57d4-f812-8b5f95472f94.wav,0.0,2.97,22050

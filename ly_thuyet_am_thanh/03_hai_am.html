@@ -1,0 +1,482 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hài âm từng bước</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Literata:opsz,wght@7..72,500;7..72,650&family=Roboto+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: một cột đọc, mỗi bước = một ý + một hình; cùng bộ màu với bài 01 */
+:root{
+  --bg:#f3f5f4; --surface:#fbfcfb; --ink:#18252c; --muted:#56656c; --line:#d6dddd; --axis:#8a979c;
+  --accent:#0d6b70; --accent2:#b9770e; --accent-ink:#0b5a5e;
+  --f-display:'Literata', Georgia, 'Times New Roman', serif;
+  --f-body:'Be Vietnam Pro', system-ui, 'Segoe UI', Arial, sans-serif;
+  --f-mono:'Roboto Mono', ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1518; --surface:#161e22; --ink:#e2e9ea; --muted:#9aa9ae; --line:#26343a; --axis:#5d6e74;
+  --accent:#4cb7bb; --accent2:#e3a640; --accent-ink:#7fd0d3; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1518; --surface:#161e22; --ink:#e2e9ea; --muted:#9aa9ae; --line:#26343a; --axis:#5d6e74;
+  --accent:#4cb7bb; --accent2:#e3a640; --accent-ink:#7fd0d3; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.68;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 72px}
+main{max-width:800px;margin:0 auto;min-width:0}
+header{padding-block:40px 4px}
+.crumb{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);margin:0 0 12px}
+h1{font-family:var(--f-display);font-weight:650;font-size:clamp(30px,5vw,42px);line-height:1.12;margin:0 0 14px;text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:650;font-size:25px;line-height:1.25;margin:0 0 14px;text-wrap:balance;display:flex;gap:14px;align-items:baseline}
+h2 .n{font-family:var(--f-mono);font-size:13px;font-weight:500;color:var(--accent-ink);flex:none;letter-spacing:.04em}
+h3{font-size:17px;font-weight:600;margin:24px 0 8px}
+p{margin:0 0 14px}
+.lead{font-size:18px;color:var(--muted);max-width:62ch}
+section{padding-top:40px;margin-top:40px;border-top:1px solid var(--line)}
+strong{font-weight:600}
+a{color:var(--accent-ink)}
+.eq{display:inline-block;font-family:var(--f-mono);font-size:15px;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:6px 12px;margin:2px 0 14px}
+.def{background:var(--surface);border:1px solid var(--accent);border-radius:6px;padding:16px 18px;margin:18px 0}
+.def span{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:4px}
+.def p{font-family:var(--f-display);font-size:19px;line-height:1.45;margin:0}
+
+.fig{margin:20px 0;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 16px 14px}
+.fig .scroll{overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto}
+figcaption{font-size:13.5px;color:var(--muted);margin-top:10px;line-height:1.55}
+figcaption b{color:var(--ink);font-weight:600}
+.figbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+.figbar .tag{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);letter-spacing:.04em}
+
+.key{margin:20px 0 4px;display:grid;gap:4px}
+.key span{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent2)}
+.key p{font-family:var(--f-display);font-size:18.5px;line-height:1.45;margin:0}
+
+.tbl{overflow-x:auto;margin:14px 0 18px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:480px}
+th{text-align:left;font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);padding:8px 10px;border-bottom:1px solid var(--axis)}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+button{font:inherit;cursor:pointer}
+.btn{font-weight:600;font-size:14px;color:var(--bg);background:var(--accent);border:0;border-radius:4px;padding:8px 14px}
+.btn:hover{filter:brightness(1.08)}
+.ghost{font-size:13.5px;color:var(--ink);background:var(--bg);border:1px solid var(--axis);border-radius:4px;padding:6px 11px}
+.ghost:hover{border-color:var(--accent)}
+.ghost[aria-pressed="true"]{border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+
+.mixer{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 16px;margin:20px 0}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 16px}
+.mixrow{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-bottom:14px}
+.mixrow label{font-family:var(--f-mono);font-size:12px;color:var(--muted);display:flex;gap:8px;align-items:center}
+select{font:inherit;font-size:14px;color:var(--ink);background:var(--bg);border:1px solid var(--axis);border-radius:4px;padding:5px 8px}
+.sliders{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 28px;margin-bottom:16px}
+.sl{display:grid;grid-template-columns:118px minmax(0,1fr) 36px;gap:10px;align-items:center;font-family:var(--f-mono);font-size:12px;font-variant-numeric:tabular-nums}
+.sl label{color:var(--ink)}
+.sl label small{color:var(--muted);font-size:11px}
+.sl output{text-align:right;color:var(--muted)}
+input[type=range]{width:100%;accent-color:var(--accent);min-width:0}
+.panes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.pane{min-width:0}
+.pane h4{margin:0 0 4px;font-size:12px;font-family:var(--f-mono);font-weight:500;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.status{font-size:13.5px;color:var(--muted);margin-top:10px;min-height:1.4em}
+ol.tasks{padding-left:22px;display:grid;gap:6px;margin:0 0 14px}
+@media (max-width:700px){.sliders,.panes{grid-template-columns:minmax(0,1fr)}}
+
+details{border-bottom:1px solid var(--line)}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{cursor:pointer;padding:12px 0;font-weight:600;list-style:none;display:grid;grid-template-columns:28px 1fr}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+";font-family:var(--f-mono);color:var(--accent-ink)}
+details[open] summary::before{content:"−"}
+details .ans{padding:0 0 14px 28px}
+
+svg text{fill:var(--muted);font-family:var(--f-mono);font-size:12px}
+svg .t-ink{fill:var(--ink)}
+svg .t-strong{fill:var(--ink);font-family:var(--f-body);font-weight:600;font-size:13px}
+svg .t-xs{font-size:10.5px}
+svg .t-acc{fill:var(--accent-ink)}
+svg .t-acc2{fill:var(--accent2)}
+svg .ax{stroke:var(--axis);stroke-width:1;fill:none}
+svg .grid{stroke:var(--line);stroke-width:1;fill:none}
+svg .c1{stroke:var(--accent);stroke-width:2.2;fill:none;stroke-linejoin:round}
+svg .c1t{stroke:var(--accent);stroke-width:1.4;fill:none;opacity:.6}
+svg .c2{stroke:var(--accent2);stroke-width:2.2;fill:none;stroke-linejoin:round}
+svg .cm{stroke:var(--muted);stroke-width:1.2;fill:none;opacity:.55}
+svg .dash{stroke-dasharray:5 4}
+svg .b1{fill:var(--accent)}
+svg .b2{fill:var(--accent2)}
+svg .dot{fill:var(--accent2)}
+svg .dot1{fill:var(--accent)}
+svg .ring{fill:var(--surface);stroke-width:2}
+svg .tri{fill:var(--axis)}
+</style>
+
+<main>
+<header>
+  <p class="crumb">Bài 03 · Học lại cho chắc</p>
+  <h1>Hài âm, từng bước một</h1>
+  <p class="lead">Trang này chỉ nói về một chuyện: vì sao một nốt nhạc không phải một tần số, mà là cả một dãy tần số. Mỗi bước chỉ một ý. Chỗ nào có nút bấm thì hãy bấm thử.</p>
+</header>
+
+<!-- B1 -->
+<section>
+  <h2><span class="n">BƯỚC 1</span>Bắt đầu từ thứ đơn giản nhất: một sóng sin</h2>
+  <p>Sóng sin là dao động đơn giản nhất. Nó chỉ có <strong>đúng một tần số</strong>. Âm thanh của một sóng sin gọi là <strong>âm thuần</strong>.</p>
+  <figure class="fig">
+    <div class="figbar"><span class="tag">SÓNG SIN 196 Hz</span><button class="btn" id="playSine" type="button">▶ Nghe sóng sin 196 Hz</button></div>
+    <div class="scroll"><svg id="figSine" viewBox="0 0 640 150" style="min-width:460px" role="img" aria-label="Sóng sin"></svg></div>
+    <figcaption><b>Hình 1.</b> Một sóng sin 196 Hz (cùng cao độ với dây Sol của violin). Bấm nghe thử: tiếng giống tiếng huýt sáo hay tiếng máy đo, <b>không giống nhạc cụ nào</b>. Nhạc cụ thật không bao giờ phát ra âm thuần.</figcaption>
+  </figure>
+  <p>Vậy tiếng đàn có gì hơn một sóng sin? Câu trả lời nằm ở <strong>cách sợi dây rung</strong>.</p>
+</section>
+
+<!-- B2 -->
+<section>
+  <h2><span class="n">BƯỚC 2</span>Một sợi dây có thể rung theo nhiều kiểu</h2>
+  <p>Hãy nghĩ đến trò nhảy dây: hai người quay một sợi dây. Quay chậm thì cả sợi dây phồng thành <strong>một vòng</strong>. Quay nhanh hơn thì nó có thể thành <strong>hai vòng</strong>, ngược chiều nhau, với một điểm ở giữa đứng yên.</p>
+  <p>Dây đàn cũng vậy. Hai đầu dây bị giữ chặt, nên nó chỉ rung được theo những kiểu mà hai đầu đứng yên:</p>
+  <figure class="fig">
+    <div class="figbar"><span class="tag">CHIẾU CHẬM · KHÔNG ĐÚNG TỐC ĐỘ THẬT</span><button class="ghost" id="toggleAnim" type="button" aria-pressed="false">⏸ Tạm dừng</button></div>
+    <div class="scroll"><svg id="figModes" viewBox="0 0 640 300" style="min-width:520px" role="img" aria-label="Bốn kiểu rung đầu tiên của dây đàn"></svg></div>
+    <figcaption><b>Hình 2.</b> Bốn kiểu rung đầu tiên. Kiểu thứ <b>n</b> chia dây thành <b>n đoạn bằng nhau</b>. Chấm cam là <b>nút</b>, điểm luôn đứng yên. Để ý tốc độ: kiểu 2 rung nhanh gấp đôi kiểu 1, kiểu 3 nhanh gấp ba…</figcaption>
+  </figure>
+  <h3>Vì sao lại có những kiểu này?</h3>
+  <p>Lực căng chỉ kéo một điểm trên dây khi <strong>dây bị cong ở điểm đó</strong>. Chỗ thẳng thì hai bên kéo cân bằng nên không bị kéo. Chỗ cong thì bị kéo về, cong càng nhiều thì kéo càng mạnh.</p>
+  <figure class="fig">
+    <div class="scroll"><svg id="figForce" viewBox="0 0 640 190" style="min-width:520px" role="img" aria-label="Lực kéo trên dây hình chữ V và trên dây hình vòng cung"></svg></div>
+    <figcaption><b>Hình 2b.</b> Mũi tên là lực kéo dây về. <b>Trái:</b> dây hình chữ V chỉ bị kéo ở góc nhọn, các đoạn thẳng đứng yên, nên góc nhọn chạy đi và hình dạng thay đổi liên tục. <b>Phải:</b> dây hình vòng cung sin có lực kéo <b>tỉ lệ với độ cao</b> tại mọi điểm, nên mọi điểm về tới đường thẳng cùng lúc. Dây giữ nguyên hình, chỉ lật lên lật xuống mãi.</figcaption>
+  </figure>
+  <p><strong>Kiểu rung</strong> là hình dạng mà khi thả ra, dây lên xuống mãi mà <strong>vẫn giữ nguyên hình</strong>. Với dây giữ hai đầu, chỉ có các hình sin chứa vừa khít 1, 2, 3… vòng mới có tính chất này. Chúng là những cách rung tự nhiên duy nhất của dây. Trong vật lý chúng gọi là <strong>dao động riêng</strong>, giống như cái xích đu có một nhịp đung đưa riêng, chỉ khác là sợi dây có cả một dãy nhịp riêng: f₀, 2f₀, 3f₀…</p>
+  <h3>Vì sao kiểu n rung nhanh gấp n lần?</h3>
+  <p>Nhớ lại bài dây buông: <strong>dây càng ngắn thì rung càng nhanh</strong>. Dây ngắn đi một nửa thì tần số tăng gấp đôi.</p>
+  <p>Ở kiểu 2, sợi dây bị chia làm 2 đoạn, mỗi đoạn dài <strong>một nửa</strong>, nên mỗi đoạn rung nhanh <strong>gấp 2</strong>. Ở kiểu 3, mỗi đoạn dài 1/3 nên rung nhanh gấp 3. Cứ thế tiếp tục.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Kiểu n</th><th>Số đoạn</th><th>Mỗi đoạn dài</th><th>Rung nhanh gấp</th><th>Tần số (dây Sol violin)</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td class="num">1</td><td class="num">L</td><td class="num">1×</td><td class="num">196 Hz</td></tr>
+      <tr><td class="num">2</td><td class="num">2</td><td class="num">L/2</td><td class="num">2×</td><td class="num">392 Hz</td></tr>
+      <tr><td class="num">3</td><td class="num">3</td><td class="num">L/3</td><td class="num">3×</td><td class="num">588 Hz</td></tr>
+      <tr><td class="num">4</td><td class="num">4</td><td class="num">L/4</td><td class="num">4×</td><td class="num">784 Hz</td></tr>
+      <tr><td class="num">n</td><td class="num">n</td><td class="num">L/n</td><td class="num">n×</td><td class="num">n × 196 Hz</td></tr>
+    </tbody>
+  </table></div>
+  <p>Không có kiểu "1,5 đoạn", vì nếu có thì một đầu dây sẽ phải chuyển động, mà hai đầu dây đang bị giữ chặt. Vì vậy các tần số luôn là <strong>bội số nguyên</strong> của tần số đầu tiên: 1×, 2×, 3×…</p>
+  <h3>Giải thích sâu hơn: sóng đứng trên dây</h3>
+  <p><strong>1.</strong> Sóng chạy dọc dây với một tốc độ cố định v, chỉ phụ thuộc vào lực căng T và khối lượng mỗi mét dây μ: v = √(T/μ). Mọi kiểu rung trên cùng một dây có cùng v.</p>
+  <p><strong>2.</strong> Cùng tốc độ thì bước sóng λ càng ngắn, tần số càng cao: f = v/λ. Giống người đi bộ cùng tốc độ: bước càng ngắn thì mỗi giây càng nhiều bước.</p>
+  <p><strong>3.</strong> Mỗi vòng dài đúng nửa bước sóng. Hai đầu dây phải đứng yên, nên dây phải chứa vừa khít một <strong>số nguyên</strong> vòng: L = n·λ/2, tức λ = 2L/n. Nếu là 1,5 vòng thì một đầu dây rơi vào giữa vòng, chỗ đang chuyển động, điều này không thể xảy ra.</p>
+  <div class="eq">f_n = v / λ_n = n · v / (2L) = n · f₀ &nbsp;&nbsp;với f₀ = v / (2L)</div>
+  <p>Ví dụ dây Sol của violin: L ≈ 0,33 m và f₀ = 196 Hz, suy ra v = 2 × 0,33 × 196 ≈ 129 m/s. Kiểu 2 có λ = 0,33 m nên f ≈ 392 Hz. Kiểu 3 có λ = 0,22 m nên f ≈ 588 Hz. Công thức dây buông f = (1/2L)·√(T/μ) chính là f₀ = v/(2L).</p>
+  <div class="key"><span>Ghi nhớ</span><p>Kiểu rung thứ n chia dây thành n đoạn, mỗi đoạn ngắn đi n lần, nên rung nhanh gấp n lần. Phải là số nguyên vì hai đầu dây cố định.</p></div>
+</section>
+
+<!-- B3 -->
+<section>
+  <h2><span class="n">BƯỚC 3</span>Các kiểu rung xảy ra cùng một lúc</h2>
+  <p>Bạn hình dung đúng: gảy xong thì dây đi lên, đi xuống, lặp lại, rồi nhỏ dần. Sợi dây <strong>chỉ có một chuyển động</strong>. Vậy "rung nhiều kiểu cùng lúc" nghĩa là gì? Đi từng ý một.</p>
+
+  <h3>Ý 1. Lúc gảy, dây có hình tam giác nhọn, không phải vòng cung mượt</h3>
+  <p>Ngón tay kéo dây lệch ra ở một điểm. Sợi dây thành hai đoạn thẳng gấp khúc, giống chữ V ngược. Hình này khác hẳn vòng cung mượt của kiểu 1.</p>
+  <p>Có một sự thật toán học (định lý Fourier): <strong>hình dạng nào cũng ghép được từ các vòng cung đơn giản</strong> của kiểu 1, 2, 3… với độ lớn thích hợp. Giống như mọi mô hình đều xếp được từ các viên Lego tiêu chuẩn. Kéo thanh trượt dưới đây để xếp hình tam giác từ các kiểu rung:</p>
+  <figure class="fig">
+    <div class="figbar"><label class="tag" for="buildN">SỐ KIỂU RUNG CỘNG VÀO: <b id="buildOut">1</b></label><input id="buildN" type="range" min="1" max="25" value="1" style="max-width:260px"></div>
+    <div class="scroll"><svg id="figBuild" viewBox="0 0 640 270" style="min-width:520px" role="img" aria-label="Ghép hình tam giác từ các kiểu rung"></svg></div>
+    <figcaption><b>Hình 3a.</b> Đường đứt là hình dạng dây lúc vừa gảy (gảy ở 1/4 chiều dài dây). Đường cam là tổng của N kiểu rung đầu tiên. Chỉ 1 kiểu thì chỉ được một vòng cung, chưa giống. Cộng thêm càng nhiều kiểu thì càng khớp tam giác. Cột bên dưới là độ lớn mỗi kiểu cần dùng. Các kiểu 4, 8, 12… bằng 0 vì gảy đúng vào nút của chúng.</figcaption>
+  </figure>
+  <p>Vậy "dây rung nhiều kiểu cùng lúc" là cách nói ngắn của: <strong>hình dạng thật của dây = tổng của nhiều kiểu rung đơn giản</strong>. Sợi dây không "chọn" làm nhiều việc. Nó chỉ có một hình dạng, và hình dạng đó được <em>phân tích</em> ra thành nhiều kiểu.</p>
+
+  <h3>Ý 2. Thả tay ra: mỗi kiểu tự rung theo nhịp riêng</h3>
+  <p>Sau khi thả, mỗi kiểu rung tiếp tục rung theo đúng tần số của nó (kiểu n nhanh gấp n lần). Cộng chúng lại ở mỗi thời điểm sẽ được chuyển động thật của dây. Đây là hình động tính đúng theo cách đó, chiếu rất chậm:</p>
+  <figure class="fig">
+    <div class="figbar"><span class="tag">DÂY GẢY THẬT · CHIẾU RẤT CHẬM</span><button class="btn" id="pluckBtn" type="button">↺ Gảy lại</button></div>
+    <div class="scroll"><svg id="figPluck" viewBox="0 0 640 300" style="min-width:520px" role="img" aria-label="Hoạt hình sợi dây sau khi gảy và chuyển động của một điểm"></svg></div>
+    <figcaption><b>Hình 3b.</b> Trên: sợi dây sau khi gảy. Dưới: độ lệch của <b>chấm cam</b> theo thời gian. Có 3 điều để nhìn: (1) Dây đi lên rồi đi xuống, lặp lại, đúng như bạn nghĩ. (2) Nhưng nó <b>không</b> lên xuống mượt như sóng sin: lúc đầu có góc gấp khúc chạy qua chạy lại, và chấm cam chuyển động giật cục. Chuyển động không phải hình sin thì chứa nhiều tần số. (3) Các kiểu rung cao tắt nhanh hơn, nên càng về sau dây càng gần vòng cung mượt của kiểu 1, và chấm cam lên xuống càng giống sóng sin. Đó là lý do tiếng guitar "tròn" dần.</figcaption>
+  </figure>
+
+  <h3>Ý 3. Vì sao phải tách ra thành các kiểu?</h3>
+  <p>Vì <strong>mỗi kiểu tạo ra một sóng sin ở một tần số</strong>, và tai người (cũng như phép FFT) nghe theo từng tần số. Mô tả "dây đi lên đi xuống giật cục" thì không đo được. Mô tả "kiểu 1 mạnh chừng này, kiểu 2 chừng này, kiểu 3 chừng này…" thì đo được bằng con số. Đó chính là phổ.</p>
+
+  <p>Đây là điểm mấu chốt. Khi bạn gảy hay kéo vĩ, sợi dây <strong>không chọn một kiểu</strong>, mà rung <strong>tất cả các kiểu cùng lúc</strong>, chồng lên nhau. Mỗi kiểu mạnh yếu khác nhau. Hình dạng thật của sợi dây là <strong>tổng</strong> của chúng:</p>
+  <figure class="fig">
+    <div class="figbar"><span class="tag">CHIẾU CHẬM</span></div>
+    <div class="scroll"><svg id="figSum" viewBox="0 0 640 260" style="min-width:520px" role="img" aria-label="Ba kiểu rung cộng lại thành chuyển động thật của dây"></svg></div>
+    <figcaption><b>Hình 3.</b> Ba hàng trên là ba kiểu rung riêng lẻ (kiểu 1 mạnh nhất, kiểu 2 yếu hơn, kiểu 3 yếu nữa). Hàng dưới cùng là <b>sợi dây thật</b>: tại mỗi điểm, độ lệch của dây bằng tổng độ lệch của ba kiểu. Hình dạng méo mó, không còn là một vòng cung đơn giản.</figcaption>
+  </figure>
+  <div class="def"><span>Hiểu nhầm thường gặp</span><p>"Dây bị chia thành nhiều đoạn, mỗi đoạn phát một hài âm." <strong>Sai.</strong> Không có gì cắt sợi dây. Mỗi kiểu rung là chuyển động của <strong>cả sợi dây</strong>, và trong một kiểu thì mọi đoạn rung cùng một tần số. Ở kiểu 3, cả 3 vòng cùng rung 588 Hz và cùng tạo ra <strong>một</strong> hài âm. Các kiểu rung chồng lên nhau trên cùng một sợi dây, giống như hai làn sóng cùng chạy trên một mặt hồ.</p></div>
+  <div class="key"><span>Ghi nhớ</span><p>Sợi dây thật rung theo tất cả các kiểu cùng lúc. Chuyển động ta thấy là tổng của chúng.</p></div>
+</section>
+
+<!-- B4 -->
+<section>
+  <h2><span class="n">BƯỚC 4</span>Từ dây rung đến âm thanh: hài âm</h2>
+  <p>Mỗi kiểu rung đẩy không khí theo đúng nhịp của nó, nên phát ra <strong>một sóng sin</strong> với tần số của kiểu đó. Âm thanh ta nghe được là tổng của tất cả các sóng sin đó.</p>
+  <div class="def"><span>Định nghĩa</span><p>Mỗi sóng sin ứng với một kiểu rung gọi là một <strong>hài âm</strong>. Hài âm thứ n có tần số <strong>n × f₀</strong>. Hài âm thứ nhất f₀ gọi là <strong>tần số cơ bản</strong>.</p></div>
+  <div class="eq">nốt nhạc = hài âm 1 (f₀) + hài âm 2 (2f₀) + hài âm 3 (3f₀) + …</div>
+  <figure class="fig">
+    <div class="scroll"><svg id="figSines" viewBox="0 0 640 300" style="min-width:520px" role="img" aria-label="Ba sóng sin cộng lại, tổng vẫn lặp lại sau mỗi T0"></svg></div>
+    <figcaption><b>Hình 4.</b> Ba hài âm của nốt 196 Hz, cộng lại thành sóng ở hàng dưới. Nhìn hai vạch đứt: trong một khoảng T₀ = 1/196 s ≈ 5,1 ms, hài âm 1 đi đúng <b>1</b> dao động, hài âm 2 đi đúng <b>2</b> dao động, hài âm 3 đi đúng <b>3</b> dao động. Hết khoảng đó cả ba cùng quay về điểm xuất phát, nên <b>tổng cũng lặp lại sau mỗi T₀</b>.</figcaption>
+  </figure>
+  <h3>Hai hệ quả quan trọng</h3>
+  <p><strong>1. Cao độ do f₀ quyết định.</strong> Tổng các hài âm vẫn lặp lại sau mỗi T₀ = 1/f₀, nên tai vẫn nghe ra cao độ f₀. Thêm hay bớt hài âm cũng <strong>không làm nốt cao lên hay thấp xuống</strong>.</p>
+  <p><strong>2. Màu tiếng (âm sắc) do độ mạnh yếu của các hài âm quyết định.</strong> Hài âm nào mạnh, hài âm nào yếu sẽ làm hình dạng sóng tổng khác đi, và tai nghe ra "màu" khác. Đây là thứ phân biệt violin với guitar.</p>
+  <div class="key"><span>Ghi nhớ</span><p>f₀ quyết định nốt nào. Tỉ lệ mạnh yếu giữa các hài âm quyết định nhạc cụ nào.</p></div>
+</section>
+
+<!-- B5 -->
+<section id="tron">
+  <h2><span class="n">BƯỚC 5</span>Tự tay trộn hài âm</h2>
+  <p>Mỗi thanh trượt là độ mạnh của một hài âm. Kéo thanh trượt rồi bấm nghe. Hai hình bên dưới cập nhật ngay.</p>
+  <div class="mixer">
+    <div class="presets" id="presets" role="group" aria-label="Mẫu có sẵn">
+      <button class="ghost" data-p="pure" type="button">Âm thuần (chỉ f₀)</button>
+      <button class="ghost" data-p="four" type="button">Hài âm 1–4 đều nhau</button>
+      <button class="ghost" data-p="nof0" type="button">Bỏ f₀, giữ 2–6</button>
+      <button class="ghost" data-p="bowed" type="button">Kéo vĩ lý tưởng (1/n)</button>
+      <button class="ghost" data-p="plucked" type="button">Gảy lý tưởng (1/n²)</button>
+      <button class="ghost" data-p="violin" type="button">Violin thật · G3</button>
+      <button class="ghost" data-p="guitar" type="button">Guitar thật · E2</button>
+    </div>
+    <div class="mixrow">
+      <label for="f0sel">Tần số cơ bản f₀
+        <select id="f0sel">
+          <option value="80.6">80,6 Hz (E2, guitar)</option>
+          <option value="196.1" selected>196,1 Hz (G3, violin)</option>
+          <option value="440">440 Hz (A4)</option>
+        </select>
+      </label>
+      <button class="btn" id="playMix" type="button">▶ Nghe (1,5 giây)</button>
+    </div>
+    <div class="sliders" id="sliders"></div>
+    <div class="panes">
+      <div class="pane"><h4>Dạng sóng tổng (2 chu kỳ T₀)</h4><svg id="mixWave" viewBox="0 0 320 170" role="img" aria-label="Dạng sóng tổng"></svg></div>
+      <div class="pane"><h4>Phổ: độ mạnh từng hài âm</h4><svg id="mixSpec" viewBox="0 0 320 170" role="img" aria-label="Phổ"></svg></div>
+    </div>
+    <div class="status" id="mixStatus" aria-live="polite">Âm thanh chỉ phát khi bạn bấm nút.</div>
+  </div>
+  <h3>Làm lần lượt 4 thí nghiệm</h3>
+  <ol class="tasks">
+    <li><strong>Âm thuần</strong> rồi <strong>Hài âm 1–4 đều nhau</strong>: nghe hai cái liên tiếp. Nốt <strong>không cao lên</strong>, nhưng tiếng đầy và "giống nhạc cụ" hơn. Dạng sóng vẫn lặp lại 2 lần trong khung, đúng 2 chu kỳ T₀.</li>
+    <li><strong>Kéo vĩ lý tưởng</strong> rồi <strong>Gảy lý tưởng</strong>: tiếng thứ nhất sáng và chói hơn, tiếng thứ hai tròn hơn. Nhìn phổ: các cột bên phải của kiểu gảy tụt rất nhanh.</li>
+    <li><strong>Bỏ f₀, giữ 2–6</strong>: cột thứ nhất bằng 0, vậy mà tai bạn vẫn nghe ra <strong>cùng cao độ</strong>. Vì sao? Dạng sóng vẫn lặp lại sau mỗi T₀, và các hài âm vẫn cách đều nhau f₀. Hiện tượng này tên là <em>missing fundamental</em>.</li>
+    <li><strong>Violin thật</strong> rồi <strong>Guitar thật</strong>: độ mạnh hài âm được <strong>đo từ hai file bạn vừa chạy</strong> (12 hài âm đầu). Âm thanh tổng hợp từ các số đo này vẫn nghe ra một tiếng sáng và một tiếng tròn.</li>
+  </ol>
+</section>
+
+<!-- B6 -->
+<section>
+  <h2><span class="n">BƯỚC 6</span>Hài âm trong dữ liệu thật của bạn</h2>
+  <p>Ở Hình 3 của script <code>xem_am_thanh.py</code>, mỗi đỉnh nhọn trong phổ chính là <strong>một hài âm</strong>. Đỉnh thứ n nằm ở tần số n × f₀. Dưới đây là độ mạnh của 24 hài âm đầu tiên, đo từ đoạn 0,3 giây trong hai file của bạn:</p>
+  <figure class="fig">
+    <div class="scroll"><svg id="figReal" viewBox="0 0 680 310" style="min-width:560px" role="img" aria-label="Độ mạnh 24 hài âm đầu của violin và guitar"></svg></div>
+    <figcaption><b>Hình 5.</b> Trục ngang là <b>số thứ tự hài âm n</b>, không phải Hz. Nhờ vậy so sánh được hai nốt khác nhau: violin G3 (f₀ = 196,1 Hz) và guitar E2 (f₀ = 80,6 Hz). Trục đứng là độ mạnh, tính bằng dB so với hài âm mạnh nhất của chính file đó. Mức −40 dB nghĩa là biên độ chỉ bằng 1/100 hài âm mạnh nhất.</figcaption>
+  </figure>
+  <h3>Đọc hình này</h3>
+  <p><strong>Giống nhau:</strong> cả hai đều có hài âm, và <strong>f₀ (n = 1) đều không phải hài âm mạnh nhất</strong>: violin −23 dB, guitar −17 dB. Thân đàn phát âm trầm kém, nên đỉnh cao nhất trong phổ không phải lúc nào cũng là f₀.</p>
+  <p><strong>Khác nhau:</strong> violin giữ hài âm khá mạnh tới tận n = 24 (vẫn khoảng −20 đến −35 dB). Guitar thì tụt mạnh: từ n = 12 đã dưới −40 dB, tới n = 20 còn khoảng −60 dB. Đây là lý do violin nghe <strong>sáng</strong>, guitar nghe <strong>tròn</strong>.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>n</th><th>Violin: tần số</th><th>Violin: độ mạnh</th><th>Guitar: tần số</th><th>Guitar: độ mạnh</th></tr></thead>
+    <tbody id="realTable"></tbody>
+  </table></div>
+  <div class="key"><span>Ghi nhớ</span><p>Cùng là nhạc cụ dây nên cả hai đều có chuỗi hài âm. Khác nhau ở chỗ hài âm cao mạnh hay yếu. Đó chính là âm sắc, và Phần 2 sẽ đo nó bằng con số.</p></div>
+</section>
+
+<!-- B7 -->
+<section>
+  <h2><span class="n">BƯỚC 7</span>Tự kiểm tra</h2>
+  <p>Tự trả lời trước, rồi mới mở đáp án.</p>
+  <details><summary>Nốt A3 có f₀ = 220 Hz. Hài âm thứ 3 có tần số bao nhiêu?</summary><div class="ans"><p>3 × 220 = <strong>660 Hz</strong>.</p></div></details>
+  <details><summary>Phổ của một nốt có các đỉnh ở 300, 450, 600, 750 Hz. f₀ bằng bao nhiêu?</summary><div class="ans"><p><strong>150 Hz</strong>, vì các đỉnh cách nhau 150 Hz (300 = 2×150, 450 = 3×150…). Đỉnh 150 Hz không hiện ra (f₀ yếu, như bước 5), nhưng khoảng cách giữa các hài âm vẫn cho biết f₀.</p></div></details>
+  <details><summary>Thêm hài âm 2, 3, 4 vào một âm thuần thì nốt có cao lên không?</summary><div class="ans"><p><strong>Không.</strong> Tổng các hài âm vẫn lặp lại sau mỗi T₀ = 1/f₀ (Hình 4), nên cao độ vẫn là f₀. Chỉ có màu tiếng thay đổi.</p></div></details>
+  <details><summary>Trong hình phổ violin G3 của script, đỉnh cao nhất ở khoảng 390 Hz. Đó là hài âm thứ mấy?</summary><div class="ans"><p>390 / 196 ≈ 2, nên đó là <strong>hài âm thứ 2</strong>. Hài âm 2 mạnh hơn cả f₀.</p></div></details>
+  <details><summary>Vì sao dây đàn chỉ có các tần số 1×, 2×, 3× f₀ mà không có 1,5× f₀?</summary><div class="ans"><p>Vì hai đầu dây bị giữ chặt, nên chỉ những kiểu rung có nút ở cả hai đầu mới tồn tại. Những kiểu đó chia dây thành <strong>số nguyên</strong> đoạn bằng nhau, nên tần số là bội số nguyên của f₀.</p></div></details>
+</section>
+
+<!-- B8 -->
+<section>
+  <h2><span class="n">BƯỚC 8</span>Nếu thầy hỏi</h2>
+  <details><summary>"Hài âm là gì?"</summary><div class="ans"><p>Dây đàn giữ hai đầu rung đồng thời theo nhiều kiểu. Kiểu thứ n chia dây thành n đoạn và có tần số n·f₀. Mỗi kiểu tạo ra một thành phần sin trong âm thanh, gọi là hài âm thứ n. Một nốt nhạc là tổng của tần số cơ bản f₀ và các hài âm 2f₀, 3f₀…</p></div></details>
+  <details><summary>"Tần số cơ bản khác hài âm thế nào? Cái nào quyết định cao độ?"</summary><div class="ans"><p>Tần số cơ bản f₀ là hài âm thứ nhất. Cao độ do f₀ quyết định, vì tổng các hài âm lặp lại với chu kỳ 1/f₀. Các hài âm còn lại không đổi cao độ mà quyết định âm sắc. f₀ không nhất thiết là đỉnh mạnh nhất trong phổ: violin G3 trong dữ liệu có hài âm 2 mạnh hơn f₀ khoảng 23 dB.</p></div></details>
+  <details><summary>"Hài âm giúp gì cho việc nhận diện nhạc cụ?"</summary><div class="ans"><p>Mọi nhạc cụ dây đều có chuỗi hài âm, nhưng tỉ lệ mạnh yếu giữa các hài âm khác nhau, do cách tạo rung (kéo vĩ hay gảy) và do cộng hưởng của thân đàn. Ví dụ trong dữ liệu, violin còn hài âm mạnh tới n = 24, còn guitar tụt dưới −40 dB từ n = 12. Các đặc trưng như spectral centroid hay MFCC đo chính sự phân bố năng lượng này.</p></div></details>
+</section>
+
+<section>
+  <h2><span class="n">TIẾP</span>Quay lại</h2>
+  <p>Khi đã hiểu trang này, đọc lại mục 4 và mục 5 trong <a href="01_kien_thuc_am_thanh.html">bài 01</a>. Lần này sẽ thấy dễ hơn nhiều.</p>
+</section>
+</main>
+
+<script>
+const NS='http://www.w3.org/2000/svg',TAU=Math.PI*2,$=id=>document.getElementById(id);
+function S(p,tag,a,text){const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);if(text!=null)e.textContent=text;p.appendChild(e);return e;}
+function P(fn,n){let d='';for(let i=0;i<=n;i++){const [x,y]=fn(i/n);d+=(i?'L':'M')+x.toFixed(1)+','+y.toFixed(1);}return d;}
+function T(p,x,y,s,cls,anchor){return S(p,'text',{x,y,class:cls||'','text-anchor':anchor||'start'},s);}
+const fmt=(n,d=1)=>n.toLocaleString('vi-VN',{maximumFractionDigits:d});
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* số đo thật từ data/raw/_thu (đoạn 0,3 s sau onset + 0,2 s), dB so với hài âm mạnh nhất */
+const REAL={
+  violin:{f0:196.1,db:[-22.9,0,-12.7,-12,-24.1,-18.3,-13.4,-22.9,-19.5,-10.7,-15.2,-24.7,-37.2,-26.5,-23.8,-21.8,-27.5,-26.9,-23.2,-31.6,-32.9,-30.6,-30.8,-34.9]},
+  guitar:{f0:80.6,db:[-17.1,-0.3,-0.1,-0.7,0,-12.8,-15.9,-21.1,-27.8,-27.7,-25.9,-42.2,-43.1,-39.4,-47.3,-52.2,-56.7,-56.5,-58.8,-63.2,-59.8,-59.8,-67.4,-68.1]}
+};
+
+/* âm thanh */
+let ctx=null;
+function playAmps(amps,f0,dur,statusEl,label){
+  try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();if(ctx.state==='suspended')ctx.resume();
+    const N=amps.length,real=new Float32Array(N+1),imag=new Float32Array(N+1);amps.forEach((v,i)=>{imag[i+1]=v;});
+    if(!amps.some(v=>v>0)){if(statusEl)statusEl.textContent='Tất cả hài âm đang bằng 0, không có gì để phát.';return;}
+    const osc=ctx.createOscillator();osc.setPeriodicWave(ctx.createPeriodicWave(real,imag));osc.frequency.value=f0;
+    const g=ctx.createGain(),t0=ctx.currentTime+0.03;g.gain.setValueAtTime(0,t0);g.gain.linearRampToValueAtTime(0.25,t0+0.06);
+    g.gain.setValueAtTime(0.25,t0+dur-0.25);g.gain.linearRampToValueAtTime(0,t0+dur);
+    osc.connect(g).connect(ctx.destination);osc.start(t0);osc.stop(t0+dur+0.02);
+    if(statusEl){statusEl.textContent='Đang phát: '+label;osc.onended=()=>{statusEl.textContent='Đã phát xong. Thử một mẫu khác rồi nghe lại để so sánh.';};}
+  }catch(e){if(statusEl)statusEl.textContent='Trình duyệt này không phát được âm thanh. Các hình vẫn đúng.';}}
+
+/* Hình 1 */
+(function(){const s=$('figSine');S(s,'line',{x1:20,y1:75,x2:620,y2:75,class:'grid'});
+  S(s,'path',{d:P(t=>[20+600*t,75-50*Math.sin(TAU*4*t)],400),class:'c1'});
+  T(s,620,142,'4 chu kỳ ≈ 20,4 ms','t-xs','end');
+  $('playSine').addEventListener('click',()=>playAmps([1],196,1.2,null,''));})();
+
+/* Hình 2 và 3: dây rung (hoạt hình) */
+const anim=[];
+(function(){const s=$('figModes'),x0=90,x1=430,A=22;
+  for(let n=1;n<=4;n++){const c=40+(n-1)*72;
+    T(s,40,c+5,'kiểu '+n,'t-acc','middle');
+    S(s,'path',{d:P(u=>[x0+(x1-x0)*u,c-A*Math.sin(n*Math.PI*u)],120),class:'cm dash'});
+    S(s,'path',{d:P(u=>[x0+(x1-x0)*u,c+A*Math.sin(n*Math.PI*u)],120),class:'cm dash'});
+    const p=S(s,'path',{d:'',class:'c1'});
+    S(s,'path',{d:`M${x0-6},${c+10} L${x0},${c} L${x0+6},${c+10} Z`,class:'tri'});S(s,'path',{d:`M${x1-6},${c+10} L${x1},${c} L${x1+6},${c+10} Z`,class:'tri'});
+    for(let k=1;k<n;k++)S(s,'circle',{cx:x0+(x1-x0)*k/n,cy:c,r:4.5,class:'dot'});
+    T(s,460,c-3,n===1?'1 đoạn · f₀':n+' đoạn · '+n+'f₀','t-strong');T(s,460,c+15,(196*n)+' Hz','t-xs');
+    anim.push(t=>p.setAttribute('d',P(u=>[x0+(x1-x0)*u,c-A*Math.sin(n*Math.PI*u)*Math.cos(TAU*0.45*n*t)],120)));}})();
+(function(){const s=$('figSum'),x0=110,x1=450,amps=[1,0.5,0.33],rows=[30,74,118];
+  const ps=amps.map((a,i)=>{T(s,60,rows[i]+4,'kiểu '+(i+1),'t-acc','middle');S(s,'line',{x1:x0,y1:rows[i],x2:x1,y2:rows[i],class:'grid'});
+    if(i<2)T(s,280,rows[i]+26,'+','t-ink','middle');return S(s,'path',{d:'',class:'c1t'});});
+  S(s,'line',{x1:x0,y1:150,x2:x1,y2:150,class:'ax'});T(s,280,170,'=','t-ink','middle');
+  const cy=212;S(s,'line',{x1:x0,y1:cy,x2:x1,y2:cy,class:'grid'});T(s,60,cy-4,'dây thật','t-strong','middle');T(s,60,cy+12,'= tổng','t-xs','middle');
+  const ps2=S(s,'path',{d:'',class:'c2'});
+  S(s,'path',{d:`M${x0-6},${cy+10} L${x0},${cy} L${x0+6},${cy+10} Z`,class:'tri'});S(s,'path',{d:`M${x1-6},${cy+10} L${x1},${cy} L${x1+6},${cy+10} Z`,class:'tri'});
+  T(s,480,rows[0]+4,'mạnh nhất','t-xs');T(s,480,rows[1]+4,'yếu hơn','t-xs');T(s,480,rows[2]+4,'yếu nữa','t-xs');T(s,480,cy+4,'hình dạng méo mó','t-acc2');
+  anim.push(t=>{const m=(n,u)=>amps[n-1]*Math.sin(n*Math.PI*u)*Math.cos(TAU*0.3*n*t);
+    ps.forEach((p,i)=>p.setAttribute('d',P(u=>[x0+(x1-x0)*u,rows[i]-16*m(i+1,u)],120)));
+    ps2.setAttribute('d',P(u=>[x0+(x1-x0)*u,cy-26*(m(1,u)+m(2,u)+m(3,u))],160));});})();
+(function(){let run=!reduce,t0=performance.now(),tPause=0.4;const btn=$('toggleAnim');
+  function frame(now){const t=(now-t0)/1000;anim.forEach(f=>f(t));if(run)requestAnimationFrame(frame);}
+  anim.forEach(f=>f(tPause*0));
+  if(run)requestAnimationFrame(frame);else{btn.textContent='▶ Chạy';btn.setAttribute('aria-pressed','true');}
+  btn.addEventListener('click',()=>{run=!run;btn.textContent=run?'⏸ Tạm dừng':'▶ Chạy';btn.setAttribute('aria-pressed',String(!run));if(run){t0=performance.now();requestAnimationFrame(frame);}});})();
+
+/* Hình 2b: lực kéo trên dây */
+(function(){const s=$('figForce'),cy=150,H=95;
+  const d=S(s,'defs',{});const mk=S(d,'marker',{id:'fa',viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:6,markerHeight:6,orient:'auto'});S(mk,'path',{d:'M0,0 L10,5 L0,10 z',class:'dot'});
+  const arrow=(x,y,len)=>{if(len>2)S(s,'line',{x1:x,y1:y,x2:x,y2:y+len,class:'c2','marker-end':'url(#fa)'});};
+  const ends=(a,b)=>{[a,b].forEach(x=>S(s,'path',{d:`M${x-6},${cy+10} L${x},${cy} L${x+6},${cy+10} Z`,class:'tri'}));S(s,'line',{x1:a,y1:cy,x2:b,y2:cy,class:'grid'});};
+  /* trái: chữ V */
+  const a0=30,a1=300,p=0.3,px=a0+(a1-a0)*p;ends(a0,a1);
+  S(s,'path',{d:`M${a0},${cy} L${px},${cy-H} L${a1},${cy}`,class:'c1'});arrow(px,cy-H+4,40);
+  T(s,(a0+a1)/2,18,'Hình chữ V: chỉ góc nhọn bị kéo','t-strong','middle');
+  T(s,(px+a1)/2,cy+26,'đoạn thẳng: không bị kéo','t-xs','middle');
+  /* phải: vòng cung sin */
+  const b0=340,b1=610,X=u=>b0+(b1-b0)*u;ends(b0,b1);
+  S(s,'path',{d:P(u=>[X(u),cy-H*Math.sin(Math.PI*u)],120),class:'c1'});
+  [0.12,0.26,0.4,0.5,0.6,0.74,0.88].forEach(u=>arrow(X(u),cy-H*Math.sin(Math.PI*u)+4,40*Math.sin(Math.PI*u)));
+  T(s,(b0+b1)/2,18,'Vòng cung sin: kéo tỉ lệ với độ cao','t-strong','middle');})();
+
+/* Hệ số Fourier của dây gảy ở vị trí p (độ cao đỉnh = 1) */
+const PLUCK_P=0.25;
+function pluckCoef(n,p){return 2*Math.sin(n*Math.PI*p)/(n*n*Math.PI*Math.PI*p*(1-p));}
+
+/* Hình 3a: ghép tam giác từ các kiểu rung */
+(function(){const s=$('figBuild'),inp=$('buildN'),out=$('buildOut'),x0=60,x1=580,cy=140,H=95,X=u=>x0+(x1-x0)*u,NMAX=25;
+  const tri=u=>u<PLUCK_P?u/PLUCK_P:(1-u)/(1-PLUCK_P);
+  S(s,'line',{x1:x0,y1:cy,x2:x1,y2:cy,class:'grid'});
+  S(s,'path',{d:P(u=>[X(u),cy-H*tri(u)],200),class:'cm dash'});
+  S(s,'path',{d:`M${x0-6},${cy+10} L${x0},${cy} L${x0+6},${cy+10} Z`,class:'tri'});S(s,'path',{d:`M${x1-6},${cy+10} L${x1},${cy} L${x1+6},${cy+10} Z`,class:'tri'});
+  T(s,X(PLUCK_P),cy-H-10,'ngón tay kéo ở đây','t-xs','middle');
+  const last=S(s,'path',{d:'',class:'c1t'}),sum=S(s,'path',{d:'',class:'c2'});
+  const lab=T(s,x1,24,'','t-acc2','end');
+  const base=258,bx=n=>x0+(n-1)*((x1-x0)/(NMAX-1)),bars=[],mx=Math.abs(pluckCoef(1,PLUCK_P));
+  for(let n=1;n<=NMAX;n++){const h=Math.abs(pluckCoef(n,PLUCK_P))/mx*58;bars.push(S(s,'rect',{x:bx(n)-6,y:base-h,width:12,height:Math.max(h,0.6),class:'b1'}));}
+  T(s,x0-8,base,'n=1','t-xs','end');T(s,x1+8,base,NMAX,'t-xs');
+  function draw(){const N=+inp.value;out.textContent=N;
+    sum.setAttribute('d',P(u=>{let y=0;for(let n=1;n<=N;n++)y+=pluckCoef(n,PLUCK_P)*Math.sin(n*Math.PI*u);return [X(u),cy-H*y];},300));
+    last.setAttribute('d',N>1?P(u=>[X(u),cy-H*pluckCoef(N,PLUCK_P)*Math.sin(N*Math.PI*u)],200):'');
+    lab.textContent=N===1?'chỉ kiểu 1: một vòng cung, chưa giống tam giác':'tổng của '+N+' kiểu đầu tiên';
+    bars.forEach((b,i)=>{b.setAttribute('class',i<N?'b2':'b1');b.style.opacity=i<N?1:0.25;});}
+  inp.addEventListener('input',draw);draw();})();
+
+/* Hình 3b: dây gảy thật, tắt dần (kiểu cao tắt nhanh hơn) */
+(function(){const s=$('figPluck'),x0=60,x1=580,cy=88,H=62,X=u=>x0+(x1-x0)*u,NM=60,F1=0.55,PT=0.1;
+  const tau=n=>22/(1+0.15*n*n),coef=[];for(let n=1;n<=NM;n++)coef.push(pluckCoef(n,PLUCK_P));
+  const disp=(u,t)=>{let y=0;for(let n=1;n<=NM;n++)y+=coef[n-1]*Math.exp(-t/tau(n))*Math.sin(n*Math.PI*u)*Math.cos(TAU*F1*n*t);return y;};
+  S(s,'line',{x1:x0,y1:cy,x2:x1,y2:cy,class:'grid'});
+  S(s,'path',{d:`M${x0-6},${cy+10} L${x0},${cy} L${x0+6},${cy+10} Z`,class:'tri'});S(s,'path',{d:`M${x1-6},${cy+10} L${x1},${cy} L${x1+6},${cy+10} Z`,class:'tri'});
+  const str=S(s,'path',{d:'',class:'c1'}),dot=S(s,'circle',{r:6,class:'dot'});
+  const tl=T(s,x1,20,'','t-xs','end');
+  const ty=232,TA=48,WIN=8;S(s,'line',{x1:x0,y1:ty,x2:x1,y2:ty,class:'grid'});
+  T(s,x0,ty-TA-8,'độ lệch của chấm cam theo thời gian (8 giây gần nhất, chiếu chậm)','t-xs');
+  const tr=S(s,'path',{d:'',class:'c2'});let hist=[],start=null,running=false;
+  function render(t){str.setAttribute('d',P(u=>[X(u),cy-H*disp(u,t)],140));const yp=disp(PT,t);
+    dot.setAttribute('cx',X(PT));dot.setAttribute('cy',cy-H*yp);hist.push([t,yp]);while(hist.length&&hist[0][0]<t-WIN)hist.shift();
+    tr.setAttribute('d',hist.map(([tt,v],i)=>(i?'L':'M')+(x1-(t-tt)/WIN*(x1-x0)).toFixed(1)+','+(ty-TA*v/0.45).toFixed(1)).join(''));
+    tl.textContent=t<1.5?'vừa thả tay: hình gấp khúc, nhiều kiểu rung':t<10?'kiểu cao đang tắt dần…':'gần như chỉ còn kiểu 1: vòng cung mượt';}
+  function frame(now){if(start===null)start=now;const t=(now-start)/1000;render(t);if(t<30&&running)requestAnimationFrame(frame);else running=false;}
+  function go(){hist=[];start=null;if(!running){running=true;requestAnimationFrame(frame);}}
+  $('pluckBtn').addEventListener('click',go);
+  render(0);
+  if(!reduce&&'IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){io.disconnect();go();}},{threshold:0.5});io.observe(s);}})();
+
+/* Hình 4: tổng sin, lặp lại sau T0 */
+(function(){const s=$('figSines'),x0=110,x1=620,X=u=>x0+(x1-x0)*u,comp=[[1,1,'196 Hz · hài âm 1'],[2,0.6,'392 Hz · hài âm 2'],[3,0.4,'588 Hz · hài âm 3']],rows=[38,92,146],cy=236;
+  [0,0.5,1].forEach(u=>S(s,'line',{x1:X(u),y1:14,x2:X(u),y2:282,class:'cm dash'}));
+  comp.forEach(([n,a,l],i)=>{T(s,x0-10,rows[i]-2,l.split(' · ')[0],'t-ink','end');T(s,x0-10,rows[i]+12,l.split(' · ')[1],'t-xs','end');
+    S(s,'path',{d:P(u=>[X(u),rows[i]-20*a*Math.sin(TAU*2*n*u)],400),class:'c1'});});
+  S(s,'line',{x1:x0,y1:178,x2:x1,y2:178,class:'ax'});
+  T(s,x0-10,cy+4,'tổng','t-strong','end');
+  const f=u=>comp.reduce((acc,[n,a])=>acc+a*Math.sin(TAU*2*n*u),0);let m=0;for(let i=0;i<=400;i++)m=Math.max(m,Math.abs(f(i/400)));
+  S(s,'path',{d:P(u=>[X(u),cy-40*f(u)/m],600),class:'c2'});
+  T(s,X(0.25),11,'T₀ ≈ 5,1 ms','t-acc2','middle');T(s,X(0.75),11,'T₀ ≈ 5,1 ms','t-acc2','middle');})();
+
+/* Bước 5: bộ trộn */
+(function(){const N=12,box=$('sliders'),f0sel=$('f0sel'),st=$('mixStatus');let amps=[1].concat(Array(N-1).fill(0));
+  const fromDb=db=>db.slice(0,N).map(d=>Math.pow(10,d/20));
+  const PRE={pure:()=>[1].concat(Array(N-1).fill(0)),four:()=>[1,1,1,1].concat(Array(N-4).fill(0)),nof0:()=>[0,1,1,1,1,1].concat(Array(N-6).fill(0)),
+    bowed:()=>Array.from({length:N},(_,i)=>1/(i+1)),plucked:()=>Array.from({length:N},(_,i)=>Math.abs(Math.sin((i+1)*Math.PI*0.2))/((i+1)**2)/Math.sin(Math.PI*0.2)),
+    violin:()=>fromDb(REAL.violin.db),guitar:()=>fromDb(REAL.guitar.db)};
+  const ins=[],outs=[],hz=[];
+  for(let i=0;i<N;i++){const row=document.createElement('div');row.className='sl';
+    const id='h'+(i+1);row.innerHTML=`<label for="${id}">n=${i+1} <small></small></label><input id="${id}" type="range" min="0" max="100" step="1"><output for="${id}"></output>`;
+    box.appendChild(row);ins.push(row.querySelector('input'));outs.push(row.querySelector('output'));hz.push(row.querySelector('small'));
+    ins[i].addEventListener('input',()=>{amps[i]=ins[i].value/100;clearPressed();draw();});}
+  function clearPressed(){document.querySelectorAll('#presets button').forEach(b=>b.setAttribute('aria-pressed','false'));}
+  function sync(){const f0=+f0sel.value;ins.forEach((el,i)=>{el.value=Math.round(amps[i]*100);outs[i].textContent=Math.round(amps[i]*100);hz[i].textContent=fmt(f0*(i+1),0)+' Hz';});}
+  function draw(){sync();const f0=+f0sel.value;
+    const w=$('mixWave');w.innerHTML='';const x0=10,x1=310,cy=80,X=u=>x0+(x1-x0)*u;
+    S(w,'line',{x1:x0,y1:cy,x2:x1,y2:cy,class:'grid'});[0,0.5,1].forEach(u=>S(w,'line',{x1:X(u),y1:12,x2:X(u),y2:148,class:'cm dash'}));
+    const f=u=>amps.reduce((acc,a,i)=>acc+a*Math.sin(TAU*2*(i+1)*u),0);let m=0;for(let i=0;i<=600;i++)m=Math.max(m,Math.abs(f(i/600)));
+    if(m>0)S(w,'path',{d:P(u=>[X(u),cy-62*f(u)/m],600),class:'c1'});
+    T(w,X(0.25),164,'T₀ = '+fmt(1000/f0,2)+' ms','t-xs','middle');T(w,X(0.75),164,'T₀','t-xs','middle');
+    const p=$('mixSpec');p.innerHTML='';const base=136,mx=Math.max(...amps,1e-9);
+    S(p,'line',{x1:12,y1:base,x2:314,y2:base,class:'ax'});
+    amps.forEach((a,i)=>{const h=a/mx*112;S(p,'rect',{x:18+i*24.5,y:base-h,width:15,height:Math.max(h,0.5),class:i===0?'b2':'b1'});T(p,25.5+i*24.5,base+14,i+1,'t-xs','middle');});
+    T(p,314,base+30,'số thứ tự hài âm n (cột cam = f₀)','t-xs','end');}
+  $('presets').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const k=b.dataset.p;amps=PRE[k]();
+    if(k==='violin')f0sel.value='196.1';if(k==='guitar')f0sel.value='80.6';clearPressed();b.setAttribute('aria-pressed','true');draw();});
+  f0sel.addEventListener('change',draw);
+  $('playMix').addEventListener('click',()=>{const pressed=document.querySelector('#presets button[aria-pressed="true"]');
+    playAmps(amps,+f0sel.value,1.5,st,(pressed?pressed.textContent:'tự trộn')+' · f₀ = '+f0sel.options[f0sel.selectedIndex].text);});
+  document.querySelector('#presets button[data-p="bowed"]').setAttribute('aria-pressed','true');amps=PRE.bowed();draw();})();
+
+/* Bước 6: số đo thật */
+(function(){const s=$('figReal'),x0=70,x1=600,y0=30,y1=262,X=n=>x0+(x1-x0)*(n-1)/23,Y=db=>y0+(y1-y0)*(-db)/70;
+  [0,-20,-40,-60].forEach(d=>{S(s,'line',{x1:x0,y1:Y(d),x2:x1,y2:Y(d),class:d===-40?'cm dash':'grid'});T(s,x0-8,Y(d)+4,d+' dB','t-xs','end');});
+  T(s,x1,Y(-40)-6,'−40 dB = biên độ 1/100','t-xs','end');
+  [1,4,8,12,16,20,24].forEach(n=>T(s,X(n),y1+18,n,'t-xs','middle'));T(s,x1,y1+38,'số thứ tự hài âm n','t-xs','end');
+  [['violin','c1','dot1','t-acc','violin G3'],['guitar','c2','dot','t-acc2','guitar E2']].forEach(([k,cl,dc,tc,lab])=>{const d=REAL[k].db;
+    S(s,'path',{d:d.map((v,i)=>(i?'L':'M')+X(i+1).toFixed(1)+','+Y(v).toFixed(1)).join(''),class:cl});
+    d.forEach((v,i)=>S(s,'circle',{cx:X(i+1),cy:Y(v),r:3.2,class:dc}));
+    T(s,X(24)+10,Y(d[23])+4,lab,tc);});
+  const tb=$('realTable');for(let n=1;n<=8;n++){const tr=document.createElement('tr');
+    tr.innerHTML=`<td class="num">${n}</td><td class="num">${fmt(REAL.violin.f0*n,0)} Hz</td><td class="num">${fmt(REAL.violin.db[n-1])} dB</td><td class="num">${fmt(REAL.guitar.f0*n,0)} Hz</td><td class="num">${fmt(REAL.guitar.db[n-1])} dB</td>`;tb.appendChild(tr);}})();
+</script>

@@ -1,0 +1,7 @@
+﻿instrument,f0_p10_Hz,f0_trung_vi_Hz,f0_p90_Hz,tan_so_trung_vi_nang_luong_Hz,giam_nang_luong_sau_0_4s_dB
+violin,329.7,501.3,780.7,506.0,0.0
+viola,197.1,290.4,365.9,355.3,-1.6
+cello,98.0,157.4,197.2,193.8,-7.0
+double_bass,72.1,92.3,131.6,107.7,-1.6
+guitar_acoustic,58.9,117.6,351.6,236.9,-7.1
+guitar_electric,47.0,130.9,331.7,549.1,-1.0
