@@ -13,3 +13,7 @@ __pycache__/
 
 # Thư mục junction hinh tại root (chỉ áp dụng ở thư mục gốc)
 /hinh
+
+# Tài liệu mẫu tham khảo và PDF xuất khẩu
+HCSDLDPT.docx
+*.pdf
