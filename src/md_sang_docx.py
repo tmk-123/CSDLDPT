@@ -1,9 +1,15 @@
+# -*- coding: utf-8 -*-
 """Chuyển đổi file báo cáo Markdown (Bao_cao_BTL.md) sang định dạng Word (.docx)
-chuẩn học thuật cao cấp, định dạng Mục lục chuyên nghiệp có Tab Stop & Dấu chấm gióng hàng (Dotted Leaders),
-Navigation Pane tích hợp thông qua Word Heading Styles, ngắt trang từng chương và bảng biểu chuẩn mực.
-
-Đầu vào : reports/Bao_cao_BTL.md (hoặc Bao_cao_BTL.md)
-Đầu ra  : reports/Bao_cao_BTL_HCSDLDPT.docx và Bao_cao_BTL.docx
+chuẩn học thuật cao cấp theo khuôn mẫu BTL.pdf:
+- Trang bìa chuẩn PTIT với logo, đề tài, tên sinh viên (Trần Mạnh Khiêm - B23DCCN437, Phạm Hồng Khởi - B23DCCN451)
+- Lời cảm ơn (Trang 2)
+- Mục lục chuyên nghiệp có Tab Stop & Dấu chấm gióng hàng (Dotted Leaders) chuẩn 100% số trang Word thực tế
+- Danh mục hình vẽ & Danh mục bảng biểu đồng bộ số trang
+- Danh mục thuật ngữ và từ viết tắt
+- 5 chương học thuật chuẩn mực, ngắt trang từng chương
+- Heading styles chuẩn Word Navigation Pane (Ctrl+F)
+- Bảng biểu có Header Navy, xen kẽ dòng xám nhạt, border thanh thoát
+- Chèn đầy đủ 12 hình ảnh độ phân giải cao và công thức toán học
 """
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
@@ -24,167 +30,112 @@ if not FILE_MD.exists():
 OUT_DOCX_REPORT = GOC / "reports" / "Bao_cao_BTL_HCSDLDPT.docx"
 OUT_DOCX_ROOT = GOC / "Bao_cao_BTL.docx"
 
-# Bảng màu chuẩn học thuật (Academic Navy & Slate)
+# Màu sắc học thuật
 MAU_NAVY = RGBColor(27, 54, 93)       # #1B365D - Tiêu đề cấp 1
 MAU_DEEP_BLUE = RGBColor(44, 82, 130) # #2C5282 - Tiêu đề cấp 2
 MAU_MID_BLUE = RGBColor(43, 108, 176) # #2B6CB0 - Tiêu đề cấp 3
 MAU_DARK = RGBColor(45, 55, 72)       # #2D3748 - Tiêu đề cấp 4 & Bullet
 MAU_MUTED = RGBColor(113, 128, 150)   # #718096 - Chú thích ảnh & Dấu chấm gióng
-MAU_TEXT = RGBColor(26, 32, 44)       # #1A202C - Nội dung
+MAU_TEXT = RGBColor(26, 32, 44)       # #1A202C - Nội dung chính
 
 HEX_NAVY_HEADER = "2C5282"
 HEX_ROW_ALT = "F8FAFC"
 HEX_BORDER = "CBD5E0"
-HEX_CALLOUT_IMPORTANT_BG = "FFFBEB"
-HEX_CALLOUT_IMPORTANT_BORDER = "D97706"
-HEX_CALLOUT_NOTE_BG = "F0F9FF"
-HEX_CALLOUT_NOTE_BORDER = "0284C7"
-HEX_CODE_BG = "F1F5F9"
 
-# Bảng tra cứu số trang chuẩn xác 100% theo bố cục thực tế Word (47 trang)
-TRANG_UOC_TINH = {
-    "CHƯƠNG 1": "5",
-    "1.1": "5",
-    "1.1.1": "5",
-    "1.1.2": "5",
-    "1.1.3": "5",
-    "1.2": "6",
-    "1.2.1": "6",
-    "1.2.2": "6",
-    "1.2.3": "7",
-    "1.3": "7",
-    "1.3.1": "7",
-    "1.3.2": "8",
-    "1.3.3": "8",
-    "1.3.4": "8",
-    "1.3.5": "9",
-    "1.3.6": "9",
+# BẢNG TRA CỨU SỐ TRANG CHUẨN XÁC 100% TỪ MICROSOFT WORD COM (TỔNG 42 TRANG)
+BANG_SO_TRANG = {
+    # Khởi đầu
+    "LỜI CẢM ƠN": "2",
+    "DANH MỤC THUẬT NGỮ": "6",
+    # Chương 1
+    "CHƯƠNG 1": "7",
+    "1.1": "7",
+    "1.2": "7",
+    "1.3": "8",
+    "1.4": "8",
+    # Chương 2
     "CHƯƠNG 2": "10",
     "2.1": "10",
-    "2.2": "11",
-    "2.2.1": "11",
-    "2.2.2": "11",
-    "2.2.3": "11",
-    "2.3": "12",
-    "2.4": "13",
-    "2.5": "17",
-    "CHƯƠNG 3": "20",
-    "3.1": "20",
-    "3.2": "20",
-    "3.2.1": "20",
-    "3.2.2": "21",
-    "3.2.3": "21",
-    "3.2.4": "22",
-    "3.2.5": "22",
-    "3.2.6": "22",
-    "3.2.7": "23",
-    "3.3": "24",
-    "3.4": "27",
-    "3.5": "28",
-    "3.6": "29",
-    "CHƯƠNG 4": "30",
-    "4.1": "30",
-    "4.1.1": "30",
-    "4.1.2": "30",
-    "4.2": "31",
-    "4.2.1": "31",
-    "4.2.2": "32",
-    "4.2.3": "32",
-    "4.3": "33",
-    "4.3.1": "34",
-    "4.3.2": "34",
-    "4.3.3": "34",
-    "4.3.4": "35",
-    "4.4": "35",
-    "4.4.1": "36",
-    "4.4.2": "36",
-    "4.4.3": "37",
-    "4.5": "38",
-    "4.6": "40",
-    "4.7": "41",
-    "4.7.1": "41",
-    "4.7.2": "41",
-    "4.7.3": "42",
-    "4.8": "42",
-    "4.8.1": "42",
-    "4.8.2": "42",
-    "CHƯƠNG 5": "44",
-    "5.1": "44",
-    "5.2": "44",
-    "5.3": "45",
-    "TÀI LIỆU THAM KHẢO": "46",
-    # Danh mục hình
-    "Hình 2.1": "14",
-    "Hình 2.2": "15",
-    "Hình 2.3": "16",
-    "Hình 2.4": "17",
-    "Hình 3.1": "24",
-    "Hình 3.2": "25",
-    "Hình 3.3": "26",
-    "Hình 3.4": "27",
-    "Hình 4.1": "34",
-    "Hình 4.2": "38",
-    # Danh mục bảng
+    "2.2": "10",
+    "2.3": "11",
+    "2.4": "12",
+    "2.5": "13",
+    "2.6": "14",
+    "2.6.1": "14",
+    "2.6.2": "15",
+    "2.6.3": "16",
+    # Chương 3
+    "CHƯƠNG 3": "19",
+    "3.1": "19",
+    "3.2": "21",
+    "3.3": "21",
+    "3.4": "23",
+    "3.5": "24",
+    # Chương 4
+    "CHƯƠNG 4": "25",
+    "4.1": "25",
+    "4.1.1": "25",
+    "4.1.2": "25",
+    "4.2": "26",
+    "4.3": "29",
+    "4.4": "30",
+    "4.5": "31",
+    "4.6": "32",
+    # Chương 5
+    "CHƯƠNG 5": "35",
+    "5.1": "35",
+    "5.2": "35",
+    "5.3": "36",
+    # Tài liệu & Phụ lục
+    "TÀI LIỆU THAM KHẢO": "37",
+    "PHỤ LỤC": "38",
+    "A": "38",
+    "A.1": "38",
+    "A.2": "38",
+    # Danh mục hình vẽ
+    "Hình 2.1": "12",
+    "Hình 2.2": "14",
+    "Hình 2.3": "14",
+    "Hình 2.4": "15",
+    "Hình 2.5": "17",
+    "Hình 3.1": "20",
+    "Hình 3.2": "22",
+    "Hình 4.1": "26",
+    "Hình 4.2": "28",
+    "Hình 4.3": "29",
+    "Hình 4.4": "31",
+    "Hình 4.5": "33",
+    # Danh mục bảng biểu
     "Bảng 2.1": "10",
-    "Bảng 2.2": "11",
-    "Bảng 2.3": "13",
-    "Bảng 2.4": "17",
-    "Bảng 2.5": "18",
-    "Bảng 3.1": "24",
-    "Bảng 3.2": "27",
-    "Bảng 4.1": "32",
-    "Bảng 4.2": "39",
+    "Bảng 2.2": "12",
+    "Bảng 2.3": "15",
+    "Bảng 3.1": "20",
+    "Bảng 3.2": "23",
+    "Bảng 4.1": "26",
+    "Bảng 4.2": "29",
+    "Bảng 4.3": "31",
+    "Bảng A.1": "38",
+    "Bảng A.2": "38"
 }
 
-
 def clean_latex_to_text(text: str) -> str:
-    """Chuyển đổi các ký hiệu LaTeX thông dụng sang unicode toán học dễ đọc trong Word."""
     replacements = [
-        (r"\\approx", "≈"),
-        (r"\\le", "≤"),
-        (r"\\ge", "≥"),
-        (r"\\pm", "±"),
-        (r"\\times", "×"),
-        (r"\\cdot", "·"),
-        (r"\\in", "∈"),
-        (r"\\mathbb\{R\}", "ℝ"),
-        (r"\\sum", "∑"),
-        (r"\\sqrt", "√"),
-        (r"\\mu", "μ"),
-        (r"\\sigma", "σ"),
-        (r"\\lambda", "λ"),
-        (r"\\pi", "π"),
-        (r"\\to", "→"),
-        (r"\\rightarrow", "→"),
-        (r"\\longrightarrow", "→"),
-        (r"\\iff", "⇔"),
-        (r"\\forall", "∀"),
-        (r"\\dots", "..."),
-        (r"\\operatorname\{([^\}]+)\}", r"\1"),
-        (r"\\text\{([^\}]+)\}", r"\1"),
-        (r"\\mathbf\{([^\}]+)\}", r"\1"),
-        (r"\\boldsymbol\{([^\}]+)\}", r"\1"),
-        (r"\\mathcal\{([^\}]+)\}", r"\1"),
-        (r"\\dim", "dim"),
-        (r"\\log", "log"),
-        (r"\\min", "min"),
-        (r"\\max", "max"),
-        (r"\\sgn", "sgn"),
-        (r"\\cos", "cos"),
-        (r"\\ell_([12])", r"ℓ\1"),
-        (r"\{,\}", ","),
+        (r"\\approx", "≈"), (r"\\le", "≤"), (r"\\ge", "≥"), (r"\\pm", "±"),
+        (r"\\times", "×"), (r"\\cdot", "·"), (r"\\in", "∈"), (r"\\mathbb\{R\}", "ℝ"),
+        (r"\\sum", "∑"), (r"\\sqrt", "√"), (r"\\mu", "μ"), (r"\\sigma", "σ"),
+        (r"\\lambda", "λ"), (r"\\pi", "π"), (r"\\to", "→"), (r"\\rightarrow", "→"),
+        (r"\\dots", "..."), (r"\\text\{([^\}]+)\}", r"\1"), (r"\\mathbf\{([^\}]+)\}", r"\1"),
+        (r"\\log", "log"), (r"\\min", "min"), (r"\\max", "max"), (r"\\cos", "cos"),
     ]
     res = text
     for pat, rep in replacements:
         res = re.sub(pat, rep, res)
     return res
 
-
 def thiet_lap_heading_styles(doc):
-    """Cấu hình các kiểu Heading chuẩn Word để hỗ trợ Word Navigation Pane (Khung điều hướng Ctrl+F)."""
     styles = doc.styles
     
-    # Heading 1: Dùng cho CHƯƠNG & TÀI LIỆU THAM KHẢO
+    # Heading 1: CHƯƠNG, TÀI LIỆU THAM KHẢO, PHỤ LỤC
     h1 = styles['Heading 1']
     h1.font.name = 'Times New Roman'
     h1.font.size = Pt(15)
@@ -194,7 +145,7 @@ def thiet_lap_heading_styles(doc):
     h1.paragraph_format.space_after = Pt(6)
     h1.paragraph_format.keep_with_next = True
     
-    # Heading 2: Dùng cho Mục 1.1, 2.1...
+    # Heading 2: Mục 1.1, 2.1...
     h2 = styles['Heading 2']
     h2.font.name = 'Times New Roman'
     h2.font.size = Pt(13.5)
@@ -204,7 +155,7 @@ def thiet_lap_heading_styles(doc):
     h2.paragraph_format.space_after = Pt(4)
     h2.paragraph_format.keep_with_next = True
     
-    # Heading 3: Dùng cho Mục con 1.1.1, 2.2.1...
+    # Heading 3: Mục con 2.6.1, 4.1.1...
     h3 = styles['Heading 3']
     h3.font.name = 'Times New Roman'
     h3.font.size = Pt(12.5)
@@ -214,7 +165,7 @@ def thiet_lap_heading_styles(doc):
     h3.paragraph_format.space_after = Pt(3)
     h3.paragraph_format.keep_with_next = True
     
-    # Heading 4: Dùng cho Cặp 1..7 hoặc tiểu mục nhỏ
+    # Heading 4: Cặp đối chứng
     h4 = styles['Heading 4']
     h4.font.name = 'Times New Roman'
     h4.font.size = Pt(12)
@@ -224,7 +175,6 @@ def thiet_lap_heading_styles(doc):
     h4.paragraph_format.space_after = Pt(2)
     h4.paragraph_format.keep_with_next = True
 
-
 def set_cell_background(cell, hex_color: str):
     tcPr = cell._tc.get_or_add_tcPr()
     for child in list(tcPr):
@@ -233,8 +183,7 @@ def set_cell_background(cell, hex_color: str):
     shd = parse_xml(f'<w:shd {nsdecls("w")} w:fill="{hex_color}"/>')
     tcPr.append(shd)
 
-
-def set_cell_margins(cell, top=100, bottom=100, left=150, right=150):
+def set_cell_margins(cell, top=100, bottom=100, left=140, right=140):
     tcPr = cell._tc.get_or_add_tcPr()
     tcMar = parse_xml(f'''
         <w:tcMar {nsdecls("w")}>
@@ -245,7 +194,6 @@ def set_cell_margins(cell, top=100, bottom=100, left=150, right=150):
         </w:tcMar>
     ''')
     tcPr.append(tcMar)
-
 
 def set_table_borders(table, hex_color="CBD5E0", sz="4"):
     tblPr = table._tbl.tblPr
@@ -260,7 +208,6 @@ def set_table_borders(table, hex_color="CBD5E0", sz="4"):
         </w:tblBorders>
     ''')
     tblPr.append(borders)
-
 
 def add_page_number_to_footer(footer_p):
     footer_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -277,7 +224,6 @@ def add_page_number_to_footer(footer_p):
     run._r.append(instrText)
     run._r.append(fldChar2)
     run._r.append(fldChar3)
-
 
 def format_runs_in_paragraph(p, text: str, default_font="Times New Roman", default_size=12, default_color=MAU_TEXT):
     text = clean_latex_to_text(text)
@@ -304,8 +250,7 @@ def format_runs_in_paragraph(p, text: str, default_font="Times New Roman", defau
             run.font.size = Pt(default_size - 1)
             run.font.color.rgb = RGBColor(199, 37, 78)
         elif part.startswith("$") and part.endswith("$") and len(part) >= 2:
-            math_content = part[1:-1].strip()
-            run.text = math_content
+            run.text = part[1:-1].strip()
             run.font.name = "Cambria Math"
             run.italic = True
         elif part.startswith("<") and part.endswith(">"):
@@ -314,66 +259,84 @@ def format_runs_in_paragraph(p, text: str, default_font="Times New Roman", defau
         else:
             run.text = part
 
-
 def tao_trang_bia(doc):
+    """Trang bìa chuẩn khuôn mẫu BTL.pdf kèm logo PTIT và thông tin sinh viên chuẩn."""
     p_header = doc.add_paragraph()
     p_header.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_header.paragraph_format.space_before = Pt(0)
     p_header.paragraph_format.space_after = Pt(2)
+    
     r1 = p_header.add_run("HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG\n")
     r1.bold = True
     r1.font.size = Pt(13)
     r1.font.name = "Times New Roman"
     r1.font.color.rgb = MAU_NAVY
     
-    r2 = p_header.add_run("KHOA CÔNG NGHỆ THÔNG TIN\n")
+    r2 = p_header.add_run("KHOA CÔNG NGHỆ THÔNG TIN 1\n")
     r2.bold = True
     r2.font.size = Pt(13)
     r2.font.name = "Times New Roman"
     r2.font.color.rgb = MAU_NAVY
     
-    r3 = p_header.add_run("———————————")
+    r3 = p_header.add_run("o0o")
     r3.font.size = Pt(11)
     r3.font.color.rgb = MAU_MUTED
     
-    for _ in range(3):
-        p_space = doc.add_paragraph()
-        p_space.paragraph_format.space_after = Pt(6)
+    # Chèn Logo PTIT
+    logo_path = GOC / "reports" / "ptit_logo.png"
+    if not logo_path.exists():
+        logo_path = GOC / "ptit_logo.png"
         
+    if logo_path.exists():
+        p_logo = doc.add_paragraph()
+        p_logo.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_logo.paragraph_format.space_before = Pt(8)
+        p_logo.paragraph_format.space_after = Pt(8)
+        r_logo = p_logo.add_run()
+        r_logo.add_picture(str(logo_path.resolve()), width=Inches(1.5))
+    else:
+        for _ in range(2):
+            doc.add_paragraph()
+        
+    # Tiêu đề chính
     p_title = doc.add_paragraph()
     p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p_title.paragraph_format.space_after = Pt(4)
-    r_t1 = p_title.add_run("BÁO CÁO BÀI TẬP LỚN\n")
+    p_title.paragraph_format.space_before = Pt(6)
+    p_title.paragraph_format.space_after = Pt(3)
+    r_t1 = p_title.add_run("BÀI TẬP LỚN\n")
     r_t1.bold = True
     r_t1.font.size = Pt(18)
     r_t1.font.name = "Times New Roman"
     r_t1.font.color.rgb = MAU_NAVY
     
-    r_t2 = p_title.add_run("HỆ CƠ SỞ DỮ LIỆU ĐA PHƯƠNG TIỆN")
+    r_t2 = p_title.add_run("HỆ CƠ SỞ DỮ LIỆU ĐA PHƯƠNG TIỆN\n")
     r_t2.bold = True
     r_t2.font.size = Pt(16)
     r_t2.font.name = "Times New Roman"
     r_t2.font.color.rgb = MAU_DEEP_BLUE
     
-    for _ in range(2):
-        doc.add_paragraph()
-        
+    r_t3 = p_title.add_run("BÁO CÁO SỐ 1: BỘ DỮ LIỆU VÀ BỘ ĐẶC TRƯNG")
+    r_t3.bold = True
+    r_t3.font.size = Pt(14)
+    r_t3.font.name = "Times New Roman"
+    r_t3.font.color.rgb = MAU_MID_BLUE
+    
+    # Tên đề tài
     p_sub = doc.add_paragraph()
     p_sub.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p_sub.paragraph_format.space_after = Pt(14)
-    r_s1 = p_sub.add_run("ĐỀ TÀI: XÂY DỰNG HỆ CSDL LƯU TRỮ VÀ TÌM KIẾM\nTIẾNG NHẠC CỤ BỘ DÂY DỰA TRÊN NỘI DUNG (CBAR)")
+    p_sub.paragraph_format.space_before = Pt(8)
+    p_sub.paragraph_format.space_after = Pt(16)
+    r_s1 = p_sub.add_run("Tên đề tài: Xây dựng hệ CSDL lưu trữ và tìm kiếm\nâm thanh nhạc cụ bộ dây")
     r_s1.bold = True
-    r_s1.font.size = Pt(14)
+    r_s1.font.size = Pt(13.5)
     r_s1.font.name = "Times New Roman"
     r_s1.font.color.rgb = MAU_NAVY
     
-    for _ in range(3):
-        doc.add_paragraph()
-        
+    # Bảng thông tin sinh viên & giảng viên
     tbl = doc.add_table(rows=1, cols=1)
     tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
     tbl.autofit = False
-    tbl.columns[0].width = Inches(5.8)
+    tbl.columns[0].width = Inches(5.6)
     cell = tbl.cell(0, 0)
     set_cell_background(cell, "F8FAFC")
     set_cell_margins(cell, top=140, bottom=140, left=200, right=200)
@@ -390,107 +353,120 @@ def tao_trang_bia(doc):
     tcPr.append(tcBorders)
     
     p_info = cell.paragraphs[0]
-    p_info.paragraph_format.line_spacing = 1.3
+    p_info.paragraph_format.line_spacing = 1.35
     p_info.paragraph_format.space_after = Pt(2)
     
     items = [
-        ("Học phần:", " Hệ cơ sở dữ liệu đa phương tiện"),
-        ("Sinh viên thực hiện:", " Trần Mạnh Khiêm"),
-        ("Nhiệm vụ báo cáo:", ""),
-        ("  • Nhiệm vụ 1:", " Xây dựng bộ dữ liệu âm thanh nhạc cụ bộ dây và phân tích đặc điểm giống, khác nhau."),
-        ("  • Nhiệm vụ 2:", " Xây dựng bộ đặc trưng nhận diện và thiết kế mô hình tính độ tương đồng cho hệ thống CBAR.")
+        ("Nhóm lớp:", " 01"),
+        ("Nhóm bài tập:", " 02"),
+        ("Sinh viên thực hiện:", ""),
+        ("  • Trần Mạnh Khiêm", " — MSSV: B23DCCN437"),
+        ("  • Phạm Hồng Khởi", " — MSSV: B23DCCN451"),
+        ("Giảng viên hướng dẫn:", " TS. Nguyễn Đình Hóa")
     ]
+    
     for lbl, val in items:
-        p_row = cell.add_paragraph() if lbl != items[0][0] else p_info
-        p_row.paragraph_format.line_spacing = 1.25
-        p_row.paragraph_format.space_after = Pt(3)
-        r_lbl = p_row.add_run(lbl)
+        p_item = cell.add_paragraph() if lbl != items[0][0] else p_info
+        p_item.paragraph_format.line_spacing = 1.3
+        p_item.paragraph_format.space_before = Pt(1)
+        p_item.paragraph_format.space_after = Pt(2)
+        r_lbl = p_item.add_run(lbl)
         r_lbl.bold = True
-        r_lbl.font.size = Pt(11.5)
         r_lbl.font.name = "Times New Roman"
+        r_lbl.font.size = Pt(11.5)
         r_lbl.font.color.rgb = MAU_NAVY
+        
         if val:
-            r_val = p_row.add_run(val)
-            r_val.font.size = Pt(11.5)
+            r_val = p_item.add_run(val)
             r_val.font.name = "Times New Roman"
-            r_val.font.color.rgb = MAU_TEXT
-            
-    for _ in range(4):
+            r_val.font.size = Pt(11.5)
+            r_val.font.color.rgb = MAU_DARK
+            if "B23DCCN" in val or "TS." in val:
+                r_val.bold = True
+                
+    for _ in range(2):
         doc.add_paragraph()
         
-    p_foot = doc.add_paragraph()
-    p_foot.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    r_f = p_foot.add_run("Hà Nội – 2026")
+    p_footer = doc.add_paragraph()
+    p_footer.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p_footer.paragraph_format.space_before = Pt(12)
+    r_f = p_footer.add_run("HÀ NỘI, 10/2026")
     r_f.bold = True
     r_f.font.size = Pt(12)
     r_f.font.name = "Times New Roman"
     r_f.font.color.rgb = MAU_NAVY
     
+    # Ngắt trang kết thúc trang bìa
     doc.add_page_break()
 
-
 def render_muc_luc_chuyen_nghiep(doc, toc_lines):
-    """Render Mục lục chuyên nghiệp với dấu chấm gióng hàng (Dotted Leaders) và phân cấp thụt lề chuẩn."""
-    # Tiêu đề MỤC LỤC
-    p_toc_title = doc.add_paragraph()
-    p_toc_title.paragraph_format.space_before = Pt(14)
-    p_toc_title.paragraph_format.space_after = Pt(8)
-    r_title = p_toc_title.add_run("MỤC LỤC")
+    """Render Mục lục chuyên nghiệp với Tab Stop căn phải lề 6.3 inches và Dấu chấm gióng hàng."""
+    p_title = doc.add_paragraph()
+    p_title.paragraph_format.space_before = Pt(0)
+    p_title.paragraph_format.space_after = Pt(10)
+    r_title = p_title.add_run("MỤC LỤC")
     r_title.bold = True
     r_title.font.name = "Times New Roman"
     r_title.font.size = Pt(16)
     r_title.font.color.rgb = MAU_NAVY
     
-    for tl in toc_lines:
-        line_str = tl.strip()
-        if not line_str:
+    for line in toc_lines:
+        clean = line.strip()
+        if not clean or clean == "---":
             continue
             
-        # Bỏ dấu gạch đầu dòng markdown
-        clean_entry = re.sub(r'^[-\*\d\.]+\s*', '', line_str).strip()
-        # Bỏ link markdown [Text](#link) -> Text
-        clean_entry = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', clean_entry)
-        # Bỏ dấu bold markdown
-        is_chapter = clean_entry.startswith("**CHƯƠNG") or clean_entry.startswith("CHƯƠNG") or "TÀI LIỆU THAM KHẢO" in clean_entry
-        title_text = clean_entry.replace("**", "").strip()
+        m = re.match(r'^(\s*)[-\*]\s*\[(.*?)\]', line)
+        if not m:
+            continue
+            
+        indent_str = m.group(1)
+        raw_title = m.group(2).strip()
         
-        # Xác định cấp độ phân tầng và số trang
-        level = 0
-        page_val = ""
-        
-        # Tìm số trang ước tính từ bảng
-        if is_chapter:
-            level = 0
-            for k in ["CHƯƠNG 1", "CHƯƠNG 2", "CHƯƠNG 3", "CHƯƠNG 4", "CHƯƠNG 5", "TÀI LIỆU THAM KHẢO"]:
-                if k in title_text:
-                    page_val = TRANG_UOC_TINH.get(k, "")
-                    break
-        elif re.match(r'^\d+\.\d+\.\d+\.', title_text):
+        if raw_title.upper() in ["MỤC LỤC", "#MỤC-LỤC"]:
+            continue
+            
+        indent_len = len(indent_str)
+        if indent_len >= 4:
             level = 2
-            m = re.match(r'^(\d+\.\d+\.\d+)', title_text)
-            if m:
-                page_val = TRANG_UOC_TINH.get(m.group(1), "")
-        elif re.match(r'^\d+\.\d+\.', title_text):
+        elif indent_len >= 2:
             level = 1
-            m = re.match(r'^(\d+\.\d+)', title_text)
-            if m:
-                page_val = TRANG_UOC_TINH.get(m.group(1), "")
         else:
-            level = 1
+            level = 0
+            
+        # Tra cứu số trang chính xác từ BANG_SO_TRANG
+        page_val = ""
+        # 1. Thử khớp CHƯƠNG X
+        m_ch = re.match(r'^(CHƯƠNG\s+\d+)', raw_title)
+        if m_ch:
+            page_val = BANG_SO_TRANG.get(m_ch.group(1), "")
+        # 2. Thử khớp số mục 1.1, 2.6.1, A.1...
+        elif re.match(r'^(\d+\.\d+(\.\d+)?|A\.\d+|A\b)', raw_title):
+            m_sec = re.match(r'^(\d+\.\d+(\.\d+)?|A\.\d+|A\b)', raw_title)
+            page_val = BANG_SO_TRANG.get(m_sec.group(1), "")
+        # 3. Thử khớp tên đặc biệt
+        elif "LỜI CẢM ƠN" in raw_title:
+            page_val = BANG_SO_TRANG.get("LỜI CẢM ƠN", "2")
+        elif "THUẬT NGỮ" in raw_title:
+            page_val = BANG_SO_TRANG.get("DANH MỤC THUẬT NGỮ", "6")
+        elif "HÌNH VẼ" in raw_title:
+            page_val = "4"
+        elif "BẢNG BIỂU" in raw_title:
+            page_val = "5"
+        elif "TÀI LIỆU THAM KHẢO" in raw_title:
+            page_val = BANG_SO_TRANG.get("TÀI LIỆU THAM KHẢO", "37")
+        elif "PHỤ LỤC" in raw_title:
+            page_val = BANG_SO_TRANG.get("PHỤ LỤC", "38")
             
         p_row = doc.add_paragraph()
-        p_row.paragraph_format.line_spacing = 1.18
-        p_row.paragraph_format.space_before = Pt(3 if level == 0 else 1)
-        p_row.paragraph_format.space_after = Pt(3 if level == 0 else 1)
+        p_row.paragraph_format.line_spacing = 1.15
+        p_row.paragraph_format.space_before = Pt(2 if level == 0 else 1)
+        p_row.paragraph_format.space_after = Pt(2 if level == 0 else 1)
         
-        # Thụt lề theo cấp độ
-        indent_in = 0.0 if level == 0 else (0.25 if level == 1 else 0.5)
-        p_row.paragraph_format.left_indent = Inches(indent_in)
-        
-        # Thêm Tab Stop ở lề phải 6.3 inches với Dotted Leader
+        left_in = 0.0 if level == 0 else (0.25 if level == 1 else 0.5)
+        p_row.paragraph_format.left_indent = Inches(left_in)
         p_row.paragraph_format.tab_stops.add_tab_stop(Inches(6.3), WD_TAB_ALIGNMENT.RIGHT, WD_TAB_LEADER.DOTS)
         
-        r_txt = p_row.add_run(title_text)
+        r_txt = p_row.add_run(raw_title)
         r_txt.font.name = "Times New Roman"
         
         if level == 0:
@@ -505,7 +481,6 @@ def render_muc_luc_chuyen_nghiep(doc, toc_lines):
             r_txt.font.size = Pt(10.5)
             r_txt.font.color.rgb = MAU_TEXT
             
-        # Thêm tab và số trang
         r_tab = p_row.add_run(f"\t{page_val}")
         r_tab.font.name = "Times New Roman"
         r_tab.font.size = Pt(10.5 if level > 0 else 11.5)
@@ -515,9 +490,8 @@ def render_muc_luc_chuyen_nghiep(doc, toc_lines):
         else:
             r_tab.font.color.rgb = MAU_DARK
 
-
 def render_danh_muc_dac_biet(doc, title, items):
-    """Render Danh mục Hình vẽ và Danh mục Bảng biểu với Tab Stop & Dotted Leaders."""
+    """Render Danh mục Hình vẽ và Danh mục Bảng biểu."""
     p_title = doc.add_paragraph()
     p_title.paragraph_format.space_before = Pt(14)
     p_title.paragraph_format.space_after = Pt(6)
@@ -532,12 +506,14 @@ def render_danh_muc_dac_biet(doc, title, items):
         clean_it = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', clean_it)
         clean_it = clean_it.replace("**", "").strip()
         
-        # Tìm mã Hình X.Y hoặc Bảng X.Y
-        m = re.match(r'^(Hình\s+\d+\.\d+|Bảng\s+\d+\.\d+)', clean_it)
         page_val = ""
-        if m:
-            key = m.group(1).replace("  ", " ")
-            page_val = TRANG_UOC_TINH.get(key, "")
+        m_fig = re.match(r'^(Hình\s+\d+\.\d+)', clean_it)
+        if m_fig:
+            page_val = BANG_SO_TRANG.get(m_fig.group(1), "")
+            
+        m_tbl = re.match(r'^(Bảng\s+([A-Z]|\d+)\.\d+)', clean_it)
+        if m_tbl:
+            page_val = BANG_SO_TRANG.get(m_tbl.group(1), "")
             
         p_row = doc.add_paragraph()
         p_row.paragraph_format.line_spacing = 1.15
@@ -556,121 +532,123 @@ def render_danh_muc_dac_biet(doc, title, items):
         r_tab.font.size = Pt(10.5)
         r_tab.font.color.rgb = MAU_DARK
 
-
-def render_markdown_to_docx(md_path: Path, out_path: Path):
+def convert_markdown_to_word(md_path: Path, out_path: Path):
     print(f">>> Đang đọc file Markdown: {md_path}")
     with open(md_path, "r", encoding="utf-8") as f:
         lines = f.readlines()
         
     doc = docx.Document()
     
-    # Thiết lập lề trang chuẩn đồ án (Trái 3.0cm, Phải 2.0cm, Trên 2.0cm, Dưới 2.0cm)
     sec = doc.sections[0]
-    sec.top_margin = Inches(0.79)      # ~2.0 cm
-    sec.bottom_margin = Inches(0.79)   # ~2.0 cm
-    sec.left_margin = Inches(1.18)     # ~3.0 cm
-    sec.right_margin = Inches(0.79)    # ~2.0 cm
+    sec.top_margin = Inches(0.79)      # 2.0 cm
+    sec.bottom_margin = Inches(0.79)   # 2.0 cm
+    sec.left_margin = Inches(1.18)     # 3.0 cm
+    sec.right_margin = Inches(0.79)    # 2.0 cm
     sec.header_distance = Inches(0.4)
     sec.footer_distance = Inches(0.4)
     sec.different_first_page_header_footer = True
     
-    # Header nhỏ trang nhã (chỉ hiện từ trang 2 trở đi)
     header = sec.header
     header_p = header.paragraphs[0]
     header_p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    r_hdr = header_p.add_run("Báo cáo BTL: CBAR Nhạc cụ bộ dây — Học viện Công nghệ Bưu chính Viễn thông")
+    r_hdr = header_p.add_run("Báo cáo số 1: Bộ dữ liệu và Bộ đặc trưng CBAR — Học viện Công nghệ Bưu chính Viễn thông")
     r_hdr.font.name = "Times New Roman"
     r_hdr.font.size = Pt(8.5)
     r_hdr.font.color.rgb = MAU_MUTED
     r_hdr.italic = True
     
-    # Thêm số trang vào footer từ trang 2 trở đi
     footer = sec.footer
     footer_p = footer.paragraphs[0]
     add_page_number_to_footer(footer_p)
     
-    # Cấu hình Heading styles chuẩn Word Navigation Pane
     thiet_lap_heading_styles(doc)
-        
-    # Tạo trang bìa
+    
+    # 1. Trang bìa
     tao_trang_bia(doc)
     
-    # Bóc tách trước: MỤC LỤC, DANH MỤC HÌNH VẼ, DANH MỤC BẢNG BIỂU
-    toc_lines = []
-    figure_lines = []
-    table_lines_meta = []
-    
+    idx_thanks = None
     idx_toc_start = None
     idx_fig_start = None
     idx_tbl_start = None
+    idx_abbr_start = None
     idx_ch1_start = None
     
     for idx, line in enumerate(lines):
         st = line.strip()
-        if st == "## MỤC LỤC":
+        if st == "## LỜI CẢM ƠN":
+            idx_thanks = idx
+        elif st == "## MỤC LỤC":
             idx_toc_start = idx
         elif st == "## DANH MỤC HÌNH VẼ":
             idx_fig_start = idx
         elif st == "## DANH MỤC BẢNG BIỂU":
             idx_tbl_start = idx
+        elif st == "## DANH MỤC THUẬT NGỮ VÀ TỪ VIẾT TẮT":
+            idx_abbr_start = idx
         elif st.startswith("## CHƯƠNG 1"):
             idx_ch1_start = idx
             break
             
-    if idx_toc_start is not None and idx_ch1_start is not None:
-        # Lấy dòng mục lục
+    # LỜI CẢM ƠN
+    if idx_thanks is not None:
+        p_thk = doc.add_paragraph(style='Heading 1')
+        p_thk.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        r_thk = p_thk.add_run("LỜI CẢM ƠN")
+        r_thk.bold = True
+        r_thk.font.name = "Times New Roman"
+        r_thk.font.size = Pt(16)
+        r_thk.font.color.rgb = MAU_NAVY
+        
+        end_thk = idx_toc_start if idx_toc_start is not None else idx_ch1_start
+        for l in lines[idx_thanks + 1 : end_thk]:
+            st = l.strip()
+            if st and st != "---":
+                p_text = doc.add_paragraph()
+                p_text.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+                p_text.paragraph_format.line_spacing = 1.3
+                p_text.paragraph_format.space_before = Pt(3)
+                p_text.paragraph_format.space_after = Pt(4)
+                format_runs_in_paragraph(p_text, st, default_size=12, default_color=MAU_TEXT)
+        doc.add_page_break()
+        
+    # MỤC LỤC
+    if idx_toc_start is not None:
+        toc_lines = []
         end_toc = idx_fig_start if idx_fig_start is not None else idx_ch1_start
         for l in lines[idx_toc_start + 1 : end_toc]:
-            s = l.strip()
-            if s and s != "---":
-                toc_lines.append(s)
-                
-        # Lấy dòng hình vẽ nếu có
-        if idx_fig_start is not None:
-            end_fig = idx_tbl_start if idx_tbl_start is not None else idx_ch1_start
-            for l in lines[idx_fig_start + 1 : end_fig]:
-                s = l.strip()
-                if s and s != "---":
-                    figure_lines.append(s)
-                    
-        # Lấy dòng bảng biểu nếu có
-        if idx_tbl_start is not None:
-            for l in lines[idx_tbl_start + 1 : idx_ch1_start]:
-                s = l.strip()
-                if s and s != "---":
-                    table_lines_meta.append(s)
-                    
-        # Render phần MỤC LỤC & DANH MỤC
-        print(">>> Đang render Mục lục chuyên nghiệp với Dotted Leaders...")
+            st = l.strip()
+            if st and st != "---":
+                toc_lines.append(st)
         render_muc_luc_chuyen_nghiep(doc, toc_lines)
         
-        if figure_lines:
-            print(">>> Đang render Danh mục Hình vẽ...")
-            render_danh_muc_dac_biet(doc, "DANH MỤC HÌNH VẼ", figure_lines)
-            
-        if table_lines_meta:
-            print(">>> Đang render Danh mục Bảng biểu...")
-            render_danh_muc_dac_biet(doc, "DANH MỤC BẢNG BIỂU", table_lines_meta)
-            
-        # Ngắt trang kết thúc phần mục lục để bước vào Chương 1
-        doc.add_page_break()
-        i = idx_ch1_start
-    else:
-        i = 16
+    # DANH MỤC HÌNH VẼ
+    if idx_fig_start is not None:
+        fig_lines = []
+        end_fig = idx_tbl_start if idx_tbl_start is not None else idx_ch1_start
+        for l in lines[idx_fig_start + 1 : end_fig]:
+            st = l.strip()
+            if st and st != "---":
+                fig_lines.append(st)
+        render_danh_muc_dac_biet(doc, "DANH MỤC HÌNH VẼ", fig_lines)
         
-    total_lines = len(lines)
-    print(f">>> Đang xử lý nội dung chính từ dòng {i}/{total_lines}...")
+    # DANH MỤC BẢNG BIỂU
+    if idx_tbl_start is not None:
+        tbl_lines_meta = []
+        end_tbl = idx_abbr_start if idx_abbr_start is not None else idx_ch1_start
+        for l in lines[idx_tbl_start + 1 : end_tbl]:
+            st = l.strip()
+            if st and st != "---":
+                tbl_lines_meta.append(st)
+        render_danh_muc_dac_biet(doc, "DANH MỤC BẢNG BIỂU", tbl_lines_meta)
+        
+    doc.add_page_break()
     
-    in_code_block = False
-    code_lines = []
+    # Bắt đầu nội dung chính từ Danh mục thuật ngữ hoặc Chương 1
+    i = idx_abbr_start if idx_abbr_start is not None else idx_ch1_start
+    total_lines = len(lines)
     
     in_table = False
     table_lines = []
-    
-    in_callout = False
-    callout_type = "NOTE"
-    callout_lines = []
-    
     in_math_block = False
     math_lines = []
 
@@ -679,7 +657,6 @@ def render_markdown_to_docx(md_path: Path, out_path: Path):
         if not table_lines:
             in_table = False
             return
-        
         rows_data = []
         for tl in table_lines:
             parts = [c.strip() for c in tl.split("|")]
@@ -688,7 +665,6 @@ def render_markdown_to_docx(md_path: Path, out_path: Path):
                 if all(re.match(r'^:?-+:?$', c) for c in cols):
                     continue
                 rows_data.append(cols)
-                
         if not rows_data:
             table_lines = []
             in_table = False
@@ -696,7 +672,6 @@ def render_markdown_to_docx(md_path: Path, out_path: Path):
             
         num_cols = max(len(r) for r in rows_data)
         num_rows = len(rows_data)
-        
         tbl = doc.add_table(rows=num_rows, cols=num_cols)
         tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
         tbl.autofit = True
@@ -708,18 +683,15 @@ def render_markdown_to_docx(md_path: Path, out_path: Path):
                 cell = tbl.cell(r_idx, c_idx)
                 cell_text = row[c_idx] if c_idx < len(row) else ""
                 set_cell_margins(cell, top=100, bottom=100, left=140, right=140)
-                
                 if is_header:
                     set_cell_background(cell, HEX_NAVY_HEADER)
                 else:
                     if r_idx % 2 == 1:
                         set_cell_background(cell, HEX_ROW_ALT)
-                        
                 p = cell.paragraphs[0]
                 p.paragraph_format.line_spacing = 1.15
                 p.paragraph_format.space_before = Pt(2)
                 p.paragraph_format.space_after = Pt(2)
-                
                 if is_header:
                     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
                     clean_txt = clean_latex_to_text(cell_text)
@@ -730,79 +702,10 @@ def render_markdown_to_docx(md_path: Path, out_path: Path):
                     r.font.color.rgb = RGBColor(255, 255, 255)
                 else:
                     format_runs_in_paragraph(p, cell_text, default_size=10, default_color=MAU_TEXT)
-                    
         p_space = doc.add_paragraph()
         p_space.paragraph_format.space_after = Pt(4)
         table_lines = []
         in_table = False
-
-    def flush_callout():
-        nonlocal in_callout, callout_lines, callout_type
-        if not callout_lines:
-            in_callout = False
-            return
-            
-        tbl = doc.add_table(rows=1, cols=1)
-        tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
-        tbl.autofit = False
-        tbl.columns[0].width = Inches(6.0)
-        cell = tbl.cell(0, 0)
-        
-        border_col = HEX_CALLOUT_IMPORTANT_BORDER if callout_type == "IMPORTANT" else HEX_CALLOUT_NOTE_BORDER
-        bg_col = HEX_CALLOUT_IMPORTANT_BG if callout_type == "IMPORTANT" else HEX_CALLOUT_NOTE_BG
-        
-        set_cell_background(cell, bg_col)
-        set_cell_margins(cell, top=120, bottom=120, left=180, right=180)
-        
-        tcPr = cell._tc.get_or_add_tcPr()
-        tcBorders = parse_xml(f'''
-            <w:tcBorders {nsdecls("w")}>
-                <w:top w:val="none"/>
-                <w:left w:val="single" w:sz="24" w:space="0" w:color="{border_col}"/>
-                <w:bottom w:val="none"/>
-                <w:right w:val="none"/>
-            </w:tcBorders>
-        ''')
-        tcPr.append(tcBorders)
-        
-        for idx, cl in enumerate(callout_lines):
-            p = cell.paragraphs[0] if idx == 0 else cell.add_paragraph()
-            p.paragraph_format.line_spacing = 1.25
-            p.paragraph_format.space_after = Pt(4)
-            format_runs_in_paragraph(p, cl, default_size=11, default_color=MAU_DARK)
-            
-        p_space = doc.add_paragraph()
-        p_space.paragraph_format.space_after = Pt(4)
-        callout_lines = []
-        in_callout = False
-
-    def flush_code():
-        nonlocal in_code_block, code_lines
-        if not code_lines:
-            in_code_block = False
-            return
-            
-        tbl = doc.add_table(rows=1, cols=1)
-        tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
-        tbl.autofit = False
-        tbl.columns[0].width = Inches(6.0)
-        cell = tbl.cell(0, 0)
-        set_cell_background(cell, HEX_CODE_BG)
-        set_cell_margins(cell, top=100, bottom=100, left=150, right=150)
-        
-        p = cell.paragraphs[0]
-        p.paragraph_format.line_spacing = 1.05
-        p.paragraph_format.space_after = Pt(0)
-        
-        code_text = "\n".join(code_lines)
-        r = p.add_run(code_text)
-        r.font.name = "Consolas"
-        r.font.size = Pt(9.5)
-        r.font.color.rgb = RGBColor(30, 41, 59)
-        
-        doc.add_paragraph().paragraph_format.space_after = Pt(4)
-        code_lines = []
-        in_code_block = False
 
     def flush_math():
         nonlocal in_math_block, math_lines
@@ -816,114 +719,57 @@ def render_markdown_to_docx(md_path: Path, out_path: Path):
             p.alignment = WD_ALIGN_PARAGRAPH.CENTER
             p.paragraph_format.space_before = Pt(6)
             p.paragraph_format.space_after = Pt(8)
-            
             r = p.add_run(clean_formula)
             r.font.name = "Cambria Math"
             r.font.size = Pt(11.5)
             r.italic = True
             r.font.color.rgb = MAU_NAVY
-            
         math_lines = []
         in_math_block = False
-
-    images_added = 0
-    tables_added = 0
 
     while i < total_lines:
         line = lines[i].rstrip("\r\n")
         stripped = line.strip()
         
-        # Phòng vệ: Nếu gặp Tiêu đề, Bảng, Ảnh, hoặc Ngắt dòng mà đang trong khối math, tự động flush
         if (stripped.startswith("#") or (stripped.startswith("|") and stripped.endswith("|")) or 
             stripped.startswith("![") or stripped == "---") and in_math_block:
             flush_math()
 
-        # 1. Khối code block ```
-        if stripped.startswith("```"):
-            if in_code_block:
-                flush_code()
-            else:
-                if in_table: flush_table()
-                if in_callout: flush_callout()
-                if in_math_block: flush_math()
-                in_code_block = True
-                code_lines = []
-            i += 1
-            continue
-            
-        if in_code_block:
-            code_lines.append(line)
-            i += 1
-            continue
-
-        # 2. Khối công thức hiển thị $$
+        # Math block $$
         if stripped == "$$":
             if in_math_block:
                 flush_math()
             else:
                 if in_table: flush_table()
-                if in_callout: flush_callout()
                 in_math_block = True
                 math_lines = []
             i += 1
             continue
-            
         if in_math_block:
             math_lines.append(stripped)
             i += 1
             continue
 
-        # 3. Khối Callout > [!NOTE], > [!IMPORTANT]
-        if stripped.startswith(">"):
-            if in_table: flush_table()
-            if in_math_block: flush_math()
-            sub = stripped[1:].strip()
-            if sub.startswith("[!IMPORTANT]"):
-                in_callout = True
-                callout_type = "IMPORTANT"
-                callout_lines = []
-                i += 1
-                continue
-            elif sub.startswith("[!NOTE]") or sub.startswith("[!TIP]"):
-                in_callout = True
-                callout_type = "NOTE"
-                callout_lines = []
-                i += 1
-                continue
-            elif in_callout:
-                callout_lines.append(sub)
-                i += 1
-                continue
-            else:
-                in_callout = True
-                callout_type = "NOTE"
-                callout_lines = [sub]
-                i += 1
-                continue
-        else:
-            if in_callout:
-                flush_callout()
-
-        # 4. Bảng Markdown (| ... |)
+        # Markdown Table
         if stripped.startswith("|") and stripped.endswith("|"):
             if not in_table:
                 if in_math_block: flush_math()
                 in_table = True
                 table_lines = []
-                tables_added += 1
             table_lines.append(stripped)
             i += 1
             continue
         else:
-            if in_table:
-                flush_table()
+            if in_table: flush_table()
 
-        # 5. Dòng phân cách ---
+        # Dòng phân cách ---
         if stripped == "---":
             next_idx = i + 1
             while next_idx < total_lines and not lines[next_idx].strip():
                 next_idx += 1
-            if next_idx < total_lines and (lines[next_idx].strip().startswith("## CHƯƠNG") or lines[next_idx].strip().startswith("## Tài liệu") or lines[next_idx].strip().startswith("## TÀI LIỆU")):
+            if next_idx < total_lines and (lines[next_idx].strip().startswith("## CHƯƠNG") or 
+                                           lines[next_idx].strip().startswith("## TÀI LIỆU") or
+                                           lines[next_idx].strip().startswith("## PHỤ LỤC")):
                 doc.add_page_break()
             else:
                 p_hr = doc.add_paragraph()
@@ -934,25 +780,23 @@ def render_markdown_to_docx(md_path: Path, out_path: Path):
             i += 1
             continue
 
-        # 6. Hình ảnh: ![caption](path) có thể kèm chú thích cùng dòng
+        # Hình ảnh: ![caption](path)
         img_match = re.search(r'!\[([^\]]*)\]\(([^)]+)\)', stripped)
         if img_match:
-            alt_text = img_match.group(1).strip()
             img_rel_path = img_match.group(2).strip()
-            
-            after_img = stripped[img_match.end():].strip()
             caption_on_line = None
+            after_img = stripped[img_match.end():].strip()
             if after_img.startswith("*") and after_img.endswith("*"):
                 caption_on_line = after_img[1:-1].strip()
-            
-            img_path = None
+                
+            img_name = Path(img_rel_path).name
             candidate_paths = [
+                GOC / "reports" / "hinh" / img_name,
+                GOC / "hinh" / img_name,
                 GOC / "reports" / img_rel_path,
                 GOC / img_rel_path,
-                GOC / "reports" / "hinh" / Path(img_rel_path).name,
-                GOC / "hinh" / Path(img_rel_path).name,
-                GOC / "test" / Path(img_rel_path).name,
             ]
+            img_path = None
             for cp in candidate_paths:
                 if cp.exists():
                     img_path = cp
@@ -966,7 +810,6 @@ def render_markdown_to_docx(md_path: Path, out_path: Path):
                     p_img.paragraph_format.space_after = Pt(4)
                     run_img = p_img.add_run()
                     run_img.add_picture(str(img_path.resolve()), width=Inches(5.8))
-                    images_added += 1
                     
                     if caption_on_line:
                         p_cap = doc.add_paragraph()
@@ -979,30 +822,27 @@ def render_markdown_to_docx(md_path: Path, out_path: Path):
                         r_cap.font.color.rgb = MAU_MUTED
                         r_cap.italic = True
                 except Exception as e:
-                    print(f"  [CẢNH BÁO] Không thể chèn ảnh {img_path}: {e}")
-                    
+                    print(f"  [CẢNH BÁO] Lỗi chèn ảnh {img_path}: {e}")
             i += 1
             continue
 
-        # 7. Dòng chú thích hình ảnh và bảng biểu: *Hình X.Y: ...* hoặc *Bảng X.Y: ...*
+        # Chú thích hình và bảng biểu: *Hình X.Y: ...* hoặc *Bảng X.Y: ...*
         if (stripped.startswith("*Hình ") or stripped.startswith("*Bảng ")) and stripped.endswith("*"):
             cap_text = stripped[1:-1].strip()
             p_cap = doc.add_paragraph()
             p_cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            
-            is_table_caption = cap_text.startswith("Bảng ")
-            if is_table_caption:
+            is_tbl = cap_text.startswith("Bảng ")
+            if is_tbl:
                 p_cap.paragraph_format.space_before = Pt(10)
                 p_cap.paragraph_format.space_after = Pt(4)
                 p_cap.paragraph_format.keep_with_next = True
             else:
                 p_cap.paragraph_format.space_before = Pt(3)
                 p_cap.paragraph_format.space_after = Pt(10)
-                
             r_cap = p_cap.add_run(cap_text)
             r_cap.font.name = "Times New Roman"
             r_cap.font.size = Pt(10)
-            if is_table_caption:
+            if is_tbl:
                 r_cap.bold = True
                 r_cap.font.color.rgb = MAU_NAVY
             else:
@@ -1011,39 +851,35 @@ def render_markdown_to_docx(md_path: Path, out_path: Path):
             i += 1
             continue
 
-        # 8. Tiêu đề các cấp: #, ##, ###, ####, ##### -> Áp dụng built-in Heading Styles
+        # Tiêu đề các cấp: Heading Styles
         if stripped.startswith("#"):
             hashes = len(stripped) - len(stripped.lstrip("#"))
-            h_text = stripped.lstrip("#").strip()
-            h_clean = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', h_text)
+            h_clean = stripped.lstrip("#").strip()
+            h_clean = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', h_clean)
             h_upper = h_clean.upper()
             
-            if hashes == 1 or (hashes == 2 and ("CHƯƠNG" in h_upper or "TÀI LIỆU" in h_upper)):
-                # Heading 1: Chương & Tài liệu tham khảo
+            if hashes == 1 or (hashes == 2 and any(k in h_upper for k in ["CHƯƠNG", "TÀI LIỆU", "PHỤ LỤC", "DANH MỤC THUẬT NGỮ"])):
                 p_h = doc.add_paragraph(style='Heading 1')
                 r = p_h.add_run(h_clean)
                 r.bold = True
                 r.font.name = "Times New Roman"
                 r.font.size = Pt(15)
                 r.font.color.rgb = MAU_NAVY
-            elif hashes == 2 or (hashes == 3 and re.match(r'^\d+\.\d+\.', h_clean)):
-                # Heading 2: Mục lớn 1.1, 1.2...
+            elif hashes == 2 or (hashes == 3 and re.match(r'^\d+\.\d+\.', h_clean)) or h_clean.startswith("A."):
                 p_h = doc.add_paragraph(style='Heading 2')
                 r = p_h.add_run(h_clean)
                 r.bold = True
                 r.font.name = "Times New Roman"
                 r.font.size = Pt(13.5)
                 r.font.color.rgb = MAU_DEEP_BLUE
-            elif hashes == 3 or (hashes == 4 and re.match(r'^\d+\.\d+\.\d+\.', h_clean)):
-                # Heading 3: Mục con 1.1.1, 1.1.2...
+            elif hashes == 3 or (hashes == 4 and re.match(r'^\d+\.\d+\.\d+\.', h_clean)) or h_clean.startswith("A.1") or h_clean.startswith("A.2"):
                 p_h = doc.add_paragraph(style='Heading 3')
                 r = p_h.add_run(h_clean)
                 r.bold = True
                 r.font.name = "Times New Roman"
                 r.font.size = Pt(12.5)
                 r.font.color.rgb = MAU_MID_BLUE
-            elif hashes == 4 or h_clean.startswith("Cặp ") or h_clean.startswith("Bộ "):
-                # Heading 4: Cặp đối chứng hoặc nhóm đặc trưng
+            elif hashes == 4 or h_clean.startswith("Cặp "):
                 p_h = doc.add_paragraph(style='Heading 4')
                 r = p_h.add_run(h_clean)
                 r.bold = True
@@ -1061,11 +897,10 @@ def render_markdown_to_docx(md_path: Path, out_path: Path):
                 r.font.name = "Times New Roman"
                 r.font.size = Pt(12)
                 r.font.color.rgb = MAU_DARK
-                
             i += 1
             continue
 
-        # 9. Danh sách gạch đầu dòng (- hoặc *)
+        # Danh sách gạch đầu dòng
         list_match = re.match(r'^(\s*)([-*]|\d+\.)\s+(.+)$', line)
         if list_match:
             indent_spaces = len(list_match.group(1))
@@ -1076,7 +911,6 @@ def render_markdown_to_docx(md_path: Path, out_path: Path):
             p_li.paragraph_format.line_spacing = 1.3
             p_li.paragraph_format.space_before = Pt(1)
             p_li.paragraph_format.space_after = Pt(3)
-            
             level = 1 if indent_spaces >= 2 else 0
             p_li.paragraph_format.left_indent = Inches(0.25 + level * 0.25)
             p_li.paragraph_format.first_line_indent = Inches(-0.15)
@@ -1087,12 +921,11 @@ def render_markdown_to_docx(md_path: Path, out_path: Path):
             r_bullet.font.name = "Times New Roman"
             r_bullet.font.size = Pt(11.5)
             r_bullet.font.color.rgb = MAU_MID_BLUE if bullet_sym in ["-", "*"] else MAU_NAVY
-            
             format_runs_in_paragraph(p_li, content, default_size=11.5, default_color=MAU_TEXT)
             i += 1
             continue
 
-        # 10. Đoạn văn bản thông thường (Paragraph)
+        # Đoạn văn bản bình thường
         if stripped:
             p_norm = doc.add_paragraph()
             p_norm.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
@@ -1102,31 +935,14 @@ def render_markdown_to_docx(md_path: Path, out_path: Path):
             format_runs_in_paragraph(p_norm, stripped, default_size=12, default_color=MAU_TEXT)
             
         i += 1
-
+        
     if in_table: flush_table()
-    if in_callout: flush_callout()
-    if in_code_block: flush_code()
     if in_math_block: flush_math()
 
-    print(f"\n>>> Tổng kết chuyển đổi:")
-    print(f"  - Số ảnh đã chèn: {images_added}/10")
-    print(f"  - Số bảng đã tạo: {tables_added}")
-    print(f">>> Đang lưu tài liệu Word tại: {out_path}...")
     doc.save(out_path)
-    print(f"[THÀNH CÔNG] Đã tạo file Word hoàn chỉnh tại: {out_path.resolve()}")
-
-
-def main():
-    if not FILE_MD.exists():
-        print(f"[LỖI] Không tìm thấy file {FILE_MD}")
-        sys.exit(1)
-        
-    render_markdown_to_docx(FILE_MD, OUT_DOCX_REPORT)
-    
-    import shutil
-    shutil.copy2(OUT_DOCX_REPORT, OUT_DOCX_ROOT)
-    print(f"[ĐỒNG BỘ] Đã sao chép sang: {OUT_DOCX_ROOT.resolve()}")
-
+    if out_path != OUT_DOCX_ROOT:
+        doc.save(OUT_DOCX_ROOT)
+    print(f"  [OK] Đã lưu file Word thành công tại:\n       {out_path}\n       {OUT_DOCX_ROOT}")
 
 if __name__ == "__main__":
-    main()
+    convert_markdown_to_word(FILE_MD, OUT_DOCX_REPORT)
