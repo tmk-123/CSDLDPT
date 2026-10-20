@@ -158,7 +158,7 @@ Báo cáo số 1 tập trung giải quyết trọn vẹn hai nội dung nền t�
 
 Cụ thể, các mục tiêu chi tiết bao gồm:
 1. **Xây dựng bộ dữ liệu âm thanh chuẩn hóa:** Thu thập, kiểm định chất lượng và tiền xử lý 600 bản ghi âm đơn nốt độc tấu thuộc 6 loại nhạc cụ bộ dây tiêu biểu (Violin, Viola, Cello, Double Bass, Guitar Acoustic, Guitar Electric), đảm bảo 100 tệp đồng nhất cho mỗi lớp.
-2. **Chuẩn hóa quy cách tín hiệu số:** Toàn bộ dữ liệu được chuyển đổi đồng nhất về định dạng WAV PCM 16-bit, tần số lấy mẫu fs = 22.050 Hz, kênh đơn (mono), lọc bỏ hoàn toàn khoảng lặng đầu/cuối, cắt phân đoạn theo nốt và áp dụng hiệu ứng đường bao fade-in/fade-out để loại bỏ sốc pha (clipping).
+2. **Chuẩn hóa quy cách tín hiệu số:** Toàn bộ dữ liệu được chuyển đổi đồng nhất về định dạng WAV PCM 16-bit, tần số lấy mẫu $f_s = 22.050$ Hz, kênh đơn (mono), lọc bỏ hoàn toàn khoảng lặng đầu/cuối, cắt phân đoạn theo nốt và áp dụng hiệu ứng đường bao fade-in/fade-out để loại bỏ sốc pha (clipping).
 3. **Phân tích đối chứng âm học:** So sánh tường minh các đặc điểm giống và khác nhau giữa 6 loại nhạc cụ; khảo cứu định lượng 7 cặp nhạc cụ có nguy cơ nhầm lẫn âm học cao để định hướng thiết kế bộ đặc trưng.
 4. **Thiết kế hệ thống 58 đặc trưng âm học:** Bao quát toàn diện 3 khía cạnh vật lý: Năng lượng thời gian (RMS, ZCR), Cấu trúc phổ tần & âm sắc (Spectral Centroid, Rolloff, Bandwidth, Contrast, Flatness, 13 hệ số MFCC bậc 0-12) và Hòa âm cao độ (12 dải Chroma Pitch Class). Mỗi đặc trưng được tính cả giá trị trung bình (mean) và độ lệch chuẩn thời gian (std).
 5. **Đánh giá giá trị thông tin định lượng:** Sử dụng các tiêu chuẩn toán học nghiêm ngặt (Fisher criterion, ANOVA F-statistic, Mutual Information, Pearson correlation) để phân tích khả năng phân biệt lớp, mức độ dư thừa và đóng góp thực tế của từng nhóm đặc trưng trong truy vấn láng giềng gần nhất (P@1, P@5, mAP).
@@ -205,7 +205,7 @@ Nhằm đảm bảo tính công bằng và loại bỏ hoàn toàn các yếu t�
 | **Định dạng tệp** | Không nén, bảo toàn sóng | **WAV (RIFF Header)** | Giữ nguyên dữ liệu sóng âm tuyến tính không qua thuật toán nén có tổn hao |
 | **Mã hóa mẫu** | Chuẩn công nghiệp PCM | **Linear PCM 16-bit** | Dải động 96 dB, bảo toàn độ phân giải biên độ chi tiết của âm thanh |
 | **Số kênh (Channels)** | Kênh đơn đồng nhất | **Mono (1 channel)** | Loại bỏ hiện tượng lệch pha giữa hai tai, giảm một nửa dung lượng lưu trữ |
-| **Tần số lấy mẫu (fs)** | Đảm bảo tần số Nyquist | **22.050 Hz** | Đáp ứng tần số lên tới 11.025 Hz, bao phủ toàn bộ dải nghe của tai người đối với nhạc cụ bộ dây |
+| **Tần số lấy mẫu ($f_s$)** | Đảm bảo tần số Nyquist | **22.050 Hz** | Đáp ứng tần số lên tới 11.025 Hz, bao phủ toàn bộ dải nghe của tai người đối với nhạc cụ bộ dây |
 | **Thời lượng tệp** | Đồng đều, tập trung nốt | **2,0 - 3,0 giây / tệp** | Đủ dài để chứa trọn chu kỳ Attack-Decay-Sustain-Release của nốt nhạc |
 | **Số lượng mẫu** | Tối thiểu 500 mẫu | **600 mẫu (100 mẫu/nhạc cụ)** | Cân bằng tuyệt đối giữa 6 lớp nhạc cụ bộ dây |
 
@@ -214,11 +214,11 @@ Nhằm đảm bảo tính công bằng và loại bỏ hoàn toàn các yếu t�
 Tín hiệu âm thanh thô khi thu thập thường chứa khoảng lặng không mong muốn ở đầu/cuối bản ghi, mức âm lượng chênh lệch do cự ly đặt micro và tiếng "click/pop" biên độ ở điểm cắt đột ngột. Nhóm đã xây dựng quy trình tiền xử lý 3 bước tự động bằng Python (`src/tao_bo_du_lieu.py`):
 
 1. **Bước 1 – Lọc khoảng lặng (Silence Removal):**  
-   Tính toán đường bao năng lượng hiệu dụng RMS trên từng khung trượt ngắn 20 ms. Xác định ngưỡng có tiếng (energy threshold) tại mức -35 dBFS so với đỉnh cực đại. Tất cả các đoạn mẫu ở đầu và cuối bản ghi có năng lượng dưới ngưỡng bị cắt bỏ hoàn toàn, chỉ giữ lại phần phát âm thực thụ của nhạc cụ.
+   Tính toán đường bao năng lượng hiệu dụng RMS trên từng khung trượt ngắn 20 ms. Xác định ngưỡng có tiếng (energy threshold) tại mức $-35$ dBFS so với đỉnh cực đại. Tất cả các đoạn mẫu ở đầu và cuối bản ghi có năng lượng dưới ngưỡng bị cắt bỏ hoàn toàn, chỉ giữ lại phần phát âm thực thụ của nhạc cụ.
 2. **Bước 2 – Phân đoạn nốt đơn (Note Segmentation):**  
    Dò tìm đỉnh phát âm (onset detection) để xác định thời điểm bắt đầu nốt nhạc, trích xuất đoạn tín hiệu ổn định có độ dài chuẩn hóa trong khoảng 2,0 đến 3,0 giây, bao trọn pha phát âm chính và phần ngân đuôi.
 3. **Bước 3 – Chuẩn hóa biên độ và làm mềm biên (Peak Normalization & Fade):**  
-   Chuẩn hóa biên độ đỉnh của tín hiệu về mức -1 dBFS (A_norm = 0,891) để triệt tiêu chênh lệch âm lượng giữa các phòng thu. Áp dụng hàm làm mịn mượt mà (Fade-in 20 ms ở đầu và Fade-out 20 ms ở đuôi) để tránh hiện tượng cắt ngang pha sóng tạo ra tiếng nổ lách tách tần số cao.
+   Chuẩn hóa biên độ đỉnh của tín hiệu về mức $-1$ dBFS ($A_{\text{norm}} = 0,891$) để triệt tiêu chênh lệch âm lượng giữa các phòng thu. Áp dụng hàm làm mịn mượt mà (Fade-in 20 ms ở đầu và Fade-out 20 ms ở đuôi) để tránh hiện tượng cắt ngang pha sóng tạo ra tiếng nổ lách tách tần số cao.
 
 ![Hình 2.1: Quy trình 3 bước tiền xử lý tín hiệu âm thanh mẫu](file:///d:/Ki1_4/HCSDLDPT/btl_new/reports/hinh/2_1_quy_trinh_tien_xu_ly.png)  
 *Hình 2.1: Quy trình 3 bước tiền xử lý tín hiệu âm thanh mẫu: (a) Xác định ngưỡng có tiếng và loại bỏ khoảng lặng; (b) Cắt phân đoạn theo nốt; (c) Chuẩn hóa biên độ đỉnh và áp dụng Fade-in / Fade-out 20ms.*
@@ -242,12 +242,12 @@ Dữ liệu được tổ chức phân cấp khoa học trong thư mục dự á
 
 ### 2.5 Thống kê bộ dữ liệu
 
-Bộ dữ liệu sau khi tiền xử lý có tổng dung lượng đĩa xấp xỉ 65 MB, bao gồm đúng **600 tệp âm thanh đơn kênh**. Tỷ lệ phân bố số lượng tệp theo từng lớp nhạc cụ đạt mức cân bằng lý tưởng 1:1:1:1:1:1 (100 tệp cho mỗi lớp), không xuất hiện hiện tượng mất cân bằng lớp gây sai lệch thuật toán truy vấn.
+Bộ dữ liệu sau khi tiền xử lý có tổng dung lượng đĩa xấp xỉ 65 MB, bao gồm đúng **600 tệp âm thanh đơn kênh**. Tỷ lệ phân bố số lượng tệp theo từng lớp nhạc cụ đạt mức cân bằng lý tưởng $1:1:1:1:1:1$ (100 tệp cho mỗi lớp), không xuất hiện hiện tượng mất cân bằng lớp gây sai lệch thuật toán truy vấn.
 
 ![Hình 2.2: Số lượng tệp âm thanh WAV của từng nhạc cụ](file:///d:/Ki1_4/HCSDLDPT/btl_new/reports/hinh/2_2_so_luong_mau.png)  
 *Hình 2.2: Số lượng tệp âm thanh WAV của từng nhạc cụ; đường nét đứt đỏ biểu thị giá trị trung bình 100 tệp/nhạc cụ.*
 
-Về mặt thời lượng, các tệp âm thanh dao động từ 2,05 giây đến 2,85 giây, giá trị trung bình là 2,34 giây (+- 0,18 giây). Dải tần số cơ bản F0 của các mẫu trải rộng từ 41,2 Hz (nốt E1 của Double Bass) đến 1.568 Hz (nốt G6 của Violin), đảm bảo độ bao phủ âm vực thực tế của dàn nhạc giao hưởng.
+Về mặt thời lượng, các tệp âm thanh dao động từ 2,05 giây đến 2,85 giây, giá trị trung bình là 2,34 giây ($\pm 0,18$ giây). Dải tần số cơ bản F0 của các mẫu trải rộng từ 41,2 Hz (nốt E1 của Double Bass) đến 1.568 Hz (nốt G6 của Violin), đảm bảo độ bao phủ âm vực thực tế của dàn nhạc giao hưởng.
 
 ### 2.6 Đặc điểm giống và khác nhau giữa các nhạc cụ
 
@@ -258,7 +258,7 @@ Phân tích vật lý âm học và quan sát trực quan dạng sóng, phổ t�
 
 #### 2.6.1 Đặc điểm giống nhau
 - **Bản chất nguồn kích âm:** Cả 6 nhạc cụ đều tạo ra âm thanh ban đầu từ sự dao động cơ học của dây đàn căng dưới sức kéo căng (dây kim loại, dây nylon hoặc ruột động vật). 
-- **Cấu trúc phổ điều hòa (Harmonic Spectrum):** Khi một dây đàn dao động, sóng âm sinh ra không phải là sóng sin thuần khiết mà bao gồm một tần số cơ bản f0 (quy định cao độ) kèm theo một chuỗi các họa âm nguyên lần 2*f0, 3*f0, 4*f0... phân bố đều đặn trên trục tần số.
+- **Cấu trúc phổ điều hòa (Harmonic Spectrum):** Khi một dây đàn dao động, sóng âm sinh ra không phải là sóng sin thuần khiết mà bao gồm một tần số cơ bản $f_0$ (quy định cao độ) kèm theo một chuỗi các họa âm nguyên lần $2f_0, 3f_0, 4f_0, \dots$ phân bố đều đặn trên trục tần số.
 - **Biến thiên biên độ theo pha:** Đều tuân theo mô hình đường bao ADSR (Attack - Decay - Sustain - Release) của nhạc cụ acoustic, trong đó năng lượng tập trung mạnh nhất ở giai đoạn đầu và tiêu hao dần theo thời gian.
 
 #### 2.6.2 Đặc điểm khác nhau
@@ -322,10 +322,12 @@ Phân tích thực nghiệm trên 600 tệp âm thanh chỉ ra rằng: một đ�
 - **Nhóm 2: Cấu trúc Phổ tần số và Âm sắc Mel (30 đặc trưng):** Mô tả độ sáng, độ cuộn phổ và hình dạng bao phổ sinh học đặc trưng cho chất liệu thùng đàn và cơ chế phát âm.
 - **Nhóm 3: Hòa âm và Phân bố Bán cung Chroma (24 đặc trưng):** Mô tả phân bố năng lượng theo 12 nốt nhạc trong thang âm bình quân.
 
-Tín hiệu âm thanh liên tục x(t) được số hóa thành chuỗi rời rạc x[n] ở tần số fs = 22.050 Hz. Nhằm nắm bắt tính chất phi dừng (non-stationary) của âm thanh, quá trình trích xuất áp dụng kỹ thuật cửa sổ trượt phân khung (Short-Time Analysis):
-- Độ dài khung phân tích: N = 2048 mẫu (xấp xỉ 92,9 ms).
-- Độ dịch chuyển bước nhảy: H = 512 mẫu (xấp xỉ 23,2 ms, độ chồng lấp 75%).
-- Cửa sổ trọng số: Cửa sổ Hann w[m] = 0,5 - 0,5 * cos(2*pi*m / (N-1)) nhằm triệt tiêu hiện tượng rò rỉ phổ (spectral leakage).
+Tín hiệu âm thanh liên tục $x(t)$ được số hóa thành chuỗi rời rạc $x[n]$ ở tần số $f_s = 22.050$ Hz. Nhằm nắm bắt tính chất phi dừng (non-stationary) của âm thanh, quá trình trích xuất áp dụng kỹ thuật cửa sổ trượt phân khung (Short-Time Analysis):
+- Độ dài khung phân tích: $N = 2048$ mẫu ($\approx 92,9$ ms).
+- Độ dịch chuyển bước nhảy: $H = 512$ mẫu ($\approx 23,2$ ms, độ chồng lấp 75%).
+- Cửa sổ trọng số: Cửa sổ Hann nhằm triệt tiêu hiện tượng rò rỉ phổ (spectral leakage):
+
+$$w[m] = 0{,}5 - 0{,}5 \cos\left(\frac{2\pi m}{N-1}\right) \quad (3.1)$$
 
 ![Hình 3.1: Quy trình tổng thể trích xuất vectơ 58 đặc trưng âm học](file:///d:/Ki1_4/HCSDLDPT/btl_new/reports/hinh/7_quy_trinh_trich_xuat_dac_trung.png)  
 *Hình 3.1: Quy trình tổng thể trích xuất vectơ 58 đặc trưng âm học từ tín hiệu âm thanh.*
@@ -342,74 +344,95 @@ Tín hiệu âm thanh liên tục x(t) được số hóa thành chuỗi rời r
 ### 3.2 Nhóm đặc trưng thời gian và năng lượng
 
 1. **Năng lượng hiệu dụng trung bình bình phương (Root Mean Square - RMS):**  
-   Được tính toán trên từng khung thời gian thứ t:
-   RMS[t] = sqrt( (1/N) * sum_{n=0}^{N-1} (x_t[n])^2 )
-   *Ý nghĩa vật lý:* Phản ánh cường độ năng lượng thực tế của sóng âm. Ở đàn Violin và Cello, RMS[t] duy trì ổn định ở mức cao trong suốt thời gian kéo vĩ (`rms_std` nhỏ); ngược lại ở Guitar Acoustic, RMS[t] bùng nổ tức thì ở giai đoạn gảy rồi suy giảm nhanh chóng (`rms_std` lớn).
+   Được tính toán trên từng khung thời gian thứ $t$:
+
+$$\text{RMS}[t] = \sqrt{\frac{1}{N} \sum_{n=0}^{N-1} (x_t[n])^2} \quad (3.2)$$
+
+   *Ý nghĩa vật lý:* Phản ánh cường độ năng lượng thực tế của sóng âm. Ở đàn Violin và Cello, $\text{RMS}[t]$ duy trì ổn định ở mức cao trong suốt thời gian kéo vĩ (`rms_std` nhỏ); ngược lại ở Guitar Acoustic, $\text{RMS}[t]$ bùng nổ tức thì ở giai đoạn gảy rồi suy giảm nhanh chóng (`rms_std` lớn).
 
 2. **Tỷ lệ cắt qua điểm không (Zero Crossing Rate - ZCR):**  
    Đo số lần tín hiệu đổi dấu biên độ từ dương sang âm hoặc ngược lại trong một khung thời gian:
-   ZCR[t] = (1 / (2*(N-1))) * sum_{n=1}^{N-1} |sgn(x_t[n]) - sgn(x_t[n-1])|
-   *Ý nghĩa vật lý:* ZCR phản ánh tần số dao động chiếm ưu thế trong miền thời gian mà không cần biến đổi Fourier. Nhạc cụ âm cao như Violin có ZCR trung bình đạt 0,085 - 0,140, trong khi Double Bass có ZCR rất thấp (0,015 - 0,035).
+
+$$\text{ZCR}[t] = \frac{1}{2(N-1)} \sum_{n=1}^{N-1} |\text{sgn}(x_t[n]) - \text{sgn}(x_t[n-1])| \quad (3.3)$$
+
+   *Ý nghĩa vật lý:* ZCR phản ánh tần số dao động chiếm ưu thế trong miền thời gian mà không cần biến đổi Fourier. Nhạc cụ âm cao như Violin có ZCR trung bình đạt $0,085 - 0,140$, trong khi Double Bass có ZCR rất thấp ($0,015 - 0,035$).
 
 ### 3.3 Nhóm đặc trưng phổ tần và âm sắc
 
-Tín hiệu từng khung x_t[n] được biến đổi Fourier thời gian ngắn sang miền tần số:
-X_t[k] = sum_{n=0}^{N-1} x_t[n] * w[n] * exp(-j * 2 * pi * k * n / N), k = 0, 1, ..., N/2
-Phổ biên độ công suất tại tần số f_k = (k * fs) / N là S_t[k] = |X_t[k]|^2.
+Tín hiệu từng khung $x_t[n]$ được biến đổi Fourier thời gian ngắn sang miền tần số:
+
+$$X_t[k] = \sum_{n=0}^{N-1} x_t[n] \cdot w[n] \cdot e^{-j \frac{2\pi k n}{N}}, \quad k = 0, 1, \dots, \frac{N}{2} \quad (3.4)$$
+
+Phổ biên độ công suất tại tần số $f_k = \frac{k \cdot f_s}{N}$ là $S_t[k] = |X_t[k]|^2$.
 
 ![Hình 3.2: Chi tiết cơ chế trích xuất của từng nhóm đặc trưng](file:///d:/Ki1_4/HCSDLDPT/btl_new/reports/hinh/8_chi_tiet_trich_xuat_3_bo_dac_trung.png)  
 *Hình 3.2: Chi tiết cơ chế trích xuất của từng nhóm đặc trưng (Khung Hann, Phổ STFT, Ngưỡng Rolloff 85%, Bộ lọc Mel và Bộ lọc Chroma).*
 
 1. **Trọng tâm phổ (Spectral Centroid):**  
    Xác định "trọng tâm" phân bố công suất của phổ tần số:
-   C[t] = sum_{k=0}^{N/2} (f_k * |X_t[k]|) / sum_{k=0}^{N/2} |X_t[k]|
+
+$$C[t] = \frac{\sum_{k=0}^{N/2} f_k \cdot |X_t[k]|}{\sum_{k=0}^{N/2} |X_t[k]|} \quad (3.5)$$
+
    *Ý nghĩa vật lý:* Đo độ sáng (brightness) của âm thanh. Âm thanh càng chói, sắc bén thì trọng tâm phổ càng lệch về phía tần số cao.
+
 2. **Tần số cuộn phổ (Spectral Rolloff 85%):**  
-   Là tần số R[t] mà tại đó tổng năng lượng từ 0 Hz đến R[t] chiếm đúng 85% tổng năng lượng toàn khung:
-   sum_{k=0}^{k_ro} |X_t[k]|^2 = 0,85 * sum_{k=0}^{N/2} |X_t[k]|^2, R[t] = (k_ro * fs) / N
+   Là tần số $R[t]$ mà tại đó tổng năng lượng từ 0 Hz đến $R[t]$ chiếm đúng 85% tổng năng lượng toàn khung:
+
+$$\sum_{k=0}^{k_{ro}} |X_t[k]|^2 = 0{,}85 \sum_{k=0}^{N/2} |X_t[k]|^2, \quad R[t] = \frac{k_{ro} \cdot f_s}{N} \quad (3.6)$$
+
    *Ý nghĩa vật lý:* Giúp phân tách chính xác giới hạn băng thông năng lượng thực sự của nhạc cụ, loại bỏ ảnh hưởng của nhiễu nền tần số siêu cao.
+
 3. **Các hệ số phổ tần số Mel (MFCC - Mel-Frequency Cepstral Coefficients):**  
    Phổ công suất được nén qua ngân hàng gồm 40 bộ lọc tam giác cách đều trên thang đo Mel mô phỏng thính giác người:
-   m = 2595 * log10(1 + f / 700)
-   Lấy logarit năng lượng đầu ra của từng bộ lọc Mel E_m[t] rồi áp dụng phép biến đổi Cosine rời rạc (DCT-II):
-   c_i[t] = sum_{m=1}^{M} log(E_m[t]) * cos( (pi * i / M) * (m - 0,5) ), i = 0, 1, ..., 12
-   - c_0: Năng lượng tổng thể của khung âm thanh.
-   - c_1: Đo độ dốc phổ (cân bằng năng lượng giữa dải trầm và dải bổng).
-   - c_2: Đo độ cong dạng vòm của phổ tần số.
-   - c_3 - c_{12}: Nắm bắt các rãnh cộng hưởng chi tiết của hộp đàn gỗ.
+
+$$m = 2595 \log_{10}\left(1 + \frac{f}{700}\right) \quad (3.7)$$
+
+   Lấy logarit năng lượng đầu ra của từng bộ lọc Mel $E_m[t]$ rồi áp dụng phép biến đổi Cosine rời rạc (DCT-II):
+
+$$c_i[t] = \sum_{m=1}^{M} \log(E_m[t]) \cdot \cos\left[ \frac{\pi i}{M} \left(m - \frac{1}{2}\right) \right], \quad i = 0, 1, \dots, 12 \quad (3.8)$$
+
+   - $c_0$: Năng lượng tổng thể của khung âm thanh.
+   - $c_1$: Đo độ dốc phổ (cân bằng năng lượng giữa dải trầm và dải bổng).
+   - $c_2$: Đo độ cong dạng vòm của phổ tần số.
+   - $c_3 - c_{12}$: Nắm bắt các rãnh cộng hưởng chi tiết của hộp đàn gỗ.
 
 *Bảng 3.2: Công thức toán học và ý nghĩa âm học của các đặc trưng cốt lõi*
 
 | Đặc trưng | Công thức toán học định nghĩa | Ý nghĩa vật lý âm học |
 | :--- | :--- | :--- |
-| **`rms_mean`** | mu_RMS = (1/T) * sum_{t=1}^T RMS[t] | Cường độ phát âm trung bình toàn bản ghi |
-| **`rms_std`** | sigma_RMS = sqrt( (1/T) * sum_{t=1}^T (RMS[t] - mu_RMS)^2 ) | Độ biến thiên bao năng lượng (rất lớn ở Guitar, rất nhỏ ở Violin) |
-| **`zcr_mean`** | mu_ZCR = (1/T) * sum_{t=1}^T ZCR[t] | Tốc độ cắt 0 trung bình (đại diện cho cao độ miền thời gian) |
-| **`centroid_mean`** | mu_Cent = (1/T) * sum_{t=1}^T C[t] | Độ sáng trung bình của âm sắc (đo bằng Hz) |
-| **`rolloff_mean`** | mu_Roll = (1/T) * sum_{t=1}^T R[t] | Giới hạn tần số bao chứa 85% tổng năng lượng sóng |
-| **`mfcc_1_mean`** | mu_MFCC1 = (1/T) * sum_{t=1}^T c_1[t] | Cân bằng năng lượng âm trầm và âm bổng |
-| **`mfcc_2_mean`** | mu_MFCC2 = (1/T) * sum_{t=1}^T c_2[t] | Mức độ tập trung năng lượng ở dải trung âm |
+| **`rms_mean`** | $\mu_{\text{RMS}} = \frac{1}{T} \sum_{t=1}^T \text{RMS}[t]$ | Cường độ phát âm trung bình toàn bản ghi |
+| **`rms_std`** | $\sigma_{\text{RMS}} = \sqrt{\frac{1}{T} \sum_{t=1}^T (\text{RMS}[t] - \mu_{\text{RMS}})^2}$ | Độ biến thiên bao năng lượng (rất lớn ở Guitar, rất nhỏ ở Violin) |
+| **`zcr_mean`** | $\mu_{\text{ZCR}} = \frac{1}{T} \sum_{t=1}^T \text{ZCR}[t]$ | Tốc độ cắt 0 trung bình (đại diện cho cao độ miền thời gian) |
+| **`centroid_mean`** | $\mu_{\text{Cent}} = \frac{1}{T} \sum_{t=1}^T C[t]$ | Độ sáng trung bình của âm sắc (đo bằng Hz) |
+| **`rolloff_mean`** | $\mu_{\text{Roll}} = \frac{1}{T} \sum_{t=1}^T R[t]$ | Giới hạn tần số bao chứa 85% tổng năng lượng sóng |
+| **`mfcc_1_mean`** | $\mu_{\text{MFCC1}} = \frac{1}{T} \sum_{t=1}^T c_1[t]$ | Cân bằng năng lượng âm trầm và âm bổng |
+| **`mfcc_2_mean`** | $\mu_{\text{MFCC2}} = \frac{1}{T} \sum_{t=1}^T c_2[t]$ | Mức độ tập trung năng lượng ở dải trung âm |
 
 ### 3.4 Nhóm đặc trưng cao độ và hòa âm
 
-Đặc trưng **Chroma STFT (Pitch Class Profile)** chiếu toàn bộ năng lượng phổ tần số vào 12 ngăn tương ứng với 12 bán cung chuẩn trong thang âm phương Tây (C, C#, D, D#, E, F, F#, G, G#, A, A#, B):
-Chroma(b) = sum_{k: f_k in PitchClass(b)} |X[k]|^2, b in {0, 1, ..., 11}
+Đặc trưng **Chroma STFT (Pitch Class Profile)** chiếu toàn bộ năng lượng phổ tần số vào 12 ngăn tương ứng với 12 bán cung chuẩn trong thang âm phương Tây ($C, C\sharp, D, D\sharp, E, F, F\sharp, G, G\sharp, A, A\sharp, B$):
+
+$$\text{Chroma}(b) = \sum_{k: f_k \in \text{PitchClass}(b)} |X[k]|^2, \quad b \in \{0, 1, \dots, 11\} \quad (3.9)$$
+
 Do các nhạc cụ dây đều có dải dây buông chuẩn (ví dụ Violin: G3-D4-A4-E5; Cello: C2-G2-D3-A3; Guitar: E2-A2-D3-G3-B3-E4), năng lượng Chroma phản ánh trực tiếp cấu trúc điều hòa và dây rung đặc thù của từng nhạc cụ.
 
 ### 3.5 Biểu diễn vectơ và độ đo tương đồng
 
 Mỗi tệp âm thanh trong cơ sở dữ liệu được nén thành một vectơ đặc trưng 58 chiều:
-x = [ mu_RMS, sigma_RMS, mu_ZCR, sigma_ZCR, ..., mu_Chroma11, sigma_Chroma11 ]^T in R^58
 
-Do các đặc trưng có thang đo vật lý hoàn toàn khác biệt (ví dụ `centroid_mean` có giá trị từ 300 đến 3.500 Hz, trong khi `zcr_mean` chỉ dao động từ 0,01 đến 0,20), nếu tính khoảng cách trực tiếp trên giá trị thô, các đại lượng có biên độ lớn sẽ chi phối hoàn toàn kết quả tìm kiếm. Do đó, toàn bộ 58 thành phần đặc trưng được **chuẩn hóa z-score** theo kỳ vọng mu_j và độ lệch chuẩn sigma_j tính trên toàn bộ 600 tệp trong CSDL:
-z_j = (x_j - mu_j) / sigma_j, j = 1, 2, ..., 58
+$$\mathbf{x} = \left[ \mu_{\text{RMS}}, \sigma_{\text{RMS}}, \mu_{\text{ZCR}}, \sigma_{\text{ZCR}}, \dots, \mu_{\text{Chroma11}}, \sigma_{\text{Chroma11}} \right]^T \in \mathbb{R}^{58} \quad (3.10)$$
 
-Độ tương đồng giữa tệp âm thanh truy vấn q và tệp âm thanh ứng viên x trong cơ sở dữ liệu được định lượng bằng khoảng cách Euclid trên không gian đặc trưng đã chuẩn hóa:
-d(q, x) = ||z_q - z_x||_2 = sqrt( sum_{j=1}^{58} (z_j^(q) - z_j^(x))^2 )
+Do các đặc trưng có thang đo vật lý hoàn toàn khác biệt (ví dụ `centroid_mean` có giá trị từ 300 đến 3.500 Hz, trong khi `zcr_mean` chỉ dao động từ 0,01 đến 0,20), nếu tính khoảng cách trực tiếp trên giá trị thô, các đại lượng có biên độ lớn sẽ chi phối hoàn toàn kết quả tìm kiếm. Do đó, toàn bộ 58 thành phần đặc trưng được **chuẩn hóa z-score** theo kỳ vọng $\mu_j$ và độ lệch chuẩn $\sigma_j$ tính trên toàn bộ 600 tệp trong CSDL:
+
+$$z_j = \frac{x_j - \mu_j}{\sigma_j}, \quad j = 1, 2, \dots, 58 \quad (3.11)$$
+
+Độ tương đồng giữa tệp âm thanh truy vấn $\mathbf{q}$ và tệp âm thanh ứng viên $\mathbf{x}$ trong cơ sở dữ liệu được định lượng bằng khoảng cách Euclid trên không gian đặc trưng đã chuẩn hóa:
+
+$$d(\mathbf{q}, \mathbf{x}) = \|\mathbf{z}^{(\mathbf{q})} - \mathbf{z}^{(\mathbf{x})}\|_2 = \sqrt{\sum_{j=1}^{58} \left( z_j^{(\mathbf{q})} - z_j^{(\mathbf{x})} \right)^2} \quad (3.12)$$
 
 Cách biểu diễn này đáp ứng trọn vẹn cả hai yêu cầu cốt lõi của đề tài:
-1. **Tìm kiếm sự tương đồng:** Ứng với việc xác định các tệp âm thanh có khoảng cách Euclid d(q, x) nhỏ nhất trong toàn bộ cơ sở dữ liệu (thuật toán Nearest Neighbor).
-2. **Tìm kiếm và giải thích sự khác biệt:** Ứng với việc truy vết các thành phần có sai khác lớn nhất |z_j^(q) - z_j^(x)|, từ đó lý giải chính xác thuộc tính âm học nào (độ sáng, năng lượng kéo vĩ hay âm sắc Mel) tạo nên sự khác biệt giữa hai bản ghi.
+1. **Tìm kiếm sự tương đồng:** Ứng với việc xác định các tệp âm thanh có khoảng cách Euclid $d(\mathbf{q}, \mathbf{x})$ nhỏ nhất trong toàn bộ cơ sở dữ liệu (thuật toán Nearest Neighbor).
+2. **Tìm kiếm và giải thích sự khác biệt:** Ứng với việc truy vết các thành phần có sai khác lớn nhất $|z_j^{(\mathbf{q})} - z_j^{(\mathbf{x})}|$, từ đó lý giải chính xác thuộc tính âm học nào (độ sáng, năng lượng kéo vĩ hay âm sắc Mel) tạo nên sự khác biệt giữa hai bản ghi.
 
 **Kết luận Chương 3:**  
 Chương này đã thiết lập nền tảng toán học và kỹ thuật hoàn chỉnh cho bộ 58 đặc trưng âm học. Mọi đặc trưng đều được chuẩn hóa z-score để cân bằng trọng số. Tuy nhiên, giá trị thông tin và mức độ đóng góp của từng đặc trưng đến thời điểm này mới dừng lại ở mức lập luận lý thuyết; Chương 4 sẽ tiến hành kiểm định định lượng chi tiết trên bộ dữ liệu thực tế.
@@ -430,20 +453,30 @@ Chương này tiến hành kiểm định thực nghiệm định lượng trên
 #### 4.1.1 Đánh giá từng đặc trưng
 Khả năng phân biệt của từng đặc trưng được lượng hóa qua ba chỉ số độc lập:
 1. **Tỷ số phân tách Fisher (Fisher Criterion / Fisher Ratio):**
-   J = S_B / S_W = ( sum_{c=1}^C N_c * (mu_c - mu)^2 ) / ( sum_{c=1}^C sum_{i in c} (x_i - mu_c)^2 )
-   Trong đó C = 6 lớp nhạc cụ, N_c = 100 tệp/lớp, mu_c là trung bình của lớp c và mu là trung bình toàn cục. Giá trị J càng cao chứng tỏ phương sai giữa các lớp càng lớn so với phương sai nội bộ lớp, nghĩa là đặc trưng phân biệt càng tốt.
+
+$$J = \frac{S_B}{S_W} = \frac{\sum_{c=1}^C N_c (\mu_c - \mu)^2}{\sum_{c=1}^C \sum_{i \in c} (x_i - \mu_c)^2} \quad (4.1)$$
+
+   Trong đó $C = 6$ lớp nhạc cụ, $N_c = 100$ tệp/lớp, $\mu_c$ là trung bình của lớp $c$ và $\mu$ là trung bình toàn cục. Giá trị $J$ càng cao chứng tỏ phương sai giữa các lớp càng lớn so với phương sai nội bộ lớp, nghĩa là đặc trưng phân biệt càng tốt.
+
 2. **Thống kê kiểm định ANOVA F (F-statistic):**
-   F = (S_B / (C - 1)) / (S_W / (N - C))
+
+$$F = \frac{S_B / (C - 1)}{S_W / (N - C)} = \frac{N - C}{C - 1} \cdot J \quad (4.2)$$
+
    Đo mức ý nghĩa thống kê của sự sai khác kỳ vọng giữa các lớp nhạc cụ.
+
 3. **Thông tin tương hỗ (Mutual Information - MI):**
-   I(X; Y) đo lường mức độ phụ thuộc phi tuyến giữa đặc trưng liên tục X và nhãn rời rạc Y (ước lượng theo thuật toán láng giềng k-NN). Khác với Fisher ratio vốn giả định phân bố chuẩn, MI nhạy bén với mọi dạng phân bố dữ liệu phức tạp.
+
+$$I(X; Y) = \iint p(x, y) \log \frac{p(x, y)}{p(x) p(y)} \, dx \, dy \quad (4.3)$$
+
+   Ước lượng phi tham số (dựa trên phương pháp láng giềng k-NN của Kraskov), đo lường mức độ phụ thuộc phi tuyến giữa đặc trưng liên tục $X$ và nhãn rời rạc $Y$. Khác với Fisher ratio vốn giả định phân bố chuẩn, MI nhạy bén với mọi dạng phân bố dữ liệu phức tạp.
 
 #### 4.1.2 Đánh giá theo nhóm đặc trưng
-Hiệu năng truy vấn của từng nhóm đặc trưng được đánh giá thông qua quy trình kiểm định chéo loại-một (Leave-One-Out Cross-Validation): mỗi tệp âm thanh trong số 600 tệp lần lượt đóng vai trò là mẫu truy vấn q, hệ thống so khớp khoảng cách với 599 tệp còn lại và xếp hạng kết quả:
+Hiệu năng truy vấn của từng nhóm đặc trưng được đánh giá thông qua quy trình kiểm định chéo loại-một (Leave-One-Out Cross-Validation): mỗi tệp âm thanh trong số 600 tệp lần lượt đóng vai trò là mẫu truy vấn $\mathbf{q}$, hệ thống so khớp khoảng cách với 599 tệp còn lại và xếp hạng kết quả:
 - **Precision at 1 (P@1 / Accuracy):** Tỷ lệ tệp gần nhất (Top 1) có cùng nhãn nhạc cụ với tệp truy vấn.
 - **Precision at 5 (P@5):** Tỷ lệ các tệp đúng nhãn trong top 5 kết quả trả về.
 - **Mean Average Precision (mAP):** Độ chính xác trung bình toàn cục có tính đến thứ tự xếp hạng của toàn bộ 99 tệp cùng lớp:
-  mAP = (1/600) * sum_{q=1}^{600} AP(q)
+
+$$\text{AP}(\mathbf{q}) = \frac{1}{R_q} \sum_{k=1}^{N-1} P@k \cdot \text{rel}(k), \quad \text{mAP} = \frac{1}{600} \sum_{q=1}^{600} \text{AP}(\mathbf{q}) \quad (4.4)$$
 
 ### 4.2 Khả năng phân biệt của từng đặc trưng
 
@@ -454,7 +487,7 @@ Bảng 4.1 và Hình 4.1 trình bày kết quả xếp hạng 15 đặc trưng h
 
 *Bảng 4.1: Xếp hạng 15 đặc trưng âm học hàng đầu theo Fisher ratio*
 
-| Hạng | Tên đặc trưng | Nhóm thuộc tính | Fisher ratio (J) | ANOVA F | MI (nat) | Ý nghĩa phân tách thực tế |
+| Hạng | Tên đặc trưng | Nhóm thuộc tính | Fisher ratio ($J$) | ANOVA F | MI (nat) | Ý nghĩa phân tách thực tế |
 | :---: | :--- | :--- | :---: | :---: | :---: | :--- |
 | **1** | `mfcc_1_mean` | Âm sắc Mel | **385,08** | 385,08 | 0,760 | Phân tách cực mạnh dải trầm (Double Bass) và dải bổng (Violin) |
 | **2** | `mfcc_2_mean` | Âm sắc Mel | **359,42** | 359,42 | 0,607 | Nắm bắt độ cong phổ tần dải trung âm |
@@ -484,14 +517,14 @@ Quan sát Hình 4.2 cho thấy phân bố các giá trị của 4 đặc trưng 
 
 ### 4.3 Tương quan và dư thừa giữa các đặc trưng
 
-Hình 4.3 trình bày ma trận tương quan Pearson (r) giữa các đặc trưng cốt lõi đại diện cho các nhóm thuộc tính.
+Hình 4.3 trình bày ma trận tương quan Pearson ($r$) giữa các đặc trưng cốt lõi đại diện cho các nhóm thuộc tính.
 
 ![Hình 4.3: Ma trận tương quan Pearson giữa các đặc trưng](file:///d:/Ki1_4/HCSDLDPT/btl_new/reports/hinh/4_3_ma_tran_tuong_quan.png)  
 *Hình 4.3: Ma trận tương quan Pearson giữa các đặc trưng với phân vùng theo nhóm thuộc tính.*
 
 *Bảng 4.2: Các cặp đặc trưng có tương quan Pearson mạnh (|r| > 0,8)*
 
-| Đặc trưng 1 | Đặc trưng 2 | Hệ số tương quan r | Nhóm thuộc tính | Bản chất vật lý của sự tương quan |
+| Đặc trưng 1 | Đặc trưng 2 | Hệ số tương quan $r$ | Nhóm thuộc tính | Bản chất vật lý của sự tương quan |
 | :--- | :--- | :---: | :--- | :--- |
 | `centroid_mean` | `rolloff_mean` | **+0,9803** | Phổ tần số | Cùng phản ánh độ tập trung năng lượng dải tần số cao |
 | `centroid_std` | `rolloff_std` | **+0,9452** | Phổ tần số | Độ biến động của độ sáng tỷ lệ thuận với biến động giới hạn phổ |
@@ -500,7 +533,7 @@ Hình 4.3 trình bày ma trận tương quan Pearson (r) giữa các đặc trư
 | `mfcc_11_std` | `mfcc_12_std` | **+0,8223** | Âm sắc Mel | Hai hệ số cepstral bậc cao liền kề mô tả vi nhiễu tần số |
 | `mfcc_0_mean` | `mfcc_2_mean` | **-0,8106** | Âm sắc Mel | Tương quan nghịch giữa năng lượng tổng và độ cong phổ |
 
-Kết quả chỉ ra rằng chỉ có 6 cặp đặc trưng có tương quan mạnh vượt ngưỡng 0,8. Đặc biệt, giữa nhóm Thời gian/Năng lượng và nhóm Âm sắc MFCC, hay giữa nhóm Chroma và nhóm Phổ tần số hầu như không có cặp nào có |r| > 0,6. Điều này chứng minh 4 nhóm đặc trưng mang thông tin bổ trợ độc lập rất cao, không gây lãng phí tài nguyên tính toán.
+Kết quả chỉ ra rằng chỉ có 6 cặp đặc trưng có tương quan mạnh vượt ngưỡng 0,8. Đặc biệt, giữa nhóm Thời gian/Năng lượng và nhóm Âm sắc MFCC, hay giữa nhóm Chroma và nhóm Phổ tần số hầu như không có cặp nào có $|r| > 0,6$. Điều này chứng minh 4 nhóm đặc trưng mang thông tin bổ trợ độc lập rất cao, không gây lãng phí tài nguyên tính toán.
 
 ### 4.4 Khoảng cách giữa các mẫu cùng loại và khác loại
 
@@ -512,8 +545,8 @@ Hình 4.4 biểu diễn phân bố xác suất khoảng cách Euclid của **29.
 *Hình 4.4: Phân bố khoảng cách Euclid giữa các cặp âm thanh cùng loại (xanh dương) và khác loại (đỏ); đường nét đứt biểu thị giá trị trung vị.*
 
 Các chỉ số thống kê đo đạc định lượng:
-- **Cặp cùng nhạc cụ (Intra-class):** Khoảng cách trung bình đạt **8,68** (+- 2,59), trung vị đạt **8,24**.
-- **Cặp khác nhạc cụ (Inter-class):** Khoảng cách trung bình đạt **10,83** (+- 2,36), trung vị đạt **10,65**.
+- **Cặp cùng nhạc cụ (Intra-class):** Khoảng cách trung bình đạt **8,68** ($\pm 2,59$), trung vị đạt **8,24**.
+- **Cặp khác nhạc cụ (Inter-class):** Khoảng cách trung bình đạt **10,83** ($\pm 2,36$), trung vị đạt **10,65**.
 - **Mức độ tách biệt:** Trung vị của phân bố liên lớp dịch chuyển sang phải **2,41 đơn vị khoảng cách** so với trung vị nội lớp. Vùng giao thoa (overlap) giữa hai phân bố tương đối hẹp, khẳng định không gian đặc trưng 58 chiều có khả năng co cụm các âm thanh cùng loại và phân tách rõ rệt các nhạc cụ khác biệt.
 
 ### 4.5 Đóng góp của từng nhóm đặc trưng
@@ -543,16 +576,16 @@ Hình 4.5 minh họa kết quả truy vấn thực tế của hệ thống trên
 
 Phân tích chi tiết 3 truy vấn:
 1. **Truy vấn 1 – `violin_001.wav` (Violin):**  
-   - Top 1: `violin_034.wav` (d = 5,96 — Đúng)
-   - Top 2: `violin_090.wav` (d = 6,16 — Đúng)
-   - Top 3: `viola_058.wav` (d = 6,66 — Nhầm sang Viola)
-   - Top 4: `violin_016.wav` (d = 6,77 — Đúng)
-   - Top 5: `violin_055.wav` (d = 6,80 — Đúng)  
+   - Top 1: `violin_034.wav` ($d = 5,96$ — Đúng)
+   - Top 2: `violin_090.wav` ($d = 6,16$ — Đúng)
+   - Top 3: `viola_058.wav` ($d = 6,66$ — Nhầm sang Viola)
+   - Top 4: `violin_016.wav` ($d = 6,77$ — Đúng)
+   - Top 5: `violin_055.wav` ($d = 6,80$ — Đúng)  
    *Giải thích hiện tượng:* 4/5 kết quả trả về hoàn toàn chính xác. Trường hợp duy nhất ở Top 3 bị nhầm sang Viola là do tệp `viola_058.wav` được thu ở nốt cao (E5), có trọng tâm phổ và độ sáng xấp xỉ nốt trung của Violin, hoàn toàn phù hợp với phân tích lý thuyết ở mục 2.6.3.
 2. **Truy vấn 2 – `cello_010.wav` (Cello):**  
-   - Cả 5 kết quả Top 1 đến Top 5 đều thuộc về Cello (`cello_014`, `cello_016`, `cello_011`, `cello_035`, `cello_015`) với khoảng cách cực nhỏ (d = 2,70 - 3,33). Hệ thống đạt độ chính xác tuyệt đối 100%.
+   - Cả 5 kết quả Top 1 đến Top 5 đều thuộc về Cello (`cello_014`, `cello_016`, `cello_011`, `cello_035`, `cello_015`) với khoảng cách cực nhỏ ($d = 2,70 - 3,33$). Hệ thống đạt độ chính xác tuyệt đối 100%.
 3. **Truy vấn 3 – `guitar_electric_005.wav` (Guitar Electric):**  
-   - Cả 5 kết quả Top 1 đến Top 5 đều thuộc về Guitar Electric (`guitar_electric_045`, `...087`, `...037`, `...048`, `...082`) với khoảng cách d = 4,75 - 5,38. Các đặc trưng MFCC bậc cao và dải tần biến thiên mạnh đã nhận diện hoàn hảo chất âm điện tử đặc trưng.
+   - Cả 5 kết quả Top 1 đến Top 5 đều thuộc về Guitar Electric (`guitar_electric_045`, `...087`, `...037`, `...048`, `...082`) với khoảng cách $d = 4,75 - 5,38$. Các đặc trưng MFCC bậc cao và dải tần biến thiên mạnh đã nhận diện hoàn hảo chất âm điện tử đặc trưng.
 
 **Kết luận Chương 4:**  
 Các thực nghiệm định lượng trên 600 tệp âm thanh đã chứng minh một cách khoa học tính đúng đắn và hiệu quả vượt trội của bộ 58 đặc trưng âm học. Độ chính xác P@1 đạt 93,00% và khoảng cách nội lớp phân tách rõ rệt với liên lớp khẳng định bộ dữ liệu và bộ đặc trưng hoàn toàn sẵn sàng cho việc tích hợp vào hệ CSDL ở giai đoạn tiếp theo.
@@ -564,7 +597,7 @@ Các thực nghiệm định lượng trên 600 tệp âm thanh đã chứng min
 ### 5.1 Kết quả đạt được
 
 Báo cáo số 1 đã giải quyết trọn vẹn và chuẩn mực hai nội dung nền tảng của đề tài:
-1. **Xây dựng thành công bộ dữ liệu âm thanh chuẩn hóa:** Bao gồm **600 tệp âm thanh WAV PCM 16-bit 22.050 Hz mono**, phân bố cân bằng tuyệt đối giữa 6 loại nhạc cụ bộ dây tiêu biểu (Violin, Viola, Cello, Double Bass, Guitar Acoustic, Guitar Electric). Toàn bộ quy trình thu thập, lọc khoảng lặng ngưỡng -35 dBFS, phân đoạn nốt và làm mềm biên độ fade 20 ms được tự động hóa hoàn toàn bằng mã nguồn Python có khả năng tái lập 100%.
+1. **Xây dựng thành công bộ dữ liệu âm thanh chuẩn hóa:** Bao gồm **600 tệp âm thanh WAV PCM 16-bit 22.050 Hz mono**, phân bố cân bằng tuyệt đối giữa 6 loại nhạc cụ bộ dây tiêu biểu (Violin, Viola, Cello, Double Bass, Guitar Acoustic, Guitar Electric). Toàn bộ quy trình thu thập, lọc khoảng lặng ngưỡng $-35$ dBFS, phân đoạn nốt và làm mềm biên độ fade 20 ms được tự động hóa hoàn toàn bằng mã nguồn Python có khả năng tái lập 100%.
 2. **Khảo sát toàn diện đặc trưng âm học:** Phân tích tường minh cơ chế vật lý và đối chứng chi tiết 7 cặp nhạc cụ có vùng giao thoa âm học dễ nhầm lẫn.
 3. **Thiết kế hệ thống 58 đặc trưng âm học đa diện:** Kết hợp hài hòa giữa Năng lượng thời gian (RMS, ZCR), Cấu trúc phổ tần số (Centroid, Rolloff), Âm sắc mô phỏng thính giác người (13 hệ số MFCC bậc 0-12) và Hòa âm cao độ (12 dải Chroma Pitch Class). Toàn bộ công thức toán học và mã nguồn trích xuất đều được cài đặt chuẩn xác.
 4. **Kiểm định định lượng thực nghiệm nghiêm ngặt:** Đánh giá chi tiết thông qua Fisher criterion, ANOVA F-statistic, Mutual Information và tương quan Pearson. Thực nghiệm Leave-One-Out trên 600 tệp chứng minh hệ thống đạt độ chính xác **P@1 = 93,00%**, **P@5 = 88,47%** và **mAP = 58,63%**.
@@ -573,15 +606,15 @@ Báo cáo số 1 đã giải quyết trọn vẹn và chuẩn mực hai nội du
 
 Bên cạnh những kết quả tích cực, hệ thống hiện tại vẫn tồn tại một số hạn chế cần khắc phục trong các giai đoạn tiếp theo:
 1. **Mức độ phức tạp của tín hiệu đầu vào:** Bộ dữ liệu hiện tại chủ yếu tập trung vào các nốt nhạc đơn âm sắc (monophonic/isolated notes). Khi tín hiệu đầu vào là đoạn hòa tấu đa âm sắc phức tạp (polyphonic) có tiếng trống hoặc nhiều nhạc cụ cùng chơi, việc trích xuất đặc trưng toàn cục sẽ bị suy giảm độ chính xác.
-2. **Trọng số đồng đều trong hàm khoảng cách Euclid:** Hiện tại, toàn bộ 58 đặc trưng sau khi chuẩn hóa z-score đều được gán trọng số bằng nhau (w_j = 1). Trong thực tế, các đặc trưng có Fisher ratio cao (như MFCC bậc 1, 2 và Centroid) mang giá trị phân biệt lớn hơn nhiều so với các bậc Chroma riêng lẻ. Việc áp dụng trọng số đồng đều vô tình làm giảm độ nhạy bén của các thuộc tính cốt lõi.
+2. **Trọng số đồng đều trong hàm khoảng cách Euclid:** Hiện tại, toàn bộ 58 đặc trưng sau khi chuẩn hóa z-score đều được gán trọng số bằng nhau ($w_j = 1$). Trong thực tế, các đặc trưng có Fisher ratio cao (như MFCC bậc 1, 2 và Centroid) mang giá trị phân biệt lớn hơn nhiều so với các bậc Chroma riêng lẻ. Việc áp dụng trọng số đồng đều vô tình làm giảm độ nhạy bén của các thuộc tính cốt lõi.
 3. **Độ nhầm lẫn giữa các nhạc cụ cùng họ vật lý:** Cặp Violin – Viola ở các nốt cao vẫn xảy ra hiện tượng nhận diện chéo (Viola có mAP đạt 38,68% và Violin đạt 45,31%), do thể tích thùng đàn chưa được mô hình hóa triệt để qua các hệ số bao phổ tĩnh.
 
 ### 5.3 Hướng phát triển
 
 Nhằm hoàn thiện toàn diện hệ thống CBAR phục vụ Báo cáo số 2 và Báo cáo số 3, nhóm định hướng triển khai các nhiệm vụ trọng tâm sau:
-1. **Học trọng số khoảng cách có trọng số (Weighted Distance Metric):** Tối ưu hóa bộ trọng số w in R^58 dựa trên Fisher ratio hoặc thuật toán học khoảng cách (Metric Learning / Large Margin Nearest Neighbor) nhằm tối đa hóa khoảng cách liên lớp và thu hẹp khoảng cách nội lớp.
+1. **Học trọng số khoảng cách có trọng số (Weighted Distance Metric):** Tối ưu hóa bộ trọng số $\mathbf{w} \in \mathbb{R}^{58}$ dựa trên Fisher ratio hoặc thuật toán học khoảng cách (Metric Learning / Large Margin Nearest Neighbor) nhằm tối đa hóa khoảng cách liên lớp và thu hẹp khoảng cách nội lớp.
 2. **Thiết kế lược đồ CSDL đa phương tiện chuẩn:** Xây dựng cơ sở dữ liệu quan hệ (PostgreSQL / SQLite) lưu trữ cấu trúc bảng siêu dữ liệu âm thanh, tệp nhị phân và ma trận 58 chiều đặc trưng.
-3. **Xây dựng cấu trúc chỉ mục tìm kiếm nhiều chiều:** Cài đặt các cấu trúc dữ liệu chỉ mục không gian đa chiều (k-d tree, R-tree hoặc LSH - Locality Sensitive Hashing) để tăng tốc độ truy vấn từ độ phức tạp tuyến tính O(N) xuống mức logarit O(log N), sẵn sàng cho các cơ sở dữ liệu hàng triệu bản ghi.
+3. **Xây dựng cấu trúc chỉ mục tìm kiếm nhiều chiều:** Cài đặt các cấu trúc dữ liệu chỉ mục không gian đa chiều (k-d tree, R-tree hoặc LSH - Locality Sensitive Hashing) để tăng tốc độ truy vấn từ độ phức tạp tuyến tính $\mathcal{O}(N)$ xuống mức logarit $\mathcal{O}(\log N)$, sẵn sàng cho các cơ sở dữ liệu hàng triệu bản ghi.
 4. **Phát triển giao diện ứng dụng trực quan (Web Interface):** Xây dựng ứng dụng web tương tác (sử dụng Streamlit hoặc FastAPI) cho phép người dùng tải tệp âm thanh bất kỳ, nghe bản ghi mẫu, xem phổ Spectrogram trực tiếp và nhận kết quả truy vấn top 5 nhạc cụ tương đồng nhất kèm giải thích trực quan.
 
 ---

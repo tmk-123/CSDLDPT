@@ -21,6 +21,31 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_TAB_ALIGNMENT, WD_TAB_LEADER
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml import parse_xml
 from docx.oxml.ns import nsdecls
+import lxml.etree as ET
+from latex2mathml.converter import convert
+
+# Tìm bộ chuyển đổi chính thức của Microsoft Office Math (MML2OMML.XSL)
+XSLT_CANDIDATES = [
+    r"C:\Program Files (x86)\Microsoft Office\root\Office16\MML2OMML.XSL",
+    r"C:\Program Files\Microsoft Office\root\Office16\MML2OMML.XSL",
+    r"C:\Program Files (x86)\Microsoft Office\Office16\MML2OMML.XSL",
+    r"C:\Program Files\Microsoft Office\Office16\MML2OMML.XSL",
+]
+XSLT_PATH = None
+for cp in XSLT_CANDIDATES:
+    if Path(cp).exists():
+        XSLT_PATH = cp
+        break
+
+OMML_TRANSFORM = None
+if XSLT_PATH:
+    try:
+        xslt_tree = ET.parse(XSLT_PATH)
+        OMML_TRANSFORM = ET.XSLT(xslt_tree)
+        print(f">>> Đã kích hoạt bộ chuyển đổi công thức Word OMML: {XSLT_PATH}")
+    except Exception as e:
+        print(f">>> [CẢNH BÁO] Không thể nạp MML2OMML.XSL: {e}")
+
 
 GOC = Path(__file__).resolve().parent.parent
 FILE_MD = GOC / "reports" / "Bao_cao_BTL.md"
@@ -69,29 +94,29 @@ BANG_SO_TRANG = {
     "3.1": "19",
     "3.2": "21",
     "3.3": "21",
-    "3.4": "23",
+    "3.4": "24",
     "3.5": "24",
     # Chương 4
-    "CHƯƠNG 4": "25",
-    "4.1": "25",
-    "4.1.1": "25",
-    "4.1.2": "25",
-    "4.2": "26",
-    "4.3": "29",
-    "4.4": "30",
-    "4.5": "31",
-    "4.6": "32",
+    "CHƯƠNG 4": "26",
+    "4.1": "26",
+    "4.1.1": "26",
+    "4.1.2": "27",
+    "4.2": "27",
+    "4.3": "30",
+    "4.4": "32",
+    "4.5": "33",
+    "4.6": "34",
     # Chương 5
-    "CHƯƠNG 5": "35",
-    "5.1": "35",
-    "5.2": "35",
-    "5.3": "36",
+    "CHƯƠNG 5": "36",
+    "5.1": "36",
+    "5.2": "36",
+    "5.3": "37",
     # Tài liệu & Phụ lục
-    "TÀI LIỆU THAM KHẢO": "37",
-    "PHỤ LỤC": "38",
-    "A": "38",
-    "A.1": "38",
-    "A.2": "38",
+    "TÀI LIỆU THAM KHẢO": "38",
+    "PHỤ LỤC": "39",
+    "A": "39",
+    "A.1": "39",
+    "A.2": "39",
     # Danh mục hình vẽ
     "Hình 2.1": "12",
     "Hình 2.2": "14",
@@ -100,25 +125,28 @@ BANG_SO_TRANG = {
     "Hình 2.5": "17",
     "Hình 3.1": "20",
     "Hình 3.2": "22",
-    "Hình 4.1": "26",
-    "Hình 4.2": "28",
-    "Hình 4.3": "29",
-    "Hình 4.4": "31",
-    "Hình 4.5": "33",
+    "Hình 4.1": "27",
+    "Hình 4.2": "29",
+    "Hình 4.3": "31",
+    "Hình 4.4": "32",
+    "Hình 4.5": "34",
     # Danh mục bảng biểu
     "Bảng 2.1": "10",
     "Bảng 2.2": "12",
     "Bảng 2.3": "15",
     "Bảng 3.1": "20",
     "Bảng 3.2": "23",
-    "Bảng 4.1": "26",
-    "Bảng 4.2": "29",
-    "Bảng 4.3": "31",
-    "Bảng A.1": "38",
-    "Bảng A.2": "38"
+    "Bảng 4.1": "27",
+    "Bảng 4.2": "31",
+    "Bảng 4.3": "33",
+    "Bảng A.1": "39",
+    "Bảng A.2": "39"
 }
 
 def clean_latex_to_text(text: str) -> str:
+    # Lọc bỏ các ký tự điều khiển không tương thích XML
+    text = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]', '', text)
+    text = text.replace('\x07pprox', '≈').replace('\x07', '')
     replacements = [
         (r"\\approx", "≈"), (r"\\le", "≤"), (r"\\ge", "≥"), (r"\\pm", "±"),
         (r"\\times", "×"), (r"\\cdot", "·"), (r"\\in", "∈"), (r"\\mathbb\{R\}", "ℝ"),
@@ -131,6 +159,119 @@ def clean_latex_to_text(text: str) -> str:
     for pat, rep in replacements:
         res = re.sub(pat, rep, res)
     return res
+
+def latex_to_omml(latex_code: str):
+    """Chuyển đổi mã công thức LaTeX sang phần tử OpenXML OMML (<m:oMath>) gốc của Microsoft Word."""
+    if OMML_TRANSFORM is None:
+        return None
+    latex_code = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]', '', latex_code).strip()
+    if not latex_code:
+        return None
+    
+    code_clean = latex_code.replace('\x07pprox', r'\approx').replace(r"\quad", " ")
+    attempts = [
+        code_clean,
+        code_clean.replace("{,}", ","),
+        code_clean.replace("{,}", "."),
+        re.sub(r'\\text\{([^}]+)\}', r'\1', code_clean)
+    ]
+    
+    for code in attempts:
+        try:
+            mml = convert(code)
+            tree = ET.fromstring(mml)
+            omml = OMML_TRANSFORM(tree).getroot()
+            return omml
+        except Exception:
+            continue
+    return None
+
+def remove_table_borders(table):
+    """Xóa hoàn toàn đường viền của bảng."""
+    tblPr = table._tbl.tblPr
+    for child in list(tblPr):
+        if child.tag.endswith('tblBorders'):
+            tblPr.remove(child)
+    tblBorders = parse_xml(f'''
+        <w:tblBorders {nsdecls("w")}>
+            <w:top w:val="none"/>
+            <w:left w:val="none"/>
+            <w:bottom w:val="none"/>
+            <w:right w:val="none"/>
+            <w:insideH w:val="none"/>
+            <w:insideV w:val="none"/>
+        </w:tblBorders>
+    ''')
+    tblPr.append(tblBorders)
+
+def add_math_equation(doc, raw_formula: str):
+    """Thêm một khối công thức toán học Word chuẩn OMML kèm đánh số căn lề phải."""
+    raw_formula = raw_formula.strip()
+    if not raw_formula:
+        return
+        
+    m_num = re.search(r'(?:\\quad|\s+)?\(((?:\d+|[A-Z])\.\d+)\)\s*$', raw_formula)
+    eq_num = None
+    formula_body = raw_formula
+    if m_num:
+        eq_num = f"({m_num.group(1)})"
+        formula_body = raw_formula[:m_num.start()].strip()
+        
+    omml = latex_to_omml(formula_body)
+    
+    if omml is not None:
+        if eq_num:
+            # Dùng bảng 2 cột không viền: cột 1 công thức ở giữa, cột 2 số thứ tự ở lề phải
+            tbl = doc.add_table(rows=1, cols=2)
+            tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
+            tbl.autofit = False
+            tbl.rows[0].cantSplit = True
+            remove_table_borders(tbl)
+            
+            c0 = tbl.cell(0, 0)
+            c0.width = Inches(5.5)
+            set_cell_margins(c0, top=60, bottom=60, left=0, right=0)
+            p0 = c0.paragraphs[0]
+            p0.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            p0.paragraph_format.space_before = Pt(3)
+            p0.paragraph_format.space_after = Pt(3)
+            p0._p.append(omml)
+            
+            c1 = tbl.cell(0, 1)
+            c1.width = Inches(0.8)
+            set_cell_margins(c1, top=60, bottom=60, left=0, right=0)
+            p1 = c1.paragraphs[0]
+            p1.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+            p1.paragraph_format.space_before = Pt(3)
+            p1.paragraph_format.space_after = Pt(3)
+            r1 = p1.add_run(eq_num)
+            r1.font.name = "Times New Roman"
+            r1.font.size = Pt(11)
+            r1.font.italic = True
+            r1.font.color.rgb = MAU_NAVY
+            
+            tbl.columns[0].width = Inches(5.5)
+            tbl.columns[1].width = Inches(0.8)
+        else:
+            p = doc.add_paragraph()
+            p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            p.paragraph_format.space_before = Pt(4)
+            p.paragraph_format.space_after = Pt(6)
+            p._p.append(omml)
+    else:
+        clean_txt = clean_latex_to_text(formula_body)
+        if eq_num:
+            clean_txt = f"{clean_txt}   {eq_num}"
+        p = doc.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.paragraph_format.space_before = Pt(4)
+        p.paragraph_format.space_after = Pt(6)
+        r = p.add_run(clean_txt)
+        r.font.name = "Cambria Math"
+        r.font.size = Pt(11.5)
+        r.italic = True
+        r.font.color.rgb = MAU_NAVY
+
 
 def thiet_lap_heading_styles(doc):
     styles = doc.styles
@@ -226,13 +367,26 @@ def add_page_number_to_footer(footer_p):
     run._r.append(fldChar3)
 
 def format_runs_in_paragraph(p, text: str, default_font="Times New Roman", default_size=12, default_color=MAU_TEXT):
-    text = clean_latex_to_text(text)
     pattern = re.compile(r'(\*\*[^*]+?\*\*|\*[^*]+?\*|`[^`]+?`|\$[^\$]+?\$|<[^>]+>)')
     parts = pattern.split(text)
     
     for part in parts:
         if not part:
             continue
+            
+        if part.startswith("$") and part.endswith("$") and len(part) >= 2:
+            latex_code = part[1:-1].strip()
+            omml = latex_to_omml(latex_code)
+            if omml is not None:
+                p._p.append(omml)
+            else:
+                run = p.add_run(clean_latex_to_text(latex_code))
+                run.font.name = "Cambria Math"
+                run.font.size = Pt(default_size)
+                run.italic = True
+                run.font.color.rgb = default_color
+            continue
+            
         run = p.add_run()
         run.font.name = default_font
         run.font.size = Pt(default_size)
@@ -249,15 +403,11 @@ def format_runs_in_paragraph(p, text: str, default_font="Times New Roman", defau
             run.font.name = "Consolas"
             run.font.size = Pt(default_size - 1)
             run.font.color.rgb = RGBColor(199, 37, 78)
-        elif part.startswith("$") and part.endswith("$") and len(part) >= 2:
-            run.text = part[1:-1].strip()
-            run.font.name = "Cambria Math"
-            run.italic = True
         elif part.startswith("<") and part.endswith(">"):
             if part.lower() == "<br>":
                 run.text = "\n"
         else:
-            run.text = part
+            run.text = clean_latex_to_text(part)
 
 def tao_trang_bia(doc):
     """Trang bìa chuẩn khuôn mẫu BTL.pdf kèm logo PTIT và thông tin sinh viên chuẩn."""
@@ -714,16 +864,7 @@ def convert_markdown_to_word(md_path: Path, out_path: Path):
             return
         formula = " ".join([l.strip() for l in math_lines if l.strip()])
         if formula:
-            clean_formula = clean_latex_to_text(formula)
-            p = doc.add_paragraph()
-            p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            p.paragraph_format.space_before = Pt(6)
-            p.paragraph_format.space_after = Pt(8)
-            r = p.add_run(clean_formula)
-            r.font.name = "Cambria Math"
-            r.font.size = Pt(11.5)
-            r.italic = True
-            r.font.color.rgb = MAU_NAVY
+            add_math_equation(doc, formula)
         math_lines = []
         in_math_block = False
 
@@ -735,7 +876,16 @@ def convert_markdown_to_word(md_path: Path, out_path: Path):
             stripped.startswith("![") or stripped == "---") and in_math_block:
             flush_math()
 
-        # Math block $$
+        # Single-line Math block $$...$$
+        if stripped.startswith("$$") and stripped.endswith("$$") and len(stripped) > 4:
+            if in_table: flush_table()
+            if in_math_block: flush_math()
+            formula = stripped[2:-2].strip()
+            add_math_equation(doc, formula)
+            i += 1
+            continue
+
+        # Multi-line Math block $$
         if stripped == "$$":
             if in_math_block:
                 flush_math()
