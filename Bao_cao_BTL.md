@@ -149,9 +149,9 @@ Trong báo cáo này, dữ liệu được chuẩn hóa về tần số lấy m�
 
 Nếu hai kênh stereo được gộp bằng phép lấy trung bình cộng, tín hiệu mono được tính như sau:
 
-- $$
-  x_{\text{mono}}[n] = \frac{x_L[n] + x_R[n]}{2}
-  $$
+$$
+x_{\text{mono}}[n] = \frac{x_L[n] + x_R[n]}{2}
+$$
 
 Dữ liệu được lưu ở định dạng WAV sử dụng PCM 16-bit. Với cách biểu diễn PCM có dấu 16-bit thông thường, mỗi mẫu có thể biểu diễn các giá trị nguyên từ (-32,768) đến (32,767). PCM là phương pháp mã hóa mẫu âm thanh không mất dữ liệu so với chính các mẫu PCM đã được tạo ra; tuy nhiên, quá trình chuyển đổi từ nguồn âm thanh ban đầu sang PCM 16-bit vẫn có thể làm thay đổi dữ liệu do lượng tử hóa, chuyển đổi tần số lấy mẫu hoặc các bước tiền xử lý khác
 
