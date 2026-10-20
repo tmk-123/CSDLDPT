@@ -10,3 +10,6 @@ __pycache__/
 
 # File tạm của Office khi đang mở báo cáo
 ~$*
+
+# Thư mục junction hinh tại root (chỉ áp dụng ở thư mục gốc)
+/hinh

@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cẩm nang giải thích toàn diện Báo cáo BTL - CBAR Nhạc cụ bộ dây</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,650;1,7..72,400&family=Roboto+Mono:wght@400;500;600&display=swap">
+<!-- KaTeX cho hiển thị chuẩn toán học quốc tế -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="initKaTeX()"></script>
+
+<style>
+:root{
+  --bg:#f4f6f5; --surface:#ffffff; --surface-card:#fbfcfb; --ink:#162329; --muted:#55666d; 
+  --line:#d5ddde; --axis:#87969c; --accent:#0d6b70; --accent2:#b9770e; --accent-ink:#0b5a5e;
+  --accent-light:#e6f4f4; --warn-bg:#fdf5e8; --warn-border:#e3a640; --tag-bg:#f0f4f4;
+  --f-display:'Literata', Georgia, 'Times New Roman', serif;
+  --f-body:'Be Vietnam Pro', system-ui, 'Segoe UI', Arial, sans-serif;
+  --f-mono:'Roboto Mono', ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1518; --surface:#161e22; --surface-card:#1b252a; --ink:#e2e9ea; --muted:#9aa9ae; 
+  --line:#26343a; --axis:#5d6e74; --accent:#4cb7bb; --accent2:#e3a640; --accent-ink:#7fd0d3; 
+  --accent-light:#122a2e; --warn-bg:#262012; --warn-border:#b8832a; --tag-bg:#1a262b;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0f1518; --surface:#161e22; --surface-card:#1b252a; --ink:#e2e9ea; --muted:#9aa9ae; 
+  --line:#26343a; --axis:#5d6e74; --accent:#4cb7bb; --accent2:#e3a640; --accent-ink:#7fd0d3; 
+  --accent-light:#122a2e; --warn-bg:#262012; --warn-border:#b8832a; --tag-bg:#1a262b;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--f-body); font-size:16px; line-height:1.75;
+  margin:0; padding:0 20px 80px;
+}
+.wrap{
+  max-width:1200px; margin:0 auto; display:grid; grid-template-columns:260px minmax(0,1fr); gap:48px;
+}
+nav.toc{
+  position:sticky; top:24px; align-self:start; padding-top:20px; font-size:13.5px;
+  max-height:calc(100vh - 48px); overflow-y:auto;
+}
+nav.toc p{font-family:var(--f-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:0 0 10px; font-weight:600}
+nav.toc ol{list-style:none; margin:0; padding:0; display:grid; gap:6px; counter-reset:t}
+nav.toc li{counter-increment:t; display:grid; grid-template-columns:22px 1fr}
+nav.toc li::before{content:counter(t); font-family:var(--f-mono); font-size:11.5px; color:var(--accent); font-weight:600; padding-top:1px}
+nav.toc a{color:var(--muted); text-decoration:none; transition:color .15s}
+nav.toc a:hover{color:var(--accent-ink); text-decoration:underline}
+
+main{min-width:0; max-width:860px}
+@media (max-width:980px){
+  .wrap{grid-template-columns:minmax(0,1fr)}
+  nav.toc{display:none}
+}
+
+header{padding:40px 0 16px; border-bottom:1px solid var(--line); margin-bottom:36px}
+.crumb{font-family:var(--f-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:8px}
+h1{font-family:var(--f-display); font-size:clamp(28px, 4.5vw, 40px); font-weight:650; line-height:1.2; margin:0 0 14px}
+.lead{font-size:17.5px; color:var(--muted); margin:0 0 20px; line-height:1.6}
+
+h2{font-family:var(--f-display); font-size:25px; font-weight:650; margin:42px 0 16px; padding-top:32px; border-top:1px solid var(--line); display:flex; gap:12px; align-items:baseline}
+h2 .n{font-family:var(--f-mono); font-size:14px; color:var(--accent); font-weight:600; flex:none}
+h3{font-size:18px; font-weight:600; margin:26px 0 10px; color:var(--ink)}
+p{margin:0 0 14px}
+strong{font-weight:600}
+
+/* Định nghĩa, Chú ý & Key Insights */
+.def{background:var(--surface); border:1px solid var(--accent); border-left-width:5px; border-radius:6px; padding:16px 18px; margin:18px 0}
+.def .lbl{font-family:var(--f-mono); font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--accent); font-weight:600; display:block; margin-bottom:4px}
+.def p{margin:0; font-size:15.5px}
+
+.warn{background:var(--warn-bg); border:1px solid var(--warn-border); border-left-width:5px; border-radius:6px; padding:16px 18px; margin:18px 0}
+.warn .lbl{font-family:var(--f-mono); font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--accent2); font-weight:600; display:block; margin-bottom:4px}
+.warn p{margin:0; font-size:15px}
+
+.key{background:var(--surface-card); border:1px solid var(--line); border-radius:6px; padding:16px; margin:18px 0; display:grid; gap:4px}
+.key span{font-family:var(--f-mono); font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--accent2); font-weight:600}
+.key p{font-family:var(--f-display); font-size:17.5px; line-height:1.45; margin:0; color:var(--ink)}
+
+/* Hộp công thức chuẩn sư phạm: Tên -> Công thức -> Mục đích -> Bảng tham số -> Ý nghĩa */
+.eq-box{
+  background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:20px 22px; margin:24px 0;
+  box-shadow:0 1px 4px rgba(0,0,0,0.03);
+}
+.eq-box .eq-title{
+  font-family:var(--f-mono); font-size:12.5px; font-weight:600; text-transform:uppercase; color:var(--accent);
+  margin-bottom:12px; letter-spacing:.05em; display:flex; align-items:center; gap:8px;
+}
+.eq-box .eq-math{
+  background:var(--tag-bg); padding:14px 18px; border-radius:6px; overflow-x:auto; margin-bottom:16px;
+  border:1px solid var(--line); text-align:center; font-size:18px;
+}
+.eq-part{margin-bottom:14px}
+.eq-part-title{
+  font-family:var(--f-mono); font-size:12px; font-weight:600; text-transform:uppercase; color:var(--accent-ink);
+  letter-spacing:.04em; margin-bottom:6px; display:block;
+}
+.eq-explain{font-size:15px; line-height:1.7; color:var(--ink)}
+.eq-explain ul{margin:6px 0 0; padding-left:22px}
+.eq-explain li{margin-bottom:6px}
+
+/* Bảng phân tích tham số bên trong công thức */
+.param-table{
+  width:100%; border-collapse:collapse; font-size:14px; margin:10px 0 14px; background:var(--surface-card);
+  border:1px solid var(--line); border-radius:6px; overflow:hidden;
+}
+.param-table th{
+  background:var(--tag-bg); padding:8px 12px; font-family:var(--f-mono); font-size:11px; text-transform:uppercase;
+  color:var(--muted); border-bottom:1px solid var(--line); text-align:left;
+}
+.param-table td{padding:8px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+.param-table tr:last-child td{border-bottom:none}
+.param-sym{font-family:var(--f-mono); font-weight:600; color:var(--accent-ink); white-space:nowrap}
+
+/* Bảng biểu chung */
+.tbl{overflow-x:auto; margin:18px 0 24px; border:1px solid var(--line); border-radius:6px}
+table{border-collapse:collapse; width:100%; font-size:14px; min-width:620px; background:var(--surface)}
+th{text-align:left; font-family:var(--f-mono); font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); padding:10px 12px; border-bottom:1px solid var(--axis); background:var(--tag-bg)}
+td{padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.num{font-family:var(--f-mono); font-variant-numeric:tabular-nums; white-space:nowrap}
+
+/* Khối Thầy hỏi - Em trả lời */
+details.qa{
+  background:var(--surface); border:1px solid var(--line); border-radius:6px; margin:14px 0; overflow:hidden;
+  transition:border-color .2s;
+}
+details.qa[open]{border-color:var(--accent)}
+summary{
+  cursor:pointer; padding:14px 16px; font-weight:600; font-size:15px; list-style:none; display:flex; align-items:center; gap:10px;
+  background:var(--surface-card); user-select:none;
+}
+summary::-webkit-details-marker{display:none}
+summary .q-tag{
+  font-family:var(--f-mono); font-size:11px; background:var(--accent); color:#fff; padding:2px 7px; border-radius:3px; flex:none;
+}
+summary .q-text{flex:1; color:var(--ink)}
+summary::after{content:"+"; font-family:var(--f-mono); font-size:18px; color:var(--muted); flex:none; margin-left:auto}
+details.qa[open] summary::after{content:"−"; color:var(--accent)}
+details.qa .ans{padding:16px 18px 18px; border-top:1px solid var(--line); font-size:15px; line-height:1.7}
+details.qa .ans p:last-child{margin-bottom:0}
+.ans-core{
+  background:var(--accent-light); border-left:3px solid var(--accent); padding:10px 14px; border-radius:0 4px 4px 0;
+  margin:10px 0; font-size:14.5px;
+}
+
+/* Biểu đồ SVG */
+.fig{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:18px; margin:22px 0}
+.fig svg{display:block; width:100%; height:auto}
+figcaption{font-size:13px; color:var(--muted); margin-top:10px; line-height:1.5}
+figcaption b{color:var(--ink)}
+
+/* Nút đổi giao diện */
+.theme-btn{
+  position:fixed; bottom:20px; right:20px; background:var(--surface); border:1px solid var(--line);
+  padding:8px 14px; border-radius:30px; font-family:var(--f-mono); font-size:12px; cursor:pointer;
+  box-shadow:0 3px 10px rgba(0,0,0,0.1); color:var(--ink); z-index:100;
+}
+</style>
+</head>
+<body>
+
+<button class="theme-btn" onclick="toggleTheme()">🌓 Đổi giao diện</button>
+
+<div class="wrap">
+  <nav class="toc">
+    <p>Mục lục cẩm nang</p>
+    <ol>
+      <li><a href="#c1">Bản chất CBAR & Phân biệt</a></li>
+      <li><a href="#c2">Vật lý tạo âm & Mersenne-Taylor</a></li>
+      <li><a href="#c3">Xử lý tín hiệu số & STFT</a></li>
+      <li><a href="#c4">Quy trình 11 bước & Công thức lọc</a></li>
+      <li><a href="#c5">Phân tích thực nghiệm 6 nhạc cụ</a></li>
+      <li><a href="#c6">Bộ 58 đặc trưng toán học</a></li>
+      <li><a href="#c7">Z-Score, RMSD & Top-5</a></li>
+      <li><a href="#c8">18 câu hỏi vấn đáp điểm 10</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <header>
+      <div class="crumb">Học viện Công nghệ Bưu chính Viễn thông &bull; BTL HCSDLDPT</div>
+      <h1>Cẩm nang thấu suốt Báo cáo BTL</h1>
+      <p class="lead">Tài liệu giải mã toàn diện từng công thức toán học, nguyên lý âm học, cơ chế xử lý tín hiệu và các tình huống vấn đáp then chốt cho đề tài <strong>Hệ CSDL CBAR Nhạc cụ bộ dây</strong>.</p>
+    </header>
+
+    <!-- CHƯƠNG 1 -->
+    <section id="c1">
+      <h2><span class="n">01</span> Bản chất bài toán CBAR & Phân biệt với Phân loại</h2>
+
+      <div class="def">
+        <span class="lbl">Định nghĩa khoa học</span>
+        <p><strong>CBAR (Content-Based Audio Retrieval)</strong> là bài toán <em>truy hồi thông tin âm thanh dựa trên nội dung</em> theo mô hình <strong>Query-by-Example</strong>: Người dùng cung cấp một đoạn âm thanh mẫu $q(t)$, hệ thống chuyển đổi thành vector đặc trưng $\mathbf{q} \in \mathbb{R}^D$, so sánh khoảng cách hàm số $d(\mathbf{q}, \mathbf{x})$ với từng vector mẫu $\mathbf{x} \in \mathcal{X}_{\text{gallery}}$, và trả về danh sách có thứ tự $\text{Top-}K$ tệp tương đồng nhất.</p>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <thead>
+            <tr>
+              <th>Tiêu chí</th>
+              <th>Phân loại nhạc cụ (Classification)</th>
+              <th>Truy xuất theo nội dung (CBAR)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Bản chất toán học</strong></td>
+              <td>Ánh xạ hàm rời rạc: $f: \mathbb{R}^D \to \{c_1, c_2, \dots, c_K\}$</td>
+              <td>Ánh xạ vào không gian mêtric: $(\mathcal{M}, d)$ với $d: \mathbb{R}^D \times \mathbb{R}^D \to \mathbb{R}^+$</td>
+            </tr>
+            <tr>
+              <td><strong>Đầu ra hệ thống</strong></td>
+              <td>1 nhãn cứng duy nhất (ví dụ: "Violin")</td>
+              <td>Danh sách xếp hạng $\text{Top-}K$ kèm khoảng cách tương đồng liên tục</td>
+            </tr>
+            <tr>
+              <td><strong>Mục tiêu tối ưu</strong></td>
+              <td>Tối đa hóa khoảng cách phân tách ranh giới quyết định (Decision Boundary)</td>
+              <td>Bảo toàn tính lân cận topo: các tín hiệu có âm sắc gần nhau thì $d(\mathbf{q}, \mathbf{x})$ phải nhỏ</td>
+            </tr>
+            <tr>
+              <td><strong>Xử lý dữ liệu ngoài phân phối (OOD)</strong></td>
+              <td>Bị ép gán sai nhãn cứng</td>
+              <td>Xếp hạng tìm ra các bản ghi có màu âm hoặc phong cách diễn tấu gần nhất</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <details class="qa">
+        <summary>
+          <span class="q-tag">Thầy hỏi</span>
+          <span class="q-text">Tại sao đề tài không làm bài toán phân loại nhạc cụ (Classification) mà lại xây dựng hệ CBAR?</span>
+        </summary>
+        <div class="ans">
+          <div class="ans-core">
+            <strong>Trọng tâm:</strong> Phân loại nhạc cụ chỉ giải quyết bài toán dán nhãn định danh, trong khi môn học là <em>Hệ cơ sở dữ liệu đa phương tiện</em>. Yêu cầu của hệ CSDL là tổ chức không gian lưu trữ và cung cấp cơ chế <strong>tìm kiếm theo nội dung mẫu (Query-by-Example)</strong>.
+          </div>
+          <p>CBAR cho phép người dùng tìm kiếm khi không biết tên bài hát, không cần từ khóa, mà muốn tìm các đoạn nhạc có <strong>âm sắc thùng đàn, cao độ hoặc kỹ thuật chơi (kéo vĩ hay gảy ngón)</strong> tương đồng trong kho lưu trữ âm thanh.</p>
+        </div>
+      </details>
+    </section>
+
+    <!-- CHƯƠNG 2 -->
+    <section id="c2">
+      <h2><span class="n">02</span> Vật lý tạo âm của nhạc cụ bộ dây</h2>
+
+      <div class="fig">
+        <svg viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="20" width="130" height="60" rx="6" fill="var(--surface-card)" stroke="var(--line)"/>
+          <text x="75" y="47" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">Kích âm</text>
+          <text x="75" y="65" text-anchor="middle" font-size="10" fill="var(--muted)">Kéo vĩ / Gảy ngón</text>
+          
+          <line x1="140" y1="50" x2="180" y2="50" stroke="var(--axis)" stroke-width="2"/>
+          
+          <rect x="180" y="20" width="120" height="60" rx="6" fill="var(--surface-card)" stroke="var(--line)"/>
+          <text x="240" y="47" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">Dây rung</text>
+          <text x="240" y="65" text-anchor="middle" font-size="10" fill="var(--muted)">Sóng dừng (f0, fn)</text>
+          
+          <line x1="300" y1="50" x2="340" y2="50" stroke="var(--axis)" stroke-width="2"/>
+          
+          <rect x="340" y="20" width="120" height="60" rx="6" fill="var(--surface-card)" stroke="var(--line)"/>
+          <text x="400" y="47" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">Ngựa đàn</text>
+          <text x="400" y="65" text-anchor="middle" font-size="10" fill="var(--muted)">Truyền dao động uốn</text>
+
+          <line x1="460" y1="50" x2="500" y2="50" stroke="var(--axis)" stroke-width="2"/>
+
+          <rect x="500" y="20" width="130" height="60" rx="6" fill="var(--accent-light)" stroke="var(--accent)"/>
+          <text x="565" y="47" text-anchor="middle" font-size="12" font-weight="600" fill="var(--accent-ink)">Thùng cộng hưởng</text>
+          <text x="565" y="65" text-anchor="middle" font-size="10" fill="var(--muted)">Khuếch đại / Formant</text>
+
+          <line x1="630" y1="50" x2="670" y2="50" stroke="var(--axis)" stroke-width="2"/>
+
+          <circle cx="705" cy="50" r="24" fill="var(--surface-card)" stroke="var(--accent2)" stroke-width="2"/>
+          <text x="705" y="54" text-anchor="middle" font-size="11" font-weight="600" fill="var(--ink)">Sóng âm</text>
+        </svg>
+        <figcaption><b>Hình 2.1:</b> Quá trình truyền cơ năng từ tác động kích âm đến khi bức xạ sóng âm ra không gian.</figcaption>
+      </div>
+
+      <!-- CÔNG THỨC 1 -->
+      <div class="eq-box">
+        <div class="eq-title">Công thức 1 &bull; Tần số dao động cơ bản của dây đàn (Mersenne &ndash; Taylor)</div>
+        <div class="eq-math">
+          $$f_0 \approx \frac{1}{2L} \sqrt{\frac{T}{\mu}}$$
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">1. Đây là công thức gì?</span>
+          <p class="eq-explain">Đây là định luật vật lý cơ bản tính toán <strong>tần số âm thanh thấp nhất (nốt cơ bản $f_0$)</strong> mà một sợi dây đàn phát ra khi được kích thích dao động.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">2. Mục đích trong bài toán BTL:</span>
+          <p class="eq-explain">Dùng để giải thích nguồn gốc vì sao các nhạc cụ có kích thước khác nhau thì âm vực khác nhau: Tại sao đàn Violin bé thì tiếng bổng, còn đàn Double Bass to khổng lồ thì tiếng trầm như tiếng sấm.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">3. Bảng giải nghĩa từng ký hiệu & tham số:</span>
+          <table class="param-table">
+            <thead>
+              <tr><th>Ký hiệu</th><th>Tên gọi</th><th>Đơn vị</th><th>Ý nghĩa thực tế</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="param-sym">$f_0$</td><td>Tần số cơ bản</td><td>Hertz (Hz)</td><td>Quyết định cao độ nốt nhạc mà tai người nghe thấy (số lần dây dao động qua lại trong 1 giây).</td></tr>
+              <tr><td class="param-sym">$L$</td><td>Chiều dài rung của dây</td><td>Mét (m)</td><td>Độ dài đoạn dây từ ngựa đàn đến phím bấm. Khi ngón tay bấm phím cao, làm ngắn $L \implies f_0$ tăng (tiếng cao lên).</td></tr>
+              <tr><td class="param-sym">$T$</td><td>Lực căng của dây</td><td>Newton (N)</td><td>Độ căng của dây do chốt vặn đàn tạo ra. Dây càng căng ($T$ lớn) thì tiếng càng bổng.</td></tr>
+              <tr><td class="param-sym">$\mu$</td><td>Mật độ khối lượng tuyến tính</td><td>kg/m</td><td>Độ nặng của sợi dây (1 mét dây nặng bao nhiêu kg). Dây bọc kim loại to, dày, nặng ($\mu$ lớn) $\implies f_0$ rất thấp (dây trầm).</td></tr>
+            </tbody>
+          </table>
+        <div class="eq-part">
+          <span class="eq-part-title">4. Ẩn dụ đời thực dễ hình dung:</span>
+          <p class="eq-explain">
+            &bull; <strong>Dây chun ngắn vs dài ($L$):</strong> Bạn cầm một sợi dây chun kéo căng, nếu gảy cả sợi dài thì tiếng trầm "bùng", nếu kẹp ngón tay vào giữa để sợi dây chun ngắn lại rồi gảy thì tiếng bổng "tưng". Nghệ sĩ bấm phím đàn chính là làm ngắn $L$ để tạo nốt cao.<br>
+            &bull; <strong>Căng dây ($T$):</strong> Khi bạn vặn chốt căng dây đàn chặt hơn, gảy tiếng sẽ thanh bổng hơn.<br>
+            &bull; <strong>Độ nặng ($\mu$):</strong> Một sợi dây thừng to đùng thì dao động chậm rì phát ra tiếng trầm; một sợi chỉ mảnh nhẹ thì dao động vun vút phát ra tiếng rít cao. Đàn Double Bass dùng dây kim loại to như ngón tay út, còn đàn Violin dùng dây mảnh như sợi cước!
+          </p>
+        </div>
+      </div>
+
+      <!-- CÔNG THỨC 2 -->
+      <div class="eq-box">
+        <div class="eq-title">Công thức 2 &bull; Chuỗi họa âm sóng dừng (Harmonics)</div>
+        <div class="eq-math">
+          $$f_n \approx n \cdot f_0 \quad (n = 1, 2, 3, \dots)$$
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">1. Đây là công thức gì?</span>
+          <p class="eq-explain">Công thức xác định các tần số họa âm (harmonics / overtones) xuất hiện đồng thời khi sợi dây đàn rung.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">2. Mục đích trong bài toán BTL:</span>
+          <p class="eq-explain">Giải thích bản chất của <strong>âm sắc (timbre)</strong>: Cùng chơi nốt La ($A4 = 440\text{ Hz}$), tại sao tai người phân biệt được ngay đâu là tiếng Violin, đâu là tiếng Guitar? Vì tỷ lệ năng lượng giữa các họa âm $f_1, f_2, f_3\dots$ của hai cây đàn hoàn toàn khác nhau.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">3. Bảng giải nghĩa từng ký hiệu & tham số:</span>
+          <table class="param-table">
+            <thead>
+              <tr><th>Ký hiệu</th><th>Tên gọi</th><th>Ý nghĩa thực tế</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="param-sym">$n$</td><td>Bậc họa âm ($1, 2, 3\dots$)</td><td>Số múi sóng dừng trên sợi dây. $n=1$ là nốt cơ bản (rung 1 múi), $n=2$ là rung đôi múi (quãng 8), $n=3$ là rung 3 múi (quãng 5 trên quãng 8)...</td></tr>
+              <tr><td class="param-sym">$f_n$</td><td>Tần số họa âm bậc $n$</td><td>Bội số nguyên của $f_0$. Ví dụ $f_0 = 100\text{ Hz}$ thì sẽ có các họa âm kèm theo ở $200\text{ Hz}, 300\text{ Hz}, 400\text{ Hz}\dots$</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">4. Ẩn dụ thực tế:</span>
+          <p class="eq-explain">Giống như hai người cùng quay <strong>dây nhảy</strong>: nếu quay chậm thì cả sợi dây chỉ phồng lên 1 múi to ở giữa ($n=1$). Nếu quay thật nhanh và khéo, sợi dây có thể thắt lại ở giữa và chia thành 2 múi, 3 múi uốn lượn. Sợi dây đàn khi gảy đồng thời rung theo tất cả các kiểu múi đó cùng lúc!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHƯƠNG 3 -->
+    <section id="c3">
+      <h2><span class="n">03</span> Nền tảng xử lý tín hiệu âm thanh số</h2>
+
+      <!-- CÔNG THỨC 3 -->
+      <div class="eq-box">
+        <div class="eq-title">Công thức 3 &bull; Định lý lấy mẫu Nyquist &ndash; Shannon</div>
+        <div class="eq-math">
+          $$f_s > 2 f_{\max} \iff f_{\text{Nyquist}} = \frac{f_s}{2} > f_{\max}$$
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">1. Đây là công thức gì?</span>
+          <p class="eq-explain">Định lý toán học quy định tốc độ số hóa âm thanh: Một giây máy tính cần phải ghi lại (lấy mẫu) bao nhiêu con số để không làm méo mó tín hiệu sóng âm ban đầu.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">2. Mục đích trong bài toán BTL:</span>
+          <p class="eq-explain">Cơ sở lý thuyết bảo vệ quyết định kỹ thuật chọn tần số lấy mẫu $f_s = 22\,050\text{ Hz}$ cho toàn bộ 600 file WAV.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">3. Bảng giải nghĩa từng ký hiệu:</span>
+          <table class="param-table">
+            <thead><tr><th>Ký hiệu</th><th>Tên gọi</th><th>Giá trị trong đề tài</th><th>Giải thích</th></tr></thead>
+            <tbody>
+              <tr><td class="param-sym">$f_s$</td><td>Tần số lấy mẫu</td><td>$22\,050\text{ Hz}$</td><td>Mỗi giây âm thanh được đo và lưu thành đúng $22\,050$ con số mẫu rời rạc.</td></tr>
+              <tr><td class="param-sym">$f_{\text{Nyquist}}$</td><td>Tần số Nyquist</td><td>$11\,025\text{ Hz}$</td><td>Giới hạn tần số âm thanh cao nhất mà hệ thống có thể thu lại được ($f_s / 2$).</td></tr>
+              <tr><td class="param-sym">$f_{\max}$</td><td>Tần số cao nhất của nhạc cụ</td><td>$\approx 2\,637\text{ Hz}$ (nốt E7)</td><td>Nốt cao nhất của đàn Violin trong bài là $2\,637\text{ Hz}$. Mức $11\,025\text{ Hz}$ lớn gấp 4 lần nốt cao nhất, thoải mái chứa trọn các họa âm quan trọng.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">4. Ẩn dụ đời thực về hiện tượng chồng phổ (Aliasing):</span>
+          <p class="eq-explain">
+            Hãy tưởng tượng bạn lấy điện thoại quay video một chiếc <strong>cánh quạt trần đang quay tít</strong>. Nếu máy quay chụp quá chậm (dưới 2 lần tốc độ quay), bạn sẽ thấy một ảo giác kỳ lạ: <em>cánh quạt dường như đang quay lùi ngược lại hoặc đứng yên</em>!
+            Trong âm thanh cũng y hệt: nếu tần số lấy mẫu $f_s$ quá thấp, các nốt nhạc cao vút sẽ bị méo biến dạng thành một nốt trầm ồm ồm giả tạo (hiện tượng chồng phổ Aliasing). Định lý Nyquist bắt buộc $f_s > 2 f_{\max}$ để triệt tiêu hoàn toàn ảo giác này.
+          </p>
+        </div>
+      </div>
+
+      <!-- CÔNG THỨC 4 -->
+      <div class="eq-box">
+        <div class="eq-title">Công thức 4 &bull; Chia khung (Framing), Bước nhảy (Hop) & Độ phân giải tần số</div>
+        <div class="eq-math">
+          $$N = 2048 \text{ mẫu } (\approx 92{,}88\text{ ms}), \quad H = 512 \text{ mẫu } (\approx 23{,}22\text{ ms}), \quad \text{Overlap} = 75\%$$
+          $$\Delta f = \frac{f_s}{N} = \frac{22\,050}{2048} \approx 10{,}77\text{ Hz}$$
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">1. Đây là công thức gì?</span>
+          <p class="eq-explain">Công thức kỹ thuật phân chia dòng âm thanh dài thành các lát cắt thời gian siêu nhỏ để máy tính phân tích phổ.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">2. Mục đích trong bài toán BTL:</span>
+          <p class="eq-explain">Tín hiệu âm nhạc biến đổi liên tục theo từng nốt (phi dừng). Không thể phân tích cả bài hát 3 giây cùng một lúc. Ta phải chia thành các khung nhỏ $\approx 93\text{ ms}$ (trong $93\text{ ms}$ này tiếng đàn chưa kịp đổi nốt, xem như đứng yên) để trích xuất đặc trưng.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">3. Bảng giải nghĩa từng tham số:</span>
+          <table class="param-table">
+            <thead><tr><th>Tham số</th><th>Ý nghĩa</th><th>Thời gian thực</th><th>Tại sao lại chọn giá trị này?</th></tr></thead>
+            <tbody>
+              <tr><td class="param-sym">$N = 2048$</td><td>Kích thước khung</td><td>$92{,}88\text{ ms}$</td><td>Là lũy thừa của 2 ($2^{11}$) giúp thuật toán FFT chạy siêu nhanh.</td></tr>
+              <tr><td class="param-sym">$H = 512$</td><td>Bước nhảy (Hop size)</td><td>$23{,}22\text{ ms}$</td><td>Sau khi tính xong 1 khung, cửa sổ trượt tới trước 512 mẫu để tính khung tiếp theo.</td></tr>
+              <tr><td class="param-sym">Overlap $75\%$</td><td>Độ gối đầu</td><td>$(2048-512)/2048$</td><td>Hai khung liền nhau gối lên nhau $75\%$, đảm bảo thông tin mượt mà, không bị sót nốt ở mép cắt.</td></tr>
+              <tr><td class="param-sym">$\Delta f \approx 10{,}77\text{ Hz}$</td><td>Độ phân giải tần số</td><td>$10{,}77\text{ Hz}$ / bin</td><td>Khoảng cách giữa hai vạch đo tần số. Độ mịn $10{,}77\text{ Hz}$ đủ để tách bạch các nốt trầm của Double Bass.</td></tr>
+            </tbody>
+          </table>
+        <div class="eq-part">
+          <span class="eq-part-title">4. Ẩn dụ thực tế: Tại sao phải chia khung (Framing)?</span>
+          <p class="eq-explain">
+            Âm nhạc biến đổi liên tục giống như một <strong>bộ phim hành động</strong>. Bạn không thể hiểu bộ phim bằng cách chụp một bức ảnh phơi sáng kéo dài cả 2 tiếng đồng hồ (vì ảnh sẽ nhòe nhoẹt không thấy gì).
+            Thay vào đó, máy quay chụp <strong>24 khung hình mỗi giây</strong>. Trong một khung hình cực ngắn ($1/24$ giây), nhân vật như đang "đứng yên" để ta nhìn rõ.
+            Chia khung âm thanh $N=2048$ mẫu ($\approx 93\text{ ms}$) chính là "chụp ảnh tĩnh" từng khoảnh khắc của tiếng đàn để phân tích phổ Fourier!
+          </p>
+        </div>
+      </div>
+
+      <!-- CÔNG THỨC 5 CHI TIẾT SƯ PHẠM NHẤT -->
+      <div class="eq-box">
+        <div class="eq-title">Công thức 5 &bull; Năng lượng hiệu dụng RMS và Mức Decibel tương đối</div>
+        <div class="eq-math">
+          $$\operatorname{RMS}(m) = \sqrt{\frac{1}{N} \sum_{n=0}^{N-1} x_m[n]^2}$$
+          $$L_{\text{dB}}(m) = 20 \log_{10} \left( \frac{\operatorname{RMS}(m)}{\max_{k} \operatorname{RMS}(k) + 10^{-9}} \right)$$
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">1. Đây là công thức gì?</span>
+          <p class="eq-explain">Đây là công thức đo <strong>độ to / năng lượng âm lượng</strong> của từng lát cắt âm thanh nhỏ (khung $m$), sau đó quy đổi sang thang đo chuẩn <strong>Decibel (dB)</strong> so với mức âm lượng to nhất của cả bản nhạc.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">2. Mục đích trong bài toán BTL:</span>
+          <p class="eq-explain">Trong một bài nhạc luôn có đoạn nghệ sĩ chơi đàn và đoạn dừng nghỉ (khoảng lặng). Công thức này dùng để:
+          <ul>
+            <li><strong>Lọc khoảng lặng (Bước 2):</strong> Biết chính xác khung nào có tiếng nhạc cụ phát ra và khung nào chỉ là tiếng xì mic phòng thu.</li>
+            <li><strong>Nhận diện cách chơi (Đặc trưng Bộ B):</strong> Nhạc cụ kéo vĩ (Violin) duy trì lực kéo đều nên RMS ổn định qua các khung; còn Guitar gảy buông tắt nhanh nên RMS sụt giảm dốc đứng.</li>
+          </ul>
+          </p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">3. Bảng giải nghĩa từng ký hiệu & toán tử:</span>
+          <table class="param-table">
+            <thead><tr><th>Ký hiệu</th><th>Tên gọi</th><th>Giải nghĩa cặn kẽ</th></tr></thead>
+            <tbody>
+              <tr><td class="param-sym">$m$</td><td>Chỉ số khung thời gian</td><td>Bài hát được cắt thành các khung $m = 0, 1, 2, \dots, M-1$. $m$ là thứ tự khung đang xét.</td></tr>
+              <tr><td class="param-sym">$N$</td><td>Số mẫu trong 1 khung</td><td>Chọn $N = 2048$ mẫu (khoảng $0{,}093$ giây).</td></tr>
+              <tr><td class="param-sym">$n$</td><td>Chỉ số mẫu bên trong khung</td><td>Chạy từ mẫu đầu tiên ($n=0$) đến mẫu cuối cùng ($n=N-1 = 2047$).</td></tr>
+              <tr><td class="param-sym">$x_m[n]$</td><td>Biên độ sóng âm của mẫu thứ $n$</td><td>Là giá trị số thực từ $-1{,}0$ đến $+1{,}0$ lưu dạng sóng âm thanh tại thời điểm đó.</td></tr>
+              <tr><td class="param-sym">$\sum_{n=0}^{N-1} x_m[n]^2$</td><td>Tổng bình phương biên độ</td><td>Bình phương từng mẫu lên (để số âm thành số dương) rồi cộng tất cả $2048$ mẫu lại với nhau.</td></tr>
+              <tr><td class="param-sym">$\frac{1}{N} \dots$</td><td>Chia trung bình</td><td>Lấy tổng năng lượng chia cho $2048$ để tìm năng lượng trung bình của một mẫu.</td></tr>
+              <tr><td class="param-sym">$\sqrt{\dots}$</td><td>Căn bậc hai</td><td>Lấy căn bậc hai để đưa giá trị về cùng bậc đơn vị với biên độ gốc (RMS = Root Mean Square: Căn bậc hai của Trung bình Bình phương).</td></tr>
+              <tr><td class="param-sym">$\max_k \operatorname{RMS}(k)$</td><td>Đỉnh RMS của cả bài</td><td>Máy tính duyệt qua tất cả các khung $k$ trong tệp, tìm giá trị RMS lớn nhất. Khung to nhất này được lấy làm mốc chuẩn $0\text{ dB}$.</td></tr>
+              <tr><td class="param-sym">$10^{-9}$</td><td>Số epsilon ($\varepsilon$)</td><td>Một số dương siêu nhỏ cộng vào mẫu số để phòng trường hợp đoạn nhạc hoàn toàn im lặng (RMS = 0) không bị lỗi chia cho 0.</td></tr>
+              <tr><td class="param-sym">$20 \log_{10}(\dots)$</td><td>Quy đổi sang Decibel</td><td>Tai người cảm nhận độ to theo cấp số nhân (logarit). Dùng hệ số $20$ vì RMS là đại lượng biên độ ($P \propto A^2 \implies 10 \log_{10} A^2 = 20 \log_{10} A$).</td></tr>
+              <tr><td class="param-sym">$L_{\text{dB}}(m)$</td><td>Mức Decibel tương đối</td><td>Kết quả tính toán của khung $m$. Luôn luôn có giá trị $\le 0\text{ dB}$.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">4. Các bước tính toán theo đúng tên gọi "RMS" (Từ trong ra ngoài: S &rarr; M &rarr; R):</span>
+          <p class="eq-explain">
+            <ul>
+              <li><strong>Square (Bình phương):</strong> Tính $x_m[n]^2$ cho từng mẫu. Bước này giúp triệt tiêu dấu âm (bởi sóng âm luôn dao động đối xứng qua mức 0) và biểu diễn năng lượng tức thời. Nếu chỉ lấy trung bình biên độ thông thường $\frac{1}{N}\sum x[n]$, các nửa chu kỳ dương và âm sẽ triệt tiêu nhau về gần bằng 0!</li>
+              <li><strong>Mean (Lấy trung bình):</strong> Lấy tổng bình phương của tất cả các mẫu rồi chia cho $N=2048$:
+              $$\text{Mean Square} = \frac{1}{N} \sum_{n=0}^{N-1} x_m[n]^2$$
+              Đại lượng này chính là <em>công suất trung bình</em> của khung thứ $m$.</li>
+              <li><strong>Root (Khai căn bậc hai):</strong> Lấy căn bậc hai $\sqrt{\text{Mean Square}}$ để đưa đơn vị đo về lại cùng bậc biên độ ban đầu $[-1, 1]$.</li>
+            </ul>
+          </p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">5. Thực nghiệm trên file thực tế (AuSep_1_vn_01_Jupiter.wav trong thư mục test/):</span>
+          <p class="eq-explain">Chạy code Python tính toán trực tiếp trên 2 khung đại diện của tệp độc tấu Violin:</p>
+          <table class="param-table">
+            <thead>
+              <tr>
+                <th>Bước tính toán</th>
+                <th>Khung 1: Im lặng / Tiếng xì mic (giây thứ 1.5)</th>
+                <th>Khung 2: Kéo đàn vang to (giây thứ 5.0)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Mẫu biên độ $x_m[n]$</strong></td>
+                <td>Rất nhỏ: $[0{,}00145, 0{,}00152, 0{,}00147\dots]$</td>
+                <td>Dao động mạnh: $[-0{,}0128, -0{,}0123, -0{,}0117\dots]$</td>
+              </tr>
+              <tr>
+                <td><strong>1. Square: $\sum x_m[n]^2$</strong></td>
+                <td class="num">$0{,}019360$</td>
+                <td class="num"><strong>$0{,}755470$</strong> (gấp gần 40 lần khung 1)</td>
+              </tr>
+              <tr>
+                <td><strong>2. Mean: $\frac{1}{2048} \sum$</strong></td>
+                <td class="num">$0{,}00000945$</td>
+                <td class="num"><strong>$0{,}00036888$</strong></td>
+              </tr>
+              <tr>
+                <td><strong>3. Root: $\operatorname{RMS}(m)$</strong></td>
+                <td class="num"><strong>$0{,}003075$</strong></td>
+                <td class="num"><strong>$0{,}019206$</strong> (to gấp hơn 6 lần)</td>
+              </tr>
+              <tr>
+                <td><strong>Đỉnh $\max \text{RMS}$ cả bài</strong></td>
+                <td class="num" colspan="2" style="text-align:center">$\max_k \operatorname{RMS}(k) = \mathbf{0{,}072357}$ (khung to nhất đạt mốc $0\text{ dB}$)</td>
+              </tr>
+              <tr>
+                <td><strong>4. Decibel: $L_{\text{dB}}(m)$</strong></td>
+                <td class="num" style="color:#e74c3c; font-weight:600">$-27{,}43\text{ dB}$</td>
+                <td class="num" style="color:#0d6b70; font-weight:600">$-11{,}52\text{ dB}$</td>
+              </tr>
+              <tr>
+                <td><strong>5. So sánh ngưỡng $-25\text{ dB}$</strong></td>
+                <td>$-27{,}43\text{ dB} < -25\text{ dB} \implies$ <strong>IM LẶNG (Bị loại)</strong></td>
+                <td>$-11{,}52\text{ dB} > -25\text{ dB} \implies$ <strong>CÓ TIẾNG ĐÀN (Giữ lại)</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="fig">
+          <img src="minh_hoa_rms.png" alt="Biểu đồ minh họa RMS thực tế" style="width:100%; height:auto; border-radius:4px; display:block;">
+          <figcaption><b>Hình 3.1:</b> Kết quả chạy thực nghiệm trên tệp <code>test/sample_violin.wav</code>. Panel 1: Sóng âm toàn bài. Panel 2: Cận cảnh $N=2048$ mẫu bên trong khung kéo đàn (xanh) và khung im lặng (đỏ). Panel 3: Phân đoạn khung có tiếng ($> -25\text{ dB}$, màu xanh) và khung khoảng lặng/nhiễu ($\le -25\text{ dB}$, màu xám).</figcaption>
+        </div>
+      </div>
+
+      <!-- CÔNG THỨC 6 -->
+      <div class="eq-box">
+        <div class="eq-title">Công thức 6 &bull; Biến đổi Fourier thời gian ngắn (STFT)</div>
+        <div class="eq-math">
+          $$X(m, k) = \sum_{n=0}^{N-1} x_m[n] \cdot w[n] \cdot e^{-j \frac{2\pi k n}{N}}, \quad k = 0, 1, \dots, \frac{N}{2}$$
+          $$P(m, k) = |X(m, k)|^2$$
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">1. Đây là công thức gì?</span>
+          <p class="eq-explain">Biến đổi toán học chuyển một lát cắt sóng âm từ <strong>miền thời gian (mẫu số dao động)</strong> sang <strong>miền tần số (bài nhạc đang gồm những nốt tần số nào, to bao nhiêu)</strong>.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">2. Bảng giải nghĩa từng thành phần:</span>
+          <table class="param-table">
+            <thead><tr><th>Ký hiệu</th><th>Tên gọi</th><th>Ý nghĩa thực tế</th></tr></thead>
+            <tbody>
+              <tr><td class="param-sym">$w[n]$</td><td>Cửa sổ Hann</td><td>Hàm nhân hình cái chuông giúp làm mượt hai mép khung về $0$, triệt tiêu hiện tượng rò rỉ phổ (spectral leakage).</td></tr>
+              <tr><td class="param-sym">$e^{-j \frac{2\pi k n}{N}}$</td><td>Hàm cơ sở phức Euler</td><td>Đại diện cho sóng hình sin ở tần số bin thứ $k$. Phép nhân và cộng dồn chính là đo xem sóng âm trùng khớp với tần số này nhiều hay ít.</td></tr>
+              <tr><td class="param-sym">$X(m, k)$</td><td>Biên độ phổ phức</td><td>Cho biết tại khung $m$ và tần số $k$, sóng âm có độ lớn bao nhiêu và pha ban đầu thế nào.</td></tr>
+              <tr><td class="param-sym">$P(m, k) = |X|^2$</td><td>Phổ công suất (Spectrogram)</td><td>Lấy độ lớn bình phương để tìm năng lượng thực tế của từng tần số. Đây là dữ liệu nền tảng để tính toàn bộ các đặc trưng MFCC, Centroid, Roll-off...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHƯƠNG 4 -->
+    <section id="c4">
+      <h2><span class="n">04</span> Quy trình 11 bước xây dựng bộ dữ liệu (Chương 2)</h2>
+
+      <!-- BƯỚC 3 -->
+      <div class="eq-box">
+        <div class="eq-title">Bước 3 &bull; Dò tìm ranh giới nốt Onset bằng Spectral Flux & Backtracking</div>
+        <div class="eq-math">
+          $$\operatorname{SF}(m) = \frac{1}{M} \sum_{i=0}^{M-1} \max\big(0, S_{\text{Mel}}(m, i) - S_{\text{Mel}}(m-1, i)\big)$$
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">1. Đây là công thức gì?</span>
+          <p class="eq-explain">Công thức tính <strong>Spectral Flux (Độ biến thiên năng lượng phổ)</strong> giữa hai khung thời gian liên tiếp để phát hiện thời điểm một nốt nhạc mới bắt đầu vang lên (Onset).</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">2. Cách công thức hoạt động:</span>
+          <p class="eq-explain">
+            Lấy năng lượng dải phổ hiện tại $S_{\text{Mel}}(m, i)$ trừ đi khung ngay trước đó $S_{\text{Mel}}(m-1, i)$.
+            Toán tử $\max(0, \dots)$ chỉ giữ lại phần năng lượng <em>bùng nổ tăng lên</em> (nốt mới xuất hiện), bỏ qua phần giảm năng lượng (nốt ngân nhỏ dần). Khi $\operatorname{SF}(m)$ vượt ngưỡng, một nốt mới được phát hiện.
+          </p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">3. Cơ chế Backtracking (Lùi vết):</span>
+          <p class="eq-explain">
+            Khi phát hiện đỉnh $\operatorname{SF}(m)$, nốt nhạc đã vang lên được một đoạn. Thuật toán tự động lùi ngược lại $40 - 70\text{ ms}$ về điểm năng lượng thấp nhất ngay trước đó để <strong>cắt trúng cú chạm dây ban đầu (Attack)</strong> &mdash; giữ trọn linh hồn âm thanh của nhạc cụ.
+          </p>
+        <div class="eq-part">
+          <span class="eq-part-title">4. Ẩn dụ thực tế:</span>
+          <p class="eq-explain">
+            Giống như bạn ngồi trong căn phòng tối và có ai đó <strong>bật đèn pin lóe sáng</strong>. Dù trước đó phòng tối mịt hay mờ mờ, mắt bạn nhận ra ngay cú chớp sáng đầu tiên.
+            Spectral Flux chính là "máy đo cú chớp sáng năng lượng" khi nghệ sĩ vừa đặt vĩ hoặc buông ngón gảy vào dây đàn.
+          </p>
+        </div>
+      </div>
+
+      <!-- BƯỚC 5 -->
+      <div class="eq-box">
+        <div class="eq-title">Bước 5 &bull; Loại bỏ bản thu trùng lặp bằng hệ số tương quan Pearson</div>
+        <div class="eq-math">
+          $$r(x, y) = \frac{\sum_{n=1}^{N_0} (x[n] - \bar{x})(y[n] - \bar{y})}{\sqrt{\sum_{n=1}^{N_0} (x[n] - \bar{x})^2} \sqrt{\sum_{n=1}^{N_0} (y[n] - \bar{y})^2}} > 0{,}99$$
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">1. Đây là công thức gì?</span>
+          <p class="eq-explain">Hệ số tương quan tuyến tính Pearson giữa hai tín hiệu âm thanh $x$ và $y$. Đo lường xem hình dạng sóng âm của hai file có trùng khít lên nhau từng dao động hay không.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">2. Ý nghĩa trong BTL:</span>
+          <p class="eq-explain">Bộ dữ liệu URMP dùng lại cùng 1 track thu âm cho nhiều bản phối thính phòng. Nếu độ dài lệch dưới 1 giây và $r > 0{,}99$ (trùng nhau trên $99\%$), hệ thống khẳng định 100% hai file là một và <strong>loại bỏ 18 track trùng</strong> để chống rò rỉ dữ liệu (Data Leakage).</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">3. Ẩn dụ thực tế:</span>
+          <p class="eq-explain">
+            Giống như <strong>so sánh hai bản in dấu vân tay</strong>: Người ta đặt hai tờ giấy đè lên nhau rồi soi dưới ánh đèn. Nếu từng đường vân lượn sóng trùng khớp với nhau trên $99\%$ ($r > 0{,}99$), chắc chắn đó là dấu vân tay của cùng một người, dù có thể được chụp ở hai hồ sơ khác nhau!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHƯƠNG 6 -->
+    <section id="c6">
+      <h2><span class="n">06</span> Hệ thống 58 chiều đặc trưng (Chương 4)</h2>
+
+      <!-- MFCC -->
+      <div class="eq-box">
+        <div class="eq-title">1. Hệ số Cepstral thang Mel (MFCC &ndash; 13 hệ số x 2 = 26 chiều)</div>
+        <div class="eq-math">
+          $$m(f) = 2595 \log_{10}\left(1 + \frac{f}{700}\right)$$
+          $$c_q(m) = \sqrt{\frac{2}{M}} \sum_{i=0}^{M-1} \log\big(E_{\text{Mel}}(m, i) + 10^{-9}\big) \cos\left[ \frac{\pi q}{M} \left(i + \frac{1}{2}\right) \right], \quad q = 0, 1, \dots, 12$$
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">1. Đây là công thức gì?</span>
+          <p class="eq-explain">Công thức bóc tách <strong>đặc trưng âm sắc (Timbre)</strong> cốt lõi nhất trong âm nhạc. Nó mô phỏng cách màng tai người nghe qua thang Mel và lọc tách hình dạng thùng đàn ra khỏi nốt nhạc.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">2. Mục đích trong CBAR:</span>
+          <p class="eq-explain">Tách hình dạng thùng đàn: Nhờ MFCC, hệ thống biết được thùng đàn Violin nhỏ khác thùng Cello to, và tách biệt hoàn toàn Guitar điện (méo tiếng) khỏi 5 nhạc cụ thùng gỗ tự nhiên.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">3. Bảng giải nghĩa tham số:</span>
+        <div class="eq-part">
+          <span class="eq-part-title">4. Ẩn dụ thực tế: Chiếc ống bơ cộng hưởng</span>
+          <p class="eq-explain">
+            Hãy tưởng tượng bạn nói chuyện bình thường so với khi <strong>bạn áp miệng nói vào một chiếc ống bơ bằng nhôm</strong>. Giọng bạn (dây thanh quản) vẫn là một, nhưng chiếc ống bơ làm tiếng của bạn đanh và vang như người máy.
+            Dây đàn chính là dây thanh quản (nguồn phát âm), còn <strong>thùng gỗ đàn chính là chiếc ống bơ (bộ lọc)</strong>.
+            MFCC có phép màu toán học bóc bỏ được nốt nhạc đang chơi để <em>vẽ lại chính xác hình dạng chiếc ống bơ (chất liệu gỗ và thể tích thùng đàn)</em>!
+          </p>
+        </div>
+      </div>
+
+      <!-- ROLLOFF -->
+      <div class="eq-box">
+        <div class="eq-title">2. Tần số cuộn phổ (Spectral Roll-off &ndash; 1 x 2 = 2 chiều)</div>
+        <div class="eq-math">
+          $$R_{0{,}85}(m) = \min \left\{ f_r : \sum_{k: f_k \le f_r} P(m, k) \ge 0{,}85 \sum_{k=0}^{N/2} P(m, k) \right\}$$
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">1. Đây là công thức gì?</span>
+          <p class="eq-explain">Tìm mốc tần số $f_r$ sao cho <strong>$85\%$ tổng năng lượng của âm thanh tập trung ở phía dưới nó</strong>.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">2. Mục đích trong CBAR:</span>
+          <p class="eq-explain">Đo trần giới hạn phát xạ âm thanh: Đàn siêu trầm như Double Bass có $85\%$ năng lượng dồn dưới $1000\text{ Hz}$ &rarr; Roll-off cực thấp. Ngược lại Guitar điện méo tiếng phát tán họa âm cực mạnh lên tới $4000 - 8000\text{ Hz}$ &rarr; Roll-off cực cao.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">3. Ẩn dụ thực tế: Vòi phun nước</span>
+          <p class="eq-explain">
+            Giống như bạn dùng <strong>vòi phun nước tưới cây</strong>: nếu bạn mở van nhỏ, nước chỉ bắn xa được 1 mét (Double Bass dồn 85% năng lượng dưới 728 Hz). Nếu bạn bóp chặt đầu vòi để áp lực cực mạnh, nước bắn xa tới tận 4 mét (Guitar điện bão hòa họa âm bắn tới 3998 Hz). Roll-off chính là cái thước đo xem "vòi nước âm thanh" bắn xa tới đâu!
+          </p>
+        </div>
+      </div>
+
+      <!-- ZCR -->
+      <div class="eq-box">
+        <div class="eq-title">3. Tốc độ qua điểm không (Zero-Crossing Rate &ndash; ZCR &ndash; 1 x 2 = 2 chiều)</div>
+        <div class="eq-math">
+          $$\operatorname{ZCR}(m) = \frac{1}{2(N-1)} \sum_{n=1}^{N-1} \big| \operatorname{sgn}(x_m[n]) - \operatorname{sgn}(x_m[n-1]) \big|$$
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">1. Đây là công thức gì?</span>
+          <p class="eq-explain">Đếm tỷ lệ số lần sóng âm cắt qua đường số 0 (đổi dấu từ âm sang dương hoặc ngược lại) trong một khung thời gian.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">2. Mục đích trong CBAR:</span>
+          <p class="eq-explain">Đo <strong>độ nhám, độ xước và độ méo của âm thanh</strong>:
+          <ul>
+            <li>Hàm $\operatorname{sgn}(x)$ trả về $+1$ nếu $x > 0$ và $-1$ nếu $x < 0$. Nếu hai mẫu cạnh nhau đổi dấu thì $|\operatorname{sgn}(x[n]) - \operatorname{sgn}(x[n-1])| = |1 - (-1)| = 2$.</li>
+            <li>Nhạc cụ méo tiếng (Guitar điện distortion) dạng sóng bị xén vuông liên tục &rarr; ZCR tăng vọt. Nhạc cụ trầm trơn mịn (Double Bass) dao động chậm &rarr; ZCR cực kỳ thấp.</li>
+          </ul>
+          </p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">3. Ẩn dụ thực tế: Xe chạy qua gờ giảm tốc</span>
+          <p class="eq-explain">
+            So sánh giữa <strong>chiếc thuyền lướt trên sóng biển êm dịu</strong> và <strong>chiếc xe chạy qua gờ giảm tốc liên tục</strong>:
+            Đàn Double Bass giống như thuyền lướt sóng: dao động uốn lượn thong thả nên rất ít khi cắt qua mực nước biển (ZCR cực thấp = 0,017).
+            Guitar điện méo tiếng giống chiếc xe phi qua hàng nghìn gờ giảm tốc: sóng âm bị xén cạnh vuông chém qua vạch số 0 liên tục điên cuồng (ZCR vọt lên 0,1086)!
+          </p>
+        </div>
+      </div>
+
+      <!-- CENTROID -->
+      <div class="eq-box">
+        <div class="eq-title">4. Trọng tâm phổ (Spectral Centroid &ndash; 1 x 2 = 2 chiều)</div>
+        <div class="eq-math">
+          $$C(m) = \frac{\sum_{k=0}^{N/2} f_k \cdot P(m, k)}{\sum_{k=0}^{N/2} P(m, k) + 10^{-9}}$$
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">1. Đây là công thức gì?</span>
+          <p class="eq-explain">Trọng tâm hình học (momen bậc 1) của phổ tần số &mdash; tương tự như tính tâm khối lượng của một vật thể trong cơ học.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">2. Ý nghĩa thính giác & CBAR:</span>
+          <p class="eq-explain">Đo lường trực tiếp cảm nhận của tai người về <strong>"độ sáng" (Brightness)</strong> của tiếng đàn: Lấy từng tần số $f_k$ nhân với mức to của nó $P(m, k)$, rồi chia cho tổng độ to.
+          Năng lượng càng dồn về tần số cao thì $C(m)$ càng lớn $\implies$ tiếng đàn càng sáng mảnh (Violin sáng nhất, Double Bass tối nhất).</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">3. Ẩn dụ thực tế: Chiếc bập bênh bãi biển</span>
+          <p class="eq-explain">
+            Tưởng tượng phổ âm thanh như một <strong>chiếc bập bênh</strong>: bên trái là các em bé ngồi (tần số thấp/trầm), bên phải là các võ sĩ cơ bắp ngồi (tần số cao/bổng).
+            Trọng tâm phổ Centroid chính là <strong>điểm đặt trục đỡ</strong> để chiếc bập bênh thăng bằng:
+            Nếu toàn em bé ngồi (Double Bass), trục đỡ phải dồn sát về bên trái (Centroid = 493 Hz).
+            Nếu toàn võ sĩ ngồi (Violin, Guitar điện), trục đỡ bị kéo dạt về bên phải (Centroid = 1540 Hz đến 2156 Hz)!
+          </p>
+        </div>
+      </div>
+
+      <!-- CHROMA -->
+      <div class="eq-box">
+        <div class="eq-title">5. Đặc trưng lớp cao độ Chroma (Chroma STFT &ndash; 12 x 2 = 24 chiều)</div>
+        <div class="eq-math">
+          $$p(k) = \operatorname{round}\left(12 \log_2 \frac{f_k}{440}\right) + 69, \quad \operatorname{Chr}(m, c) = \sum_{k: p(k) \bmod 12 = c} P(m, k)$$
+          $$\widehat{\operatorname{Chr}}(m, c) = \frac{\operatorname{Chr}(m, c)}{\sum_{j=0}^{11} \operatorname{Chr}(m, j) + 10^{-9}}$$
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">1. Đây là công thức gì?</span>
+          <p class="eq-explain">Công thức gập toàn bộ các tần số trong âm nhạc về đúng <strong>12 nửa cung chuẩn nhạc lý</strong> (Đô, Đô#, Rê... Si), bỏ qua sự chênh lệch quãng tám.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">2. Mục đích trong CBAR:</span>
+          <p class="eq-explain">
+            Chuẩn hóa $\ell_1$ đưa tổng 12 bin về bằng 1.0 (trở thành phân bố xác suất nốt nhạc độc lập với âm lượng to nhỏ).
+            Nhạc cụ chơi giai điệu đơn nốt (như Violin, Viola) có Chroma tập trung nhọn ở 1-2 nốt; còn Guitar quạt hợp âm nhiều dây có Chroma tỏa đều ra nhiều nốt cùng lúc.
+          </p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">3. Hình ảnh ẩn dụ đời thực dễ hiểu:</span>
+          <p class="eq-explain">
+            Hãy tưởng tượng một chiếc <strong>đồng hồ tròn có 12 số</strong> (tương ứng 12 nửa cung C, C#, D... B). Dù người nhạc công bấm nốt Đô ở dải siêu trầm (C2), dải trung (C4) hay dải siêu cao (C7), thì trên chiếc đồng hồ này, cây kim vẫn quay về <strong>đúng vị trí số 12 (nốt C)</strong>!
+            Nhờ đó, đặc trưng Chroma nhận diện được <em>hợp âm và giai điệu</em> mà không quan tâm đàn đang đánh ở quãng cao hay thấp.
+          </p>
+        </div>
+      </div>
+
+      <!-- BẢNG THỰC NGHIỆM ĐỐI CHIẾU 4 NHẠC CỤ VÀ BIỂU ĐỒ 4 PANEL -->
+      <div class="eq-box" style="border: 2px solid var(--accent); background: var(--surface);">
+        <div class="eq-title" style="font-size:13px; color:var(--accent);">★ THỰC NGHIỆM ĐO ĐẠC TRỰC TIẾP TRÊN 4 FILE CỦA DỰ ÁN (test/demo_features.py)</div>
+        <p class="eq-explain">Để chứng minh các công thức trên máy tính chạy ra kết quả gì, dưới đây là số liệu đo đạc thực tế trên 4 tệp WAV độc tấu đại diện:</p>
+
+        <table class="param-table">
+          <thead>
+            <tr>
+              <th>Đặc trưng âm học</th>
+              <th>Violin (violin_001.wav)</th>
+              <th>Double Bass (double_bass_001.wav)</th>
+              <th>Guitar Mộc (guitar_acoustic_001.wav)</th>
+              <th>Guitar Điện (guitar_electric_001.wav)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Cơ chế & Thùng đàn</strong></td>
+              <td>Kéo vĩ &bull; Thùng nhỏ dải cao</td>
+              <td>Kéo vĩ &bull; Thùng khổng lồ siêu trầm</td>
+              <td>Gảy buông &bull; Thùng gỗ mộc rỗng</td>
+              <td>Gảy móng &bull; Méo tiếng (Distortion)</td>
+            </tr>
+            <tr>
+              <td><strong>Spectral Centroid (Độ sáng)</strong></td>
+              <td class="num" style="color:#0d6b70; font-weight:600"><strong>1540,0 Hz</strong> (Rất sáng)</td>
+              <td class="num" style="color:#2c3e50; font-weight:600"><strong>493,6 Hz</strong> (Tối nhất)</td>
+              <td class="num">814,8 Hz (Ấm mộc)</td>
+              <td class="num" style="color:#c0392b; font-weight:600"><strong>2156,3 Hz</strong> (Sáng rực do méo)</td>
+            </tr>
+            <tr>
+              <td><strong>Roll-off 85% (Trần năng lượng)</strong></td>
+              <td class="num">2927,6 Hz</td>
+              <td class="num" style="color:#2c3e50; font-weight:600"><strong>728,0 Hz</strong> (Dồn sâu ở đáy)</td>
+              <td class="num">1395,9 Hz</td>
+              <td class="num" style="color:#c0392b; font-weight:600"><strong>3997,8 Hz</strong> (~4000 Hz cực rộng)</td>
+            </tr>
+            <tr>
+              <td><strong>ZCR (Độ nhám / méo sóng)</strong></td>
+              <td class="num">0,0603</td>
+              <td class="num" style="color:#2c3e50; font-weight:600"><strong>0,0170</strong> (Sóng trơn láng)</td>
+              <td class="num">0,0359</td>
+              <td class="num" style="color:#c0392b; font-weight:600"><strong>0,1086</strong> (Gấp 6 lần Double Bass!)</td>
+            </tr>
+            <tr>
+              <td><strong>RMS Std (Độ biến thiên năng lượng)</strong></td>
+              <td class="num">0,0777 (Kéo vĩ duy trì)</td>
+              <td class="num">0,1279</td>
+              <td class="num">0,0411 (Gảy nốt tắt dốc)</td>
+              <td class="num" style="color:#c0392b; font-weight:600">0,0301 (Bị mạch nén biên độ)</td>
+            </tr>
+            <tr>
+              <td><strong>MFCC [c0, c1, c2]</strong></td>
+              <td class="num">[-236, 54, 2]</td>
+              <td class="num">[-285, 184, 29]</td>
+              <td class="num">[-288, 131, 21]</td>
+              <td class="num" style="color:#c0392b; font-weight:600"><strong>[-14, 97, -70]</strong> (Tách biệt hẳn)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="fig">
+          <img src="minh_hoa_dac_trung_so_sanh.png" alt="Biểu đồ 4 panel so sánh đặc trưng 4 nhạc cụ" style="width:100%; height:auto; border-radius:4px; display:block;">
+          <figcaption><b>Hình 4.1:</b> Kết quả trực quan hóa 4 nhóm đặc trưng trên dữ liệu thực tế của đề tài (chạy từ <code>test/demo_features.py</code>).<br>
+          &bull; <b>Panel 1:</b> Centroid (xanh) và Roll-off (vàng) vạch rõ sự tương phản giữa dải trầm của Double Bass và dải cao rực rỡ của Guitar điện.<br>
+          &bull; <b>Panel 2:</b> ZCR (đỏ) của Guitar điện vọt lên 0,1086 do sóng bị xén vuông; Double Bass có ZCR đáy 0,0170.<br>
+          &bull; <b>Panel 3:</b> 13 hệ số MFCC của Guitar điện (đường màu đỏ) tách biệt hoàn toàn khỏi chùm 3 nhạc cụ mộc thùng gỗ.<br>
+          &bull; <b>Panel 4:</b> Đồ thị 12 nốt Chroma cho thấy sự khác nhau rõ rệt về năng lượng hợp âm giữa các bản nhạc.
+          </figcaption>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHƯƠNG 7 -->
+    <section id="c7">
+      <h2><span class="n">07</span> Chuẩn hóa, Hàm khoảng cách & Tìm kiếm Top-5</h2>
+
+      <!-- Z-SCORE -->
+      <div class="eq-box">
+        <div class="eq-title">Công thức 7 &bull; Chuẩn hóa Z-Score & Nguyên tắc chống rò rỉ dữ liệu (Data Leakage)</div>
+        <div class="eq-math">
+          $$z_j = \frac{v_j - \mu_j^{(\text{gallery})}}{\sigma_j^{(\text{gallery})} + 10^{-9}}, \quad j = 1, 2, \dots, 58$$
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">1. Đây là công thức gì?</span>
+          <p class="eq-explain">Chuẩn hóa độ lệch chuẩn Z-score: Đưa từng đặc trưng trong vector 58 chiều về dạng có giá trị trung bình bằng 0 và độ lệch chuẩn bằng 1.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">2. Ẩn dụ thực tế: Tại sao bắt buộc phải chuẩn hóa?</span>
+          <p class="eq-explain">
+            Tưởng tượng bạn thi đại học 2 môn: môn <strong>Toán</strong> chấm theo thang điểm <strong>$1000$</strong>, còn môn <strong>Văn</strong> chấm theo thang điểm <strong>$10$</strong>.
+            Nếu bạn cộng thẳng điểm hai môn lại để xét tuyển, thì điểm môn Văn coi như bị vứt đi hoàn toàn vì môn Toán quá lớn!
+            Trong vector 58 chiều của ta cũng y hệt: <strong>Roll-off và Centroid lên tới vài nghìn Hz ($4000\text{ Hz}$)</strong>, trong khi <strong>ZCR chỉ là $0{,}05$ và RMS chỉ là $0{,}1$</strong>.
+            Chuẩn hóa Z-score đưa tất cả 58 chiều về cùng thang điểm chuẩn (tương đương quy mọi môn thi về thang 10) để tính toán công bằng!
+          </p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">3. Nguyên tắc chống rò rỉ dữ liệu (Cực kỳ quan trọng khi thi):</span>
+          <div class="ans-core">
+            Tham số $\mu_j^{(\text{gallery})}$ và $\sigma_j^{(\text{gallery})}$ <strong>chỉ được tính một lần duy nhất trên tập cơ sở dữ liệu Gallery</strong>. Khi có tệp Query mới đưa vào, phải dùng chính tham số này để chuẩn hóa vector Query. Tuyệt đối không được gộp tệp Query vào tính lại $\mu, \sigma$ vì sẽ làm rò rỉ thông tin kiểm thử!
+          </div>
+        </div>
+      </div>
+
+      <!-- RMSD -->
+      <div class="eq-box">
+        <div class="eq-title">Công thức 8 &bull; Khoảng cách RMSD chuẩn hóa theo số chiều (Chống Dimensional Dominance)</div>
+        <div class="eq-math">
+          $$d_k^*(\mathbf{q}_k, \mathbf{x}_k) = \sqrt{\frac{1}{\dim_k} \sum_{j=1}^{\dim_k} (q_{k,j} - x_{k,j})^2}, \quad k \in \{A, B, C\}$$
+          $$d_{\text{total}}(\mathbf{q}, \mathbf{x}) = \lambda_1 d_A^*(\mathbf{q}_A, \mathbf{x}_A) + \lambda_2 d_B^*(\mathbf{q}_B, \mathbf{x}_B) + \lambda_3 d_C^*(\mathbf{q}_C, \mathbf{x}_C)$$
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">1. Đây là công thức gì?</span>
+          <p class="eq-explain">Công thức đo <strong>khoảng cách sai khác (Root-Mean-Square Distance)</strong> giữa file truy vấn $\mathbf{q}$ và từng file $\mathbf{x}$ trong CSDL, sau đó cộng tổng có trọng số $\lambda_1, \lambda_2, \lambda_3$.</p>
+        </div>
+
+        <div class="eq-part">
+          <span class="eq-part-title">2. Tại sao phải chia cho $\dim_k$ trong dấu căn?</span>
+          <p class="eq-explain">
+            Bộ A có $\dim_A = 28$ chiều, Bộ B chỉ có $\dim_B = 4$ chiều, Bộ C có $\dim_C = 26$ chiều.
+            Khoảng cách Euclidean tự nhiên tăng tỷ lệ thuận với $\sqrt{\dim}$. Nếu không chia, Bộ A tự nhiên sẽ lớn hơn Bộ B khoảng $\sqrt{28/4} \approx 2{,}65$ lần, đè bẹp vai trò của Bộ B!
+            Phép chia cho $\dim_k$ giúp đưa khoảng cách trung bình của cả 3 bộ về cùng một bậc thang đo công bằng.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHƯƠNG 8 -->
+    <section id="c8">
+      <h2><span class="n">08</span> Bộ 18 câu hỏi vấn đáp điểm 10 của thầy cô</h2>
+
+      <details class="qa" open>
+        <summary>
+          <span class="q-tag">Câu 1</span>
+          <span class="q-text">Tại sao lại dùng thang đo Mel trong MFCC thay vì giữ nguyên thang tần số Hz?</span>
+        </summary>
+        <div class="ans">
+          <p>Tai người cảm nhận cao độ phi tuyến tính theo công thức màng đáy ốc tai: ở dải trầm ($< 1\text{ kHz}$), tai người phân biệt cao độ rất nhạy; ở dải cao, hai tần số lệch nhau hàng trăm Hz tai người nghe gần như tương đương. Thang đo Mel $m(f) = 2595 \log_{10}(1 + f/700)$ mô phỏng chính xác cơ chế sinh học này, giúp bộ đặc trưng tập trung độ phân giải vào dải tai người nhạy cảm nhất.</p>
+        </div>
+      </details>
+
+      <details class="qa">
+        <summary>
+          <span class="q-tag">Câu 2</span>
+          <span class="q-text">Tại sao sau khi lấy log năng lượng Mel lại dùng biến đổi DCT-II mà không dùng FFT lần nữa?</span>
+        </summary>
+        <div class="ans">
+          <p>Sau khi đi qua 40 bộ lọc Mel gối nhau, năng lượng giữa các kênh có độ tương quan (correlation) rất cao. Biến đổi Cosine rời rạc (DCT-II) có khả năng giải tương quan (decorrelation) tối ưu, nén năng lượng vào các hệ số đầu và tạo ra các thành phần trực giao độc lập. Hơn nữa, DCT chỉ sinh số thực, tránh phần ảo phức tạp của FFT.</p>
+        </div>
+      </details>
+
+      <details class="qa">
+        <summary>
+          <span class="q-tag">Câu 3</span>
+          <span class="q-text">Tại sao chỉ lấy 13 hệ số MFCC đầu tiên ($c_0 - c_{12}$) mà bỏ các hệ số phía sau?</span>
+        </summary>
+        <div class="ans">
+          <p>Theo mô hình Nguồn &ndash; Bộ lọc, trong miền quefrency, các hệ số thấp ($c_0 - c_{12}$) biểu diễn biến thiên chậm của phổ &mdash; chính là <strong>đường bao formant của thùng đàn (âm sắc)</strong>. Các hệ số cao biểu diễn biến thiên nhanh &mdash; chính là các vạch họa âm thay đổi theo từng nốt nhạc. Bỏ các hệ số cao giúp đặc trưng âm sắc độc lập với cao độ nốt đang chơi.</p>
+        </div>
+      </details>
+
+      <details class="qa">
+        <summary>
+          <span class="q-tag">Câu 4</span>
+          <span class="q-text">Hiện tượng rò rỉ bản thu (Source Leakage / Track Bleed) là gì và em giải quyết thế nào?</span>
+        </summary>
+        <div class="ans">
+          <p>Nếu chia ngẫu nhiên từng file 3 giây vào tập Gallery và Query, hai đoạn cắt từ cùng một bài nhạc của một nghệ sĩ có thể nằm ở cả hai bên. Khi đó hệ thống tìm đúng vì học thuộc âm sắc phòng thu/bài nhạc cụ thể chứ không phải nhận diện âm thanh nhạc cụ nói chung. Giải pháp là <strong>Source-wise Splitting</strong>: chia theo track nguồn gốc, toàn bộ các đoạn của 1 track chỉ được nằm ở Gallery hoặc Query.</p>
+        </div>
+      </details>
+
+      <details class="qa">
+        <summary>
+          <span class="q-tag">Câu 5</span>
+          <span class="q-text">Quy tắc Leave-One-Out trong tìm kiếm Top-5 có ý nghĩa gì?</span>
+        </summary>
+        <div class="ans">
+          <p>Nếu người dùng lấy chính một file đang có trong Gallery làm Query, khoảng cách Euclidean với chính nó bằng 0 ($d=0$). Nếu không loại bỏ bản thân nó (Leave-One-Out), kết quả Top-1 luôn là chính nó &mdash; một kết quả tầm thường (trivial) không chứng minh được năng lực tìm kiếm của hệ thống.</p>
+        </div>
+      </details>
+
+      <details class="qa">
+        <summary>
+          <span class="q-tag">Câu 6</span>
+          <span class="q-text">Tại sao phải chuẩn hóa vector Chroma bằng chuẩn $\ell_1$ trên mỗi khung?</span>
+        </summary>
+        <div class="ans">
+          <p>Chuẩn hóa $\ell_1$ ($\sum_{c=0}^{11} \widehat{\operatorname{Chr}}(m, c) = 1$) biến vector Chroma thành một phân bố xác suất năng lượng trên 12 nửa cung. Nhờ đó, đặc trưng hoàn toàn độc lập với âm lượng to hay nhỏ của người chơi đàn, chỉ phản ánh tỷ lệ đóng góp của từng nốt nhạc.</p>
+        </div>
+      </details>
+
+      <details class="qa">
+        <summary>
+          <span class="q-tag">Câu 7</span>
+          <span class="q-text">Kỹ thuật Temporal Pooling lấy Mean và Std có làm mất thông tin gì không?</span>
+        </summary>
+        <div class="ans">
+          <p>Có, đây là một hạn chế trung thực được nêu trong mục 4.3 và 5.2 của báo cáo. Lấy $(\mu, \sigma)$ làm mất trật tự chuỗi thời gian (temporal sequence). Ví dụ: một nốt chơi to dần (crescendo) và một nốt chơi nhỏ dần (decrescendo) sẽ có cùng giá trị Mean và Std của RMS, dù cảm nhận nghe thực tế trái ngược nhau.</p>
+        </div>
+      </details>
+
+      <details class="qa">
+        <summary>
+          <span class="q-tag">Câu 8</span>
+          <span class="q-text">Nếu đưa vào một file âm thanh tiếng còi xe hoặc tiếng người nói, hệ thống sẽ xử lý thế nào?</span>
+        </summary>
+        <div class="ans">
+          <p>Hệ thống vẫn trích xuất vector 58 chiều và tính khoảng cách bình thường, sau đó trả về Top-5 nhạc cụ có màu âm hoặc động thái năng lượng gần nhất. Tuy nhiên, vì không gian mêtric được huấn luyện trên 6 nhạc cụ bộ dây, nên với dữ liệu ngoài phân phối (Out-of-Distribution), kết quả không có giá trị phân loại chính xác mà chỉ là sự tương đồng hình học mêtric.</p>
+        </div>
+      </details>
+
+      <details class="qa">
+        <summary>
+          <span class="q-tag">Câu 9</span>
+          <span class="q-text">Tại sao không dùng khoảng cách Cosine trên toàn bộ 58 chiều mà lại dùng RMSD có trọng số?</span>
+        </summary>
+        <div class="ans">
+          <p>Khoảng cách Cosine chỉ quan tâm đến góc giữa hai vector, bỏ qua hoàn toàn độ lớn (magnitude) của vector. Hơn nữa, 58 chiều thuộc 3 nhóm vật lý khác nhau (Âm sắc, Động học, Cao độ) với số chiều lệch nhau lớn (28, 4, 26). Dùng RMSD chia theo $\dim_k$ và gán trọng số $\lambda_1, \lambda_2, \lambda_3$ cho phép kiểm soát độc lập mức độ đóng góp của từng khía cạnh âm học.</p>
+        </div>
+      </details>
+
+      <details class="qa">
+        <summary>
+          <span class="q-tag">Câu 10</span>
+          <span class="q-text">Lỗi sub-harmonic của thuật toán pYIN ở Guitar có phải do lỗi code của nhóm không?</span>
+        </summary>
+        <div class="ans">
+          <p>Hoàn toàn không. Đây là hiện tượng âm học kinh điển của bài toán ước lượng cao độ (Pitch Tracking). Khi đàn guitar chơi hợp âm đa âm (polyphonic), sự giao thoa sóng giữa các nốt tạo ra chu kỳ tuần hoàn lặp biểu kiến dài gấp đôi chu kỳ nốt thực, khiến thuật toán dò đơn âm pYIN bắt nhầm tần số bằng một nửa tần số thực (phân vị $p_{10}$ ghi nhận $58{,}9\text{ Hz} < 82{,}4\text{ Hz}$). Việc chỉ ra hiện tượng này khẳng định sinh viên phân tích số liệu thực nghiệm rất sâu sắc.</p>
+        </div>
+      </details>
+    </section>
+  </main>
+</div>
+
+<script>
+function initKaTeX(){
+  renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$', right: '$', display: false},
+      {left: '\\(', right: '\\)', display: false},
+      {left: '\\[', right: '\\]', display: true}
+    ],
+    throwOnError: false
+  });
+}
+
+function toggleTheme(){
+  const cur = document.documentElement.getAttribute('data-theme');
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+}
+</script>
+</body>
+</html>
