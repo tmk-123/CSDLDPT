@@ -1,0 +1,31 @@
+﻿hang,ten_tep,ten_hien_thi,do_tuong_dong,nhom,ban_thu_goc,duong_dan,tep_truy_van,nhom_that
+1,violin_080.wav,Violin,0.7142,kéo vĩ,AuSep_2_vn_24_Pirates.wav,data/wav/violin/violin_080.wav,erhu_nhi_tuyen_anh_nguyet.ogg,kéo vĩ
+2,guitar_electric_077.wav,Guitar Electric,0.5808,gảy,Medley-solos-DB_test-1_282158d8-d93a-502f-f054-359f13b3e5b1.wav,data/wav/guitar_electric/guitar_electric_077.wav,erhu_nhi_tuyen_anh_nguyet.ogg,kéo vĩ
+3,guitar_electric_034.wav,Guitar Electric,0.5557,gảy,Medley-solos-DB_test-1_11921707-1e84-546a-fc48-d42be0fcf694.wav,data/wav/guitar_electric/guitar_electric_034.wav,erhu_nhi_tuyen_anh_nguyet.ogg,kéo vĩ
+4,violin_049.wav,Violin,0.5455,kéo vĩ,AuSep_1_vn_44_K515.wav,data/wav/violin/violin_049.wav,erhu_nhi_tuyen_anh_nguyet.ogg,kéo vĩ
+5,guitar_electric_086.wav,Guitar Electric,0.5387,gảy,Medley-solos-DB_test-1_2ce25f50-2abb-5919-feab-e80d237cdcd5.wav,data/wav/guitar_electric/guitar_electric_086.wav,erhu_nhi_tuyen_anh_nguyet.ogg,kéo vĩ
+1,guitar_electric_049.wav,Guitar Electric,0.9202,gảy,Medley-solos-DB_test-1_183a885e-4146-5b12-f104-2ab40ccb1d63.wav,data/wav/guitar_electric/guitar_electric_049.wav,guzheng_green_sleeves.ogg,gảy
+2,guitar_electric_034.wav,Guitar Electric,0.7713,gảy,Medley-solos-DB_test-1_11921707-1e84-546a-fc48-d42be0fcf694.wav,data/wav/guitar_electric/guitar_electric_034.wav,guzheng_green_sleeves.ogg,gảy
+3,guitar_electric_097.wav,Guitar Electric,0.7633,gảy,Medley-solos-DB_test-1_32297b45-fc24-5fc3-f584-3e386782562c.wav,data/wav/guitar_electric/guitar_electric_097.wav,guzheng_green_sleeves.ogg,gảy
+4,guitar_electric_070.wav,Guitar Electric,0.7601,gảy,Medley-solos-DB_test-1_25541b74-8969-581e-f6b3-f9b550d34bc0.wav,data/wav/guitar_electric/guitar_electric_070.wav,guzheng_green_sleeves.ogg,gảy
+5,guitar_electric_011.wav,Guitar Electric,0.7562,gảy,Medley-solos-DB_test-1_0793a49a-e8f4-54f3-ff00-576c8f17ab29.wav,data/wav/guitar_electric/guitar_electric_011.wav,guzheng_green_sleeves.ogg,gảy
+1,violin_080.wav,Violin,0.7603,kéo vĩ,AuSep_2_vn_24_Pirates.wav,data/wav/violin/violin_080.wav,mandolin_demo.ogg,gảy
+2,guitar_electric_077.wav,Guitar Electric,0.7099,gảy,Medley-solos-DB_test-1_282158d8-d93a-502f-f054-359f13b3e5b1.wav,data/wav/guitar_electric/guitar_electric_077.wav,mandolin_demo.ogg,gảy
+3,guitar_electric_049.wav,Guitar Electric,0.676,gảy,Medley-solos-DB_test-1_183a885e-4146-5b12-f104-2ab40ccb1d63.wav,data/wav/guitar_electric/guitar_electric_049.wav,mandolin_demo.ogg,gảy
+4,guitar_electric_098.wav,Guitar Electric,0.6664,gảy,Medley-solos-DB_test-1_32eaa8e3-8ac0-594c-f040-8b2ac13612d0.wav,data/wav/guitar_electric/guitar_electric_098.wav,mandolin_demo.ogg,gảy
+5,guitar_electric_097.wav,Guitar Electric,0.66,gảy,Medley-solos-DB_test-1_32297b45-fc24-5fc3-f584-3e386782562c.wav,data/wav/guitar_electric/guitar_electric_097.wav,mandolin_demo.ogg,gảy
+1,guitar_electric_077.wav,Guitar Electric,0.8026,gảy,Medley-solos-DB_test-1_282158d8-d93a-502f-f054-359f13b3e5b1.wav,data/wav/guitar_electric/guitar_electric_077.wav,mandolin_schneewalzer.ogg,gảy
+2,guitar_electric_067.wav,Guitar Electric,0.7659,gảy,Medley-solos-DB_test-1_2493d375-ea82-5e36-fb80-08d70b3b554f.wav,data/wav/guitar_electric/guitar_electric_067.wav,mandolin_schneewalzer.ogg,gảy
+3,guitar_electric_086.wav,Guitar Electric,0.7533,gảy,Medley-solos-DB_test-1_2ce25f50-2abb-5919-feab-e80d237cdcd5.wav,data/wav/guitar_electric/guitar_electric_086.wav,mandolin_schneewalzer.ogg,gảy
+4,guitar_electric_089.wav,Guitar Electric,0.7352,gảy,Medley-solos-DB_test-1_2e731054-d01b-5baf-fc78-0aeb5f294a40.wav,data/wav/guitar_electric/guitar_electric_089.wav,mandolin_schneewalzer.ogg,gảy
+5,guitar_electric_051.wav,Guitar Electric,0.7231,gảy,Medley-solos-DB_test-1_19aea8d5-b574-543b-f24d-b6eb6c5a8f60.wav,data/wav/guitar_electric/guitar_electric_051.wav,mandolin_schneewalzer.ogg,gảy
+1,guitar_electric_086.wav,Guitar Electric,0.7823,gảy,Medley-solos-DB_test-1_2ce25f50-2abb-5919-feab-e80d237cdcd5.wav,data/wav/guitar_electric/guitar_electric_086.wav,pipa.ogg,gảy
+2,guitar_electric_077.wav,Guitar Electric,0.7036,gảy,Medley-solos-DB_test-1_282158d8-d93a-502f-f054-359f13b3e5b1.wav,data/wav/guitar_electric/guitar_electric_077.wav,pipa.ogg,gảy
+3,guitar_electric_001.wav,Guitar Electric,0.6996,gảy,Medley-solos-DB_test-1_0086cb3f-d951-591a-faf8-8c37d97796a2.wav,data/wav/guitar_electric/guitar_electric_001.wav,pipa.ogg,gảy
+4,guitar_electric_050.wav,Guitar Electric,0.6844,gảy,Medley-solos-DB_test-1_1922c42f-c2ca-5c66-f580-6485c8408b46.wav,data/wav/guitar_electric/guitar_electric_050.wav,pipa.ogg,gảy
+5,violin_040.wav,Violin,0.6699,kéo vĩ,AuSep_1_vn_35_Rondeau.wav,data/wav/violin/violin_040.wav,pipa.ogg,gảy
+1,guitar_electric_012.wav,Guitar Electric,0.7187,gảy,Medley-solos-DB_test-1_07de7871-17c5-5dc3-f804-7c5e7f4eef91.wav,data/wav/guitar_electric/guitar_electric_012.wav,sitar_yaman.ogg,gảy
+2,cello_005.wav,Cello,0.6996,kéo vĩ,AuSep_2_vc_01_Jupiter.wav,data/wav/cello/cello_005.wav,sitar_yaman.ogg,gảy
+3,guitar_electric_021.wav,Guitar Electric,0.644,gảy,Medley-solos-DB_test-1_09ad8c83-522d-5412-fddc-3e3f3ce3b684.wav,data/wav/guitar_electric/guitar_electric_021.wav,sitar_yaman.ogg,gảy
+4,guitar_electric_079.wav,Guitar Electric,0.6304,gảy,Medley-solos-DB_test-1_2851e423-0e59-5caa-fc27-ebc0ce519c72.wav,data/wav/guitar_electric/guitar_electric_079.wav,sitar_yaman.ogg,gảy
+5,guitar_electric_099.wav,Guitar Electric,0.6268,gảy,Medley-solos-DB_test-1_339eda15-176c-5266-f32b-739f26b0856c.wav,data/wav/guitar_electric/guitar_electric_099.wav,sitar_yaman.ogg,gảy

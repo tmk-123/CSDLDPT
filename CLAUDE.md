@@ -1,0 +1,1 @@
+- phần 1, 2, chưa dùng đến trích xuất dữ liệu đặc trưng ở 600 files

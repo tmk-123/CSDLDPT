@@ -1,0 +1,126 @@
+Đọc 600 tệp từ CSDL; 108 nhóm bản thu
+
+=== E1. Từng loại dùng riêng ===
+         cau_hinh  so_chieu          P@1          P@5        MAP@5     P@5_nhom
+             MFCC        26 92.47 ± 0.43 87.61 ± 0.52 85.21 ± 0.58 96.99 ± 0.15
+Spectral Contrast        14 79.77 ± 0.63  74.47 ± 0.5 69.36 ± 0.47 93.18 ± 0.23
+         Roll-off         2 62.13 ± 1.96 62.13 ± 0.73 54.79 ± 0.88 87.25 ± 0.89
+         Centroid         2  53.9 ± 1.32 54.15 ± 0.77 45.63 ± 0.61 82.29 ± 0.86
+           Chroma        24 48.93 ± 2.03 43.12 ± 0.68 34.65 ± 0.83 73.07 ± 0.57
+              ZCR         2 45.07 ± 0.84 42.27 ± 0.34  32.95 ± 0.3 68.45 ± 0.42
+              RMS         2  40.3 ± 1.64 37.37 ± 0.49 29.33 ± 0.66 79.75 ± 0.42
+
+=== E2. Thêm dần (chỉ các bước được chọn) ===
+ buoc              them                                                            cau_hinh  so_chieu          P@1          P@5        MAP@5     P@5_nhom
+    1              MFCC                                                                MFCC        26 92.47 ± 0.43 87.61 ± 0.52 85.21 ± 0.58 96.99 ± 0.15
+    2 Spectral Contrast                                            MFCC + Spectral Contrast        40 90.73 ± 1.36 88.42 ± 0.41 85.92 ± 0.74 97.62 ± 0.26
+    3          Roll-off                                 MFCC + Spectral Contrast + Roll-off        42  91.8 ± 0.99 89.04 ± 0.44 86.95 ± 0.66 98.22 ± 0.18
+    4               ZCR                           MFCC + Spectral Contrast + Roll-off + ZCR        44 91.97 ± 1.14 89.11 ± 0.31 87.14 ± 0.56 98.21 ± 0.18
+    5          Centroid                MFCC + Spectral Contrast + Roll-off + ZCR + Centroid        46  92.2 ± 1.05 88.97 ± 0.35 87.04 ± 0.55 98.19 ± 0.07
+    6               RMS          MFCC + Spectral Contrast + Roll-off + ZCR + Centroid + RMS        48  92.3 ± 0.86 88.51 ± 0.37 86.53 ± 0.54 98.22 ± 0.19
+    7            Chroma MFCC + Spectral Contrast + Roll-off + ZCR + Centroid + RMS + Chroma        72  86.33 ± 1.3 83.15 ± 0.45 79.48 ± 0.59 97.88 ± 0.19
+
+=== E3. Bỏ thử từng loại khỏi tổ hợp đủ 6 loại ===
+            bo_ra                                                            cau_hinh  so_chieu          P@1          P@5        MAP@5     P@5_nhom
+       (không bỏ) RMS + ZCR + Centroid + Roll-off + MFCC + Chroma + Spectral Contrast        72  86.33 ± 1.3 83.15 ± 0.45 79.48 ± 0.59 97.88 ± 0.19
+              RMS       ZCR + Centroid + Roll-off + MFCC + Chroma + Spectral Contrast        70 85.53 ± 1.52 82.56 ± 0.35 78.77 ± 0.59  97.6 ± 0.17
+              ZCR       RMS + Centroid + Roll-off + MFCC + Chroma + Spectral Contrast        70 86.27 ± 1.49  83.15 ± 0.5 79.44 ± 0.63 97.81 ± 0.17
+         Centroid            RMS + ZCR + Roll-off + MFCC + Chroma + Spectral Contrast        70 86.53 ± 1.43  82.9 ± 0.61 79.26 ± 0.71 97.63 ± 0.22
+         Roll-off            RMS + ZCR + Centroid + MFCC + Chroma + Spectral Contrast        70  86.4 ± 1.35 82.69 ± 0.58 79.06 ± 0.67  97.57 ± 0.2
+             MFCC        RMS + ZCR + Centroid + Roll-off + Chroma + Spectral Contrast        46  78.6 ± 0.53 75.21 ± 0.44 70.05 ± 0.38 95.99 ± 0.23
+           Chroma          RMS + ZCR + Centroid + Roll-off + MFCC + Spectral Contrast        48  92.3 ± 0.86 88.51 ± 0.37 86.53 ± 0.54 98.22 ± 0.19
+Spectral Contrast                     RMS + ZCR + Centroid + Roll-off + MFCC + Chroma        58 84.27 ± 1.06 79.43 ± 0.39 75.35 ± 0.55 97.17 ± 0.12
+
+=== E4. Biến thể MFCC ===
+                       cau_hinh  so_chieu          P@1          P@5        MAP@5     P@5_nhom
+             MFCC 26 (mean+std)        26 92.47 ± 0.43 87.61 ± 0.52 85.21 ± 0.58 96.99 ± 0.15
+  MFCC 26 (mean+std) + Roll-off        28 93.23 ± 0.64 88.25 ± 0.41 86.07 ± 0.53 97.97 ± 0.09
+                   MFCC 13 mean        13  92.8 ± 0.49 89.74 ± 0.34 88.11 ± 0.39 94.52 ± 0.37
+        MFCC 13 mean + Roll-off        15  94.4 ± 0.63 92.08 ± 0.49 90.81 ± 0.55  97.3 ± 0.21
+                    MFCC 13 std        13 57.37 ± 0.92 55.22 ± 0.79 48.07 ± 0.76  85.3 ± 0.38
+         MFCC 13 std + Roll-off        15   68.3 ± 1.0 65.27 ± 0.81 59.17 ± 0.85 93.73 ± 0.17
+                MFCC 24 (bỏ c0)        24 91.07 ± 0.81 85.81 ± 0.25 83.03 ± 0.31 94.25 ± 0.42
+     MFCC 24 (bỏ c0) + Roll-off        26 92.53 ± 0.52 88.15 ± 0.32 85.73 ± 0.43 97.24 ± 0.22
+           MFCC 12 mean (bỏ c0)        12  89.0 ± 0.55 86.85 ± 0.38 84.86 ± 0.49 91.58 ± 0.38
+MFCC 12 mean (bỏ c0) + Roll-off        14 91.73 ± 0.51 89.99 ± 0.51 88.24 ± 0.51 95.06 ± 0.35
+
+=== E5. Độ đo và trọng số ===
+                                                           cau_hinh  do_do  can_bang_loai  so_chieu          P@5        MAP@5
+                                                               MFCC euclid          False        26 87.61 ± 0.52 85.21 ± 0.58
+                                                               MFCC cosine          False        26 87.95 ± 0.27 85.65 ± 0.31
+                                           MFCC + Spectral Contrast euclid          False        40 88.42 ± 0.41 85.92 ± 0.74
+                                           MFCC + Spectral Contrast euclid           True        40 87.05 ± 0.37 84.65 ± 0.62
+                                           MFCC + Spectral Contrast cosine          False        40 88.54 ± 0.45 86.66 ± 0.45
+                                           MFCC + Spectral Contrast cosine           True        40 87.73 ± 0.38 85.57 ± 0.36
+                                MFCC + Spectral Contrast + Roll-off euclid          False        42 89.04 ± 0.44 86.95 ± 0.66
+                                MFCC + Spectral Contrast + Roll-off euclid           True        42 87.85 ± 0.29 85.66 ± 0.37
+                                MFCC + Spectral Contrast + Roll-off cosine          False        42 89.14 ± 0.31  87.3 ± 0.43
+                                MFCC + Spectral Contrast + Roll-off cosine           True        42  88.52 ± 0.4 86.75 ± 0.46
+                                                    MFCC + Roll-off euclid          False        28 88.25 ± 0.41 86.07 ± 0.53
+                                                    MFCC + Roll-off euclid           True        28 87.39 ± 0.48  85.13 ± 0.5
+                                                    MFCC + Roll-off cosine          False        28  88.49 ± 0.2 86.29 ± 0.27
+                                                    MFCC + Roll-off cosine           True        28  87.45 ± 0.5 85.28 ± 0.51
+RMS + ZCR + Centroid + Roll-off + MFCC + Chroma + Spectral Contrast euclid          False        72 83.15 ± 0.45 79.48 ± 0.59
+RMS + ZCR + Centroid + Roll-off + MFCC + Chroma + Spectral Contrast euclid           True        72 81.62 ± 0.03  78.23 ± 0.1
+RMS + ZCR + Centroid + Roll-off + MFCC + Chroma + Spectral Contrast cosine          False        72 84.31 ± 0.49 80.96 ± 0.52
+RMS + ZCR + Centroid + Roll-off + MFCC + Chroma + Spectral Contrast cosine           True        72 83.03 ± 0.16 80.12 ± 0.21
+
+=== E6. Các cặp chiều tương quan mạnh (|r| >= 0,9) ===
+        chieu_1            loai_1         chieu_2            loai_2  pearson_r
+  centroid_mean          Centroid    rolloff_mean          Roll-off      0.980
+   centroid_std          Centroid     rolloff_std          Roll-off      0.945
+contrast_3_mean Spectral Contrast contrast_4_mean Spectral Contrast      0.931
+       zcr_mean               ZCR   centroid_mean          Centroid      0.911
+
+=== E7. Lượng thông tin theo loại (Fisher F, MI) ===
+                   so_chieu  F_nhac_cu_lon_nhat  F_nhac_cu_trung_vi  MI_lon_nhat  MI_trung_binh  F_keo_vi_gay_lon_nhat
+loai                                                                                                                  
+MFCC                     26             385.080              69.254        0.760          0.374                349.403
+Centroid                  2             307.480             225.720        0.813          0.669                278.197
+Roll-off                  2             295.422             260.200        0.803          0.717                346.348
+Spectral Contrast        14             287.899             118.244        0.679          0.438                138.954
+ZCR                       2             201.352             130.569        0.699          0.558                157.420
+RMS                       2              92.845              76.538        0.387          0.297                371.084
+Chroma                   24              58.105              14.591        0.267          0.131                164.538
+
+Đã lưu kết quả vào ket_qua\chon_dac_trung
+1. Cắt tệp truy vấn ngoài thành đoạn:
+  day_gay         guzheng_green_sleeves.ogg                  82.9 s -> 15 đoạn
+  day_gay         mandolin_demo.ogg                          45.0 s -> 14 đoạn
+  day_gay         mandolin_schneewalzer.ogg                  30.0 s -> 10 đoạn
+  day_gay         pipa.ogg                                   11.4 s -> 3 đoạn
+  day_gay         sitar_yaman.ogg                           103.1 s -> 15 đoạn
+  day_keo_vi      erhu_nhi_tuyen_anh_nguyet.ogg             268.1 s -> 15 đoạn
+  khong_phai_day  sao_pitkahuilu.ogg                         54.1 s -> 12 đoạn
+  khong_phai_day  trong_RealDrum01_08_MIX.wav                18.7 s -> 6 đoạn
+  khong_phai_day  trong_TechnoDrum01_01_MIX.wav              16.9 s -> 5 đoạn
+  khong_phai_day  trong_TechnoDrum01_03_MIX.wav              18.0 s -> 6 đoạn
+  khong_phai_day  trong_WaveDrum01_07_MIX.wav                16.9 s -> 5 đoạn
+  khong_phai_day  trong_WaveDrum02_29_MIX.wav                14.9 s -> 4 đoạn
+  khong_phai_day  trong_WaveDrum02_38_MIX.wav                14.1 s -> 4 đoạn
+
+Số đoạn: dây trong CSDL 600, dây ngoài 72, không phải dây 42
+
+=== E9. Tách 'nhạc cụ dây' với 'không phải dây' (AUC, theo loại) ===
+                   AUC_lon_nhat   chieu_tot_nhat  AUC_trung_binh
+loai                                                            
+MFCC                      0.961      mfcc_1_mean           0.737
+Spectral Contrast         0.946  contrast_2_mean           0.823
+Centroid                  0.923    centroid_mean           0.893
+ZCR                       0.876         zcr_mean           0.860
+Roll-off                  0.855     rolloff_mean           0.844
+Chroma                    0.805    chroma_0_mean           0.637
+RMS                       0.754         rms_mean           0.636
+
+10 chiều tách tốt nhất:
+          chieu              loai   AUC              huong
+    mfcc_1_mean              MFCC 0.961 không-dây thấp hơn
+contrast_2_mean Spectral Contrast 0.946 không-dây thấp hơn
+contrast_1_mean Spectral Contrast 0.942 không-dây thấp hơn
+contrast_6_mean Spectral Contrast 0.924  không-dây cao hơn
+  centroid_mean          Centroid 0.923  không-dây cao hơn
+     mfcc_7_std              MFCC 0.894  không-dây cao hơn
+     mfcc_5_std              MFCC 0.887  không-dây cao hơn
+     mfcc_8_std              MFCC 0.878  không-dây cao hơn
+       zcr_mean               ZCR 0.876  không-dây cao hơn
+     mfcc_6_std              MFCC 0.873  không-dây cao hơn

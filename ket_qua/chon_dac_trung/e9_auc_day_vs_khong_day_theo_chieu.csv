@@ -1,0 +1,73 @@
+﻿chieu,loai,AUC,huong
+mfcc_1_mean,MFCC,0.9610969387755102,không-dây thấp hơn
+contrast_2_mean,Spectral Contrast,0.9462868480725624,không-dây thấp hơn
+contrast_1_mean,Spectral Contrast,0.9422477324263039,không-dây thấp hơn
+contrast_6_mean,Spectral Contrast,0.9242488662131519,không-dây cao hơn
+centroid_mean,Centroid,0.9233630952380951,không-dây cao hơn
+mfcc_7_std,MFCC,0.894203514739229,không-dây cao hơn
+mfcc_5_std,MFCC,0.8867630385487528,không-dây cao hơn
+mfcc_8_std,MFCC,0.8775864512471655,không-dây cao hơn
+zcr_mean,ZCR,0.876062925170068,không-dây cao hơn
+mfcc_6_std,MFCC,0.8726969954648527,không-dây cao hơn
+contrast_3_std,Spectral Contrast,0.8710671768707483,không-dây thấp hơn
+centroid_std,Centroid,0.8625992063492064,không-dây cao hơn
+rolloff_mean,Roll-off,0.855123299319728,không-dây cao hơn
+contrast_5_mean,Spectral Contrast,0.8542729591836735,không-dây thấp hơn
+mfcc_4_std,MFCC,0.8492417800453514,không-dây cao hơn
+contrast_2_std,Spectral Contrast,0.8451672335600907,không-dây thấp hơn
+zcr_std,ZCR,0.8446357709750567,không-dây cao hơn
+mfcc_9_std,MFCC,0.8439980158730159,không-dây cao hơn
+contrast_4_std,Spectral Contrast,0.8348922902494331,không-dây thấp hơn
+rolloff_std,Roll-off,0.8334041950113379,không-dây cao hơn
+chroma_0_mean,Chroma,0.8054138321995464,không-dây cao hơn
+contrast_4_mean,Spectral Contrast,0.8005952380952381,không-dây thấp hơn
+contrast_0_std,Spectral Contrast,0.799390589569161,không-dây cao hơn
+contrast_5_std,Spectral Contrast,0.7971584467120182,không-dây thấp hơn
+mfcc_0_std,MFCC,0.7865646258503401,không-dây cao hơn
+chroma_1_mean,Chroma,0.7804350907029479,không-dây cao hơn
+contrast_1_std,Spectral Contrast,0.7717545351473922,không-dây thấp hơn
+mfcc_12_std,MFCC,0.7705144557823129,không-dây cao hơn
+mfcc_1_std,MFCC,0.7684240362811793,không-dây cao hơn
+contrast_3_mean,Spectral Contrast,0.7671130952380952,không-dây thấp hơn
+chroma_9_mean,Chroma,0.7610189909297052,không-dây cao hơn
+mfcc_3_std,MFCC,0.7538619614512472,không-dây cao hơn
+rms_mean,RMS,0.7536493764172336,không-dây thấp hơn
+mfcc_10_std,MFCC,0.7386621315192743,không-dây cao hơn
+mfcc_0_mean,MFCC,0.7356859410430838,không-dây thấp hơn
+chroma_5_mean,Chroma,0.7344812925170068,không-dây cao hơn
+mfcc_3_mean,MFCC,0.7142857142857142,không-dây thấp hơn
+chroma_6_mean,Chroma,0.7050736961451247,không-dây cao hơn
+chroma_8_mean,Chroma,0.7044713718820862,không-dây cao hơn
+chroma_2_mean,Chroma,0.7042587868480726,không-dây cao hơn
+mfcc_11_mean,MFCC,0.704187925170068,không-dây cao hơn
+contrast_0_mean,Spectral Contrast,0.6985189909297053,không-dây thấp hơn
+mfcc_6_mean,MFCC,0.6850907029478458,không-dây cao hơn
+mfcc_11_std,MFCC,0.6837089002267573,không-dây cao hơn
+mfcc_4_mean,MFCC,0.6807327097505669,không-dây thấp hơn
+mfcc_8_mean,MFCC,0.6770124716553289,không-dây cao hơn
+chroma_4_mean,Chroma,0.6743551587301587,không-dây cao hơn
+chroma_10_mean,Chroma,0.6683673469387755,không-dây cao hơn
+contrast_6_std,Spectral Contrast,0.6655683106575964,không-dây cao hơn
+chroma_3_mean,Chroma,0.6591907596371883,không-dây cao hơn
+mfcc_2_mean,MFCC,0.6507582199546486,không-dây cao hơn
+mfcc_9_mean,MFCC,0.645124716553288,không-dây cao hơn
+chroma_0_std,Chroma,0.6354166666666666,không-dây cao hơn
+chroma_11_mean,Chroma,0.6349914965986394,không-dây cao hơn
+chroma_7_mean,Chroma,0.6298540249433108,không-dây cao hơn
+chroma_5_std,Chroma,0.6215986394557823,không-dây cao hơn
+chroma_7_std,Chroma,0.6155045351473922,không-dây thấp hơn
+mfcc_12_mean,MFCC,0.6088789682539684,không-dây thấp hơn
+chroma_6_std,Chroma,0.6077451814058957,không-dây cao hơn
+mfcc_7_mean,MFCC,0.606186224489796,không-dây cao hơn
+mfcc_10_mean,MFCC,0.6018636621315193,không-dây cao hơn
+chroma_1_std,Chroma,0.6006235827664399,không-dây cao hơn
+mfcc_5_mean,MFCC,0.5787273242630385,không-dây cao hơn
+chroma_11_std,Chroma,0.5784793083900226,không-dây thấp hơn
+mfcc_2_std,MFCC,0.5732709750566893,không-dây cao hơn
+chroma_3_std,Chroma,0.555094954648526,không-dây cao hơn
+chroma_8_std,Chroma,0.5455994897959184,không-dây cao hơn
+chroma_10_std,Chroma,0.5328089569160999,không-dây cao hơn
+chroma_2_std,Chroma,0.5262896825396826,không-dây thấp hơn
+rms_std,RMS,0.5180697278911564,không-dây cao hơn
+chroma_9_std,Chroma,0.5088222789115646,không-dây cao hơn
+chroma_4_std,Chroma,0.5036493764172336,không-dây thấp hơn

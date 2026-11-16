@@ -1,4 +1,4 @@
-# Dữ liệu âm thanh: quá nặng (data/raw ~2,1 GB, data/wav ~78 MB), tạo lại được bằng src/tao_bo_du_lieu.py
+# Dữ liệu âm thanh: quá nặng (data/raw ~2,1 GB, data/wav ~78 MB), tạo lại được bằng src/phan1_du_lieu/tao_bo_du_lieu.py
 data/*
 # giữ lại bảng metadata (nhỏ) để biết mỗi file cắt từ đâu
 !data/metadata.csv
@@ -8,11 +8,14 @@ data/*
 __pycache__/
 *.pyc
 
+# Thông tin đăng nhập cục bộ, không đưa vào Git
+.env
+.env.*
+!.env.example
+
 # File tạm của Office khi đang mở báo cáo
 ~$*
 
-# Thư mục junction hinh tại root (chỉ áp dụng ở thư mục gốc)
-/hinh
 
 # Tài liệu mẫu tham khảo và PDF xuất khẩu
 HCSDLDPT.docx

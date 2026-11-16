@@ -1,0 +1,5 @@
+﻿chieu_1,loai_1,chieu_2,loai_2,pearson_r
+centroid_mean,Centroid,rolloff_mean,Roll-off,0.98
+centroid_std,Centroid,rolloff_std,Roll-off,0.945
+contrast_3_mean,Spectral Contrast,contrast_4_mean,Spectral Contrast,0.931
+zcr_mean,ZCR,centroid_mean,Centroid,0.911
