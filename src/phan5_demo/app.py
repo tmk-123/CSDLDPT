@@ -53,6 +53,135 @@ def ve_song_pho(duong_dan):
     return fig
 
 
+def giai_thich_tim_kiem(tv, r, duong_dan):
+    st.subheader("Hệ thống tìm ra 5 tệp này như thế nào?")
+    st.markdown(
+        f"**1. Tiền xử lý:** đọc âm thanh thành mono, lấy mẫu lại ở **22.050 Hz**; "
+        f"tệp truy vấn dài **{r['do_dai_s']:.2f} giây**, được xử lý thành **{r['so_doan']} đoạn**. "
+        "Tệp ngắn tối đa 3,5 giây được giữ nguyên; tệp dài được cắt theo nốt "
+        "(nếu không cắt được thì dùng khung 3 giây, bỏ đoạn gần im lặng), lấy tối đa 20 đoạn. "
+        "Mỗi đoạn được chuẩn hóa đỉnh biên độ về 0,9 và làm mềm mép.\n\n"
+        "**2. Trích đặc trưng:** phân tích các khung 2.048 mẫu, bước nhảy 512 mẫu. "
+        "Tính 46 đặc trưng cho mỗi đoạn rồi lấy trung bình giữa các đoạn. "
+        "Dùng **15 chiều để tìm kiếm: 13 MFCC trung bình (mô tả âm sắc) và Roll-off trung bình, "
+        "độ lệch chuẩn (mô tả phân bố phổ và mức biến thiên theo thời gian)**.\n\n"
+        "**3. Chuẩn hóa:** đưa từng chiều về cùng thang đo bằng trung bình μ và độ lệch chuẩn σ "
+        "của thư viện; áp dụng cùng tham số cho truy vấn và các tệp trong CSDL."
+    )
+    st.latex(r"z_j = \frac{x_j-\mu_j}{\sigma_j}")
+    st.markdown(
+        f"**4. So sánh:** tính cosine giữa vector truy vấn và từng vector trong **{len(tv.bang)} tệp**. "
+        "Mỗi đóng góp ở bảng chi tiết bên dưới là một số hạng trong tổng sau:"
+    )
+    st.latex(r"s(q,g)=\frac{\sum_{j=1}^{15}z_{q,j}z_{g,j}}{\|z_q\|_2\|z_g\|_2}"
+             r"=\sum_{j=1}^{15}c_j,\qquad c_j=\frac{z_{q,j}z_{g,j}}{\|z_q\|_2\|z_g\|_2}")
+    st.markdown(
+        "**5. Xếp hạng:** sắp xếp toàn bộ điểm cosine giảm dần và lấy 5 tệp đầu. "
+        "Tên nhạc cụ, tên tệp và nguồn thu chỉ dùng để hiển thị, không tham gia tính điểm. "
+        "Cosine nằm trong khoảng −1 đến 1; càng gần 1 thì hướng vector đặc trưng càng giống nhau. "
+        "Đây là điểm tương đồng, **không phải xác suất nhận diện hay phần trăm chính xác**."
+    )
+    if any((GOC / p).resolve() == duong_dan.resolve() for p in r["ket_qua"].duong_dan):
+        st.info("Bạn đang truy vấn bằng một tệp có trong CSDL. Tệp đó vẫn được đưa vào xếp hạng, "
+                "nên có thể đứng đầu với điểm gần 1. Hãy chọn mẫu Ngoài CSDL để thử âm thanh mới.")
+
+
+def chi_tiet_top5(tv, r):
+    kq = r["ket_qua"]
+    meta = pd.read_csv(GOC / "data" / "metadata.csv").set_index("file_path")
+    st.subheader("So sánh nhanh 5 kết quả")
+    tong_hop = kq[["hang", "ten_tep", "ten_hien_thi", "nhom", "do_tuong_dong", "ban_thu_goc"]].copy()
+    tong_hop["Độ dài (s)"] = [float(meta.loc[p, "duration_s"]) for p in kq.duong_dan]
+    tong_hop = tong_hop.rename(columns={"hang": "Hạng", "ten_tep": "Tệp", "ten_hien_thi": "Nhạc cụ",
+                                      "nhom": "Cách kích âm", "do_tuong_dong": "Cosine", "ban_thu_goc": "Bản thu gốc"})
+    st.dataframe(tong_hop, hide_index=True, width="stretch")
+    fig, ax = plt.subplots(figsize=(9, 3))
+    diem = kq.do_tuong_dong.to_numpy()
+    ax.barh([f"#{k.hang} · {k.ten_tep}" for k in kq.itertuples()], diem, color="#4C72B0")
+    ax.invert_yaxis()
+    ax.set_xlim(min(0, float(diem.min()) - 0.1), 1.15)
+    for i, v in enumerate(diem):
+        ax.text(v + 0.015, i, f"{v:.4f}", va="center")
+    ax.set_xlabel("Điểm tương đồng cosine (càng lớn càng giống)")
+    fig.tight_layout()
+    st.pyplot(fig)
+    plt.close(fig)
+
+    st.subheader("Đối chiếu từng kết quả với âm thanh truy vấn")
+    st.markdown(
+        "**Cách đọc 5 cột:** màu xanh là **truy vấn**, màu cam là **tệp kết quả**. "
+        "Hệ thống xếp hạng bằng **cosine của toàn bộ 15 chiều đã chuẩn hóa**. "
+        "MFCC mô tả âm sắc; Roll-off mô tả phân bố phổ. Các biểu đồ dùng cùng thang đo để so sánh giữa các cột."
+    )
+    st.caption(
+        "Tỉ lệ chiều gần nhau = số chiều có |z truy vấn − z kết quả| ≤ 1 chia cho 15 "
+        "(chênh lệch không quá một độ lệch chuẩn CSDL). Đây là chỉ số minh họa, không dùng để xếp hạng. "
+        "Điểm cosine và tỉ lệ này không phải xác suất nhận diện đúng."
+    )
+    q = r["z"].to_numpy(float)
+    qn = q / np.linalg.norm(q)
+    cac_z = [tv.chuan_hoa(tv.bang.loc[tv.bang.duong_dan == p].iloc[0][tv.chieu])[0]
+             for p in kq.duong_dan]
+    gioi_han = max(1.0, float(np.max(np.abs(np.array([q, *cac_z]))))) * 1.12
+    mfcc = np.array([c.startswith("mfcc_") for c in tv.chieu])
+    nhan = [c.replace("mfcc_", "M").replace("rolloff_", "RO ").replace("_mean", " TB")
+            .replace("_std", " ĐLC") for c in tv.chieu]
+    for cot, k, g in zip(st.columns(5), kq.itertuples(), cac_z):
+        tep = tv.bang.loc[tv.bang.duong_dan == k.duong_dan].iloc[0]
+        m = meta.loc[k.duong_dan]
+        gn = g / np.linalg.norm(g)
+        dong_gop = qn * gn
+        chi_tiet = pd.DataFrame({"Đặc trưng": tv.chieu,
+                                "Truy vấn (gốc)": r["vector"][tv.chieu].to_numpy(float),
+                                "Tệp kết quả (gốc)": tep[tv.chieu].to_numpy(float),
+                                "μ CSDL": tv.tk.loc[tv.chieu, "mu"].to_numpy(float),
+                                "σ CSDL": tv.tk.loc[tv.chieu, "sigma"].to_numpy(float),
+                                "z truy vấn": q, "z kết quả": g,
+                                "Đóng góp cosine": dong_gop})
+        with cot, st.container(border=True):
+            st.markdown(f"### Hạng {k.hang}")
+            st.markdown(f"**{k.ten_tep}**  \n{k.ten_hien_thi} · {k.nhom}")
+            st.metric("Điểm cosine", f"{dong_gop.sum():.4f}", help="Điểm dùng để xếp hạng; càng gần 1 càng tương đồng về hướng vector.")
+            gan = int(np.count_nonzero(np.abs(q - g) <= 1))
+            st.metric("Tỉ lệ chiều gần nhau", f"{gan / len(q):.1%}", help="Chỉ số minh họa, không dùng để chọn Top 5.")
+            st.caption(f"{gan}/{len(q)} chiều chênh lệch không quá 1σ của CSDL.")
+            st.markdown("**Đối chiếu 15 đặc trưng**")
+            fig, ax = plt.subplots(figsize=(3.6, 6.2))
+            vi_tri = np.arange(len(q))
+            ax.barh(vi_tri - .18, q, height=.35, color="#2878B5", label="Truy vấn")
+            ax.barh(vi_tri + .18, g, height=.35, color="#F28E2B", label="Kết quả")
+            ax.set_yticks(vi_tri, nhan, fontsize=9)
+            ax.invert_yaxis()
+            ax.set_xlim(-gioi_han, gioi_han)
+            ax.axvline(0, color="gray", linewidth=.7)
+            ax.set_xlabel("Giá trị z-score")
+            ax.legend(loc="lower center", bbox_to_anchor=(.5, 1.01), ncol=2, fontsize=8)
+            fig.tight_layout()
+            st.pyplot(fig)
+            plt.close(fig)
+            st.caption("M0–M12: MFCC trung bình; RO TB/ĐLC: Roll-off trung bình/độ lệch chuẩn. "
+                       "Hai thanh gần nhau biểu thị giá trị chuẩn hóa gần nhau.")
+            st.markdown("**Điểm được tạo thành từ đâu?**")
+            st.write(f"MFCC (13 chiều): **{dong_gop[mfcc].sum():+.4f}**")
+            st.write(f"Roll-off (2 chiều): **{dong_gop[~mfcc].sum():+.4f}**")
+            st.caption(f"Cộng hai phần = {dong_gop.sum():.4f}. Đây là đóng góp vào cùng một điểm cosine, không phải điểm tính riêng từng nhóm.")
+            st.markdown("**Roll-off thực tế**")
+            for chieu, ten in [("rolloff_mean", "Trung bình"), ("rolloff_std", "Độ lệch chuẩn")]:
+                st.write(f"{ten}: {float(r['vector'][chieu]):.0f} → **{float(tep[chieu]):.0f} Hz**")
+            st.caption("Thứ tự: truy vấn → kết quả. Roll-off là tần số chứa 85% tổng biên độ phổ.")
+            st.markdown("**Thông tin âm thanh**")
+            st.write(f"Truy vấn: **{r['do_dai_s']:.2f} s** · {r['so_doan']} đoạn")
+            st.write(f"Kết quả: **{float(m.duration_s):.2f} s** · {int(m.sample_rate):,} Hz")
+            st.write(f"Nguồn: **{m.source}**")
+            st.caption(f"Bản thu: {k.ban_thu_goc} · cắt từ {float(m.start_s):.2f} s")
+            with st.expander("Xem số liệu và phép tính"):
+                st.write(f"‖z truy vấn‖ = {np.linalg.norm(q):.4f}; ‖z kết quả‖ = {np.linalg.norm(g):.4f}.")
+                st.caption("Đóng góp dương làm tăng điểm, âm làm giảm điểm. Tổng 15 đóng góp bằng cosine.")
+                st.dataframe(chi_tiet.round(6), hide_index=True, width="stretch")
+                st.caption(f"Mã tệp: {int(tep.tep_id)} · Đường dẫn: {k.duong_dan}")
+    st.caption("Các kết quả cùng bản thu gốc có thể là những đoạn cắt khác nhau của cùng một bản thu.")
+
+
 def main():
     st.title("Tìm kiếm tiếng nhạc cụ bộ dây theo nội dung")
     tv = thu_vien()
@@ -70,8 +199,10 @@ def main():
             up = st.file_uploader("Tệp âm thanh", type=["wav", "ogg", "mp3", "flac"])
             if up:
                 TAI_LEN.mkdir(parents=True, exist_ok=True)
-                duong_dan = TAI_LEN / up.name
-                duong_dan.write_bytes(up.getvalue())
+                duong_dan = TAI_LEN / Path(up.name).name
+                noi_dung = up.getvalue()
+                if not duong_dan.exists() or duong_dan.read_bytes() != noi_dung:
+                    duong_dan.write_bytes(noi_dung)
         chay = st.button("Tìm 5 tệp giống nhất", type="primary", disabled=duong_dan is None)
 
     if duong_dan is None:
@@ -79,11 +210,14 @@ def main():
         return
     st.subheader("Tệp truy vấn")
     st.audio(str(duong_dan))
-    if not chay:
+    khoa = (str(duong_dan.resolve()), duong_dan.stat().st_mtime_ns)
+    if chay:
+        with st.spinner("Đang tiền xử lý, trích đặc trưng và so khớp..."):
+            st.session_state["truy_van_da_chay"] = (khoa, tv.tim(duong_dan))
+    da_chay = st.session_state.get("truy_van_da_chay")
+    if da_chay is None or da_chay[0] != khoa:
         return
-
-    with st.spinner("Đang tiền xử lý, trích đặc trưng và so khớp..."):
-        r = tv.tim(duong_dan)
+    r = da_chay[1]
 
     st.subheader("Kết quả: 5 tệp giống nhất (độ tương đồng giảm dần)")
     for _, kq in r["ket_qua"].iterrows():
@@ -95,6 +229,9 @@ def main():
     tg = r["thoi_gian_ms"]
     st.caption(f"Tệp truy vấn dài {r['do_dai_s']:.1f} s, chia {r['so_doan']} đoạn · tiền xử lý + trích đặc trưng "
                f"{tg['tien_xu_ly_va_trich']:.0f} ms · so khớp 600 tệp {tg['so_khop']:.1f} ms")
+
+    chi_tiet_top5(tv, r)
+    giai_thich_tim_kiem(tv, r, duong_dan)
 
     st.divider()
     st.subheader("Kết quả trung gian")
